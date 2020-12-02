@@ -16,6 +16,9 @@ public class pnl_Gestionar_planos extends javax.swing.JPanel {
      */
     public pnl_Gestionar_planos() {
         initComponents();
+        this.listar_planos.setSelected(true);
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_plano_listar());
+        pnl_Gestionar_contrato.color_performed(listar_planos,add_contrato);
     }
 
     /**
@@ -28,7 +31,7 @@ public class pnl_Gestionar_planos extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel9 = new javax.swing.JLabel();
-        listar_contrato = new rsbuttom.RSButtonMetro();
+        listar_planos = new rsbuttom.RSButtonMetro();
         add_contrato = new rsbuttom.RSButtonMetro();
         panel_contenedor = new javax.swing.JPanel();
 
@@ -37,29 +40,29 @@ public class pnl_Gestionar_planos extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(128, 128, 131));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Gestionar Contrato");
+        jLabel9.setText("Gestionar Planos");
 
-        listar_contrato.setBackground(new java.awt.Color(239, 238, 244));
-        listar_contrato.setForeground(new java.awt.Color(128, 128, 131));
-        listar_contrato.setText("Listar");
-        listar_contrato.setColorHover(new java.awt.Color(204, 204, 204));
-        listar_contrato.setColorNormal(new java.awt.Color(239, 238, 244));
-        listar_contrato.setColorPressed(new java.awt.Color(204, 204, 204));
-        listar_contrato.setColorTextHover(new java.awt.Color(128, 128, 131));
-        listar_contrato.setColorTextNormal(new java.awt.Color(128, 128, 131));
-        listar_contrato.setColorTextPressed(new java.awt.Color(128, 128, 131));
-        listar_contrato.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        listar_contrato.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        listar_contrato.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        listar_contrato.setIconTextGap(25);
-        listar_contrato.addMouseListener(new java.awt.event.MouseAdapter() {
+        listar_planos.setBackground(new java.awt.Color(239, 238, 244));
+        listar_planos.setForeground(new java.awt.Color(128, 128, 131));
+        listar_planos.setText("Listar");
+        listar_planos.setColorHover(new java.awt.Color(204, 204, 204));
+        listar_planos.setColorNormal(new java.awt.Color(239, 238, 244));
+        listar_planos.setColorPressed(new java.awt.Color(204, 204, 204));
+        listar_planos.setColorTextHover(new java.awt.Color(128, 128, 131));
+        listar_planos.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        listar_planos.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        listar_planos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        listar_planos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        listar_planos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        listar_planos.setIconTextGap(25);
+        listar_planos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                listar_contratoMousePressed(evt);
+                listar_planosMousePressed(evt);
             }
         });
-        listar_contrato.addActionListener(new java.awt.event.ActionListener() {
+        listar_planos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listar_contratoActionPerformed(evt);
+                listar_planosActionPerformed(evt);
             }
         });
 
@@ -99,7 +102,7 @@ public class pnl_Gestionar_planos extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(listar_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(listar_planos, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(add_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -114,40 +117,40 @@ public class pnl_Gestionar_planos extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listar_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listar_planos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listar_contratoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listar_contratoMousePressed
+    private void listar_planosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listar_planosMousePressed
         // TODO add your handling code here:
-        pnl_Gestionar_contrato.pressed(listar_contrato,add_contrato);
-    }//GEN-LAST:event_listar_contratoMousePressed
+        pnl_Gestionar_contrato.pressed(listar_planos,add_contrato);
+    }//GEN-LAST:event_listar_planosMousePressed
 
-    private void listar_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_contratoActionPerformed
+    private void listar_planosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_planosActionPerformed
         // TODO add your handling code here:
         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_plano_listar());
-        pnl_Gestionar_contrato.color_performed(listar_contrato,add_contrato);
-    }//GEN-LAST:event_listar_contratoActionPerformed
+        pnl_Gestionar_contrato.color_performed(listar_planos,add_contrato);
+    }//GEN-LAST:event_listar_planosActionPerformed
 
     private void add_contratoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_contratoMousePressed
         // TODO add your handling code here:
-        pnl_Gestionar_contrato.pressed(add_contrato,listar_contrato);
+        pnl_Gestionar_contrato.pressed(add_contrato,listar_planos);
     }//GEN-LAST:event_add_contratoMousePressed
 
     private void add_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_contratoActionPerformed
         // TODO add your handling code here:
         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_plano_añadir());
-        pnl_Gestionar_contrato.color_performed(add_contrato,listar_contrato);
+        pnl_Gestionar_contrato.color_performed(add_contrato,listar_planos);
     }//GEN-LAST:event_add_contratoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro add_contrato;
+    public static rsbuttom.RSButtonMetro add_contrato;
     private javax.swing.JLabel jLabel9;
-    private rsbuttom.RSButtonMetro listar_contrato;
+    public static rsbuttom.RSButtonMetro listar_planos;
     private javax.swing.JPanel panel_contenedor;
     // End of variables declaration//GEN-END:variables
 }

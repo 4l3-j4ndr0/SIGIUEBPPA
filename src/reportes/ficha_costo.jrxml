@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="712" pageHeight="792" columnWidth="712" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="53ade738-57c7-4a52-90c7-bf7a3a80cb9c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="192"/>
 	<parameter name="ficha" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["D:\\descargas de mega\\SlidingMenu\\SlidingMenu\\Dashboard_1\\src\\reportes\\"]]></defaultValueExpression>
@@ -23,17 +23,9 @@ FROM
 	</background>
 	<title>
 		<band height="720" splitType="Stretch">
-			<subreport>
-				<reportElement x="0" y="659" width="709" height="61" uuid="b4907d61-eb53-4418-92e0-8f26c8445f38"/>
-				<subreportParameter name="ficha2">
-					<subreportParameterExpression><![CDATA[$P{ficha2}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ficha_costo2.jasper"]]></subreportExpression>
-			</subreport>
 			<image>
 				<reportElement x="-2" y="0" width="715" height="659" uuid="b2413148-ea72-49ed-9bda-3c213e2f60cc"/>
-				<imageExpression><![CDATA["D:\\descargas de mega\\SlidingMenu\\SlidingMenu\\Dashboard_1\\src\\imagenes_reportes\\ficha_costo.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{ficha}]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="559" y="33" width="38" height="16" uuid="2766dc6a-894a-4d88-b1e8-26d69ff2c631"/>

@@ -256,7 +256,7 @@ public class de_gestionar_plano_añadir extends javax.swing.JPanel {
             ruta_archivo = "";
             reset_campos();
             SuccessAlert e = new SuccessAlert(new JFrame(), true);
-            e.msj1.setText("¡Los datos del contrato fueron");
+            e.msj1.setText("¡Los datos del plano fueron");
             e.msj2.setText("guardados exitosamente!.");
             e.msj3.setText("");
             e.setVisible(true);

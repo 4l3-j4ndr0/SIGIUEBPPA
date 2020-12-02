@@ -74,34 +74,35 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="468" max="32767" attributes="0"/>
-                      <Component id="id" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="273" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="numero_contrato_editar" alignment="0" min="-2" pref="298" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="fecha_inicio_contrato_editar" min="-2" pref="189" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbl" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="lbl_fecha_expira_contrato_editar" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lbl_error_nombre_cliente_editar" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="nombre_cliente_contrato_editar" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lbl_error_numero_contrato_editar" alignment="0" min="-2" pref="298" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="boton_guardar_contrato_editar" alignment="0" min="-2" pref="298" max="-2" attributes="0"/>
-                              <Component id="lbl_error_fecha_inicio_editar" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="id_editar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="numero_contrato_control" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="52" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="numero_contrato_editar" min="-2" pref="298" max="-2" attributes="0"/>
+                                  <Component id="lbl_error_numero_contrato_editar" min="-2" pref="298" max="-2" attributes="0"/>
+                                  <Component id="nombre_cliente_contrato_editar" min="-2" pref="298" max="-2" attributes="0"/>
+                                  <Component id="lbl_error_nombre_cliente_editar" min="-2" pref="298" max="-2" attributes="0"/>
+                                  <Component id="boton_guardar_contrato_editar" min="-2" pref="297" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="fecha_inicio_contrato_editar" min="-2" pref="189" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lbl" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="lbl_fecha_expira_contrato_editar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lbl_error_fecha_inicio_editar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -110,38 +111,36 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="id" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="501" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="numero_contrato_editar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbl_error_numero_contrato_editar" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nombre_cliente_contrato_editar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="lbl_error_nombre_cliente_editar" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="fecha_inicio_contrato_editar" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="lbl" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                                          <Component id="lbl_fecha_expira_contrato_editar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbl_error_fecha_inicio_editar" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="boton_guardar_contrato_editar" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="95" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="id_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="numero_contrato_control" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="46" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="numero_contrato_editar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="lbl_error_numero_contrato_editar" min="-2" pref="43" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="nombre_cliente_contrato_editar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="lbl_error_nombre_cliente_editar" min="-2" pref="43" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="fecha_inicio_contrato_editar" min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lbl" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Component id="lbl_fecha_expira_contrato_editar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lbl_error_fecha_inicio_editar" min="-2" pref="43" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="boton_guardar_contrato_editar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -280,7 +279,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_guardar_contrato_editarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="id">
+            <Component class="javax.swing.JLabel" name="id_editar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel2"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="numero_contrato_control">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel2"/>
               </Properties>

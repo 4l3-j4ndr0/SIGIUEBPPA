@@ -18,7 +18,10 @@ public class pnl_Gestionar_contrato extends javax.swing.JPanel {
      */
     public pnl_Gestionar_contrato() {
         initComponents();
-        new CambiaPanel(panel_contenedor, new paneles.pnlHome());
+      //  new CambiaPanel(panel_contenedor, new paneles.pnlHome());
+        this.listar_contrato.setSelected(true);
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_contrato_listar());
+        color_performed(listar_contrato, add_contrato);
     }
 
     /**

@@ -37,7 +37,6 @@ import rojeru_san.complementos.RSUtilities;
  * @author RojeruSan
  */
 public class de_gestionar_contrato_editar extends javax.swing.JDialog {
-
     /**
      * Creates new form ErrorAlert
      */
@@ -54,7 +53,8 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
         lbl_error_nombre_cliente_editar.setVisible(false);
         lbl.setVisible(false);
         lbl_error_fecha_inicio_editar.setVisible(false);
-        id.setVisible(false);
+        id_editar.setVisible(false);
+        numero_contrato_control.setVisible(false);
         
          //  detectar cambio en jdateChoser (fecha de inicio en agregar contrato)
         fecha_inicio_contrato_editar.getDateEditor().addPropertyChangeListener(
@@ -101,7 +101,7 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
          KeyStroke enter = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false);
         Action enterAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                boton_guardar_contrato_editarActionPerformed(e);
             }
         };
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(enter, "ENTER");
@@ -133,7 +133,8 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
         lbl_fecha_expira_contrato_editar = new javax.swing.JLabel();
         lbl_error_fecha_inicio_editar = new javax.swing.JLabel();
         boton_guardar_contrato_editar = new rojeru_san.RSButtonRiple();
-        id = new javax.swing.JLabel();
+        id_editar = new javax.swing.JLabel();
+        numero_contrato_control = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -204,67 +205,69 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
             }
         });
 
-        id.setText("jLabel2");
+        id_editar.setText("jLabel2");
+
+        numero_contrato_control.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(468, Short.MAX_VALUE)
-                .addComponent(id)
-                .addGap(273, 273, 273))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(51, 51, 51)
-                    .addComponent(jLabel1)
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(numero_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(fecha_inicio_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbl)
-                            .addGap(0, 0, 0)
-                            .addComponent(lbl_fecha_expira_contrato_editar))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lbl_error_nombre_cliente_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nombre_cliente_contrato_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_error_numero_contrato_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(boton_guardar_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbl_error_fecha_inicio_editar))
-                    .addContainerGap(52, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(id_editar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(numero_contrato_control)
+                        .addGap(220, 220, 220))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(numero_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_error_numero_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombre_cliente_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_error_nombre_cliente_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton_guardar_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(fecha_inicio_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl)
+                                .addGap(0, 0, 0)
+                                .addComponent(lbl_fecha_expira_contrato_editar))
+                            .addComponent(lbl_error_fecha_inicio_editar))
+                        .addGap(46, 46, 46))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(id)
-                .addContainerGap(501, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(95, 95, 95)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(numero_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbl_error_numero_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(nombre_cliente_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(lbl_error_nombre_cliente_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(fecha_inicio_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbl_fecha_expira_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbl_error_fecha_inicio_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(boton_guardar_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel1))
-                    .addContainerGap(95, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(id_editar)
+                    .addComponent(numero_contrato_control))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(numero_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_numero_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombre_cliente_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_nombre_cliente_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(fecha_inicio_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbl_fecha_expira_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_error_fecha_inicio_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(boton_guardar_contrato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(93, 93, 93))
         );
 
         javax.swing.GroupLayout rSPanelShadow1Layout = new javax.swing.GroupLayout(rSPanelShadow1);
@@ -332,6 +335,11 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
     }//GEN-LAST:event_nombre_cliente_contrato_editarKeyTyped
 
     private void boton_guardar_contrato_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_contrato_editarActionPerformed
+       
+        String sql="select * from contrato where numero_contrato='"+id_editar.getText()+"'";
+       String mje1="El número de contrato que intenta registrar ya existe";
+       String mje2="Por favor introduzca un número distinto de contrato";
+        String numero=numero_contrato_control.getText();
         if (nombre_cliente_contrato_editar.getText().isEmpty()||numero_contrato_editar.getText().isEmpty()||fecha_inicio_contrato_editar.getDate()==null) {
             if(numero_contrato_editar.getText().isEmpty()){
                 numero_contrato_editar.requestFocus();
@@ -344,24 +352,22 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
                 lbl_error_fecha_inicio_editar.setVisible(true);
             }
         } else {
-            Runnable runnable1 = new Runnable() {
-                public void run() {
-                    Guardando_general l = new Guardando_general(new JFrame(), true);
+            if(numero.equals(numero_contrato_editar.getText())){
+                Guardando_general l = new Guardando_general(new JFrame(), true);
                     consultas_de_gestionar_contrato uc=new consultas_de_gestionar_contrato();
                     l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_contrato_editar.this);
                     l.setVisible(true);
-                    try{
-                        paneles_de_paneles.de_gestionar_contrato_editar.this.setEnabled(false);
+            paneles_de_paneles.de_gestionar_contrato_editar.this.setEnabled(false);
                         uc.setNumero_contrato(numero_contrato_editar.getText());
                         uc.setNombre_contrato(nombre_cliente_contrato_editar.getText());
                         uc.setFecha_inicio_contrato(toma_fecha(fecha_inicio_contrato_editar));
                         uc.setFecha_final_contrato(lbl_fecha_expira_contrato_editar.getText());
-                        uc.setPrimaryKey(id.getText());
+                        uc.setPrimaryKey(id_editar.getText());
                         int control= opciones_de_gestionar_contrato.actualizar(uc);
-                        reset_campos();
                         paneles_de_paneles.de_gestionar_contrato_editar.this.setEnabled(true);
                         l.setVisible(false);
                         if(control==1){
+                            reset_campos();
                             opciones_de_gestionar_contrato.setListar("");
                             SuccessAlert e = new SuccessAlert(new JFrame(), true);
                             e.msj1.setText("¡Los datos del contrato fueron");
@@ -369,19 +375,37 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
                             e.msj3.setText("");
                             e.setVisible(true);
                         }
-                    }catch(Exception e){
-                        ErrorAlert error = new ErrorAlert(new JFrame(), true);
-                        Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, e);
-                        error.msj1.setText(e.toString());
-                        error.msj2.setText("Por favor solucione el error antes de volver a intentarlo.");
-                        error.msj3.setText("En caso de no saber como corregir el error, por favor contacte con soporte técnico");
-                        error.setVisible(true);
-                    }
-                }
-            };
-            Thread t1 = new Thread(runnable1);
-            t1.start();
             this.dispose();
+            }else{
+            if (interaccion_bd.opciones_de_gestionar_contrato.existe(numero_contrato_editar.getText(), sql)) {
+                            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
+                            numero_contrato_editar.requestFocus();
+                        }else{
+             Guardando_general l = new Guardando_general(new JFrame(), true);
+                    consultas_de_gestionar_contrato uc=new consultas_de_gestionar_contrato();
+                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_contrato_editar.this);
+                    l.setVisible(true);
+            paneles_de_paneles.de_gestionar_contrato_editar.this.setEnabled(false);
+                        uc.setNumero_contrato(numero_contrato_editar.getText());
+                        uc.setNombre_contrato(nombre_cliente_contrato_editar.getText());
+                        uc.setFecha_inicio_contrato(toma_fecha(fecha_inicio_contrato_editar));
+                        uc.setFecha_final_contrato(lbl_fecha_expira_contrato_editar.getText());
+                        uc.setPrimaryKey(id_editar.getText());
+                        int control= opciones_de_gestionar_contrato.actualizar(uc);
+                        paneles_de_paneles.de_gestionar_contrato_editar.this.setEnabled(true);
+                        l.setVisible(false);
+                        if(control==1){
+                            reset_campos();
+                            opciones_de_gestionar_contrato.setListar("");
+                            SuccessAlert e = new SuccessAlert(new JFrame(), true);
+                            e.msj1.setText("¡Los datos del contrato fueron");
+                            e.msj2.setText("guardados exitosamente!.");
+                            e.msj3.setText("");
+                            e.setVisible(true);
+                        }
+            this.dispose();
+        }
+        }
         }
     }//GEN-LAST:event_boton_guardar_contrato_editarActionPerformed
 
@@ -974,7 +998,7 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.RSButtonRiple boton_guardar_contrato_editar;
     public static com.toedter.calendar.JDateChooser fecha_inicio_contrato_editar;
-    public static javax.swing.JLabel id;
+    public static javax.swing.JLabel id_editar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl;
@@ -983,6 +1007,7 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
     private javax.swing.JLabel lbl_error_numero_contrato_editar;
     public static javax.swing.JLabel lbl_fecha_expira_contrato_editar;
     public static rojeru_san.rsfield.RSTextMaterial nombre_cliente_contrato_editar;
+    public static javax.swing.JLabel numero_contrato_control;
     public static rojeru_san.rsfield.RSTextMaterial numero_contrato_editar;
     private rojeru_san.rspanel.RSPanelShadow rSPanelShadow1;
     // End of variables declaration//GEN-END:variables

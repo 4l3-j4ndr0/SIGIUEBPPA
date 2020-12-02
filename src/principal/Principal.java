@@ -5,17 +5,23 @@
  */
 package principal;
 
+import alertas.ErrorAlert;
+import esperas.Guardando_general;
+import interaccion_bd.consultas_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_contrato;
 import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import paneles.CambiaPanel;
 import splash_y_login.AccesoLogin;
+import sun.security.krb5.PrincipalName;
 
 /**
  *
@@ -795,6 +801,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void unoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unoActionPerformed
         // TODO add your handling code here:
+        
         new CambiaPanel(pnlPrincipal, new paneles.pnlHome());
         color_performed(uno,gestionar_contrato,gestionar_ficha_costo,gestionar_cierre_prod,listar_prog,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,

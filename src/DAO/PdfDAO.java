@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import paneles_de_paneles.de_gestionar_plano_listar;
+import rojeru_san.rsfield.RSTextMaterial;
 
 public class PdfDAO {
 
@@ -23,6 +25,48 @@ public class PdfDAO {
         ResultSet rs = null;
         PreparedStatement ps = null;
         try {
+            ps = conec.conexion().prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                PdfVO vo = new PdfVO();
+                vo.setCodigopdf(rs.getInt(1));
+                vo.setNombrepdf(rs.getString(2));
+                vo.setArchivopdf(rs.getBytes(3));
+                list.add(vo);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                ps.close();
+                rs.close();
+                conec.desconectar();
+            } catch (Exception ex) {
+                opciones_de_gestionar_contrato.lanza_error(ex);
+            }
+        }
+        return list;
+    }
+    
+    /*Metodo listar*/
+    public ArrayList<PdfVO> buscar_PdfVO(String busca) {
+        ArrayList<PdfVO> list = new ArrayList<PdfVO>();
+        conexion conec = new conexion();
+        String sql="";
+        if(de_gestionar_plano_listar.txtBuscar_pdf.getText().isEmpty()){
+            sql = "SELECT * FROM planos;";
+        }else{
+         
+        sql = "SELECT * FROM planos WHERE ("
+                    + "id_plano LIKE'" + busca + "%'or "
+                + "nombre_plano LIKE'" + busca + "%')";
+        }
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+           // ps.setString(1,busca);
             ps = conec.conexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -77,7 +121,7 @@ public class PdfDAO {
     /*Metodo Modificar*/
     public void Modificar_PdfVO(PdfVO vo) {
         conexion conec = new conexion();
-        String sql = "UPDATE plano SET nombre_plano = ?, pdf_plano = ? WHERE id_plano = ?;";
+        String sql = "UPDATE planos SET nombre_plano = ?, pdf_plano = ? WHERE id_plano = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -101,7 +145,7 @@ public class PdfDAO {
 
     public void Modificar_PdfVO2(PdfVO vo) {
         conexion conec = new conexion();
-        String sql = "UPDATE plano SET nombre_plano = ? WHERE id_plano = ?;";
+        String sql = "UPDATE planos SET nombre_plano = ? WHERE id_plano = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -125,7 +169,7 @@ public class PdfDAO {
     /*Metodo Eliminar*/
     public void Eliminar_PdfVO(PdfVO vo) {
         conexion conec = new conexion();
-        String sql = "DELETE FROM plano WHERE pdf_plano = ?;";
+        String sql = "DELETE FROM planos WHERE id_plano = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -154,7 +198,7 @@ public class PdfDAO {
         byte[] b = null;
 
         try {
-            ps = cn.conexion().prepareStatement("SELECT pdf_plano FROM plano WHERE id_plano = ?;");
+            ps = cn.conexion().prepareStatement("SELECT pdf_plano FROM planos WHERE id_plano = ?;");
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {

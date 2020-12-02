@@ -281,7 +281,7 @@ public class de_gestionar_contrato_añadir extends javax.swing.JPanel {
                     l.setVisible(true);
                     try{
                         if (interaccion_bd.opciones_de_gestionar_contrato.existe(numero_contrato.getText(), sql)) {
-                            opciones_de_gestionar_contrato.lanza_error_variable(null,mje1,mje2);
+                            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
                             numero_contrato.requestFocus();
                         }else{
                     paneles_de_paneles.de_gestionar_contrato_añadir.this.setEnabled(false);

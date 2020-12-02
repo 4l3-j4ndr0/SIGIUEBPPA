@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import paneles_de_paneles.de_gestionar_contrato_editar;
 import paneles_de_paneles.de_gestionar_contrato_listar;
+import paneles_de_paneles.de_gestionar_plano_listar;
 
 /**
  *
@@ -96,6 +97,7 @@ public class opciones_de_gestionar_contrato {
         }
     }
     
+    
     public static String getFechaLimite(int idc) {
         String fecha = "";
         String sql = "SELECT fecha_final_contrato FROM contrato WHERE numero_contrato = " + idc;
@@ -146,6 +148,16 @@ public class opciones_de_gestionar_contrato {
             error.setVisible(true);
     }
     
+    public static void lanza_error_variable_sin_ex( String cero, String uno, String dos){
+        ErrorAlert error = new ErrorAlert(new JFrame(), true);
+            error.msj1.setText(cero);
+            error.msj2.setText(uno);
+            error.msj3.setText(dos);
+            error.preferredSize();
+            error.pack();
+            error.setVisible(true);
+    }
+    
     public static void lanza_ALERT(String uno, String dos, String tres){
         WarningAlert alerta = new WarningAlert(new JFrame(), true);
             alerta.msj1.setText(uno);
@@ -167,7 +179,7 @@ public class opciones_de_gestionar_contrato {
                 de_gestionar_contrato_editar.nombre_cliente_contrato_editar.setText(rs.getString(3));
                 de_gestionar_contrato_editar.fecha_inicio_contrato_editar.setDate(de_gestionar_contrato_editar.ParseFecha(rs.getString(4)));
                 de_gestionar_contrato_editar.lbl_fecha_expira_contrato_editar.setText(rs.getString(5));
-                de_gestionar_contrato_editar.id.setText(String.valueOf(id));
+                de_gestionar_contrato_editar.id_editar.setText(String.valueOf(id));
             }
         } catch (SQLException ex) {
             lanza_error(ex);
@@ -187,6 +199,7 @@ public class opciones_de_gestionar_contrato {
             
             rsu = ps.executeUpdate();
         } catch (SQLException ex) {
+            lanza_error(ex);
         }
         System.out.println(sql);
          System.out.println("result actualizar "+rsu);
@@ -201,6 +214,22 @@ public class opciones_de_gestionar_contrato {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 cant = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cant;
+    }
+     
+      public static String extraer_numero(String sql) {
+       String cant = "";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                cant = rs.getString(1);
             }
 
         } catch (SQLException ex) {
@@ -243,4 +272,6 @@ public class opciones_de_gestionar_contrato {
         System.out.println(sql);
         return rsu;
     }
+     
+     
 }

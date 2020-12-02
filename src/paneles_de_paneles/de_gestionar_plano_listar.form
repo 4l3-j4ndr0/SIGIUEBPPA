@@ -145,14 +145,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtBuscar" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtBuscar_pdf" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Component id="scroll" alignment="1" pref="777" max="32767" attributes="0"/>
               </Group>
@@ -161,13 +157,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtBuscar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtBuscar_pdf" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="scroll" pref="473" max="32767" attributes="0"/>
@@ -188,14 +180,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="rojerusan.RSTableMetro" name="tabla">
+                <Component class="rojerusan.RSTableMetro" name="tabla_plano">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="0">
-                        <Column editable="false" title="No. CONTRATO" type="java.lang.Object"/>
-                        <Column editable="false" title="NOMBRE CLIENTE" type="java.lang.Object"/>
-                        <Column editable="false" title="FECHA INICIO" type="java.lang.Object"/>
-                        <Column editable="false" title="FECHA FINAL" type="java.lang.Object"/>
+                      <Table columnCount="3" rowCount="0">
+                        <Column editable="false" title="ID" type="java.lang.Object"/>
+                        <Column editable="false" title="PLANO" type="java.lang.Object"/>
+                        <Column editable="false" title="PDF" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -220,11 +211,6 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="10" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -235,7 +221,7 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="10" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -260,7 +246,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabla_planoMouseClicked"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -275,7 +261,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="rojeru_san.rsfield.RSTextMaterial" name="txtBuscar">
+            <Component class="rojeru_san.rsfield.RSTextMaterial" name="txtBuscar_pdf">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
@@ -289,75 +275,12 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscarKeyReleased"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBuscar_pdfActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscar_pdfKeyReleased"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
-            </Component>
-            <Container class="javax.swing.JPanel" name="jPanel3">
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                <Property name="useNullLayout" type="boolean" value="false"/>
-              </Layout>
-              <SubComponents>
-                <Component class="rojeru_san.RSButtonRiple" name="btnExportar">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ba" green="56" red="26" type="rgb"/>
-                    </Property>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/imagenes_coontrato/btnExcel.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="EXPORTAR(F4)"/>
-                    <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="c2" green="bb" red="ad" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="horizontalTextPosition" type="int" value="4"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportarActionPerformed"/>
-                  </Events>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="0" y="0" width="170" height="42"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="rojeru_san.RSButtonRiple" name="btnPrint">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ba" green="56" red="26" type="rgb"/>
-                    </Property>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/imagenes_coontrato/btn-imprimirMenu.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value=" (F5)"/>
-                    <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="c2" green="bb" red="ad" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="horizontalTextPosition" type="int" value="4"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrintActionPerformed"/>
-                  </Events>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="190" y="0" width="99" height="42"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JButton" name="jButton1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jButton1"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -26,7 +26,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel9" alignment="0" pref="800" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="listar_contrato" min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="listar_planos" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="add_contrato" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -46,7 +46,7 @@
               <Component id="jLabel9" min="-2" pref="45" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="add_contrato" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="listar_contrato" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="listar_planos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="panel_contenedor" pref="474" max="32767" attributes="0"/>
@@ -65,10 +65,10 @@
           <Color blue="83" green="80" red="80" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Gestionar Contrato"/>
+        <Property name="text" type="java.lang.String" value="Gestionar Planos"/>
       </Properties>
     </Component>
-    <Component class="rsbuttom.RSButtonMetro" name="listar_contrato">
+    <Component class="rsbuttom.RSButtonMetro" name="listar_planos">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f4" green="ee" red="ef" type="rgb"/>
@@ -103,9 +103,12 @@
         <Property name="iconTextGap" type="int" value="25"/>
       </Properties>
       <Events>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listar_contratoMousePressed"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listar_contratoActionPerformed"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listar_planosMousePressed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listar_planosActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Component class="rsbuttom.RSButtonMetro" name="add_contrato">
       <Properties>
@@ -145,6 +148,9 @@
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="add_contratoMousePressed"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_contratoActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="panel_contenedor">
       <Properties>
