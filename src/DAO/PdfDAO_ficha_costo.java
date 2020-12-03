@@ -2,6 +2,7 @@ package DAO;
 
 import conexion.conexion;
 import VO.PdfVO;
+import VO.PdfVO_ficha_costo;
 import VO.PdfVO_prep_tecnica;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import java.io.ByteArrayInputStream;
@@ -13,24 +14,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import paneles_de_paneles.de_gestionar_ficha_costo_listar;
 import paneles_de_paneles.de_gestionar_plano_listar;
 import paneles_de_paneles.de_gestionar_proyecto_listar;
 import rojeru_san.rsfield.RSTextMaterial;
 
-public class PdfDAO_prep_tecnica {
+public class PdfDAO_ficha_costo {
 
     /*Metodo listar*/
-    public ArrayList<PdfVO_prep_tecnica> Listar_PdfVO() {
-        ArrayList<PdfVO_prep_tecnica> list = new ArrayList<PdfVO_prep_tecnica>();
+    public ArrayList<PdfVO_ficha_costo> Listar_PdfVO() {
+        ArrayList<PdfVO_ficha_costo> list = new ArrayList<PdfVO_ficha_costo>();
         conexion conec = new conexion();
-        String sql = "SELECT * FROM prep_tecnica";
+        String sql = "SELECT * FROM ficha_costo";
         ResultSet rs = null;
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                PdfVO_prep_tecnica vo = new PdfVO_prep_tecnica();
+                PdfVO_ficha_costo vo = new PdfVO_ficha_costo();
                 vo.setCodigopdf(rs.getInt(1));
                 vo.setNombrepdf(rs.getString(2));
                 vo.setArchivopdf(rs.getBytes(3));
@@ -53,17 +55,17 @@ public class PdfDAO_prep_tecnica {
     }
     
     /*Metodo listar*/
-    public ArrayList<PdfVO_prep_tecnica> buscar_PdfVO(String busca) {
-        ArrayList<PdfVO_prep_tecnica> list = new ArrayList<>();
+    public ArrayList<PdfVO_ficha_costo> buscar_PdfVO(String busca) {
+        ArrayList<PdfVO_ficha_costo> list = new ArrayList<>();
         conexion conec = new conexion();
         String sql="";
-        if(de_gestionar_proyecto_listar.txtBuscar_pdf.getText().isEmpty()){
-            sql = "SELECT * FROM prep_tecnica";
+        if(de_gestionar_ficha_costo_listar.txtBuscar_pdf.getText().isEmpty()){
+            sql = "SELECT * FROM ficha_costo";
         }else{
          
-        sql = "SELECT * FROM prep_tecnica WHERE ("
-                    + "id_prep_tecnica LIKE'" + busca + "%'or "
-                + "nombre_prep_tecnica LIKE'" + busca + "%')";
+        sql = "SELECT * FROM ficha_costo WHERE ("
+                    + "id_ficha LIKE'" + busca + "%'or "
+                + "nombre_ficha LIKE'" + busca + "%')";
         }
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -72,7 +74,7 @@ public class PdfDAO_prep_tecnica {
             ps = conec.conexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                PdfVO_prep_tecnica vo = new PdfVO_prep_tecnica();
+                PdfVO_ficha_costo vo = new PdfVO_ficha_costo();
                 vo.setCodigopdf(rs.getInt(1));
                 vo.setNombrepdf(rs.getString(2));
                 vo.setArchivopdf(rs.getBytes(3));
@@ -96,9 +98,9 @@ public class PdfDAO_prep_tecnica {
 
 
     /*Metodo agregar*/
-    public void Agregar_PdfVO(PdfVO_prep_tecnica vo) {
+    public void Agregar_PdfVO(PdfVO_ficha_costo vo) {
         conexion conec = new conexion();
-        String sql = "INSERT INTO prep_tecnica ( nombre_prep_tecnica, pdf_prep_tecnica) VALUES( ?, ?);";
+        String sql = "INSERT INTO ficha_costo ( nombre_ficha, pdf_ficha) VALUES( ?, ?);";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -121,9 +123,9 @@ public class PdfDAO_prep_tecnica {
 
 
     /*Metodo Modificar*/
-    public void Modificar_PdfVO(PdfVO_prep_tecnica vo) {
+    public void Modificar_PdfVO(PdfVO_ficha_costo vo) {
         conexion conec = new conexion();
-        String sql = "UPDATE prep_tecnica SET nombre_prep_tecnica = ?, pdf_prep_tecnica = ? WHERE id_prep_tecnica = ?;";
+        String sql = "UPDATE ficha_costo SET nombre_ficha = ?, pdf_ficha = ? WHERE id_ficha = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -145,9 +147,9 @@ public class PdfDAO_prep_tecnica {
         }
     }
 
-    public void Modificar_PdfVO2(PdfVO_prep_tecnica vo) {
+    public void Modificar_PdfVO2(PdfVO_ficha_costo vo) {
         conexion conec = new conexion();
-        String sql = "UPDATE prep_tecnica SET nombre_prep_tecnica = ? WHERE id_prep_tecnica = ?;";
+        String sql = "UPDATE ficha_costo SET nombre_ficha = ? WHERE id_ficha = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -169,9 +171,9 @@ public class PdfDAO_prep_tecnica {
     }
 
     /*Metodo Eliminar*/
-    public void Eliminar_PdfVO(PdfVO_prep_tecnica vo) {
+    public void Eliminar_PdfVO(PdfVO_ficha_costo vo) {
         conexion conec = new conexion();
-        String sql = "DELETE FROM prep_tecnica WHERE id_prep_tecnica = ?;";
+        String sql = "DELETE FROM ficha_costo WHERE id_ficha = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -200,7 +202,7 @@ public class PdfDAO_prep_tecnica {
         byte[] b = null;
 
         try {
-            ps = cn.conexion().prepareStatement("SELECT pdf_prep_tecnica FROM prep_tecnica WHERE id_prep_tecnica = ?;");
+            ps = cn.conexion().prepareStatement("SELECT pdf_ficha FROM ficha_costo WHERE id_ficha = ?");
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {

@@ -16,6 +16,9 @@ public class pnl_Gestionar_ficha_costo extends javax.swing.JPanel {
      */
     public pnl_Gestionar_ficha_costo() {
         initComponents();
+        listar_ficha_costo.setSelected(true);
+         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_ficha_costo_listar());
+        pnl_Gestionar_contrato.color_performed(listar_ficha_costo,add_ficha_costo);
     }
 
     /**
@@ -27,18 +30,68 @@ public class pnl_Gestionar_ficha_costo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        panel_contenedor = new javax.swing.JPanel();
+        listar_ficha_costo = new rsbuttom.RSButtonMetro();
+        add_ficha_costo = new rsbuttom.RSButtonMetro();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/splash_logo.png"))); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Gestionar Ficha de Costo");
+
+        panel_contenedor.setBackground(new java.awt.Color(255, 255, 255));
+        panel_contenedor.setLayout(new javax.swing.BoxLayout(panel_contenedor, javax.swing.BoxLayout.LINE_AXIS));
+
+        listar_ficha_costo.setBackground(new java.awt.Color(239, 238, 244));
+        listar_ficha_costo.setForeground(new java.awt.Color(128, 128, 131));
+        listar_ficha_costo.setText("Listar");
+        listar_ficha_costo.setColorHover(new java.awt.Color(204, 204, 204));
+        listar_ficha_costo.setColorNormal(new java.awt.Color(239, 238, 244));
+        listar_ficha_costo.setColorPressed(new java.awt.Color(204, 204, 204));
+        listar_ficha_costo.setColorTextHover(new java.awt.Color(128, 128, 131));
+        listar_ficha_costo.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        listar_ficha_costo.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        listar_ficha_costo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        listar_ficha_costo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        listar_ficha_costo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        listar_ficha_costo.setIconTextGap(25);
+        listar_ficha_costo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listar_ficha_costoMousePressed(evt);
+            }
+        });
+        listar_ficha_costo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_ficha_costoActionPerformed(evt);
+            }
+        });
+
+        add_ficha_costo.setBackground(new java.awt.Color(239, 238, 244));
+        add_ficha_costo.setForeground(new java.awt.Color(128, 128, 131));
+        add_ficha_costo.setText("Añadir");
+        add_ficha_costo.setColorHover(new java.awt.Color(204, 204, 204));
+        add_ficha_costo.setColorNormal(new java.awt.Color(239, 238, 244));
+        add_ficha_costo.setColorPressed(new java.awt.Color(204, 204, 204));
+        add_ficha_costo.setColorTextHover(new java.awt.Color(128, 128, 131));
+        add_ficha_costo.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        add_ficha_costo.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        add_ficha_costo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        add_ficha_costo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add_ficha_costo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        add_ficha_costo.setIconTextGap(25);
+        add_ficha_costo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                add_ficha_costoMousePressed(evt);
+            }
+        });
+        add_ficha_costo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_ficha_costoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -47,24 +100,56 @@ public class pnl_Gestionar_ficha_costo extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                    .addComponent(panel_contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(listar_ficha_costo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_ficha_costo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_ficha_costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listar_ficha_costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(panel_contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void listar_ficha_costoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listar_ficha_costoMousePressed
+        // TODO add your handling code here:
+        pnl_Gestionar_contrato.pressed(listar_ficha_costo,add_ficha_costo);
+    }//GEN-LAST:event_listar_ficha_costoMousePressed
+
+    private void listar_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_ficha_costoActionPerformed
+        // TODO add your handling code here:
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_ficha_costo_listar());
+        pnl_Gestionar_contrato.color_performed(listar_ficha_costo,add_ficha_costo);
+    }//GEN-LAST:event_listar_ficha_costoActionPerformed
+
+    private void add_ficha_costoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_ficha_costoMousePressed
+        // TODO add your handling code here:
+        pnl_Gestionar_contrato.pressed(add_ficha_costo,listar_ficha_costo);
+    }//GEN-LAST:event_add_ficha_costoMousePressed
+
+    private void add_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_ficha_costoActionPerformed
+        // TODO add your handling code here:
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_ficha_costo_añadir());
+        pnl_Gestionar_contrato.color_performed(add_ficha_costo,listar_ficha_costo);
+    }//GEN-LAST:event_add_ficha_costoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel6;
+    public static rsbuttom.RSButtonMetro add_ficha_costo;
     private javax.swing.JLabel jLabel7;
+    public static rsbuttom.RSButtonMetro listar_ficha_costo;
+    private javax.swing.JPanel panel_contenedor;
     // End of variables declaration//GEN-END:variables
 }
