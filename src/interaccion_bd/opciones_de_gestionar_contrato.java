@@ -119,6 +119,27 @@ public class opciones_de_gestionar_contrato {
         return fecha;
     }
     
+    public static String getFechaInicio(int idc) {
+        String fecha = "";
+        String sql = "SELECT fecha_inicio_contrato FROM contrato WHERE numero_contrato = " + idc;
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                fecha = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            ErrorAlert error = new ErrorAlert(new JFrame(), true);
+            error.msj1.setText(ex.toString());
+            error.msj2.setText("Por favor contacte con soporte técnico");
+            error.msj3.setText("");
+            error.preferredSize();
+            error.pack();
+            error.setVisible(true);
+        }
+        return fecha;
+    }
+    
     public static String fechaactual() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");

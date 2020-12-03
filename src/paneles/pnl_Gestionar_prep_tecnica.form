@@ -64,7 +64,7 @@
           <Color blue="83" green="80" red="80" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Gestionar Preparaci&#xf3;n T&#xe9;cnica"/>
+        <Property name="text" type="java.lang.String" value="Gestionar Poyectos"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="panel_contenedor">

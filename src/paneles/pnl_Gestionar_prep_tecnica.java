@@ -17,7 +17,7 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
     public pnl_Gestionar_prep_tecnica() {
         initComponents();
         this.listar_prep_tecnica.setSelected(true);
-         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prep_tecnica_listar());
+         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_proyecto_listar());
         pnl_Gestionar_contrato.color_performed(listar_prep_tecnica,add_prep_tecnica);
     }
 
@@ -40,7 +40,7 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Gestionar Preparación Técnica");
+        jLabel7.setText("Gestionar Poyectos");
 
         panel_contenedor.setBackground(new java.awt.Color(255, 255, 255));
         panel_contenedor.setLayout(new javax.swing.BoxLayout(panel_contenedor, javax.swing.BoxLayout.LINE_AXIS));
@@ -131,7 +131,7 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
 
     private void listar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_prep_tecnicaActionPerformed
         // TODO add your handling code here:
-        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prep_tecnica_listar());
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_proyecto_listar());
         pnl_Gestionar_contrato.color_performed(listar_prep_tecnica,add_prep_tecnica);
     }//GEN-LAST:event_listar_prep_tecnicaActionPerformed
 
@@ -142,7 +142,7 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
 
     private void add_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_prep_tecnicaActionPerformed
         // TODO add your handling code here:
-        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prep_tecnica_añadir());
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_proyecto_añadir());
         pnl_Gestionar_contrato.color_performed(add_prep_tecnica,listar_prep_tecnica);
     }//GEN-LAST:event_add_prep_tecnicaActionPerformed
 

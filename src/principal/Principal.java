@@ -237,7 +237,7 @@ public class Principal extends javax.swing.JFrame {
 
         gestionar_prep_tecnica.setBackground(new java.awt.Color(239, 238, 244));
         gestionar_prep_tecnica.setForeground(new java.awt.Color(128, 128, 131));
-        gestionar_prep_tecnica.setText("Gestionar preparación técnica");
+        gestionar_prep_tecnica.setText("Gestionar proyectos");
         gestionar_prep_tecnica.setColorHover(new java.awt.Color(204, 204, 204));
         gestionar_prep_tecnica.setColorNormal(new java.awt.Color(239, 238, 244));
         gestionar_prep_tecnica.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -285,7 +285,7 @@ public class Principal extends javax.swing.JFrame {
 
         gestionar_proy.setBackground(new java.awt.Color(239, 238, 244));
         gestionar_proy.setForeground(new java.awt.Color(128, 128, 131));
-        gestionar_proy.setText("Gestionar proyectos  (dpto. técnico)");
+        gestionar_proy.setText("Gestionar preparación técnica");
         gestionar_proy.setColorHover(new java.awt.Color(204, 204, 204));
         gestionar_proy.setColorNormal(new java.awt.Color(239, 238, 244));
         gestionar_proy.setColorPressed(new java.awt.Color(204, 204, 204));

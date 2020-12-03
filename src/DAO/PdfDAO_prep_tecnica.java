@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import paneles_de_paneles.de_gestionar_plano_listar;
-import paneles_de_paneles.de_gestionar_prep_tecnica_listar;
+import paneles_de_paneles.de_gestionar_proyecto_listar;
 import rojeru_san.rsfield.RSTextMaterial;
 
 public class PdfDAO_prep_tecnica {
@@ -57,7 +57,7 @@ public class PdfDAO_prep_tecnica {
         ArrayList<PdfVO_prep_tecnica> list = new ArrayList<>();
         conexion conec = new conexion();
         String sql="";
-        if(de_gestionar_prep_tecnica_listar.txtBuscar_pdf.getText().isEmpty()){
+        if(de_gestionar_proyecto_listar.txtBuscar_pdf.getText().isEmpty()){
             sql = "SELECT * FROM prep_tecnica;";
         }else{
          
