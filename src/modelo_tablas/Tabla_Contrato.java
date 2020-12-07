@@ -64,14 +64,12 @@ public class Tabla_Contrato extends DefaultTableCellRenderer {
         dia_inicio=Integer.parseInt(dia_text_inicio);
         mes_inicio=Integer.parseInt(mes_text_inicio);
         ano_inicio=Integer.parseInt(ano_text_inicio);
-        System.out.println("ANO INICIO "+ano_inicio);
         
         String fecha_limite = interaccion_bd.opciones_de_gestionar_contrato.getFechaLimite(id);
          int dia_final,mes_final,ano_final=0;
          String dia_text=fecha_limite.substring(0,2); 
         mes_final=Integer.parseInt(mes_text_inicio);
         ano_final=Integer.parseInt(ano_text_inicio);
-        System.out.println("ANO FINAL "+ano_final);
         
         String fecha_actual=opciones_de_gestionar_contrato.fechaactual();
         int dia_actual,mes_actual,ano_actual=0;
@@ -98,14 +96,8 @@ public class Tabla_Contrato extends DefaultTableCellRenderer {
         }
         
         final java.util.Calendar cal = GregorianCalendar.getInstance();
-//         final java.util.Calendar cal2 = GregorianCalendar.getInstance();
         cal.setTime(date);
-//        cal2.setTime(date);
         cal.add(GregorianCalendar.MONTH, -2); // date manipulation 
-//        cal2.add(GregorianCalendar.MONTH, -2); // date manipulation 
-        System.out.println("fecha limite "+opciones_de_gestionar_contrato.getFechaLimite(id));
-        System.out.println("result: " + df.format(cal.getTime())); // conversion to String 
-//        System.out.println("result2: " + df.format(cal2.getTime())); // conversion to String 
         
         if (actual.after(limite)) {
             componenete.setBackground(Color.RED);

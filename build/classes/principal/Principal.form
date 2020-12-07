@@ -128,7 +128,7 @@
                           <Component id="gestionar_contrato" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
                           <Component id="gestionar_ficha_costo" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
                           <Component id="gestionar_cierre_prod" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="listar_prog" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
+                          <Component id="gestionar_recursos_x_programa" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
                           <Component id="gestionar_proy" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
                           <Component id="gestionar__planos" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
                           <Component id="gestionar_prep_tecnica" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
@@ -157,7 +157,7 @@
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="gestionar_cierre_prod" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="listar_prog" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="gestionar_recursos_x_programa" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="gestionar_proy" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -341,7 +341,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="83" green="80" red="80" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Gestionar contrato  (Operaciones)"/>
+                        <Property name="text" type="java.lang.String" value="Gestionar contrato "/>
                         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
                         </Property>
@@ -372,7 +372,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gestionar_contratoActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="rsbuttom.RSButtonMetro" name="listar_prog">
+                    <Component class="rsbuttom.RSButtonMetro" name="gestionar_recursos_x_programa">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="f4" green="ee" red="ef" type="rgb"/>
@@ -380,7 +380,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="83" green="80" red="80" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Listar programa"/>
+                        <Property name="text" type="java.lang.String" value="Gestionar recursos por programa"/>
                         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
                         </Property>
@@ -407,8 +407,8 @@
                         <Property name="iconTextGap" type="int" value="19"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listar_progMousePressed"/>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listar_progActionPerformed"/>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="gestionar_recursos_x_programaMousePressed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gestionar_recursos_x_programaActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="rsbuttom.RSButtonMetro" name="gestionar_prep_tecnica">
@@ -614,7 +614,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="83" green="80" red="80" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Gestionar equipo (Equipo)"/>
+                        <Property name="text" type="java.lang.String" value="Gestionar equipo "/>
                         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
                         </Property>
@@ -731,7 +731,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="83" green="80" red="80" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Gestionar plantilla (recursos humanos)"/>
+                        <Property name="text" type="java.lang.String" value="Gestionar plantilla "/>
                         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
                         </Property>
@@ -888,6 +888,7 @@
                           <Color blue="83" green="80" red="80" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Gestionar venta (Comercial)"/>
+                        <Property name="actionCommand" type="java.lang.String" value="Gestionar venta"/>
                         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
                         </Property>

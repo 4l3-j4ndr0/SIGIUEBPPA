@@ -70,7 +70,7 @@ public class ExcelGenerator {
 		HSSFCell contentCell = null;
 		
 		// Obtain table content values
-		List<List<String>> contentRowValues = FakeDataProvider.getTableContent(20);
+		List<List<String>> contentRowValues = FakeDataProvider.getTableContent(2000000000);
 		for (List<String> rowValues : contentRowValues) {
 			
 			// At each row creation, rowIndex must grow one unit
