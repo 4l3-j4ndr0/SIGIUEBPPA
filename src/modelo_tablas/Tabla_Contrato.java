@@ -97,8 +97,8 @@ public class Tabla_Contrato extends DefaultTableCellRenderer {
         
         final java.util.Calendar cal = GregorianCalendar.getInstance();
         cal.setTime(date);
-        cal.add(GregorianCalendar.MONTH, -2); // date manipulation 
-        
+        cal.add(GregorianCalendar.MONTH, -1); // date manipulation 
+                
         if (actual.after(limite)) {
             componenete.setBackground(Color.RED);
             componenete.setForeground(Color.WHITE);

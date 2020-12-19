@@ -360,13 +360,13 @@ lbl_error_nombre_prep_tecnica_editar.setVisible(false);
         File ruta = new File(ruta_archivo);
         if (nombre.trim().length() != 0 && ruta_archivo.trim().length() != 0) {
             modificar_pdf(Integer.parseInt(id_prep_tecnica.getText()), nombre, ruta);
-            tpdf.visualizar_PdfVO(de_gestionar_proyecto_listar.tabla_prep_tecnica);
+            tpdf.visualizar_PdfVO(de_gestionar_proyecto_listar.tabla_proy);
         } else if (ruta_archivo.trim().length() == 0) {
             modificar_pdf(Integer.parseInt(id_prep_tecnica.getText()), nombre);
-            tpdf.visualizar_PdfVO(de_gestionar_proyecto_listar.tabla_prep_tecnica);
+            tpdf.visualizar_PdfVO(de_gestionar_proyecto_listar.tabla_proy);
         }
         ruta_archivo = "";
-        de_gestionar_proyecto_listar.tabla_prep_tecnica.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
+        de_gestionar_proyecto_listar.tabla_proy.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
     } 
     
     public void modificar_pdf(int codigo, String nombre, File ruta) {

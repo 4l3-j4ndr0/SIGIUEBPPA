@@ -6,8 +6,15 @@
 package splash_y_login;
 
 import conexion.conexion;
+import conexion.pide_server;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,9 +23,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import principal.Principal;
 //import principal.menu_principal;
 
@@ -30,6 +44,7 @@ public class AccesoLogin extends javax.swing.JFrame {
 
     Splash inicio;
     private JPanel contentPane;
+    
 
     /**
      * Creates new form AccesoLogin
@@ -41,25 +56,7 @@ public class AccesoLogin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon(getClass().getResource("/img/splash_logo.png")).getImage());
         this.setTitle("ACCESO - SIGIUEBPPA");
-    }
-    
-    
-    public AccesoLogin(Splash inicio) {
-        this.inicio = inicio;
-        setProgress(0, "Cargando Componentes del Sistema");
-        initComponents();
-        this.setSize(435, 500);
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);
-     //   this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/principal/logo.png")).getImage());
-        this.setTitle("ACCESO - SIGIUEBPPA");
-        setProgress(20, "Conectandose a la Base de Datos...");
-        setProgress(40, "Cargando Modulos..");
-        setProgress(60, "Carga de Modulos Terminada");
-        setProgress(80, "Cargando Interfaces..");
-        setProgress(90, "Interfaces Cargadas");
-        setProgress(100, "Bienvenido al Sistema");
-        this.setLocationRelativeTo(null);
+        
         entrar.requestFocus();
         contentPane = jPanel1;
         contentPane.setLayout(null);
@@ -83,9 +80,28 @@ public class AccesoLogin extends javax.swing.JFrame {
                 //Aqui tambien puedes insertar el codigo
             }
         });
-    
     }
-
+    
+    
+    
+    public AccesoLogin(Splash inicio) {
+        this.inicio = inicio;
+        setProgress(0, "Cargando Componentes del Sistema");
+        initComponents();
+        this.setSize(435, 500);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+     //   this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/principal/logo.png")).getImage());
+        this.setTitle("ACCESO - SIGIUEBPPA");
+        setProgress(20, "Conectandose a la Base de Datos...");
+        setProgress(40, "Cargando Modulos..");
+        setProgress(60, "Carga de Modulos Terminada");
+        setProgress(80, "Cargando Interfaces..");
+        setProgress(90, "Interfaces Cargadas");
+        setProgress(100, "Bienvenido al Sistema");
+        this.setLocationRelativeTo(null);
+    }
+    
     void setProgress(int percent, String information) {
         inicio.getJLabel().setText(information);
         inicio.getJProgressBar().setValue(percent);
@@ -262,10 +278,14 @@ public class AccesoLogin extends javax.swing.JFrame {
                         while (rs2.next()) {
                             dato = rs2.getString(1);
                         }
-                        principal.Principal p = new Principal();
-                        p.user.setText("   "+dato);
+                         try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    new Principal().setVisible(true);
+                     Principal.user.setText("   "+dato);
                         this.dispose();
-                        p.setVisible(true);
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 } else {
                     JOptionPane.showMessageDialog(this, "Contraseña incorrecta", "Acceso", 0,
                             new ImageIcon(getClass().getResource("/imagenes_login/passLogin.png")));
@@ -280,6 +300,7 @@ public class AccesoLogin extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AccesoLogin.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 
@@ -318,6 +339,7 @@ public class AccesoLogin extends javax.swing.JFrame {
             public void run() {
                 new AccesoLogin().setVisible(true);
             }
+            
         });
     }
 

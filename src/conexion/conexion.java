@@ -1,6 +1,11 @@
 package conexion;
 
 import interaccion_bd.opciones_de_gestionar_contrato;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,17 +20,14 @@ public class conexion {
 
    public static Connection conect = null;
     
-
     public Connection conexion() {
         try {
-            // pa conectar sin tener instalado el xammp
-//            Class.forName("org.h2.Driver");
-//             conect = DriverManager.getConnection("jdbc:h2:./BD/uruguay","uruguay","uruguay");
  // pa conectar teniendo instalado el xammp
            Class.forName("com.mysql.jdbc.Driver");
-             conect = DriverManager.getConnection("jdbc:mysql://localhost/tesis", "tesis", "tesis"); 
+             conect = DriverManager.getConnection("jdbc:mysql://"+server()+"/tesis", "tesis", "tesis"); 
+           
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en la conexión" + e);
+            opciones_de_gestionar_contrato.lanza_error(e);
         }
         return conect;
     }
@@ -36,6 +38,17 @@ public class conexion {
         } catch (Exception ex) {
             opciones_de_gestionar_contrato.lanza_error(ex);
         }
+    }
+    
+    private String server() throws FileNotFoundException, IOException {
+        String servidor = "";
+        File archivo = new File("conexion BD_system.txt");
+        FileReader fr = new FileReader(archivo);
+        BufferedReader br = new BufferedReader(fr);
+         servidor = br.readLine();
+//         fr.close();
+         
+        return servidor;
     }
     
 }

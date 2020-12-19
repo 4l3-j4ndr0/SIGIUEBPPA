@@ -41,8 +41,8 @@ public class de_gestionar_proyecto_añadir extends javax.swing.JPanel {
      */
     public de_gestionar_proyecto_añadir() {
         initComponents();
-        lbl_error_nombre_prep_tecnica.setVisible(false);
-        lbl_error_pdf_prep_tecnica.setVisible(false);
+        lbl_error_nombre_proy.setVisible(false);
+        lbl_error_pdf_proy.setVisible(false);
         deshabilitarPegar();
     }
 
@@ -57,59 +57,59 @@ public class de_gestionar_proyecto_añadir extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nombre_prep_tecnica = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_nombre_prep_tecnica = new javax.swing.JLabel();
-        boton_guardar_prep_tecnica = new rojeru_san.RSButtonRiple();
+        nombre_proy = new rojeru_san.rsfield.RSTextMaterial();
+        lbl_error_nombre_proy = new javax.swing.JLabel();
+        boton_guardar_proy = new rojeru_san.RSButtonRiple();
         lb_foto = new javax.swing.JLabel();
-        boton_busca_prep_tecnica = new rojeru_san.RSButtonRiple();
-        lbl_error_pdf_prep_tecnica = new javax.swing.JLabel();
+        boton_busca_proy = new rojeru_san.RSButtonRiple();
+        lbl_error_pdf_proy = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        nombre_prep_tecnica.setForeground(new java.awt.Color(0, 0, 0));
-        nombre_prep_tecnica.setColorMaterial(new java.awt.Color(99, 70, 250));
-        nombre_prep_tecnica.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        nombre_prep_tecnica.setPlaceholder("Nombre del plano...");
-        nombre_prep_tecnica.setSelectionColor(new java.awt.Color(220, 23, 111));
-        nombre_prep_tecnica.addKeyListener(new java.awt.event.KeyAdapter() {
+        nombre_proy.setForeground(new java.awt.Color(0, 0, 0));
+        nombre_proy.setColorMaterial(new java.awt.Color(99, 70, 250));
+        nombre_proy.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        nombre_proy.setPlaceholder("Nombre del plano...");
+        nombre_proy.setSelectionColor(new java.awt.Color(220, 23, 111));
+        nombre_proy.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                nombre_prep_tecnicaKeyReleased(evt);
+                nombre_proyKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombre_prep_tecnicaKeyTyped(evt);
+                nombre_proyKeyTyped(evt);
             }
         });
 
-        lbl_error_nombre_prep_tecnica.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_nombre_prep_tecnica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_nombre_prep_tecnica.setText("¡Debe ingresar un nombre de plano!");
+        lbl_error_nombre_proy.setForeground(new java.awt.Color(243, 66, 53));
+        lbl_error_nombre_proy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_nombre_proy.setText("¡Debe ingresar un nombre de plano!");
 
-        boton_guardar_prep_tecnica.setBackground(new java.awt.Color(38, 86, 186));
-        boton_guardar_prep_tecnica.setText("Guardar Plano");
-        boton_guardar_prep_tecnica.setColorHover(new java.awt.Color(173, 187, 194));
-        boton_guardar_prep_tecnica.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        boton_guardar_prep_tecnica.addActionListener(new java.awt.event.ActionListener() {
+        boton_guardar_proy.setBackground(new java.awt.Color(38, 86, 186));
+        boton_guardar_proy.setText("Guardar Plano");
+        boton_guardar_proy.setColorHover(new java.awt.Color(173, 187, 194));
+        boton_guardar_proy.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        boton_guardar_proy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_guardar_prep_tecnicaActionPerformed(evt);
+                boton_guardar_proyActionPerformed(evt);
             }
         });
 
         lb_foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_planos/foto_plano.png"))); // NOI18N
 
-        boton_busca_prep_tecnica.setBackground(new java.awt.Color(38, 86, 186));
-        boton_busca_prep_tecnica.setText("Buscar Plano");
-        boton_busca_prep_tecnica.setColorHover(new java.awt.Color(173, 187, 194));
-        boton_busca_prep_tecnica.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        boton_busca_prep_tecnica.addActionListener(new java.awt.event.ActionListener() {
+        boton_busca_proy.setBackground(new java.awt.Color(38, 86, 186));
+        boton_busca_proy.setText("Buscar Plano");
+        boton_busca_proy.setColorHover(new java.awt.Color(173, 187, 194));
+        boton_busca_proy.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        boton_busca_proy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_busca_prep_tecnicaActionPerformed(evt);
+                boton_busca_proyActionPerformed(evt);
             }
         });
 
-        lbl_error_pdf_prep_tecnica.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_pdf_prep_tecnica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_pdf_prep_tecnica.setText("¡Debe buscar un plano!");
+        lbl_error_pdf_proy.setForeground(new java.awt.Color(243, 66, 53));
+        lbl_error_pdf_proy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_pdf_proy.setText("¡Debe buscar un plano!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -125,15 +125,15 @@ public class de_gestionar_proyecto_añadir extends javax.swing.JPanel {
                                 .addGap(77, 77, 77)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lbl_error_nombre_prep_tecnica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(nombre_prep_tecnica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(boton_guardar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(lbl_error_nombre_proy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(nombre_proy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(boton_guardar_proy, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(125, 125, 125)
-                                .addComponent(boton_busca_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(boton_busca_proy, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(lbl_error_pdf_prep_tecnica)))
+                        .addComponent(lbl_error_pdf_proy)))
                 .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -145,27 +145,27 @@ public class de_gestionar_proyecto_añadir extends javax.swing.JPanel {
                         .addComponent(lb_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
-                        .addComponent(nombre_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nombre_proy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(lbl_error_nombre_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbl_error_nombre_proy, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
-                        .addComponent(boton_guardar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(boton_guardar_proy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(boton_busca_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boton_busca_proy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(lbl_error_pdf_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_error_pdf_proy, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(90, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nombre_prep_tecnicaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_prep_tecnicaKeyReleased
+    private void nombre_proyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_proyKeyReleased
         // TODO add your handling code here:
-        if(nombre_prep_tecnica.getText().length()>0){
-            lbl_error_nombre_prep_tecnica.setVisible(false);
+        if(nombre_proy.getText().length()>0){
+            lbl_error_nombre_proy.setVisible(false);
         }
-    }//GEN-LAST:event_nombre_prep_tecnicaKeyReleased
+    }//GEN-LAST:event_nombre_proyKeyReleased
 
-    private void nombre_prep_tecnicaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_prep_tecnicaKeyTyped
+    private void nombre_proyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_proyKeyTyped
         // TODO add your handling code here:
         char letras = evt.getKeyChar();
         if ((letras < 'a' || letras > 'z') && (letras < 'A' | letras > 'Z')) {
@@ -174,29 +174,29 @@ public class de_gestionar_proyecto_añadir extends javax.swing.JPanel {
                 evt.consume();
             }
         }
-    }//GEN-LAST:event_nombre_prep_tecnicaKeyTyped
+    }//GEN-LAST:event_nombre_proyKeyTyped
 
     Tabla_PdfVO_prep_tecnica tpdf = new Tabla_PdfVO_prep_tecnica();
-    private void boton_guardar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_prep_tecnicaActionPerformed
-       String sql="select * from prep_tecnica where nombre_prep_tecnica='"+nombre_prep_tecnica.getText()+"'";
-       String mje1="Ya existe una preparación técnica con ese nombre("+nombre_prep_tecnica.getText()+")";
+    private void boton_guardar_proyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_proyActionPerformed
+       String sql="select * from prep_tecnica where nombre_prep_tecnica='"+nombre_proy.getText()+"'";
+       String mje1="Ya existe una preparación técnica con ese nombre("+nombre_proy.getText()+")";
        String mje2="¿Desea guardarlo de todas farmas?";
        String mje3="La base de datos contendrá más de una preparación técnica con el mismo nombre";
-        if (nombre_prep_tecnica.getText().isEmpty()||boton_busca_prep_tecnica.getText().equals("Buscar Plano")) {
-               if(nombre_prep_tecnica.getText().isEmpty()){
-                lbl_error_nombre_prep_tecnica.setVisible(true);
-               }else if(boton_busca_prep_tecnica.getText().equals("Buscar Plano")){
-                lbl_error_pdf_prep_tecnica.setVisible(true);
+        if (nombre_proy.getText().isEmpty()||boton_busca_proy.getText().equals("Buscar Plano")) {
+               if(nombre_proy.getText().isEmpty()){
+                lbl_error_nombre_proy.setVisible(true);
+               }else if(boton_busca_proy.getText().equals("Buscar Plano")){
+                lbl_error_pdf_proy.setVisible(true);
                }
         } else {
-            if (interaccion_bd.opciones_de_gestionar_contrato.existe(nombre_prep_tecnica.getText(), sql)) {
+            if (interaccion_bd.opciones_de_gestionar_contrato.existe(nombre_proy.getText(), sql)) {
                 WarningAlert a=new WarningAlert(new JFrame(), true);
                             a.msj1.setText(mje1);
                             a.msj2.setText(mje2);
                             a.msj3.setText(mje3);
                             a.setVisible(true);
                             if(a.hecho==false){
-                            nombre_prep_tecnica.requestFocus();
+                            nombre_proy.requestFocus();
                             }else{
                                 Runnable runnable1 = new Runnable() {
                 public void run() {
@@ -240,11 +240,11 @@ public class de_gestionar_proyecto_añadir extends javax.swing.JPanel {
             t1.start();
         }
     }
-    }//GEN-LAST:event_boton_guardar_prep_tecnicaActionPerformed
+    }//GEN-LAST:event_boton_guardar_proyActionPerformed
 
     public void accion_guardar(){
         try{
-        String nombre = nombre_prep_tecnica.getText();
+        String nombre = nombre_proy.getText();
         File ruta = new File(ruta_archivo);
         if (nombre.trim().length() != 0 && ruta_archivo.trim().length() != 0) {
             guardar_pdf(nombre, ruta);
@@ -277,7 +277,7 @@ public class de_gestionar_proyecto_añadir extends javax.swing.JPanel {
         pa.Agregar_PdfVO(po);
     }
     
-    private void boton_busca_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_busca_prep_tecnicaActionPerformed
+    private void boton_busca_proyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_busca_proyActionPerformed
         // TODO add your handling code here:
         try{
          JFileChooser j = new JFileChooser();
@@ -285,34 +285,34 @@ public class de_gestionar_proyecto_añadir extends javax.swing.JPanel {
         j.setFileFilter(fi);
         int se = j.showOpenDialog(this);
         if (se == 0) {
-            this.boton_busca_prep_tecnica.setText("" + j.getSelectedFile().getName());
+            this.boton_busca_proy.setText("" + j.getSelectedFile().getName());
           ruta_archivo = j.getSelectedFile().getAbsolutePath();
           
           lb_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_planos/pdf2.png"))); 
-          lbl_error_pdf_prep_tecnica.setVisible(false);
+          lbl_error_pdf_proy.setVisible(false);
         }  
         }catch(Exception ex){
             opciones_de_gestionar_contrato.lanza_error(ex);
         }
-    }//GEN-LAST:event_boton_busca_prep_tecnicaActionPerformed
+    }//GEN-LAST:event_boton_busca_proyActionPerformed
 
      private void deshabilitarPegar() {
-        InputMap map2 = nombre_prep_tecnica.getInputMap(nombre_prep_tecnica.WHEN_FOCUSED);
+        InputMap map2 = nombre_proy.getInputMap(nombre_proy.WHEN_FOCUSED);
         map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
     }
                
     private void reset_campos(){
-        nombre_prep_tecnica.setText("");
-        boton_busca_prep_tecnica.setText("Buscar Plano");
+        nombre_proy.setText("");
+        boton_busca_proy.setText("Buscar Plano");
         lb_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_planos/foto_plano.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojeru_san.RSButtonRiple boton_busca_prep_tecnica;
-    private rojeru_san.RSButtonRiple boton_guardar_prep_tecnica;
+    private rojeru_san.RSButtonRiple boton_busca_proy;
+    private rojeru_san.RSButtonRiple boton_guardar_proy;
     private javax.swing.JLabel lb_foto;
-    private javax.swing.JLabel lbl_error_nombre_prep_tecnica;
-    private javax.swing.JLabel lbl_error_pdf_prep_tecnica;
-    public static rojeru_san.rsfield.RSTextMaterial nombre_prep_tecnica;
+    private javax.swing.JLabel lbl_error_nombre_proy;
+    private javax.swing.JLabel lbl_error_pdf_proy;
+    public static rojeru_san.rsfield.RSTextMaterial nombre_proy;
     // End of variables declaration//GEN-END:variables
 }

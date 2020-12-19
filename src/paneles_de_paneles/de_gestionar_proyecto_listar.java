@@ -52,12 +52,12 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
     public de_gestionar_proyecto_listar() {
         initComponents();
         
-        this.tabla_prep_tecnica.setCursor(new Cursor(12));
+        this.tabla_proy.setCursor(new Cursor(12));
         this.scroll.getViewport().setBackground(Color.WHITE);
         this.menu.add(pnlMenu);
         
-        tpdf.visualizar_PdfVO(tabla_prep_tecnica);
-        this.tabla_prep_tecnica.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
+        tpdf.visualizar_PdfVO(tabla_proy);
+        this.tabla_proy.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
 
         Timer timer = new Timer(500, new ActionListener() {
             @Override
@@ -90,7 +90,7 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
-        tabla_prep_tecnica = new rojerusan.RSTableMetro();
+        tabla_proy = new rojerusan.RSTableMetro();
         jLabel3 = new javax.swing.JLabel();
         txtBuscar_pdf = new rojeru_san.rsfield.RSTextMaterial();
 
@@ -144,7 +144,7 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
 
         scroll.setBorder(null);
 
-        tabla_prep_tecnica.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_proy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -160,30 +160,30 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tabla_prep_tecnica.setToolTipText("");
-        tabla_prep_tecnica.setAltoHead(30);
-        tabla_prep_tecnica.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
-        tabla_prep_tecnica.setColorBordeHead(new java.awt.Color(255, 255, 255));
-        tabla_prep_tecnica.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        tabla_prep_tecnica.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
-        tabla_prep_tecnica.setColorHoverBackgound(new java.awt.Color(69, 87, 252));
-        tabla_prep_tecnica.setColorSelBackgound(new java.awt.Color(69, 87, 252));
-        tabla_prep_tecnica.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        tabla_prep_tecnica.setFuenteHead(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        tabla_prep_tecnica.setGrosorBordeFilas(0);
-        tabla_prep_tecnica.setHover(true);
-        tabla_prep_tecnica.setMultipleSeleccion(false);
-        tabla_prep_tecnica.setRowHeight(30);
-        tabla_prep_tecnica.setSelectionBackground(new java.awt.Color(99, 70, 250));
-        tabla_prep_tecnica.getTableHeader().setReorderingAllowed(false);
-        tabla_prep_tecnica.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabla_proy.setToolTipText("");
+        tabla_proy.setAltoHead(30);
+        tabla_proy.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
+        tabla_proy.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        tabla_proy.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tabla_proy.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tabla_proy.setColorHoverBackgound(new java.awt.Color(69, 87, 252));
+        tabla_proy.setColorSelBackgound(new java.awt.Color(69, 87, 252));
+        tabla_proy.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tabla_proy.setFuenteHead(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tabla_proy.setGrosorBordeFilas(0);
+        tabla_proy.setHover(true);
+        tabla_proy.setMultipleSeleccion(false);
+        tabla_proy.setRowHeight(30);
+        tabla_proy.setSelectionBackground(new java.awt.Color(99, 70, 250));
+        tabla_proy.getTableHeader().setReorderingAllowed(false);
+        tabla_proy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabla_prep_tecnicaMouseClicked(evt);
+                tabla_proyMouseClicked(evt);
             }
         });
-        scroll.setViewportView(tabla_prep_tecnica);
-        if (tabla_prep_tecnica.getColumnModel().getColumnCount() > 0) {
-            tabla_prep_tecnica.getColumnModel().getColumn(1).setPreferredWidth(10);
+        scroll.setViewportView(tabla_proy);
+        if (tabla_proy.getColumnModel().getColumnCount() > 0) {
+            tabla_proy.getColumnModel().getColumn(1).setPreferredWidth(10);
         }
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_coontrato/label-buscar.png"))); // NOI18N
@@ -251,22 +251,22 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabla_prep_tecnicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_prep_tecnicaMouseClicked
-        int row = tabla_prep_tecnica.rowAtPoint(evt.getPoint());
+    private void tabla_proyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_proyMouseClicked
+        int row = tabla_proy.rowAtPoint(evt.getPoint());
         if ((evt.getModifiers() & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
-            this.tabla_prep_tecnica.setRowSelectionInterval(row, row);
+            this.tabla_proy.setRowSelectionInterval(row, row);
             PosicionMouse = evt.getY() / 16;
             menu.show(evt.getComponent(), evt.getX(), evt.getY());
         } else {
-            this.tabla_prep_tecnica.setRowSelectionInterval(row, row);
+            this.tabla_proy.setRowSelectionInterval(row, row);
         }
         
         // ver plano
-        int column = tabla_prep_tecnica.getColumnModel().getColumnIndexAtX(evt.getX());
-        int row_pdf = evt.getY() / tabla_prep_tecnica.getRowHeight();
-        if (row_pdf < tabla_prep_tecnica.getRowCount() && row_pdf >= 0 && column < tabla_prep_tecnica.getColumnCount() && column >= 0 && (evt.getModifiers() & InputEvent.BUTTON3_MASK) != InputEvent.BUTTON3_MASK) {
-            id = (int) tabla_prep_tecnica.getValueAt(row_pdf, 0);
-            Object value = tabla_prep_tecnica.getValueAt(row_pdf, column);
+        int column = tabla_proy.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row_pdf = evt.getY() / tabla_proy.getRowHeight();
+        if (row_pdf < tabla_proy.getRowCount() && row_pdf >= 0 && column < tabla_proy.getColumnCount() && column >= 0 && (evt.getModifiers() & InputEvent.BUTTON3_MASK) != InputEvent.BUTTON3_MASK) {
+            id = (int) tabla_proy.getValueAt(row_pdf, 0);
+            Object value = tabla_proy.getValueAt(row_pdf, column);
             try{
                 Runnable runnable1 = new Runnable() {
                 public void run() {
@@ -302,24 +302,24 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
         }else{
             
         }
-    }//GEN-LAST:event_tabla_prep_tecnicaMouseClicked
+    }//GEN-LAST:event_tabla_proyMouseClicked
 
     
     
     private void txtBuscar_pdfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscar_pdfKeyReleased
         Tabla_PdfVO_prep_tecnica tabla=new Tabla_PdfVO_prep_tecnica();
-        tabla.visualizar_PdfVO_buscar(tabla_prep_tecnica, txtBuscar_pdf.getText());
+        tabla.visualizar_PdfVO_buscar(tabla_proy, txtBuscar_pdf.getText());
     }//GEN-LAST:event_txtBuscar_pdfKeyReleased
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
 //        if (privilegios.Operaciones.EliminarProducto(principal.Principal.lblID.getText())) {
             this.menu.setVisible(false);
-            int fila = this.tabla_prep_tecnica.getSelectedRow();
-            int id = Integer.parseInt(tabla_prep_tecnica.getValueAt(fila, 0).toString());
-            String nombre = this.tabla_prep_tecnica.getValueAt(fila, 1).toString();
+            int fila = this.tabla_proy.getSelectedRow();
+            int id = Integer.parseInt(tabla_proy.getValueAt(fila, 0).toString());
+            String nombre = this.tabla_proy.getValueAt(fila, 1).toString();
 
             alertas.WarningAlert w = new alertas.WarningAlert(new JFrame(), true);
-            w.msj1.setText("Se eliminara la preparación técnica de");
+            w.msj1.setText("Se eliminara el proyecto de");
             w.msj2.setText("nombre (" + nombre + ")");
             w.msj3.setText("de manera permanente del sistema.");
             w.setVisible(true);
@@ -361,8 +361,8 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
 
     private void eliminar_prep_tecnica(int id){
         eliminar_pdf(id);
-        tpdf.visualizar_PdfVO(tabla_prep_tecnica);
-        this.tabla_prep_tecnica.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
+        tpdf.visualizar_PdfVO(tabla_proy);
+        this.tabla_proy.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
     }
     
     public void eliminar_pdf(int codigo) {
@@ -375,8 +375,8 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
             this.menu.setVisible(false);
             de_gestionar_proyecto_editar m = new de_gestionar_proyecto_editar(new JFrame(), true);
-            int fila = de_gestionar_proyecto_listar.tabla_prep_tecnica.getSelectedRow();
-            int id = Integer.parseInt(tabla_prep_tecnica.getValueAt(fila, 0).toString());
+            int fila = de_gestionar_proyecto_listar.tabla_proy.getSelectedRow();
+            int id = Integer.parseInt(tabla_proy.getValueAt(fila, 0).toString());
             de_gestionar_proyecto_editar.id_prep_tecnica.setText(String.valueOf(id));
             extraerDatos(m, id);
             m.setVisible(true);
@@ -415,7 +415,7 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
     private rojerusan.RSPopuMenu menu;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JScrollPane scroll;
-    public static rojerusan.RSTableMetro tabla_prep_tecnica;
+    public static rojerusan.RSTableMetro tabla_proy;
     public static rojeru_san.rsfield.RSTextMaterial txtBuscar_pdf;
     // End of variables declaration//GEN-END:variables
 }

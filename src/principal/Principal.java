@@ -10,6 +10,7 @@ import esperas.Guardando_general;
 import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.logging.Level;
@@ -17,9 +18,12 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.ColorUIResource;
 import paneles.CambiaPanel;
+import paneles_de_paneles.de_gestionar_prod_programa_añadir;
 import splash_y_login.AccesoLogin;
 import sun.security.krb5.PrincipalName;
 
@@ -42,8 +46,9 @@ public class Principal extends javax.swing.JFrame {
             jScrollPane4.getVerticalScrollBar().setUnitIncrement(16);
             jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
             new CambiaPanel(pnlPrincipal, new paneles.pnlHome());
-        jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jScrollPane1.getHorizontalScrollBar().setUI(new MyScrollBarUI());
+        
+        
+        
     }
 
     /**
@@ -80,6 +85,7 @@ public class Principal extends javax.swing.JFrame {
         gestionar_salario = new rsbuttom.RSButtonMetro();
         gestionar_cargues = new rsbuttom.RSButtonMetro();
         gestionar_venta = new rsbuttom.RSButtonMetro();
+        gestionar_prod_programa = new rsbuttom.RSButtonMetro();
         configuracion = new rsbuttom.RSButtonMetro();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -548,6 +554,31 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        gestionar_prod_programa.setBackground(new java.awt.Color(239, 238, 244));
+        gestionar_prod_programa.setForeground(new java.awt.Color(128, 128, 131));
+        gestionar_prod_programa.setText("Gestionar producci'on por programa");
+        gestionar_prod_programa.setActionCommand("Gestionar producción por programa");
+        gestionar_prod_programa.setColorHover(new java.awt.Color(204, 204, 204));
+        gestionar_prod_programa.setColorNormal(new java.awt.Color(239, 238, 244));
+        gestionar_prod_programa.setColorPressed(new java.awt.Color(204, 204, 204));
+        gestionar_prod_programa.setColorTextHover(new java.awt.Color(128, 128, 131));
+        gestionar_prod_programa.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        gestionar_prod_programa.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        gestionar_prod_programa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        gestionar_prod_programa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        gestionar_prod_programa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gestionar_prod_programa.setIconTextGap(19);
+        gestionar_prod_programa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                gestionar_prod_programaMousePressed(evt);
+            }
+        });
+        gestionar_prod_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gestionar_prod_programaActionPerformed(evt);
+            }
+        });
+
         configuracion.setBackground(new java.awt.Color(239, 238, 244));
         configuracion.setForeground(new java.awt.Color(128, 128, 131));
         configuracion.setText("Configuración");
@@ -577,24 +608,28 @@ public class Principal extends javax.swing.JFrame {
         pnlMenu3Layout.setHorizontalGroup(
             pnlMenu3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(uno, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_ficha_costo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_cierre_prod, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_recursos_x_programa, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_proy, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar__planos, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_info_laboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_ekipo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_tarjeta_combustible, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_hoja_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_plantilla, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_contrato_laboral, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_salario, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_cargues, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnlMenu3Layout.createSequentialGroup()
+                .addGroup(pnlMenu3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(uno, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_ficha_costo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_cierre_prod, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_recursos_x_programa, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_proy, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar__planos, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_info_laboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_ekipo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_tarjeta_combustible, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_hoja_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_plantilla, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_contrato_laboral, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_salario, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_cargues, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
         );
         pnlMenu3Layout.setVerticalGroup(
             pnlMenu3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,6 +669,8 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(gestionar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(gestionar_cargues, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(gestionar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -797,7 +834,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         pressed(uno,gestionar_contrato,gestionar_ficha_costo,gestionar_cierre_prod,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_unoMousePressed
 
     private void unoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unoActionPerformed
@@ -806,7 +843,7 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnlHome());
         color_performed(uno,gestionar_contrato,gestionar_ficha_costo,gestionar_cierre_prod,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_unoActionPerformed
 
     public void color_performed(rsbuttom.RSButtonMetro principal, rsbuttom.RSButtonMetro uno, rsbuttom.RSButtonMetro dos,rsbuttom.RSButtonMetro tres,
@@ -922,7 +959,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
        pressed(gestionar_ficha_costo,uno,gestionar_contrato,gestionar_cierre_prod,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato_laboral,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato_laboral,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_ficha_costoMousePressed
 
     private void gestionar_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_ficha_costoActionPerformed
@@ -930,7 +967,7 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_ficha_costo());
         color_performed(gestionar_ficha_costo,gestionar_contrato,uno,gestionar_cierre_prod,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato_laboral,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato_laboral,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_ficha_costoActionPerformed
 
     private void gestionar_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_contratoActionPerformed
@@ -938,14 +975,14 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_contrato());
         color_performed(gestionar_contrato,uno,gestionar_ficha_costo,gestionar_cierre_prod,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato_laboral,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato_laboral,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_contratoActionPerformed
 
     private void gestionar_recursos_x_programaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_recursos_x_programaMousePressed
         // TODO add your handling code here:
         pressed(gestionar_recursos_x_programa,gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,gestionar_cierre_prod,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_recursos_x_programaMousePressed
 
     private void gestionar_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_recursos_x_programaActionPerformed
@@ -953,29 +990,29 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_gestionar_recursos_x_programa());
         color_performed(gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato_laboral,uno,gestionar_ficha_costo,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_recursos_x_programaActionPerformed
 
     private void gestionar_prep_tecnicaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_prep_tecnicaMousePressed
         // TODO add your handling code here:
         pressed(gestionar_prep_tecnica,gestionar_recursos_x_programa,gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,gestionar_cierre_prod,gestionar_proy,gestionar__planos,
                 gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_prep_tecnicaMousePressed
 
     private void gestionar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_prep_tecnicaActionPerformed
         // TODO add your handling code here:
-        new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_prep_tecnica());
+        new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_proy());
         color_performed(gestionar_prep_tecnica,gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato_laboral,uno,gestionar_ficha_costo,
                 gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_prep_tecnicaActionPerformed
 
     private void gestionar__planosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar__planosMousePressed
         // TODO add your handling code here:
         pressed(gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,
                 gestionar_cierre_prod,gestionar_proy,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar__planosMousePressed
 
     private void gestionar__planosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar__planosActionPerformed
@@ -983,29 +1020,29 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_planos());
         color_performed(gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato_laboral,uno,gestionar_ficha_costo,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar__planosActionPerformed
 
     private void gestionar_proyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_proyMousePressed
         // TODO add your handling code here:
         pressed(gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,
                 gestionar_cierre_prod,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_proyMousePressed
 
     private void gestionar_proyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_proyActionPerformed
         // TODO add your handling code here:
-        new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_proy());
+        new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_prep_tecnica());
         color_performed(gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato_laboral,uno,gestionar_ficha_costo,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_proyActionPerformed
 
     private void gestionar_cierre_prodMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_cierre_prodMousePressed
         // TODO add your handling code here:
         pressed(gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,
                 gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_cierre_prodMousePressed
 
     private void gestionar_cierre_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_cierre_prodActionPerformed
@@ -1013,14 +1050,14 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_cierre_prod());
         color_performed(gestionar_cierre_prod,gestionar_contrato_laboral,uno,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_cierre_prodActionPerformed
 
     private void gestionar_info_laboratorioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_info_laboratorioMousePressed
         // TODO add your handling code here:
         pressed(gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
                 gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,gestionar_ekipo,gestionar_tarjeta_combustible,
-                gestionar_hoja_ruta,gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_hoja_ruta,gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_info_laboratorioMousePressed
 
     private void gestionar_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_info_laboratorioActionPerformed
@@ -1028,14 +1065,14 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_info_laboratorio());
         color_performed(gestionar_info_laboratorio,gestionar_prep_tecnica,gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,
                 gestionar_contrato_laboral,uno,gestionar_ficha_costo,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_info_laboratorioActionPerformed
 
     private void gestionar_ekipoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_ekipoMousePressed
         // TODO add your handling code here:
         pressed(gestionar_ekipo,gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
                 gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,gestionar_tarjeta_combustible,
-                gestionar_hoja_ruta,gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_hoja_ruta,gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_ekipoMousePressed
 
     private void gestionar_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_ekipoActionPerformed
@@ -1043,14 +1080,14 @@ public class Principal extends javax.swing.JFrame {
          new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_equipo());
         color_performed(gestionar_ekipo,gestionar_info_laboratorio,gestionar_prep_tecnica,gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,
                 gestionar_cierre_prod,gestionar_contrato_laboral,uno,gestionar_ficha_costo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_ekipoActionPerformed
 
     private void gestionar_tarjeta_combustibleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_tarjeta_combustibleMousePressed
         // TODO add your handling code here:
         pressed(gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
                 gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,
-                gestionar_hoja_ruta,gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_hoja_ruta,gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_tarjeta_combustibleMousePressed
 
     private void gestionar_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_tarjeta_combustibleActionPerformed
@@ -1058,14 +1095,14 @@ public class Principal extends javax.swing.JFrame {
          new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_tarjeta_combustible());
         color_performed(gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_prep_tecnica,gestionar__planos,gestionar_proy,
                 gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato_laboral,uno,gestionar_ficha_costo,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_tarjeta_combustibleActionPerformed
 
     private void gestionar_hoja_rutaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_hoja_rutaMousePressed
         // TODO add your handling code here:
         pressed(gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
                 gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,
-                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_hoja_rutaMousePressed
 
     private void gestionar_hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_hoja_rutaActionPerformed
@@ -1073,14 +1110,14 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_hoja_ruta());
         color_performed(gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_prep_tecnica,
                 gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato_laboral,uno,gestionar_ficha_costo,
-                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_hoja_rutaActionPerformed
 
     private void gestionar_plantillaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_plantillaMousePressed
         // TODO add your handling code here:
         pressed(gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
                 gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,
-                gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_plantillaMousePressed
 
     private void gestionar_plantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_plantillaActionPerformed
@@ -1088,14 +1125,14 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_plantilla());
         color_performed(gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,
                 gestionar_prep_tecnica,gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato_laboral,uno,gestionar_ficha_costo,
-                gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_contrato,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_plantillaActionPerformed
 
     private void gestionar_contrato_laboralMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_contrato_laboralMousePressed
         // TODO add your handling code here:
         pressed(gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,
                 gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
-                gestionar_contrato,gestionar_ficha_costo,uno,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_contrato,gestionar_ficha_costo,uno,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_contrato_laboralMousePressed
 
     private void gestionar_contrato_laboralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_contrato_laboralActionPerformed
@@ -1103,14 +1140,14 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_contrato_laboral());
         color_performed(gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_prep_tecnica,
                 gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato,uno,gestionar_ficha_costo,
-                gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_contrato_laboralActionPerformed
 
     private void gestionar_salarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_salarioMousePressed
         // TODO add your handling code here:
         pressed(gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,
                 gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
-                gestionar_contrato,gestionar_ficha_costo,uno,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_contrato,gestionar_ficha_costo,uno,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_salarioMousePressed
 
     private void gestionar_salarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_salarioActionPerformed
@@ -1118,14 +1155,14 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_salario());
         color_performed(gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_prep_tecnica,
                 gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato,uno,gestionar_ficha_costo,
-                gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_salarioActionPerformed
 
     private void gestionar_carguesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_carguesMousePressed
         // TODO add your handling code here:
         pressed(gestionar_cargues,gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,
                 gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
-                gestionar_contrato,gestionar_ficha_costo,uno,gestionar_venta,configuracion);
+                gestionar_contrato,gestionar_ficha_costo,uno,gestionar_venta,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_carguesMousePressed
 
     private void gestionar_carguesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_carguesActionPerformed
@@ -1133,14 +1170,14 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_cargues());
         color_performed(gestionar_cargues,gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_prep_tecnica,
                 gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato,uno,gestionar_ficha_costo,
-                gestionar_venta,configuracion);
+                gestionar_venta,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_carguesActionPerformed
 
     private void gestionar_ventaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_ventaMousePressed
         // TODO add your handling code here:
         pressed(gestionar_venta,gestionar_cargues,gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,
                 gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
-                gestionar_contrato,gestionar_ficha_costo,uno,configuracion);
+                gestionar_contrato,gestionar_ficha_costo,uno,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_ventaMousePressed
 
     private void gestionar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_ventaActionPerformed
@@ -1148,29 +1185,29 @@ public class Principal extends javax.swing.JFrame {
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_venta());
         color_performed(gestionar_venta,gestionar_cargues,gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_prep_tecnica,
                 gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato,uno,gestionar_ficha_costo,
-                configuracion);
+                gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_ventaActionPerformed
 
-    private void configuracionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_configuracionMousePressed
+    private void gestionar_prod_programaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_prod_programaMousePressed
         // TODO add your handling code here:
-        pressed(configuracion,gestionar_venta,gestionar_cargues,gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,
+        pressed(gestionar_prod_programa,gestionar_venta,gestionar_cargues,gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,
                 gestionar_info_laboratorio,gestionar_cierre_prod,gestionar_proy,gestionar__planos,gestionar_prep_tecnica,gestionar_recursos_x_programa,
                 gestionar_contrato,gestionar_ficha_costo,uno);
-    }//GEN-LAST:event_configuracionMousePressed
+    }//GEN-LAST:event_gestionar_prod_programaMousePressed
 
-    private void configuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configuracionActionPerformed
+    private void gestionar_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_prod_programaActionPerformed
         // TODO add your handling code here:
-        new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_configuracion());
-        color_performed(configuracion,gestionar_venta,gestionar_cargues,gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,
+        new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_prod_programa());
+        color_performed(gestionar_prod_programa,gestionar_venta,gestionar_cargues,gestionar_salario,gestionar_contrato_laboral,gestionar_plantilla,
                 gestionar_hoja_ruta,gestionar_tarjeta_combustible,gestionar_ekipo,gestionar_info_laboratorio,gestionar_prep_tecnica,
                 gestionar__planos,gestionar_proy,gestionar_recursos_x_programa,gestionar_cierre_prod,gestionar_contrato,uno,gestionar_ficha_costo);
-    }//GEN-LAST:event_configuracionActionPerformed
+    }//GEN-LAST:event_gestionar_prod_programaActionPerformed
 
     private void gestionar_contratoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_contratoMousePressed
         // TODO add your handling code here:
         pressed(gestionar_contrato,gestionar_ficha_costo,uno,gestionar_contrato_laboral,gestionar_cierre_prod,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
-                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,configuracion);
+                gestionar_plantilla,gestionar_salario,gestionar_venta,gestionar_cargues,gestionar_prod_programa);
     }//GEN-LAST:event_gestionar_contratoMousePressed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -1181,6 +1218,14 @@ public class Principal extends javax.swing.JFrame {
             new AccesoLogin().setVisible(true);
         }
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void configuracionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_configuracionMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_configuracionMousePressed
+
+    private void configuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configuracionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_configuracionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1235,6 +1280,7 @@ public class Principal extends javax.swing.JFrame {
     private rsbuttom.RSButtonMetro gestionar_info_laboratorio;
     private rsbuttom.RSButtonMetro gestionar_plantilla;
     private rsbuttom.RSButtonMetro gestionar_prep_tecnica;
+    private rsbuttom.RSButtonMetro gestionar_prod_programa;
     private rsbuttom.RSButtonMetro gestionar_proy;
     private rsbuttom.RSButtonMetro gestionar_recursos_x_programa;
     private rsbuttom.RSButtonMetro gestionar_salario;

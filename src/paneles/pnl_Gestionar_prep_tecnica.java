@@ -17,7 +17,7 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
     public pnl_Gestionar_prep_tecnica() {
         initComponents();
         this.listar_prep_tecnica.setSelected(true);
-         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_proyecto_listar());
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prep_tecnica_listar());
         pnl_Gestionar_contrato.color_performed(listar_prep_tecnica,add_prep_tecnica);
     }
 
@@ -31,19 +31,16 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel7 = new javax.swing.JLabel();
-        panel_contenedor = new javax.swing.JPanel();
         listar_prep_tecnica = new rsbuttom.RSButtonMetro();
         add_prep_tecnica = new rsbuttom.RSButtonMetro();
+        panel_contenedor = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Gestionar Poyectos");
-
-        panel_contenedor.setBackground(new java.awt.Color(255, 255, 255));
-        panel_contenedor.setLayout(new javax.swing.BoxLayout(panel_contenedor, javax.swing.BoxLayout.LINE_AXIS));
+        jLabel7.setText("Gestionar Preparación técnica");
 
         listar_prep_tecnica.setBackground(new java.awt.Color(239, 238, 244));
         listar_prep_tecnica.setForeground(new java.awt.Color(128, 128, 131));
@@ -93,6 +90,9 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
             }
         });
 
+        panel_contenedor.setBackground(new java.awt.Color(255, 255, 255));
+        panel_contenedor.setLayout(new javax.swing.BoxLayout(panel_contenedor, javax.swing.BoxLayout.LINE_AXIS));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,8 +100,8 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
                     .addComponent(panel_contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(listar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -119,38 +119,37 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
                     .addComponent(add_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(listar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panel_contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listar_prep_tecnicaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listar_prep_tecnicaMousePressed
+    private void add_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_prep_tecnicaActionPerformed
         // TODO add your handling code here:
-        pnl_Gestionar_contrato.pressed(listar_prep_tecnica,add_prep_tecnica);
-    }//GEN-LAST:event_listar_prep_tecnicaMousePressed
-
-    private void listar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_prep_tecnicaActionPerformed
-        // TODO add your handling code here:
-        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_proyecto_listar());
-        pnl_Gestionar_contrato.color_performed(listar_prep_tecnica,add_prep_tecnica);
-    }//GEN-LAST:event_listar_prep_tecnicaActionPerformed
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prep_tecnica_añadir());
+        pnl_Gestionar_contrato.color_performed(add_prep_tecnica,listar_prep_tecnica);
+    }//GEN-LAST:event_add_prep_tecnicaActionPerformed
 
     private void add_prep_tecnicaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_prep_tecnicaMousePressed
         // TODO add your handling code here:
         pnl_Gestionar_contrato.pressed(add_prep_tecnica,listar_prep_tecnica);
     }//GEN-LAST:event_add_prep_tecnicaMousePressed
 
-    private void add_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_prep_tecnicaActionPerformed
+    private void listar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_prep_tecnicaActionPerformed
         // TODO add your handling code here:
-        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_proyecto_añadir());
-        pnl_Gestionar_contrato.color_performed(add_prep_tecnica,listar_prep_tecnica);
-    }//GEN-LAST:event_add_prep_tecnicaActionPerformed
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prep_tecnica_listar());
+        pnl_Gestionar_contrato.color_performed(listar_prep_tecnica,add_prep_tecnica);
+    }//GEN-LAST:event_listar_prep_tecnicaActionPerformed
+
+    private void listar_prep_tecnicaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listar_prep_tecnicaMousePressed
+        // TODO add your handling code here:
+        pnl_Gestionar_contrato.pressed(listar_prep_tecnica,add_prep_tecnica);
+    }//GEN-LAST:event_listar_prep_tecnicaMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static rsbuttom.RSButtonMetro add_prep_tecnica;
+    private rsbuttom.RSButtonMetro add_prep_tecnica;
     private javax.swing.JLabel jLabel7;
-    public static rsbuttom.RSButtonMetro listar_prep_tecnica;
+    private rsbuttom.RSButtonMetro listar_prep_tecnica;
     private javax.swing.JPanel panel_contenedor;
     // End of variables declaration//GEN-END:variables
 }

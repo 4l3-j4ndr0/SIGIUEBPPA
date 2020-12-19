@@ -31,21 +31,21 @@
                               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="lbl_error_nombre_prep_tecnica" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="nombre_prep_tecnica" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbl_error_nombre_proy" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="nombre_proy" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="boton_guardar_prep_tecnica" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="boton_guardar_proy" min="-2" pref="250" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="boton_busca_prep_tecnica" min="-2" pref="239" max="-2" attributes="0"/>
+                              <Component id="boton_busca_proy" min="-2" pref="239" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
-                      <Component id="lbl_error_pdf_prep_tecnica" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_error_pdf_proy" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="101" max="32767" attributes="0"/>
@@ -62,24 +62,24 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-                      <Component id="nombre_prep_tecnica" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombre_proy" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="lbl_error_nombre_prep_tecnica" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="lbl_error_nombre_proy" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                      <Component id="boton_guardar_prep_tecnica" min="-2" max="-2" attributes="0"/>
+                      <Component id="boton_guardar_proy" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="boton_busca_prep_tecnica" min="-2" max="-2" attributes="0"/>
+              <Component id="boton_busca_proy" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="lbl_error_pdf_prep_tecnica" min="-2" pref="43" max="-2" attributes="0"/>
+              <Component id="lbl_error_pdf_proy" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace pref="90" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="rojeru_san.rsfield.RSTextMaterial" name="nombre_prep_tecnica">
+    <Component class="rojeru_san.rsfield.RSTextMaterial" name="nombre_proy">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -96,14 +96,14 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombre_prep_tecnicaKeyReleased"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombre_prep_tecnicaKeyTyped"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombre_proyKeyReleased"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombre_proyKeyTyped"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_error_nombre_prep_tecnica">
+    <Component class="javax.swing.JLabel" name="lbl_error_nombre_proy">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="35" green="42" red="f3" type="rgb"/>
@@ -114,7 +114,7 @@
         <Property name="text" type="java.lang.String" value="&#xa1;Debe ingresar un nombre de plano!"/>
       </Properties>
     </Component>
-    <Component class="rojeru_san.RSButtonRiple" name="boton_guardar_prep_tecnica">
+    <Component class="rojeru_san.RSButtonRiple" name="boton_guardar_proy">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ba" green="56" red="26" type="rgb"/>
@@ -126,7 +126,7 @@
         <Property name="horizontalTextPosition" type="int" value="4"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_guardar_prep_tecnicaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_guardar_proyActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lb_foto">
@@ -137,7 +137,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="rojeru_san.RSButtonRiple" name="boton_busca_prep_tecnica">
+    <Component class="rojeru_san.RSButtonRiple" name="boton_busca_proy">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ba" green="56" red="26" type="rgb"/>
@@ -149,10 +149,10 @@
         <Property name="horizontalTextPosition" type="int" value="4"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_busca_prep_tecnicaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_busca_proyActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_error_pdf_prep_tecnica">
+    <Component class="javax.swing.JLabel" name="lbl_error_pdf_proy">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="35" green="42" red="f3" type="rgb"/>
