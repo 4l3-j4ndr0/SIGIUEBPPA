@@ -57,6 +57,7 @@ public class de_gestionar_contrato_listar extends javax.swing.JPanel {
     
     public de_gestionar_contrato_listar() {
         initComponents();
+        jButton1.setVisible(false);
         this.tabla.setCursor(new Cursor(12));
         this.scroll.getViewport().setBackground(Color.WHITE);
         this.menu.add(pnlMenu);

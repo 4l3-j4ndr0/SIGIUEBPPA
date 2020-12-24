@@ -12,6 +12,7 @@ import conexion.conexion;
 import esperas.Cargando;
 import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_prod_programa;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -180,11 +181,11 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CODIGO", "DESCRIPCIÓN", "U/M", "VOLUMEN X UNIDAD", "CANTIDAD", "PROGRAMA", "TOTAL M3", "PRECIO CUP", "IMPORTE CUP", "FECHA", "RBK"
+                "ID", "CODIGO", "DESCRIPCIÓN", "U/M", "VOLUMEN X UNIDAD", "CANTIDAD", "PROGRAMA", "TOTAL M3", "PRECIO CUP", "IMPORTE CUP", "FECHA", "RBK", "CEMENTO", "ARENA", "GRAVILLA", "ADITIVO", "1/4", "3/8", "1/2", "5/8", "3/4", "1", "AL", "EL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -214,17 +215,29 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         });
         scroll.setViewportView(tabla_prod_programa);
         if (tabla_prod_programa.getColumnModel().getColumnCount() > 0) {
-            tabla_prod_programa.getColumnModel().getColumn(0).setPreferredWidth(2);
+            tabla_prod_programa.getColumnModel().getColumn(0).setPreferredWidth(1);
             tabla_prod_programa.getColumnModel().getColumn(1).setPreferredWidth(2);
-            tabla_prod_programa.getColumnModel().getColumn(2).setPreferredWidth(2);
-            tabla_prod_programa.getColumnModel().getColumn(3).setPreferredWidth(2);
-            tabla_prod_programa.getColumnModel().getColumn(4).setPreferredWidth(2);
-            tabla_prod_programa.getColumnModel().getColumn(5).setPreferredWidth(2);
-            tabla_prod_programa.getColumnModel().getColumn(6).setPreferredWidth(2);
+            tabla_prod_programa.getColumnModel().getColumn(2).setPreferredWidth(30);
+            tabla_prod_programa.getColumnModel().getColumn(3).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(4).setPreferredWidth(70);
+            tabla_prod_programa.getColumnModel().getColumn(5).setPreferredWidth(1);
             tabla_prod_programa.getColumnModel().getColumn(7).setPreferredWidth(2);
             tabla_prod_programa.getColumnModel().getColumn(8).setPreferredWidth(2);
-            tabla_prod_programa.getColumnModel().getColumn(9).setPreferredWidth(2);
+            tabla_prod_programa.getColumnModel().getColumn(9).setPreferredWidth(25);
             tabla_prod_programa.getColumnModel().getColumn(10).setPreferredWidth(2);
+            tabla_prod_programa.getColumnModel().getColumn(11).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(12).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(13).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(14).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(15).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(16).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(17).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(18).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(19).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(20).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(21).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(22).setPreferredWidth(1);
+            tabla_prod_programa.getColumnModel().getColumn(23).setPreferredWidth(1);
         }
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_coontrato/label-buscar.png"))); // NOI18N
@@ -438,7 +451,7 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
             Map parametro = new HashMap();
             parametro.put("LOGO", ruta_logo);
             
-            JasperPrint jprint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("reportes/prod_programa.jasper"), parametro, cc.conexion());
+            JasperPrint jprint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("reportes/prod_programaa.jasper"), parametro, cc.conexion());
             JRViewer jrv = new JRViewer(jprint);
             r.contenedor.removeAll();
 
@@ -459,23 +472,23 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
 //        if (privilegios.Operaciones.EliminarProducto(principal.Principal.lblID.getText())) {
             this.menu.setVisible(false);
             int fila = this.tabla_prod_programa.getSelectedRow();
-            int id = opciones_de_gestionar_contrato.extraer_id("select id from contrato where numero_contrato="+Integer.parseInt(tabla_prod_programa.getValueAt(fila, 0).toString()));
+            int id = Integer.parseInt(tabla_prod_programa.getValueAt(fila, 0).toString());
 
-            String nombre = this.tabla_prod_programa.getValueAt(fila, 1).toString();
+            String nombre = this.tabla_prod_programa.getValueAt(fila, 2).toString();
 
             alertas.WarningAlert w = new alertas.WarningAlert(new JFrame(), true);
-            w.msj1.setText("Se eliminara el contrato de");
-            w.msj2.setText("nombre (" + nombre + ")");
+            w.msj1.setText("Se eliminara la fila seleccionada del");
+            w.msj2.setText("con descripción (" + nombre + ")");
             w.msj3.setText("de manera permanente del sistema.");
             w.setVisible(true);
 
             if (w.hecho) {
-                int control=opciones_de_gestionar_contrato.eliminar(id);
+                int control=opciones_de_gestionar_prod_programa.eliminar(id);
                 if (control==1) {
-                    opciones_de_gestionar_contrato.setListar("");
+                    opciones_de_gestionar_prod_programa.setListar("");
 
                     SuccessAlert s = new SuccessAlert(new JFrame(), true);
-                    s.msj1.setText("Contrato eliminado con éxito");
+                    s.msj1.setText("Fila eliminada con éxito");
                     s.msj2.setText("");
                     s.msj3.setText("");
                     s.setVisible(true);
@@ -499,11 +512,11 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
             consultas_de_gestionar_contrato c=new consultas_de_gestionar_contrato();
             this.menu.setVisible(false);
-            de_gestionar_contrato_editar m = new de_gestionar_contrato_editar(new JFrame(), true);
+            de_gestionar_prod_programa_editar m = new de_gestionar_prod_programa_editar(new JFrame(), true);
             int fila = de_gestionar_prod_programa_listar.tabla_prod_programa.getSelectedRow();
-            int id = opciones_de_gestionar_contrato.extraer_id("select id from contrato where numero_contrato="+Integer.parseInt(tabla_prod_programa.getValueAt(fila, 0).toString()));
-            de_gestionar_contrato_editar.numero_contrato_control.setText(opciones_de_gestionar_contrato.extraer_numero("select numero_contrato from contrato where id="+id));
-            interaccion_bd.opciones_de_gestionar_contrato.extraerDatos(m, id);
+            int id = Integer.parseInt(tabla_prod_programa.getValueAt(fila, 0).toString());
+          //  de_gestionar_contrato_editar.numero_contrato_control.setText(opciones_de_gestionar_contrato.extraer_numero("select numero_contrato from contrato where id="+id));
+            interaccion_bd.opciones_de_gestionar_prod_programa.extraerDatos(m, id);
             m.setVisible(true);
             
 //        if (privilegios.Operaciones.EditarProducto(principal.Principal.lblID.getText())) {

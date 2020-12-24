@@ -243,10 +243,13 @@ public class de_gestionar_contrato_añadir extends javax.swing.JPanel {
 
     private void numero_contratoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_contratoKeyTyped
         // TODO add your handling code here:
+        if(numero_contrato.getText().length()<10){
         char num = evt.getKeyChar();
         if ((num < '0' || num > '9')) {
             evt.consume();
-            
+        }
+        }else{
+             evt.consume();
         }
     }//GEN-LAST:event_numero_contratoKeyTyped
 

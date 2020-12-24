@@ -37,6 +37,18 @@ public final class FakeDataProvider_prod_programa {
         tableHeader.add("IMPORTE CUP");
         tableHeader.add("FECHA");
         tableHeader.add("RBK");
+        tableHeader.add("CEMENTO");
+        tableHeader.add("ARENA");
+        tableHeader.add("GRAVILLA");
+        tableHeader.add("ADITIVO");
+        tableHeader.add("1/4");
+        tableHeader.add("3/8");
+        tableHeader.add("1/2");
+        tableHeader.add("5/8");
+        tableHeader.add("3/4");
+        tableHeader.add("1");
+        tableHeader.add("AL");
+        tableHeader.add("EL");
         return tableHeader;
     }
 
@@ -75,6 +87,18 @@ public final class FakeDataProvider_prod_programa {
                 row.add(rs.getString("importe_cup_modelo"));
                 row.add(rs.getString("fecha_modelo"));
                 row.add(rs.getString("rbk_modelo"));
+                row.add(rs.getString("cemento_modelo"));
+                row.add(rs.getString("arena_modelo"));
+                row.add(rs.getString("gravilla_modelo"));
+                row.add(rs.getString("aditivo_modelo"));
+                row.add(rs.getString("1_4_modelo"));
+                row.add(rs.getString("3_8_modelo"));
+                row.add(rs.getString("1_2_modelo"));
+                row.add(rs.getString("5_8_modelo"));
+                row.add(rs.getString("3_4_modelo"));
+                row.add(rs.getString("1_modelo"));
+                row.add(rs.getString("al_modelo"));
+                row.add(rs.getString("el_modelo"));
                 i++;
             }
             return tableContent;

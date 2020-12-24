@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import paneles_de_paneles.de_gestionar_contrato_editar;
 import paneles_de_paneles.de_gestionar_contrato_listar;
 import paneles_de_paneles.de_gestionar_plano_listar;
+import paneles_de_paneles.de_gestionar_prod_programa_editar;
 import paneles_de_paneles.de_gestionar_prod_programa_listar;
 
 /**
@@ -92,6 +93,18 @@ public class opciones_de_gestionar_prod_programa {
             ps.setDouble(9, uc.getImporte());  
             ps.setString(10, uc.getFecha());  
             ps.setString(11, uc.getRbk());  
+            ps.setDouble(12, uc.getCemento());
+            ps.setDouble(13, uc.getArena());
+            ps.setDouble(14, uc.getGravilla());
+            ps.setDouble(15, uc.getAditivo());
+            ps.setDouble(16, uc.getUn_cuarto());
+            ps.setDouble(17, uc.getTres_octavo());
+            ps.setDouble(18, uc.getUn_medio());
+            ps.setDouble(19, uc.getCinco_octavo());
+            ps.setDouble(20, uc.getTres_cuartos());
+            ps.setDouble(21, uc.getUno());
+            ps.setDouble(22, uc.getAl());
+            ps.setDouble(23, uc.getEl());
             rsu = ps.executeUpdate();
         } catch (SQLException ex) {
                         Logger.getLogger(opciones_de_gestionar_prod_programa.class.getName()).log(Level.SEVERE, null, ex);
@@ -115,22 +128,35 @@ public class opciones_de_gestionar_prod_programa {
             sql = "SELECT * FROM modelo_mercantil WHERE descripcion_modelo LIKE'"+busca+"%' OR programa_modelo LIKE'"+busca+"%'"
                     + "ORDER BY `descripcion_modelo` ASC ";
         }
-        String datos[] = new String[11];
+        String datos[] = new String[24];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                datos[0] = rs.getString("codigo_modelo");
-                datos[1] = rs.getString("descripcion_modelo");
-                datos[2] = rs.getString("u/m_modelo");
-                datos[3] = rs.getString("vol/unidad_modelo");
-                datos[4] = rs.getString("cantidad_modelo");
-                datos[5] = rs.getString("programa_modelo");
-                datos[6] = rs.getString("total_m3_modelo");
-                datos[7] = rs.getString("precio_cup_modelo");
-                datos[8] = rs.getString("importe_cup_modelo");
-                datos[9] = rs.getString("fecha_modelo");
-                datos[10] = rs.getString("rbk_modelo");
+                datos[0] = rs.getString("id_modelo");
+                datos[1] = rs.getString("codigo_modelo");
+                datos[2] = rs.getString("descripcion_modelo");
+                datos[3] = rs.getString("u/m_modelo");
+                datos[4] = rs.getString("vol/unidad_modelo");
+                datos[5] = rs.getString("cantidad_modelo");
+                datos[6] = rs.getString("programa_modelo");
+                datos[7] = rs.getString("total_m3_modelo");
+                datos[8] = rs.getString("precio_cup_modelo");
+                datos[9] = rs.getString("importe_cup_modelo");
+                datos[10] = rs.getString("fecha_modelo");
+                datos[11] = rs.getString("rbk_modelo");
+                datos[12] = rs.getString("cemento_modelo");
+                datos[13] = rs.getString("arena_modelo");
+                datos[14] = rs.getString("gravilla_modelo");
+                datos[15] = rs.getString("aditivo_modelo");
+                datos[16] = rs.getString("1_4_modelo");
+                datos[17] = rs.getString("3_8_modelo");
+                datos[18] = rs.getString("1_2_modelo");
+                datos[19] = rs.getString("5_8_modelo");
+                datos[20] = rs.getString("3_4_modelo");
+                datos[21] = rs.getString("1_modelo");
+                datos[22] = rs.getString("al_modelo");
+                datos[23] = rs.getString("el_modelo");
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {
@@ -230,34 +256,54 @@ public class opciones_de_gestionar_prod_programa {
             alerta.setVisible(true);
     }
     
-     public static void extraerDatos(de_gestionar_contrato_editar datos, int id) {
+     public static void extraerDatos(de_gestionar_prod_programa_editar datos, int id) {
 
         String sql = "SELECT * FROM modelo_mercantil WHERE id_modelo = " + id;
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
-                de_gestionar_contrato_editar.numero_contrato_editar.setText(String.valueOf(rs.getString(2))); 
-                de_gestionar_contrato_editar.nombre_cliente_contrato_editar.setText(rs.getString(3));
-                de_gestionar_contrato_editar.fecha_inicio_contrato_editar.setDate(de_gestionar_contrato_editar.ParseFecha(rs.getString(4)));
-                de_gestionar_contrato_editar.lbl_fecha_expira_contrato_editar.setText(rs.getString(5));
-                de_gestionar_contrato_editar.id_editar.setText(String.valueOf(id));
+                de_gestionar_prod_programa_editar.primary.setText(String.valueOf(id));
+                de_gestionar_prod_programa_editar.combo_prefabricados_editar.setSelectedItem(rs.getString(3));
+                de_gestionar_prod_programa_editar.combo_programas_editar.setSelectedItem(rs.getString(7));
+                System.out.println(rs.getString(7));
+                de_gestionar_prod_programa_editar.fecha_modelo_editar.setDate(de_gestionar_contrato_editar.ParseFecha(rs.getString(11)));
+                de_gestionar_prod_programa_editar.cantidad_modelo_editar.setText(rs.getString(6));
             }
         } catch (SQLException ex) {
             lanza_error(ex);
         }
     }
      
-     public static int actualizar(consultas_de_gestionar_contrato uc) {
+     public static int actualizar(consultas_de_gestionar_prod_programa uc) {
         int rsu = 0;
-        String sql = consultas_de_gestionar_contrato.ACTUALIZAR;
+        String sql = consultas_de_gestionar_prod_programa.ACTUALIZAR;
         try {
             ps = cn.prepareStatement(sql);
-            ps.setString(1, uc.getNumero_contrato());
-            ps.setString(2, uc.getNombre_contrato());
-            ps.setString(3, uc.getFecha_inicio_contrato());
-            ps.setString(4, uc.getFecha_final_contrato());
-            ps.setString(5, uc.getPrimaryKey());
+            ps.setString(1, uc.getCodigo());
+            ps.setString(2, uc.getDescripcion());
+            ps.setString(3, uc.getU_m());
+            ps.setDouble(4, uc.getVolumen_unidad());
+            ps.setDouble(5, uc.getCantidad());
+            ps.setString(6, uc.getPrograma());
+            ps.setDouble(7, uc.getTotal_m3());
+            ps.setDouble(8, uc.getPreciio());
+            ps.setDouble(9, uc.getImporte());
+            ps.setString(10, uc.getFecha());
+            ps.setString(11, uc.getRbk());
+            ps.setDouble(12, uc.getCemento());
+            ps.setDouble(13, uc.getArena());
+            ps.setDouble(14, uc.getGravilla());
+            ps.setDouble(15, uc.getAditivo());
+            ps.setDouble(16, uc.getUn_cuarto());
+            ps.setDouble(17, uc.getTres_octavo());
+            ps.setDouble(18, uc.getUn_medio());
+            ps.setDouble(19, uc.getCinco_octavo());
+            ps.setDouble(20, uc.getTres_cuartos());
+            ps.setDouble(21, uc.getUno());
+            ps.setDouble(22, uc.getAl());
+            ps.setDouble(23, uc.getEl());
+            ps.setInt(24, uc.getPrimaryKey());
             
             rsu = ps.executeUpdate();
         } catch (SQLException ex) {
@@ -302,7 +348,7 @@ public class opciones_de_gestionar_prod_programa {
         return total;
     }
      
-     public static boolean existe(String nombre,String sql) {
+     public static boolean existe(String sql) {
         String c = null;
         boolean existe=false;
         try {
@@ -324,7 +370,7 @@ public class opciones_de_gestionar_prod_programa {
      
      public static int eliminar(int id) {
         int rsu = 0;
-        String sql = consultas_de_gestionar_contrato.ELIMINAR;
+        String sql = consultas_de_gestionar_prod_programa.ELIMINAR;
 
         try {
             ps = cn.prepareStatement(sql);

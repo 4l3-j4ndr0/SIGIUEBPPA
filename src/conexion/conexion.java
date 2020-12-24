@@ -10,6 +10,8 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import splash_y_login.inicio;
+import static splash_y_login.inicio.usuario;
 
 /** 
  *
@@ -42,11 +44,11 @@ public class conexion {
     
     private String server() throws FileNotFoundException, IOException {
         String servidor = "";
-        File archivo = new File("conexion BD_system.txt");
+        File archivo = new File("C:\\Users\\"+inicio.usuario()+"\\Documents\\SIGIUEBPPA BD_system.txt");
         FileReader fr = new FileReader(archivo);
         BufferedReader br = new BufferedReader(fr);
          servidor = br.readLine();
-//         fr.close();
+         fr.close();
          
         return servidor;
     }

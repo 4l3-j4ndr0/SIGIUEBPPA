@@ -29,6 +29,7 @@ public class consultas_de_gestionar_contrato {
     
     
     
+    
 
     public String getNumero_contrato() {
         return numero_contrato;

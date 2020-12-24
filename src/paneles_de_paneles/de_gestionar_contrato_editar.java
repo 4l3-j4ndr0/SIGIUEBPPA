@@ -78,6 +78,8 @@ public class de_gestionar_contrato_editar extends javax.swing.JDialog {
             }
         });
       deshabilitarPegar();
+      
+      
     }
     
      private void deshabilitarPegar() {

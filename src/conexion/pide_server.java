@@ -43,6 +43,7 @@ import necesario.RSAWTUtilities;
 import static paneles_de_paneles.de_gestionar_plano_listar.tabla_plano;
 import rojeru_san.complementos.RSMoveObject;
 import rojeru_san.complementos.RSUtilities;
+import splash_y_login.inicio;
 
 /**
  *
@@ -222,12 +223,12 @@ lbl_error_dir_server.setVisible(false);
                             pide_server.this.setEnabled(false);
                      
                             //creo un archivo en el directorio raiz de mi proyecto
-                            File archivo = new File("conexion BD_system.txt");
+                            File archivo = new File("C:\\Users\\"+inicio.usuario()+"\\Documents\\SIGIUEBPPA BD_system.txt");
                             //  a.createNewFile();
                             if (archivo.exists()) {
                                 BufferedWriter bw;
                                 bw = new BufferedWriter(new FileWriter(archivo.getAbsolutePath()));
-                                bw.write(dir_server.getText());
+                                bw.write(dir_server.getText().trim());
                                 bw.close();
                             } else {
                                 BufferedWriter bw;

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ca2b3cb3-0c50-44da-be1a-aa381c8a012a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LOGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     tarj_combustible.`tipo_comb_tarj` AS tarj_combustible_tipo_comb_tarj,
+     tarj_combustible.`ping_tarj` AS tarj_combustible_ping_tarj,
+     tarj_combustible.`chapa_tarj` AS tarj_combustible_chapa_tarj,
+     tarj_combustible.`cant_litros_tarj` AS tarj_combustible_cant_litros_tarj,
+     tarj_combustible.`fecha_asignacion_tarj` AS tarj_combustible_fecha_asignacion_tarj,
+     tarj_combustible.`numero_tarj` AS tarj_combustible_numero_tarj,
+     (SELECT COUNT(*) from tarj_combustible) as total
+FROM
+     `tarj_combustible` tarj_combustible]]>
+	</queryString>
+	<field name="tarj_combustible_tipo_comb_tarj" class="java.lang.String"/>
+	<field name="tarj_combustible_ping_tarj" class="java.lang.Integer"/>
+	<field name="tarj_combustible_chapa_tarj" class="java.lang.String"/>
+	<field name="tarj_combustible_cant_litros_tarj" class="java.lang.Integer"/>
+	<field name="tarj_combustible_fecha_asignacion_tarj" class="java.lang.String"/>
+	<field name="tarj_combustible_numero_tarj" class="java.lang.String"/>
+	<field name="total" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="152" splitType="Stretch">
+			<staticText>
+				<reportElement x="196" y="55" width="120" height="20" forecolor="#666666" uuid="dced7da1-0785-4df9-bcb8-e3f0e7ad4104"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[INFORMACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="22" width="363" height="33" uuid="ad7f734f-a9b1-435c-89cc-fc91d6f062c2"/>
+				<textElement>
+					<font fontName="Arial" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECURSOS POR PROGRMA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="364" y="10" width="191" height="139" uuid="c8899294-1e94-4898-8e24-034dc6ddc96f"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="1" y="149" width="554" height="1" uuid="3b3cb9d1-5c95-49ae-8347-2c4277e6e70d"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="121" height="20" uuid="9976f550-9af6-411c-8fe0-3b9f56a2831a"/>
+				<text><![CDATA[TOTAL DE TARJETAS :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="0" width="100" height="20" uuid="a655d5bb-b1ee-4889-b212-8ad43af5a467"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="67" y="35" width="100" height="20" uuid="15bea8ac-a859-4803-89e0-d985efad663d"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. TARJETA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="35" width="39" height="20" uuid="2a0b2d89-2034-4c44-88c0-55e2db27843a"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="35" width="60" height="20" uuid="d9316ddf-1a07-4766-b204-336b29041f5e"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHAPA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="35" width="78" height="20" uuid="1e4b99e3-3a52-4598-8957-c575fe82ce10"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANT. LITROS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="35" width="51" height="20" uuid="4c0116df-e663-4402-8434-9732cc822437"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA ASIGNACIÓN]]></text>
+			</staticText>
+			<line>
+				<reportElement x="67" y="60" width="404" height="1" uuid="8ad645e6-cf0e-448b-a4ab-ea280c1c4738"/>
+			</line>
+			<line>
+				<reportElement x="177" y="34" width="1" height="27" uuid="5e45d064-5e59-42b7-a30d-9605d969d2c9"/>
+			</line>
+			<line>
+				<reportElement x="235" y="34" width="1" height="27" uuid="eb23db58-c62b-4bab-8904-2e4ade37b840"/>
+			</line>
+			<line>
+				<reportElement x="315" y="34" width="1" height="27" uuid="436a6bf9-f0bd-4d28-8474-c8810440d106"/>
+			</line>
+			<line>
+				<reportElement x="411" y="34" width="1" height="27" uuid="06adce33-596e-4dd0-8bac-15258038b139"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="67" y="10" width="100" height="20" uuid="4ac1f39f-5428-4d92-853a-d1f79ecfe698"/>
+				<textFieldExpression><![CDATA[$F{tarj_combustible_tipo_comb_tarj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="10" width="39" height="20" uuid="e6282a25-51b5-4f01-a037-a923c364fa15"/>
+				<textFieldExpression><![CDATA[$F{tarj_combustible_ping_tarj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="10" width="60" height="20" uuid="7e747728-e0f7-4511-acdc-f6de60eacfd3"/>
+				<textFieldExpression><![CDATA[$F{tarj_combustible_chapa_tarj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="10" width="78" height="20" uuid="236c3b60-dae0-411f-a438-1a1cfa022b21"/>
+				<textFieldExpression><![CDATA[$F{tarj_combustible_cant_litros_tarj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="10" width="51" height="20" uuid="ef86cede-ccc2-432d-b312-822af8206ae0"/>
+				<textFieldExpression><![CDATA[$F{tarj_combustible_fecha_asignacion_tarj}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="67" y="30" width="404" height="1" uuid="d6ea7199-80b3-4b6e-82a5-55178f09e263"/>
+			</line>
+			<line>
+				<reportElement x="315" y="-1" width="1" height="31" uuid="b6057f82-2e08-4b6c-9d42-179ac3dde42d"/>
+			</line>
+			<line>
+				<reportElement x="411" y="-1" width="1" height="31" uuid="764d230a-99e3-4fc7-b9ba-351fe181a42b"/>
+			</line>
+			<line>
+				<reportElement x="177" y="-1" width="1" height="31" uuid="c2f05760-b5b1-4c7b-8fa0-4015d2659f81"/>
+			</line>
+			<line>
+				<reportElement x="235" y="-1" width="1" height="31" uuid="f68cd556-c04b-4dba-bbd9-6c3f98a3a00a"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="1" y="0" width="100" height="20" uuid="a8ba4a9f-cd53-4ece-b84f-dab653f9fef5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="89592608-f075-4e63-9bd7-0c92f23d652d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="09c9988f-50eb-4c4b-b329-6d720207b5fc"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

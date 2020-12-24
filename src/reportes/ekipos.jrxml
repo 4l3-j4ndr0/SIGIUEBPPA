@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8b77e0eb-39fc-468d-9f50-371d90db06b4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LOGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     ekipos.`chapa_ekipo` AS ekipos_chapa_ekipo,
+     ekipos.`tipo_ekipo` AS ekipos_tipo_ekipo,
+     ekipos.`indice_consumo_ekipo` AS ekipos_indice_consumo_ekipo,
+     (select count(*) from ekipos) AS TOTAL
+FROM
+     `ekipos` ekipos]]>
+	</queryString>
+	<field name="ekipos_chapa_ekipo" class="java.lang.String"/>
+	<field name="ekipos_tipo_ekipo" class="java.lang.String"/>
+	<field name="ekipos_indice_consumo_ekipo" class="java.lang.Double"/>
+	<field name="TOTAL" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="161" splitType="Stretch">
+			<image>
+				<reportElement x="364" y="0" width="191" height="139" uuid="db1f3f04-3723-44ca-9422-add60a620801"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="1" y="139" width="554" height="1" uuid="310a3ad6-7555-4fa7-ac7e-49e1d55c3b75"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="1" y="140" width="110" height="20" uuid="2710b023-d765-4998-a1d9-eebb6bf7281f"/>
+				<text><![CDATA[TOTAL DE EQUIPOS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="111" y="140" width="100" height="20" uuid="1987266a-5b71-4b64-b6a8-acdcb4760493"/>
+				<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="82" y="26" width="94" height="26" uuid="c7b1c269-9cd4-4c36-9a29-e90ea3fcbb05"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EQUIPOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="52" width="139" height="30" forecolor="#666666" uuid="0b408ad6-5ae2-4d4a-9668-c5631b831ae1"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[INFORMACIÓN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="101" y="30" width="62" height="20" uuid="c07fe759-3eb4-4e34-b5de-166cf787a18e"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHAPA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="30" width="99" height="20" uuid="04353644-ce49-4a4e-a27f-20cc9b256107"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO DE EQUIPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="30" width="127" height="20" uuid="2f3c788f-746d-4961-9434-706eb42fb349"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ÍNDICE DE CONSUMO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="101" y="60" width="313" height="1" uuid="92d7b2b5-c76d-4ba3-992c-7945b83c62a4"/>
+			</line>
+			<line>
+				<reportElement x="169" y="31" width="1" height="30" uuid="be59121b-0fe5-40a0-8f7f-f9fb7c376c60"/>
+			</line>
+			<line>
+				<reportElement x="280" y="31" width="1" height="30" uuid="8559cbbd-548e-467a-bc40-92688ed9cb66"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="101" y="17" width="62" height="20" uuid="5c7aa69f-745c-4664-9a4b-8cad4eb33cc1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ekipos_chapa_ekipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="17" width="99" height="20" uuid="208abb74-45bd-41c5-a1f9-729f2af0a2e7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ekipos_tipo_ekipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="17" width="127" height="20" uuid="ce33961e-4a8e-4421-ad06-92f99a328381"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ekipos_indice_consumo_ekipo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="101" y="37" width="313" height="1" uuid="b420cd1b-0d64-44dc-8ebe-f47e3b0a0a9a"/>
+			</line>
+			<line>
+				<reportElement x="169" y="-1" width="1" height="38" uuid="c16d7c43-7583-4aad-b0ff-0bd03f8cd7af"/>
+			</line>
+			<line>
+				<reportElement x="280" y="-1" width="1" height="38" uuid="a0aaf7f1-8b6b-401d-8133-e821a80e4a93"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="1" y="0" width="100" height="20" uuid="71aa6521-aafc-4bce-ac96-5dd5cd2b3b36"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="0" width="80" height="20" uuid="6de0df0f-f95b-4ac0-ba53-6eefc049d28e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="517" y="0" width="40" height="20" uuid="8c7e9e09-9844-420e-a83a-b47a2d8df47c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

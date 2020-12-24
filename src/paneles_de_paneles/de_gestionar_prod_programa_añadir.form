@@ -45,9 +45,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="check_programas" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="boton_guardar_nodelo_mercantil" alignment="0" max="32767" attributes="0"/>
                       <Component id="lbl_error_cantidad_modelo" min="-2" pref="266" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="boton_guardar_nodelo_mercantil" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="103" max="32767" attributes="0"/>
           </Group>
@@ -82,7 +82,7 @@
                       <Component id="fecha_modelo" min="-2" pref="42" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Component id="lbl_error_fecha_modelo" min="-2" pref="43" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="boton_guardar_nodelo_mercantil" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -130,21 +130,6 @@
         </Property>
         <Property name="verticalAlignment" type="int" value="3"/>
       </Properties>
-    </Component>
-    <Component class="rojeru_san.RSButtonRiple" name="boton_guardar_nodelo_mercantil">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ba" green="56" red="26" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Guardar Modelo Mercantil"/>
-        <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c2" green="bb" red="ad" type="rgb"/>
-        </Property>
-        <Property name="horizontalTextPosition" type="int" value="4"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_guardar_nodelo_mercantilActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbl_error_fecha_modelo">
       <Properties>
@@ -244,6 +229,21 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#xa1;Debe ingresar una cantidad!"/>
       </Properties>
+    </Component>
+    <Component class="rojeru_san.RSButtonRiple" name="boton_guardar_nodelo_mercantil">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ba" green="56" red="26" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Guardar Modelo Mercantil"/>
+        <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c2" green="bb" red="ad" type="rgb"/>
+        </Property>
+        <Property name="horizontalTextPosition" type="int" value="4"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_guardar_nodelo_mercantilActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

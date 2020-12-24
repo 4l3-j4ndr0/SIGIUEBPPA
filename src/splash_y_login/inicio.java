@@ -31,6 +31,12 @@ import javax.swing.JFrame;
  */
 public class inicio {
 
+    public static String usuario(){
+        String usr = System.getenv("USERNAME");
+        System.out.println(usr);
+        return usr;
+    }
+    
     private void escribe() throws IOException, SQLException {
          pide_server m = new pide_server(new JFrame(), true);
         if (existe_fichero()) {
@@ -44,11 +50,15 @@ public class inicio {
            
             m.setVisible(true);
             //creo un archivo en el directorio raiz de mi proyecto
-            File archivo = new File("conexion BD_system.txt");
-            //  a.createNewFile();
+            File archivo = new File("C:\\Users\\"+usuario()+"\\Documents\\SIGIUEBPPA BD_system.txt");
+            String ruta=archivo.getAbsolutePath();
+            File permiso=new File(ruta);
+            permiso.setReadable(true); 
+            permiso.setExecutable(true); 
+            permiso.setWritable(true);
             BufferedWriter bw;
-            bw =new BufferedWriter(new FileWriter(archivo.getAbsolutePath()));
-           bw.write(pide_server.dir_server.getText());
+            bw =new BufferedWriter(new FileWriter(archivo));
+           bw.write(pide_server.dir_server.getText().trim());
             bw.close();
             if (dbExists()) {
                 new Splash().setVisible(true);
@@ -60,7 +70,7 @@ public class inicio {
     
     private boolean existe_fichero(){
         boolean existe=false;
-        File archivo = new File("conexion BD_system.txt");
+        File archivo = new File("C:\\Users\\"+usuario()+"\\Documents\\SIGIUEBPPA BD_system.txt");
         if(archivo.exists()){
             existe=true;
         }
@@ -95,16 +105,21 @@ public class inicio {
             error.pack();
             error.setVisible(true);
         }
-        return exist;
+       return exist;
     }
     
     private String server() throws FileNotFoundException, IOException {
         String servidor = "";
-        File archivo = new File("conexion BD_system.txt");
+        File archivo = new File("C:\\Users\\"+usuario()+"\\Documents\\SIGIUEBPPA BD_system.txt");
+        String ruta=archivo.getAbsolutePath();
+            File permiso=new File(ruta);
+            permiso.setReadable(true); 
+            permiso.setExecutable(true); 
+            permiso.setWritable(true);
         FileReader fr = new FileReader(archivo);
         BufferedReader br = new BufferedReader(fr);
          servidor = br.readLine();
-//         fr.close();
+         fr.close();
          
         return servidor;
     }
@@ -139,6 +154,7 @@ public class inicio {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    
                     new inicio().escribe();
                 } catch (IOException ex) {
                     Logger.getLogger(inicio.class.getName()).log(Level.SEVERE, null, ex);
