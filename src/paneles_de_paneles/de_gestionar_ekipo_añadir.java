@@ -9,34 +9,20 @@ import alertas.ErrorAlert;
 import alertas.SuccessAlert;
 import com.toedter.calendar.JDateChooser;
 import esperas.Guardando_general;
-import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.consultas_de_gestionar_ekipo;
-import interaccion_bd.consultas_de_gestionar_tarj_combustible;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_ekipo;
-import interaccion_bd.opciones_de_gestionar_tarj_combustible;
 import java.awt.Event;
-import paneles.*;
-import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.lang.reflect.Field;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-import static paneles_de_paneles.de_gestionar_contrato_editar.nombre_cliente_contrato_editar;
-import static paneles_de_paneles.de_gestionar_contrato_editar.numero_contrato_editar;
 
 /**
  *
@@ -143,7 +129,7 @@ public class de_gestionar_ekipo_añadir extends javax.swing.JPanel {
 
         lbl_error_tipo_auto_ekipo.setForeground(new java.awt.Color(243, 66, 53));
         lbl_error_tipo_auto_ekipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_tipo_auto_ekipo.setText("¡Debe ingresar un tipo de combustible!");
+        lbl_error_tipo_auto_ekipo.setText("¡Debe ingresar un tipo de auto!");
 
         boton_guardar_ekipo.setBackground(new java.awt.Color(38, 86, 186));
         boton_guardar_ekipo.setText("Guardar Equipo");

@@ -5,6 +5,9 @@
  */
 package paneles;
 
+import interaccion_bd.opciones_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_usuarios;
+
 /**
  *
  * @author RojeruSan
@@ -97,16 +100,17 @@ public class pnl_Gestionar_equipo extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel_contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(listar_ekipo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_ekipo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(listar_ekipo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(add_ekipo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(755, 755, 755))
-            .addComponent(panel_contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,8 +133,17 @@ public class pnl_Gestionar_equipo extends javax.swing.JPanel {
 
     private void add_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_ekipoActionPerformed
         // TODO add your handling code here:
+         String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='equipo'"
+                + "and add_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_ekipo_añadir());
         pnl_Gestionar_contrato.color_performed(add_ekipo,listar_ekipo);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_add_ekipoActionPerformed
 
     private void listar_ekipoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listar_ekipoMousePressed

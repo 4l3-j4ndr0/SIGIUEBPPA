@@ -2,6 +2,7 @@ package DAO;
 
 import conexion.conexion;
 import VO.PdfVO;
+import VO.PdfVO_cartaporte;
 import VO.PdfVO_prep_tecnica;
 import VO.PdfVO_proy;
 import interaccion_bd.opciones_de_gestionar_contrato;
@@ -14,25 +15,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import paneles_de_paneles.de_gestionar_cartaporte_listar;
 import paneles_de_paneles.de_gestionar_plano_listar;
 import paneles_de_paneles.de_gestionar_prep_tecnica_listar;
 import paneles_de_paneles.de_gestionar_proyecto_listar;
 import rojeru_san.rsfield.RSTextMaterial;
 
-public class PdfDAO_proy {
+public class PdfDAO_cartaporte {
 
     /*Metodo listar*/
-    public ArrayList<PdfVO_proy> Listar_PdfVO() {
-        ArrayList<PdfVO_proy> list = new ArrayList<PdfVO_proy>();
+    public ArrayList<PdfVO_cartaporte> Listar_PdfVO() {
+        ArrayList<PdfVO_cartaporte> list = new ArrayList<PdfVO_cartaporte>();
         conexion conec = new conexion();
-        String sql = "SELECT * FROM proy";
+        String sql = "SELECT * FROM cartaportes";
         ResultSet rs = null;
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                PdfVO_proy vo = new PdfVO_proy();
+                PdfVO_cartaporte vo = new PdfVO_cartaporte();
                 vo.setCodigopdf(rs.getInt(1));
                 vo.setNombrepdf(rs.getString(2));
                 vo.setArchivopdf(rs.getBytes(3));
@@ -55,17 +57,17 @@ public class PdfDAO_proy {
     }
     
     /*Metodo listar*/
-    public ArrayList<PdfVO_proy> buscar_PdfVO(String busca) {
-        ArrayList<PdfVO_proy> list = new ArrayList<>();
+    public ArrayList<PdfVO_cartaporte> buscar_PdfVO(String busca) {
+        ArrayList<PdfVO_cartaporte> list = new ArrayList<>();
         conexion conec = new conexion();
         String sql="";
-        if(de_gestionar_prep_tecnica_listar.txtBuscar_pdf.getText().isEmpty()){
-            sql = "SELECT * FROM proy";
+        if(de_gestionar_cartaporte_listar.txtBuscar_pdf.getText().isEmpty()){
+            sql = "SELECT * FROM cartaportes";
         }else{
          
-        sql = "SELECT * FROM proy WHERE ("
-                    + "id_proy LIKE'" + busca + "%'or "
-                + "nombre_proy LIKE'" + busca + "%')";
+        sql = "SELECT * FROM cartaportes WHERE ("
+                    + "id_cartaporte LIKE'" + busca + "%'or "
+                + "numero_cartaporte LIKE'" + busca + "%')";
         }
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -74,7 +76,7 @@ public class PdfDAO_proy {
             ps = conec.conexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                PdfVO_proy vo = new PdfVO_proy();
+                PdfVO_cartaporte vo = new PdfVO_cartaporte();
                 vo.setCodigopdf(rs.getInt(1));
                 vo.setNombrepdf(rs.getString(2));
                 vo.setArchivopdf(rs.getBytes(3));
@@ -98,9 +100,9 @@ public class PdfDAO_proy {
 
 
     /*Metodo agregar*/
-    public void Agregar_PdfVO(PdfVO_proy vo) {
+    public void Agregar_PdfVO(PdfVO_cartaporte vo) {
         conexion conec = new conexion();
-        String sql = "INSERT INTO proy ( nombre_proy, pdf_proy) VALUES( ?, ?);";
+        String sql = "INSERT INTO cartaportes ( numero_cartaporte, pdf_cartaporte) VALUES( ?, ?);";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -123,9 +125,9 @@ public class PdfDAO_proy {
 
 
     /*Metodo Modificar*/
-    public void Modificar_PdfVO(PdfVO_proy vo) {
+    public void Modificar_PdfVO(PdfVO_cartaporte vo) {
         conexion conec = new conexion();
-        String sql = "UPDATE proy SET nombre_proy = ?, pdf_proy = ? WHERE id_proy = ?;";
+        String sql = "UPDATE cartaportes SET numero_cartaporte = ?, pdf_cartaporte = ? WHERE id_cartaporte = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -147,9 +149,9 @@ public class PdfDAO_proy {
         }
     }
 
-    public void Modificar_PdfVO2(PdfVO_proy vo) {
+    public void Modificar_PdfVO2(PdfVO_cartaporte vo) {
         conexion conec = new conexion();
-        String sql = "UPDATE proy SET nombre_proy = ? WHERE id_proy = ?;";
+        String sql = "UPDATE cartaportes SET numero_cartaporte = ? WHERE id_cartaporte = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -171,9 +173,9 @@ public class PdfDAO_proy {
     }
 
     /*Metodo Eliminar*/
-    public void Eliminar_PdfVO(PdfVO_proy vo) {
+    public void Eliminar_PdfVO(PdfVO_cartaporte vo) {
         conexion conec = new conexion();
-        String sql = "DELETE FROM proy WHERE id_proy = ?;";
+        String sql = "DELETE FROM cartaportes WHERE id_cartaporte = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -202,7 +204,7 @@ public class PdfDAO_proy {
         byte[] b = null;
 
         try {
-            ps = cn.conexion().prepareStatement("SELECT pdf_proy FROM proy WHERE id_proy = ?;");
+            ps = cn.conexion().prepareStatement("SELECT pdf_cartaporte FROM cartaportes WHERE id_cartaporte = ?");
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {

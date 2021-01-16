@@ -39,12 +39,12 @@ import static paneles_de_paneles.de_gestionar_contrato_editar.numero_contrato_ed
  *
  * @author RojeruSan
  */
-public class de_gestionar_tarj_combustile_añadir extends javax.swing.JPanel {
+public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
 
     /**
      * Creates new form pnlHome
      */
-    public de_gestionar_tarj_combustile_añadir() {
+    public de_gestionar_info_laboratorio_añadir() {
         initComponents();
         lbl_error_cant_litro_tarjeta.setVisible(false);
         lbl_error_numero_tarjeta.setVisible(false);
@@ -425,10 +425,10 @@ public class de_gestionar_tarj_combustile_añadir extends javax.swing.JPanel {
                 public void run() {
                     Guardando_general l = new Guardando_general(new JFrame(), true);
                     consultas_de_gestionar_tarj_combustible uc=new consultas_de_gestionar_tarj_combustible();
-                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_tarj_combustile_añadir.this);
+                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this);
                     l.setVisible(true);
                     try{            //toma_fecha()
-                    paneles_de_paneles.de_gestionar_tarj_combustile_añadir.this.setEnabled(false);
+                    paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(false);
                     uc.setNumero_tarjeta(numero_tarjeta_tarjeta.getText());
                     uc.setTipo_combustible_tarjeta(combo_tipo_combustible.getSelectedItem().toString());
                     uc.setPing_tarjeta(ping_tarjeta.getText());
@@ -437,7 +437,7 @@ public class de_gestionar_tarj_combustile_añadir extends javax.swing.JPanel {
                     uc.setFecha_asignacion_tarjeta(toma_fecha(fecha_iasignacion_tarjeta));
                    int control= opciones_de_gestionar_tarj_combustible.registrar(uc);
                     reset_campos();
-                    paneles_de_paneles.de_gestionar_tarj_combustile_añadir.this.setEnabled(true);
+                    paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(true);
                     l.setVisible(false);
                     if(control==1){
                     SuccessAlert e = new SuccessAlert(new JFrame(), true);

@@ -5,6 +5,7 @@
  */
 package reportes;
 
+import javax.swing.ImageIcon;
 import rojeru_san.complementos.RSUtilities;
 
 /**
@@ -23,6 +24,7 @@ public class Reportes_box extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         
         this.setTitle("SIGIUEBPPA - Reporte");
+        this.setIconImage(new ImageIcon(getClass().getResource("/logo/logo ok.png")).getImage());
         this.setAlwaysOnTop(true);
     }
 

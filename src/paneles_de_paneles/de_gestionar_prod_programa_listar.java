@@ -13,6 +13,7 @@ import esperas.Cargando;
 import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_prod_programa;
+import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -44,6 +45,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JRViewer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -62,19 +64,19 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         this.tabla_prod_programa.setCursor(new Cursor(12));
         this.scroll.getViewport().setBackground(Color.WHITE);
         this.menu.add(pnlMenu);
-        
+        opciones_de_gestionar_prod_programa.get_combos2( combo_programas);
         interaccion_bd.opciones_de_gestionar_prod_programa.setListar("");
 
         this.tabla_prod_programa.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Prod_programa());
 
-        Timer timer = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                txtBuscar_prod_programa.requestFocus();
-            }
-        });
-        timer.setRepeats(true);
-        timer.start();
+//        Timer timer = new Timer(500, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                txtBuscar_prod_programa.requestFocus();
+//            }
+//        });
+//        timer.setRepeats(true);
+//        timer.start();
        // deshabilitarPegar();
 
         addEventKey();
@@ -125,6 +127,12 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         btnExportar = new rojeru_san.RSButtonRiple();
         btnPrint = new rojeru_san.RSButtonRiple();
+        combo_programas = new org.bolivia.combo.SComboBox();
+        check_programas = new check_de_android.Switch();
+        fecha_modelo = new com.toedter.calendar.JDateChooser();
+        fecha_modelo1 = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         menu.setBackground(new java.awt.Color(255, 255, 255));
         menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -280,30 +288,88 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         });
         jPanel3.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 99, 42));
 
+        combo_programas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PROGRAMA" }));
+
+        check_programas.setToolTipText("Hacer o deshacer editable");
+        check_programas.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_programas.setOnOff(false);
+        check_programas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_programasMouseClicked(evt);
+            }
+        });
+
+        fecha_modelo.setDateFormatString("dd/MM/yyyy");
+        fecha_modelo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        fecha_modelo1.setDateFormatString("dd/MM/yyyy");
+        fecha_modelo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("DESDE");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("HASTA");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtBuscar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addGap(426, 426, 426)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(scroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2018, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtBuscar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(combo_programas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(fecha_modelo, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(fecha_modelo1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(370, 370, 370)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtBuscar_prod_programa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBuscar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(fecha_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fecha_modelo1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(combo_programas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -315,8 +381,9 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -347,6 +414,12 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
     }//GEN-LAST:event_txtBuscar_prod_programaKeyReleased
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='producción por programa'"
+                + "and exportar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         try{
             generarExcel();
         } catch(Exception ex) {
@@ -355,6 +428,9 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
             e.msj2.setText("Corrija el error antes de volver a intentarlo.");
             e.msj3.setText("En caso de no saber como corregir el error contacte con soporte tñecnico");
             e.setVisible(true);
+        }
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
         }
     }//GEN-LAST:event_btnExportarActionPerformed
 
@@ -442,7 +518,12 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
     }
     
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-//        public void report() {
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='producción por programa'"
+                + "and imprimir_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         try {
             
             reportes.Reportes_box r = new reportes.Reportes_box();
@@ -465,11 +546,18 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         } catch (JRException ex) {
             opciones_de_gestionar_contrato.lanza_error(ex);
         }
-    
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-//        if (privilegios.Operaciones.EliminarProducto(principal.Principal.lblID.getText())) {
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='producción por programa'"
+                + "and eliminar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
             this.menu.setVisible(false);
             int fila = this.tabla_prod_programa.getSelectedRow();
             int id = Integer.parseInt(tabla_prod_programa.getValueAt(fila, 0).toString());
@@ -500,17 +588,19 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
                     e.setVisible(true);
                 }
             }
-//        } else {
-//            ErrorAlert e = new ErrorAlert(new JFrame(), true);
-//            e.msj1.setText("No cuentas con los privilegios");
-//            e.msj2.setText("para acceder a esta opción.");
-//            e.msj3.setText("");
-//            e.setVisible(true);
-//        }
+        } else {
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-            consultas_de_gestionar_contrato c=new consultas_de_gestionar_contrato();
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='producción por programa'"
+                + "and editar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+        consultas_de_gestionar_contrato c=new consultas_de_gestionar_contrato();
             this.menu.setVisible(false);
             de_gestionar_prod_programa_editar m = new de_gestionar_prod_programa_editar(new JFrame(), true);
             int fila = de_gestionar_prod_programa_listar.tabla_prod_programa.getSelectedRow();
@@ -519,22 +609,21 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
             interaccion_bd.opciones_de_gestionar_prod_programa.extraerDatos(m, id);
             m.setVisible(true);
             
-//        if (privilegios.Operaciones.EditarProducto(principal.Principal.lblID.getText())) {
-//            this.menu.setVisible(false);
-//            ModalEditar m = new ModalEditar(new JFrame(), true);
-//            int fila = this.tabla.getSelectedRow();
-//
-//            int id = Integer.parseInt(this.tabla.getValueAt(fila, 0).toString());
-//            Operaciones.extraerDatos(m, String.valueOf(id));
-//            m.setVisible(true);
-//        } else {
-//            ErrorAlert e = new ErrorAlert(new JFrame(), true);
-//            e.msj1.setText("No cuentas con los privilegios");
-//            e.msj2.setText("para acceder a esta opción.");
-//            e.msj3.setText("");
-//            e.setVisible(true);
-//        }
+        } else {
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void check_programasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_programasMouseClicked
+        // TODO add your handling code here:
+        if(check_programas.isOnOff()){
+            combo_programas.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_programas);
+        }else{
+            combo_programas.setEditable(false);
+            combo_programas.requestFocus();
+        }
+    }//GEN-LAST:event_check_programasMouseClicked
 
     public String dia(){
       Calendar fecha = Calendar.getInstance();
@@ -573,6 +662,12 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
     private rojeru_san.RSButtonRiple btnEditar;
     private rojeru_san.RSButtonRiple btnExportar;
     private rojeru_san.RSButtonRiple btnPrint;
+    private check_de_android.Switch check_programas;
+    private org.bolivia.combo.SComboBox combo_programas;
+    private com.toedter.calendar.JDateChooser fecha_modelo;
+    private com.toedter.calendar.JDateChooser fecha_modelo1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

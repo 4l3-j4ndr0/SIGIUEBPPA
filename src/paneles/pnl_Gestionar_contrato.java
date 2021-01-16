@@ -5,6 +5,8 @@
  */
 package paneles;
 
+import interaccion_bd.opciones_de_gestionar_prod_programa;
+import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.Color;
 
 /**
@@ -213,8 +215,17 @@ public class pnl_Gestionar_contrato extends javax.swing.JPanel {
 
     private void add_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_contratoActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='contrato'"
+                + "and add_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_contrato_añadir());
         color_performed(add_contrato,listar_contrato);
+        }else{
+            opciones_de_gestionar_prod_programa.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_add_contratoActionPerformed
 
     public static void color_performed(rsbuttom.RSButtonMetro principal, rsbuttom.RSButtonMetro uno){

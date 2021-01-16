@@ -206,14 +206,24 @@ public class de_gestionar_hoja_ruta_añadir extends javax.swing.JPanel {
 
     Tabla_PdfVO_hoja_ruta tpdf = new Tabla_PdfVO_hoja_ruta();
     private void boton_guardar__hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar__hoja_rutaActionPerformed
-      
-        if (combo_chapa_hoja_ruta.getSelectedIndex()==0||boton_busca__hoja_ruta.getText().equals("Buscar Hoja de Ruta")||km_hoja_ruta.getText().isEmpty()) {
-               if(combo_chapa_hoja_ruta.getSelectedIndex()==0){
+      String sql="select * from hoja_ruta where chapa_hoja_ruta='"+combo_chapa_hoja_ruta.getSelectedItem().toString()+"'";
+        String mje1="No existe un vehículo con esta chapa: ("+combo_chapa_hoja_ruta.getSelectedItem().toString()+")";
+        String mje2="¿Por favor, verifique su chapa nuevamente ?";
+        String mje3="En caso de que el número de chapa este correcto primero debe agregar el equipo";
+        if (combo_chapa_hoja_ruta.getSelectedIndex()==0||boton_busca__hoja_ruta.getText().equals("Buscar Hoja de Ruta")
+                ||km_hoja_ruta.getText().isEmpty()||interaccion_bd.opciones_de_gestionar_prod_programa.existe(sql)==false) {
+              
+            if(combo_chapa_hoja_ruta.getSelectedIndex()==0){
                 lbl_error_chapa_hoja_ruta.setVisible(true);
+                combo_chapa_hoja_ruta.requestFocus();
                }else if(km_hoja_ruta.getText().isEmpty()){
                    lbl_error_km_hoja_ruta.setVisible(true);
+                   km_hoja_ruta.requestFocus();
                }else if(boton_busca__hoja_ruta.getText().equals("Buscar Hoja de Ruta")){
                 lbl_error_pdf_hoja_ruta.setVisible(true);
+               }else if(interaccion_bd.opciones_de_gestionar_contrato.existe(combo_chapa_hoja_ruta.getSelectedItem().toString(), sql)==false){
+                   combo_chapa_hoja_ruta.requestFocus();
+                   opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mje1, mje2, mje3);
                }
         } else {
             Runnable runnable1 = new Runnable() {
@@ -245,7 +255,7 @@ public class de_gestionar_hoja_ruta_añadir extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_boton_guardar__hoja_rutaActionPerformed
 
-    private double dame_consumo(String chapa){
+    public static double dame_consumo(String chapa){
         double consumo=0;
         String sql_indice_consumo="SELECT `indice_consumo_ekipo` FROM `ekipos` WHERE `chapa_ekipo`='"+chapa+"'";
         consumo=opciones_de_gestionar_hoja_ruta.extraer_indice_consumo(sql_indice_consumo);

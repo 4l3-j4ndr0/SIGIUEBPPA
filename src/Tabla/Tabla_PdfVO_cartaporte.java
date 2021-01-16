@@ -1,9 +1,11 @@
 package Tabla;
 
 import DAO.PdfDAO;
+import DAO.PdfDAO_cartaporte;
 import DAO.PdfDAO_prep_tecnica;
 import DAO.PdfDAO_proy;
 import VO.PdfVO;
+import VO.PdfVO_cartaporte;
 import VO.PdfVO_prep_tecnica;
 import VO.PdfVO_proy;
 import java.awt.Image;
@@ -14,9 +16,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import paneles_de_paneles.de_gestionar_plano_listar;
 
-public class Tabla_PdfVO_proy {
+public class Tabla_PdfVO_cartaporte {
 
-    PdfDAO_proy dao = null;
+    PdfDAO_cartaporte dao = null;
 
     public void visualizar_PdfVO(JTable tabla) {
         tabla.setDefaultRenderer(Object.class, new imgTabla());
@@ -27,7 +29,7 @@ public class Tabla_PdfVO_proy {
             }
         };
         dt.addColumn("ID");
-        dt.addColumn("PREPARACIÓN TÉCNICA");
+        dt.addColumn("NÚMERO CARTAPORTE");
         dt.addColumn("PDF");
 
         ImageIcon icono = null;
@@ -35,9 +37,9 @@ public class Tabla_PdfVO_proy {
             icono = new ImageIcon(get_Image("/img_planos/32pdf.png"));
         }
 
-        dao = new PdfDAO_proy();
-        PdfVO_proy vo = new PdfVO_proy();
-        ArrayList<PdfVO_proy> list = dao.Listar_PdfVO();
+        dao = new PdfDAO_cartaporte();
+        PdfVO_cartaporte vo = new PdfVO_cartaporte();
+        ArrayList<PdfVO_cartaporte> list = dao.Listar_PdfVO();
 
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
@@ -69,7 +71,7 @@ public class Tabla_PdfVO_proy {
             }
         };
         dt.addColumn("ID");
-        dt.addColumn("PREPARACIÓN TÉCNICA");
+        dt.addColumn("NÚMERO CARTAPORTE");
         dt.addColumn("PDF");
 
         ImageIcon icono = null;
@@ -77,9 +79,9 @@ public class Tabla_PdfVO_proy {
             icono = new ImageIcon(get_Image("/img_planos/32pdf.png"));
         }
 
-        dao = new PdfDAO_proy();
-        PdfVO_proy vo = new PdfVO_proy();
-        ArrayList<PdfVO_proy> list = dao.Listar_PdfVO();
+        dao = new PdfDAO_cartaporte();
+        PdfVO_cartaporte vo = new PdfVO_cartaporte();
+        ArrayList<PdfVO_cartaporte> list = dao.Listar_PdfVO();
 
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
@@ -109,7 +111,7 @@ public class Tabla_PdfVO_proy {
             }
         };
         dt.addColumn("ID");
-        dt.addColumn("PREPARACIÓN TÉCNICA");
+        dt.addColumn("NÚMERO CARTAPORTE");
         dt.addColumn("PDF");
 
         ImageIcon icono = null;
@@ -117,9 +119,9 @@ public class Tabla_PdfVO_proy {
             icono = new ImageIcon(get_Image("/img_planos/32pdf.png"));
         }
 
-        dao = new PdfDAO_proy();
-        PdfVO_proy vo = new PdfVO_proy();
-        ArrayList<PdfVO_proy> list = dao.buscar_PdfVO(busca);
+        dao = new PdfDAO_cartaporte();
+        PdfVO_cartaporte vo = new PdfVO_cartaporte();
+        ArrayList<PdfVO_cartaporte> list = dao.buscar_PdfVO(busca);
 
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {

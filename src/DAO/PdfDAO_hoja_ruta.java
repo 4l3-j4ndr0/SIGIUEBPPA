@@ -73,7 +73,7 @@ public class PdfDAO_hoja_ruta {
                     + "id_hoja_ruta LIKE'" + busca + "%'or "
                 + "total_km_hoja_ruta LIKE'" + busca + "%'or "
                  + "consumo_hoja_ruta LIKE'" + busca + "%'or "
-                + "chapahoja_ruta LIKE'" + busca + "%')";
+                + "chapa_hoja_ruta LIKE'" + busca + "%')";
         }
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -139,7 +139,7 @@ public class PdfDAO_hoja_ruta {
     /*Metodo Modificar*/
     public void Modificar_PdfVO(PdfVO_hoja_ruta vo) {
         conexion conec = new conexion();
-        String sql = "UPDATE hoja_ruta SET chapa_hoja_ruta = ?, total_km_hoja_ruta=?, consumo_hoja_ruta=?, pdf_proy = ? WHERE id_hoja_ruta = ?;";
+        String sql = "UPDATE hoja_ruta SET chapa_hoja_ruta = ?, total_km_hoja_ruta=?, consumo_hoja_ruta=?, pdf_hoja_ruta = ? WHERE id_hoja_ruta = ?;";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -165,7 +165,7 @@ public class PdfDAO_hoja_ruta {
 
     public void Modificar_PdfVO2(PdfVO_hoja_ruta vo) {
         conexion conec = new conexion();
-        String sql = "UPDATE hoja_ruta SET chapa_hoja_ruta = ?, total_km_hoja_ruta=?, consumo_hoja_ruta=? WHERE id_proy = ?";
+        String sql = "UPDATE hoja_ruta SET chapa_hoja_ruta = ?, total_km_hoja_ruta=?, consumo_hoja_ruta=? WHERE id_hoja_ruta = ?";
         PreparedStatement ps = null;
         try {
             ps = conec.conexion().prepareStatement(sql);
@@ -174,6 +174,7 @@ public class PdfDAO_hoja_ruta {
             ps.setString(3, vo.getConsumo());
             ps.setInt(4, vo.getCodigopdf());
             ps.executeUpdate();
+            System.out.println(sql);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } catch (Exception ex) {

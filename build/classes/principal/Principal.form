@@ -123,21 +123,26 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel10" alignment="0" max="32767" attributes="0"/>
-                          <Component id="uno" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_contrato" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_ficha_costo" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_recursos_x_programa" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_proy" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar__planos" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_prep_tecnica" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_info_laboratorio" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_ekipo" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_tarjeta_combustible" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_hoja_ruta" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_cartaporte" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_prod_programa" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="gestionar_usuario" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jPanel10" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="uno" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="gestionar_contrato" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_ficha_costo" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_recursos_x_programa" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_proy" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar__planos" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_prep_tecnica" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_ekipo" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_tarjeta_combustible" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_hoja_ruta" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_cartaporte" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_prod_programa" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_usuario" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="gestionar_info_laboratorio" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -227,7 +232,7 @@
                                       <Component id="user" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="109" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -680,7 +685,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="83" green="80" red="80" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Gestionar cartaporte"/>
+                        <Property name="text" type="java.lang.String" value="Gestionar carta de porte"/>
                         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
                         </Property>
@@ -720,7 +725,6 @@
                           <Color blue="83" green="80" red="80" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Gestionar producci&#xf3;n por programa"/>
-                        <Property name="actionCommand" type="java.lang.String" value="Gestionar producci&#xf3;n por programa"/>
                         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
                         </Property>
@@ -823,7 +827,7 @@
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="306" max="32767" attributes="0"/>
+                      <EmptySpace pref="301" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -889,7 +893,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="865" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="848" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -921,6 +929,9 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
                 </Container>

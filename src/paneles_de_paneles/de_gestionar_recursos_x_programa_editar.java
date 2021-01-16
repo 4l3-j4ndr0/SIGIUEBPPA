@@ -6,22 +6,15 @@
 package paneles_de_paneles;
 
 import alertas.*;
-import com.toedter.calendar.JDateChooser;
 import esperas.Guardando_general;
-import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.consultas_de_gestionar_recursos_x_programa;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_recursos_x_programa;
 import java.awt.Event;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.ParseException; 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.InputMap;
@@ -29,12 +22,9 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 import necesario.RSAWTUtilities;
-import static paneles_de_paneles.de_gestionar_contrato_añadir.nombre_cliente_contrato;
-import static paneles_de_paneles.de_gestionar_contrato_añadir.numero_contrato;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import rojeru_san.complementos.RSMoveObject;
 import rojeru_san.complementos.RSUtilities;
-import static paneles_de_paneles.de_gestionar_recursos_x_programa_añadir.descripcion_re_add;
-import static paneles_de_paneles.de_gestionar_recursos_x_programa_añadir.cantidad_re_add;
 
 /**
  *
@@ -52,24 +42,45 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         RSAWTUtilities.setOpaque(this, false);
         RSUtilities.setCentrarVentana(this);
         RSMoveObject.setMoverVentana(this);
-        
-        lbl_error_codigo_re_editar.setVisible(false);
+        codigo_re_editar.setEnabled(false);
+        um_re_editar.setEnabled(false);
         lbl_error_descripcion_re_editar.setVisible(false);
-        lbl_error_um_re_editar.setVisible(false);
         lbl_error_cant_re_editar.setVisible(false);
         lbl_error_programa_re_editar.setVisible(false);
         lbl_error_factura_re_editar.setVisible(false);
         lbl_error_carta_porte_re_editar.setVisible(false);
         codigo_editar_control.setVisible(false);
       deshabilitarPegar();
+      opciones_de_gestionar_recursos_x_programa.get_combos(combo_prefabricados_re_editar, combo_programas_re_editar);
+      //################### detectar cambios en los combobox ######################3
+        combo_prefabricados_re_editar.addItemListener(new ItemListener() {
+           public void itemStateChanged(ItemEvent arg0) {
+               //Do Something
+              lbl_error_descripcion_re_editar.setVisible(false);
+           }
+           
+            public void itemStateChangedd(ItemEvent e) {
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+       });
+        
+        combo_programas_re_editar.addItemListener(new ItemListener() {
+           public void itemStateChanged(ItemEvent arg0) {
+               //Do Something
+              lbl_error_programa_re_editar.setVisible(false);
+           }
+           
+            public void itemStateChangedd(ItemEvent e) {
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+       });
+        // ##########################################################################
     }
     
      private void deshabilitarPegar() {
         InputMap map1 = codigo_re_editar.getInputMap(codigo_re_editar.WHEN_FOCUSED);
         map1.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
 
-        InputMap map2 = descripcion_re_editar.getInputMap(descripcion_re_editar.WHEN_FOCUSED);
-        map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
         InputMap map3 = um_re_editar.getInputMap(um_re_editar.WHEN_FOCUSED);
         map3.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
@@ -77,8 +88,6 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         InputMap map4 = cantidad_re_editar.getInputMap(cantidad_re_editar.WHEN_FOCUSED);
         map4.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
-        InputMap map5 = programa_re_editar.getInputMap(programa_re_editar.WHEN_FOCUSED);
-        map5.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
         InputMap map6 = factura_re_editar.getInputMap(factura_re_editar.WHEN_FOCUSED);
         map6.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
@@ -124,21 +133,21 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         cantidad_re_editar = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_codigo_re_editar = new javax.swing.JLabel();
-        descripcion_re_editar = new rojeru_san.rsfield.RSTextMaterial();
         lbl_error_descripcion_re_editar = new javax.swing.JLabel();
         lbl_error_cant_re_editar = new javax.swing.JLabel();
         boton_guardar_recursos_x_programa_editar = new rojeru_san.RSButtonRiple();
         um_re_editar = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_um_re_editar = new javax.swing.JLabel();
         codigo_re_editar = new rojeru_san.rsfield.RSTextMaterial();
-        programa_re_editar = new rojeru_san.rsfield.RSTextMaterial();
         factura_re_editar = new rojeru_san.rsfield.RSTextMaterial();
         lbl_error_factura_re_editar = new javax.swing.JLabel();
         lbl_error_programa_re_editar = new javax.swing.JLabel();
         carta_porte_re_editar = new rojeru_san.rsfield.RSTextMaterial();
         lbl_error_carta_porte_re_editar = new javax.swing.JLabel();
         codigo_editar_control = new javax.swing.JLabel();
+        combo_prefabricados_re_editar = new org.bolivia.combo.SComboBox();
+        check_prefabricados = new check_de_android.Switch();
+        combo_programas_re_editar = new org.bolivia.combo.SComboBox();
+        check_programas = new check_de_android.Switch();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -165,24 +174,6 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
             }
         });
 
-        lbl_error_codigo_re_editar.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_codigo_re_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_codigo_re_editar.setText("¡Debe ingresar un código de recurso!");
-
-        descripcion_re_editar.setForeground(new java.awt.Color(0, 0, 0));
-        descripcion_re_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
-        descripcion_re_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        descripcion_re_editar.setPlaceholder("Descripción del recurso...");
-        descripcion_re_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
-        descripcion_re_editar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                descripcion_re_editarKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                descripcion_re_editarKeyTyped(evt);
-            }
-        });
-
         lbl_error_descripcion_re_editar.setForeground(new java.awt.Color(243, 66, 53));
         lbl_error_descripcion_re_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
         lbl_error_descripcion_re_editar.setText("¡Debe ingresar una descripcion del recurso!");
@@ -206,46 +197,12 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         um_re_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         um_re_editar.setPlaceholder("Unidad de medida...");
         um_re_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
-        um_re_editar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                um_re_editarKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                um_re_editarKeyTyped(evt);
-            }
-        });
-
-        lbl_error_um_re_editar.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_um_re_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_um_re_editar.setText("¡Debe ingresar una unidad de medida!");
 
         codigo_re_editar.setForeground(new java.awt.Color(0, 0, 0));
         codigo_re_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
         codigo_re_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         codigo_re_editar.setPlaceholder("Código del recurso...");
         codigo_re_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
-        codigo_re_editar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                codigo_re_editarKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                codigo_re_editarKeyTyped(evt);
-            }
-        });
-
-        programa_re_editar.setForeground(new java.awt.Color(0, 0, 0));
-        programa_re_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
-        programa_re_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        programa_re_editar.setPlaceholder("Programa al que pertenece...");
-        programa_re_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
-        programa_re_editar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                programa_re_editarKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                programa_re_editarKeyTyped(evt);
-            }
-        });
 
         factura_re_editar.setForeground(new java.awt.Color(0, 0, 0));
         factura_re_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
@@ -289,6 +246,33 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
 
         codigo_editar_control.setText("jLabel1");
 
+        combo_prefabricados_re_editar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MATERIALES" }));
+        combo_prefabricados_re_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_prefabricados_re_editarActionPerformed(evt);
+            }
+        });
+
+        check_prefabricados.setToolTipText("Hacer o deshacer editable");
+        check_prefabricados.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_prefabricados.setOnOff(false);
+        check_prefabricados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_prefabricadosMouseClicked(evt);
+            }
+        });
+
+        combo_programas_re_editar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PROGRAMA" }));
+
+        check_programas.setToolTipText("Hacer o deshacer editable");
+        check_programas.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_programas.setOnOff(false);
+        check_programas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_programasMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -298,18 +282,20 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(programa_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(factura_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(carta_porte_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(lbl_error_carta_porte_re_editar))))
+                                .addComponent(lbl_error_carta_porte_re_editar))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(combo_programas_re_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(factura_re_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbl_error_programa_re_editar)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(lbl_error_programa_re_editar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(lbl_error_factura_re_editar)))
@@ -318,51 +304,49 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
                         .addGap(66, 66, 66)
                         .addComponent(lbl_error_cant_re_editar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(boton_guardar_recursos_x_programa_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(31, 31, 31)
-                                    .addComponent(lbl_error_codigo_re_editar))
-                                .addComponent(descripcion_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(lbl_error_descripcion_re_editar))
-                                .addComponent(um_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(21, 21, 21)
-                                    .addComponent(lbl_error_um_re_editar))
-                                .addComponent(cantidad_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(codigo_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(codigo_editar_control)))
+                        .addComponent(codigo_editar_control))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codigo_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(boton_guardar_recursos_x_programa_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(lbl_error_descripcion_re_editar))
+                                    .addComponent(um_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cantidad_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(combo_prefabricados_re_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(check_prefabricados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combo_programas_re_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_programa_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(codigo_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(lbl_error_codigo_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(descripcion_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combo_prefabricados_re_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(check_prefabricados, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, 0)
-                        .addComponent(lbl_error_descripcion_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(um_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(programa_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_error_um_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_error_programa_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbl_error_descripcion_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(um_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -381,7 +365,7 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_error_carta_porte_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigo_editar_control))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout rSPanelShadow1Layout = new javax.swing.GroupLayout(rSPanelShadow1);
@@ -396,9 +380,9 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         rSPanelShadow1Layout.setVerticalGroup(
             rSPanelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelShadow1Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -431,47 +415,23 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         }
     }//GEN-LAST:event_cantidad_re_editarKeyTyped
 
-    private void descripcion_re_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descripcion_re_editarKeyReleased
-        // TODO add your handling code here:
-        if(descripcion_re_editar.getText().length()>0){
-        lbl_error_descripcion_re_editar.setVisible(false);
-        }
-    }//GEN-LAST:event_descripcion_re_editarKeyReleased
-
-    private void descripcion_re_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descripcion_re_editarKeyTyped
-        // TODO add your handling code here:
-        char letras = evt.getKeyChar();
-        if ((letras < 'a' || letras > 'z') && (letras < 'A' | letras > 'Z')) {
-            if ((letras != 'ñ') && (letras != 'Ñ') && (letras != 'á') && (letras != 'Á') && (letras != 'é') && (letras != 'É') && (letras != 'í')
-                    && (letras != 'Í') && (letras != 'ó') && (letras != 'Ó') && (letras != 'ú') && (letras != 'Ú') && (letras != ' ')) {
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_descripcion_re_editarKeyTyped
-
     private void boton_guardar_recursos_x_programa_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_recursos_x_programa_editarActionPerformed
         // TODO add your handling code here:
         String sql="select * from recursos_x_programa where codigo_re='"+codigo_re_editar.getText()+"'";
         String mje1="El código de recursos por programa que intenta registrar ya existe";
         String mje2="Por favor introduzca un código distinto de recurso";
         String codigo=codigo_editar_control.getText();
-        if (codigo_re_editar.getText().isEmpty()||descripcion_re_editar.getText().isEmpty()||um_re_editar.getText().isEmpty()||
-                cantidad_re_editar.getText().isEmpty()||programa_re_editar.getText().isEmpty()||factura_re_editar.getText().isEmpty()||
+        if (combo_prefabricados_re_editar.getSelectedIndex()==0||cantidad_re_editar.getText().isEmpty()||
+                combo_programas_re_editar.getSelectedIndex()==0||factura_re_editar.getText().isEmpty()||
                 carta_porte_re_editar.getText().isEmpty()) {
-            if(codigo_re_editar.getText().isEmpty()){
-                codigo_re_editar.requestFocus();
-                lbl_error_codigo_re_editar.setVisible(true);
-            }else if(descripcion_re_editar.getText().isEmpty()){
-                descripcion_re_editar.requestFocus();
+            if(combo_prefabricados_re_editar.getSelectedIndex()==0){
+                combo_prefabricados_re_editar.requestFocus();
                 lbl_error_descripcion_re_editar.setVisible(true);
-            }else if(um_re_editar.getText().isEmpty()){
-                um_re_editar.requestFocus();
-                lbl_error_um_re_editar.setVisible(true);
             }else if(cantidad_re_editar.getText().isEmpty()){
                 cantidad_re_editar.requestFocus();
                 lbl_error_cant_re_editar.setVisible(true);
-            }else if(programa_re_editar.getText().isEmpty()){
-                programa_re_editar.requestFocus();
+            }else if(combo_programas_re_editar.getSelectedIndex()==0){
+                combo_programas_re_editar.requestFocus();
                 lbl_error_programa_re_editar.setVisible(true);
             }else if(factura_re_editar.getText().isEmpty()){
                 factura_re_editar.requestFocus();
@@ -488,10 +448,10 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
                 l.setVisible(true);
                 paneles_de_paneles.de_gestionar_recursos_x_programa_editar.this.setEnabled(false);
                 uc.setCodigo(codigo_re_editar.getText());
-                uc.setDescripcion(descripcion_re_editar.getText());
+                uc.setDescripcion(combo_prefabricados_re_editar.getSelectedItem().toString());
                 uc.setUm(um_re_editar.getText());
                 uc.setCant(cantidad_re_editar.getText());
-                uc.setPrograma_pertenece(programa_re_editar.getText());
+                uc.setPrograma_pertenece(combo_programas_re_editar.getSelectedItem().toString());
                 uc.setFactura(factura_re_editar.getText());
                 uc.setCarta_porte(carta_porte_re_editar.getText());
                 int control= opciones_de_gestionar_recursos_x_programa.actualizar(uc);
@@ -518,10 +478,10 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
                     l.setVisible(true);
                     paneles_de_paneles.de_gestionar_recursos_x_programa_editar.this.setEnabled(false);
                     uc.setCodigo(codigo_re_editar.getText());
-                uc.setDescripcion(descripcion_re_editar.getText());
+                uc.setDescripcion(combo_prefabricados_re_editar.getSelectedItem().toString());
                 uc.setUm(um_re_editar.getText());
                 uc.setCant(cantidad_re_editar.getText());
-                uc.setPrograma_pertenece(programa_re_editar.getText());
+                uc.setPrograma_pertenece(combo_programas_re_editar.getSelectedItem().toString());
                 uc.setFactura(factura_re_editar.getText());
                 uc.setCarta_porte(carta_porte_re_editar.getText());
                     int control= opciones_de_gestionar_recursos_x_programa.actualizar(uc);
@@ -541,58 +501,6 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
             }
         }
     }//GEN-LAST:event_boton_guardar_recursos_x_programa_editarActionPerformed
-
-    private void um_re_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_um_re_editarKeyReleased
-        // TODO add your handling code here:
-        if(um_re_editar.getText().length()>0){
-        lbl_error_um_re_editar.setVisible(false);
-        }
-    }//GEN-LAST:event_um_re_editarKeyReleased
-
-    private void um_re_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_um_re_editarKeyTyped
-        // TODO add your handling code here:
-        char letras = evt.getKeyChar();
-        if ((letras < 'a' || letras > 'z') && (letras < 'A' | letras > 'Z')) {
-            if ((letras != 'ñ') && (letras != 'Ñ') && (letras != 'á') && (letras != 'Á') && (letras != 'é') && (letras != 'É') && (letras != 'í')
-                    && (letras != 'Í') && (letras != 'ó') && (letras != 'Ó') && (letras != 'ú') && (letras != 'Ú') && (letras != ' ')) {
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_um_re_editarKeyTyped
-
-    private void codigo_re_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigo_re_editarKeyReleased
-        // TODO add your handling code here:
-        if(codigo_re_editar.getText().length()>0){
-            lbl_error_codigo_re_editar.setVisible(false);
-        }
-    }//GEN-LAST:event_codigo_re_editarKeyReleased
-
-    private void codigo_re_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigo_re_editarKeyTyped
-        // TODO add your handling code here:
-        char num = evt.getKeyChar();
-        if ((num < '0' || num > '9')) {
-            evt.consume();
-            
-        }
-    }//GEN-LAST:event_codigo_re_editarKeyTyped
-
-    private void programa_re_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_programa_re_editarKeyReleased
-        // TODO add your handling code here:
-        if(programa_re_editar.getText().length()>0){
-        lbl_error_programa_re_editar.setVisible(false);
-        }
-    }//GEN-LAST:event_programa_re_editarKeyReleased
-
-    private void programa_re_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_programa_re_editarKeyTyped
-        // TODO add your handling code here:
-        char letras = evt.getKeyChar();
-        if ((letras < 'a' || letras > 'z') && (letras < 'A' | letras > 'Z')) {
-            if ((letras != 'ñ') && (letras != 'Ñ') && (letras != 'á') && (letras != 'Á') && (letras != 'é') && (letras != 'É') && (letras != 'í')
-                    && (letras != 'Í') && (letras != 'ó') && (letras != 'Ó') && (letras != 'ú') && (letras != 'Ú') && (letras != ' ')) {
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_programa_re_editarKeyTyped
 
     private void factura_re_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_factura_re_editarKeyReleased
         // TODO add your handling code here:
@@ -626,15 +534,45 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         }
     }//GEN-LAST:event_carta_porte_re_editarKeyTyped
 
+    private void combo_prefabricados_re_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_prefabricados_re_editarActionPerformed
+        // TODO add your handling code here:
+        String sql_codigo="SELECT `codigo_materia_prima` FROM `materia_prima` WHERE `elem__materia_prima`='"+combo_prefabricados_re_editar.getSelectedItem().toString().trim()+"'";
+        String sql_um="SELECT `um_materia_prima` FROM `materia_prima` WHERE `elem__materia_prima`='"+combo_prefabricados_re_editar.getSelectedItem().toString().trim()+"'";
+        um_re_editar.setText(opciones_de_gestionar_recursos_x_programa.extraer_id(sql_um));
+        codigo_re_editar.setText(opciones_de_gestionar_recursos_x_programa.extraer_id(sql_codigo));
+    }//GEN-LAST:event_combo_prefabricados_re_editarActionPerformed
+
+    private void check_prefabricadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_prefabricadosMouseClicked
+        // TODO add your handling code here:
+        if(check_prefabricados.isOnOff()){
+            combo_prefabricados_re_editar.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_prefabricados_re_editar);
+        }else{
+            combo_prefabricados_re_editar.setEditable(false);
+            combo_prefabricados_re_editar.requestFocus();
+        }
+    }//GEN-LAST:event_check_prefabricadosMouseClicked
+
+    private void check_programasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_programasMouseClicked
+        // TODO add your handling code here:
+        if(check_programas.isOnOff()){
+            combo_programas_re_editar.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_programas_re_editar);
+        }else{
+            combo_programas_re_editar.setEditable(false);
+            combo_programas_re_editar.requestFocus();
+        }
+    }//GEN-LAST:event_check_programasMouseClicked
+
     
     
     
     private void reset_campos(){
         cantidad_re_editar.setText("");
-        descripcion_re_editar.setText("");
+        combo_prefabricados_re_editar.setSelectedIndex(0);
         codigo_re_editar.setText("");
         um_re_editar.setText("");
-        programa_re_editar.setText("");
+        combo_programas_re_editar.setSelectedIndex(0);
         factura_re_editar.setText("");
         carta_porte_re_editar.setText("");
     }
@@ -687,20 +625,20 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
     private rojeru_san.RSButtonRiple boton_guardar_recursos_x_programa_editar;
     public static rojeru_san.rsfield.RSTextMaterial cantidad_re_editar;
     public static rojeru_san.rsfield.RSTextMaterial carta_porte_re_editar;
+    private check_de_android.Switch check_prefabricados;
+    private check_de_android.Switch check_programas;
     public static javax.swing.JLabel codigo_editar_control;
     public static rojeru_san.rsfield.RSTextMaterial codigo_re_editar;
-    public static rojeru_san.rsfield.RSTextMaterial descripcion_re_editar;
+    public static org.bolivia.combo.SComboBox combo_prefabricados_re_editar;
+    public static org.bolivia.combo.SComboBox combo_programas_re_editar;
     public static rojeru_san.rsfield.RSTextMaterial factura_re_editar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_error_cant_re_editar;
     private javax.swing.JLabel lbl_error_carta_porte_re_editar;
-    private javax.swing.JLabel lbl_error_codigo_re_editar;
     private javax.swing.JLabel lbl_error_descripcion_re_editar;
     private javax.swing.JLabel lbl_error_factura_re_editar;
     private javax.swing.JLabel lbl_error_programa_re_editar;
-    private javax.swing.JLabel lbl_error_um_re_editar;
-    public static rojeru_san.rsfield.RSTextMaterial programa_re_editar;
     private rojeru_san.rspanel.RSPanelShadow rSPanelShadow1;
     public static rojeru_san.rsfield.RSTextMaterial um_re_editar;
     // End of variables declaration//GEN-END:variables

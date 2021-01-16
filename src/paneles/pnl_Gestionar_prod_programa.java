@@ -5,6 +5,8 @@
  */
 package paneles;
 
+import interaccion_bd.opciones_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.Color;
 
 /**
@@ -120,8 +122,8 @@ public class pnl_Gestionar_prod_programa extends javax.swing.JPanel {
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(128, 128, 131));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Gestionar Contrato");
+        jLabel9.setText("Gestionar Producción por Programa");
+        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         listar_contrato.setBackground(new java.awt.Color(239, 238, 244));
         listar_contrato.setForeground(new java.awt.Color(128, 128, 131));
@@ -181,28 +183,26 @@ public class pnl_Gestionar_prod_programa extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(listar_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(add_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
-                            .addComponent(panel_contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addGap(755, 755, 755))
+                    .addComponent(panel_contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(listar_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -214,8 +214,17 @@ public class pnl_Gestionar_prod_programa extends javax.swing.JPanel {
 
     private void add_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_contratoActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='producción por programa'"
+                + "and add_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prod_programa_añadir());
         color_performed(add_contrato,listar_contrato);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_add_contratoActionPerformed
 
     public static void color_performed(rsbuttom.RSButtonMetro principal, rsbuttom.RSButtonMetro uno){

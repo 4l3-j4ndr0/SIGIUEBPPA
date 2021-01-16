@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eeaae7e1-0feb-481c-a5b8-35b02fd3e860">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LOGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     ( SELECT count(*) FROM `modelo_mercantil` ),
+     modelo_mercantil.`codigo_modelo` AS modelo_mercantil_codigo_modelo,
+     modelo_mercantil.`descripcion_modelo` AS modelo_mercantil_descripcion_modelo,
+     modelo_mercantil.`u/m_modelo` AS um_modelo,
+     modelo_mercantil.`vol/unidad_modelo` AS vol_unidad_modelo,
+     modelo_mercantil.`cantidad_modelo` AS modelo_mercantil_cantidad_modelo,
+     modelo_mercantil.`programa_modelo` AS modelo_mercantil_programa_modelo,
+     modelo_mercantil.`total_m3_modelo` AS modelo_mercantil_total_m3_modelo,
+     modelo_mercantil.`precio_cup_modelo` AS modelo_mercantil_precio_cup_modelo,
+     modelo_mercantil.`importe_cup_modelo` AS modelo_mercantil_importe_cup_modelo,
+     modelo_mercantil.`fecha_modelo` AS modelo_mercantil_fecha_modelo,
+     modelo_mercantil.`rbk_modelo` AS modelo_mercantil_rbk_modelo,
+     modelo_mercantil.`cemento_modelo` AS modelo_mercantil_cemento_modelo,
+     modelo_mercantil.`arena_modelo` AS modelo_mercantil_arena_modelo,
+     modelo_mercantil.`gravilla_modelo` AS modelo_mercantil_gravilla_modelo,
+     modelo_mercantil.`aditivo_modelo` AS modelo_mercantil_aditivo_modelo,
+     modelo_mercantil.`1_4_modelo` AS modelo_mercantil_1_4_modelo,
+     modelo_mercantil.`3_8_modelo` AS modelo_mercantil_3_8_modelo,
+     modelo_mercantil.`1_2_modelo` AS modelo_mercantil_1_2_modelo,
+     modelo_mercantil.`5_8_modelo` AS modelo_mercantil_5_8_modelo,
+     modelo_mercantil.`3_4_modelo` AS modelo_mercantil_3_4_modelo,
+     modelo_mercantil.`1_modelo` AS modelo_mercantil_1_modelo,
+     modelo_mercantil.`al_modelo` AS modelo_mercantil_al_modelo,
+     modelo_mercantil.`el_modelo` AS modelo_mercantil_el_modelo
+FROM
+     `modelo_mercantil` modelo_mercantil]]>
+	</queryString>
+	<field name="( SELECT count(*) FROM `modelo_mercantil` )" class="java.lang.Long"/>
+	<field name="modelo_mercantil_codigo_modelo" class="java.lang.Integer"/>
+	<field name="modelo_mercantil_descripcion_modelo" class="java.lang.String"/>
+	<field name="um_modelo" class="java.lang.String"/>
+	<field name="vol_unidad_modelo" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo_mercantil_cantidad_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_programa_modelo" class="java.lang.String"/>
+	<field name="modelo_mercantil_total_m3_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_precio_cup_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_importe_cup_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_fecha_modelo" class="java.lang.String"/>
+	<field name="modelo_mercantil_rbk_modelo" class="java.lang.Integer"/>
+	<field name="modelo_mercantil_cemento_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_arena_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_gravilla_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_aditivo_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_1_4_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_3_8_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_1_2_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_5_8_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_3_4_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_1_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_al_modelo" class="java.lang.Double"/>
+	<field name="modelo_mercantil_el_modelo" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="220" splitType="Stretch">
+			<staticText>
+				<reportElement x="101" y="24" width="282" height="35" uuid="3f575e29-aadb-43f8-a42c-dd6e961006eb"/>
+				<textElement>
+					<font fontName="Arial" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODELO MERCANTIL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="152" width="801" height="1" uuid="64cd50d0-1444-4013-8278-1a1071869dc2"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="618" y="10" width="185" height="139" uuid="43a46a24-b076-4a4c-b281-53ce48854aa3"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="229" y="59" width="131" height="22" forecolor="#666666" uuid="94afc5a1-1380-4b8c-8d2b-3e065fad57e1"/>
+				<textElement>
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<text><![CDATA[INFORMACIÓN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

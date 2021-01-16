@@ -191,7 +191,7 @@ public class de_gestionar_ekipo_editar extends javax.swing.JDialog {
 
         lbl_error_tipo_auto_ekipo_editar.setForeground(new java.awt.Color(243, 66, 53));
         lbl_error_tipo_auto_ekipo_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_tipo_auto_ekipo_editar.setText("¡Debe ingresar un tipo de combustible!");
+        lbl_error_tipo_auto_ekipo_editar.setText("¡Debe ingresar un tipo de auto!");
 
         boton_guardar_ekipo_editar.setBackground(new java.awt.Color(38, 86, 186));
         boton_guardar_ekipo_editar.setText("Guardar Cambios");
@@ -214,9 +214,9 @@ public class de_gestionar_ekipo_editar extends javax.swing.JDialog {
                         .addGap(44, 44, 44))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(132, 132, 132)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(combo_tipo_auto_ekipo_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_error_tipo_auto_ekipo_editar))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lbl_error_tipo_auto_ekipo_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(combo_tipo_auto_ekipo_editar, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
                         .addGap(173, 173, 173)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl_error_numero_chapa_ekipo_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

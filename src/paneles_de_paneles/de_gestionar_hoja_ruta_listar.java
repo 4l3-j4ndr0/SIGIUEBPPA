@@ -16,6 +16,8 @@ import conexion.conexion;
 import esperas.Guardando_general;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import static interaccion_bd.opciones_de_gestionar_contrato.lanza_error;
+import interaccion_bd.opciones_de_gestionar_prod_programa;
+import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -279,7 +281,7 @@ public class de_gestionar_hoja_ruta_listar extends javax.swing.JPanel {
                 if (boton.getText().equals("Vacio")) {
                     JOptionPane.showMessageDialog(null, "No hay archivo");
                 } else {
-                    PdfDAO pd = new PdfDAO();
+                    PdfDAO_hoja_ruta pd = new PdfDAO_hoja_ruta();
                     pd.ejecutar_archivoPDF(id);
                     try {
                         Desktop.getDesktop().open(new File("new.pdf"));
@@ -308,12 +310,17 @@ public class de_gestionar_hoja_ruta_listar extends javax.swing.JPanel {
     
     
     private void txtBuscar_pdfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscar_pdfKeyReleased
-      Tabla_PdfVO tabla=new Tabla_PdfVO();
+      Tabla_PdfVO_hoja_ruta tabla=new Tabla_PdfVO_hoja_ruta();
         tabla.visualizar_PdfVO_buscar(tabla_hoja_ruta, txtBuscar_pdf.getText());
     }//GEN-LAST:event_txtBuscar_pdfKeyReleased
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-//        if (privilegios.Operaciones.EliminarProducto(principal.Principal.lblID.getText())) {
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='hoja de ruta'"
+                + "and eliminar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
             this.menu.setVisible(false);
             int fila = this.tabla_hoja_ruta.getSelectedRow();
             int id = Integer.parseInt(tabla_hoja_ruta.getValueAt(fila, 0).toString());
@@ -334,9 +341,9 @@ public class de_gestionar_hoja_ruta_listar extends javax.swing.JPanel {
                         l.setVisible(true);
                         try{
                             de_gestionar_hoja_ruta_listar.this.setEnabled(false);
-                            eliminar_plano(id);
+                            eliminar_hoja_ruta(id);
                             SuccessAlert e = new SuccessAlert(new JFrame(), true);
-                            e.msj1.setText("¡El plano fue eliminado satisfactoriamente!");
+                            e.msj1.setText("¡La hoja de ruta fue eliminada satisfactoriamente!");
                             e.msj2.setText("");
                             e.msj3.setText("");
                             e.setVisible(true);
@@ -351,16 +358,12 @@ public class de_gestionar_hoja_ruta_listar extends javax.swing.JPanel {
                 Thread t1 = new Thread(runnable1);
                 t1.start();
             }
-//        } else {
-//            ErrorAlert e = new ErrorAlert(new JFrame(), true);
-//            e.msj1.setText("No cuentas con los privilegios");
-//            e.msj2.setText("para acceder a esta opción.");
-//            e.msj3.setText("");
-//            e.setVisible(true);
-//        }
+        } else {
+            opciones_de_gestionar_prod_programa.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
-    private void eliminar_plano(int id){
+    private void eliminar_hoja_ruta(int id){
         eliminar_pdf(id);
         tpdf.visualizar_PdfVO(tabla_hoja_ruta);
         this.tabla_hoja_ruta.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
@@ -374,13 +377,22 @@ public class de_gestionar_hoja_ruta_listar extends javax.swing.JPanel {
     }
     
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-            this.menu.setVisible(false);
-            de_gestionar_plano_editar m = new de_gestionar_plano_editar(new JFrame(), true);
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='hoja de ruta'"
+                + "and editar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+        this.menu.setVisible(false);
+            de_gestionar_hoja_ruta_editar m = new de_gestionar_hoja_ruta_editar(new JFrame(), true);
             int fila = de_gestionar_hoja_ruta_listar.tabla_hoja_ruta.getSelectedRow();
             int id = Integer.parseInt(tabla_hoja_ruta.getValueAt(fila, 0).toString());
-            de_gestionar_plano_editar.id_plano.setText(String.valueOf(id));
+            de_gestionar_hoja_ruta_editar.id_hoja_ruta.setText(String.valueOf(id));
             extraerDatos(m, id);
             m.setVisible(true);
+        }else{
+            opciones_de_gestionar_prod_programa.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void txtBuscar_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscar_pdfActionPerformed
@@ -391,16 +403,17 @@ public class de_gestionar_hoja_ruta_listar extends javax.swing.JPanel {
     static conexion cc = new conexion();
     static Connection cn = cc.conexion();
     static PreparedStatement ps;
-    public static void extraerDatos(de_gestionar_plano_editar datos, int id) {
+    public static void extraerDatos(de_gestionar_hoja_ruta_editar datos, int id) {
 
-        String sql = "SELECT nombre_plano FROM planos WHERE id_plano = " + id;
+        String sql = "SELECT chapa_hoja_ruta,total_km_hoja_ruta,consumo_hoja_ruta FROM hoja_ruta WHERE id_hoja_ruta = " + id;
         try {
             
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
-                datos.nombre_plano_editar.setText(String.valueOf(rs.getString(1))); 
-                datos.nombre_plano_control.setText(String.valueOf(rs.getString(1)));
+                de_gestionar_hoja_ruta_editar.combo_chapa_hoja_ruta_editar.setSelectedItem(rs.getString(1)); 
+                System.out.println(rs.getString(1));
+                de_gestionar_hoja_ruta_editar.km_hoja_ruta_editar.setText(String.valueOf(rs.getString(2)));
             }
         } catch (SQLException ex) {
             lanza_error(ex);

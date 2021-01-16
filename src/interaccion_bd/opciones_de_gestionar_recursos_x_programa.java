@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import paneles_de_paneles.de_gestionar_contrato_editar;
@@ -61,6 +62,30 @@ public class opciones_de_gestionar_recursos_x_programa {
         }
         System.out.println(sql);
         return rsu;
+    }
+    
+    public static void get_combos(JComboBox combo1, JComboBox combo2) {         
+        try {
+            
+          // materia prima
+//            String sql_prefabricados = "SELECT `descripcion_prefabricado` FROM `prefabricados` ";
+            String sql_materiales = "SELECT `elem__materia_prima` FROM `materia_prima`";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql_materiales);
+            while (rs.next()) {
+                combo1.addItem(rs.getString("elem__materia_prima"));
+            }
+            rs.close();
+            // PROGRAMAS
+            String sql_programas = "SELECT `nombre_contrato` FROM `contrato`";
+            Statement st2 = cn.createStatement();
+            ResultSet rs2 = st2.executeQuery(sql_programas); 
+            while (rs2.next()) {
+                combo2.addItem(rs2.getString("nombre_contrato"));
+            }
+        } catch (Exception ex) {
+            opciones_de_gestionar_contrato.lanza_error(ex);
+        }
     }
     
     public static void setListar(String busca) {
@@ -115,16 +140,32 @@ public class opciones_de_gestionar_recursos_x_programa {
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 de_gestionar_recursos_x_programa_editar.codigo_re_editar.setText(String.valueOf(id)); 
-                de_gestionar_recursos_x_programa_editar.descripcion_re_editar.setText(rs.getString(2));
+                de_gestionar_recursos_x_programa_editar.combo_prefabricados_re_editar.setSelectedItem(rs.getString(2));
                 de_gestionar_recursos_x_programa_editar.um_re_editar.setText(rs.getString(3));
                 de_gestionar_recursos_x_programa_editar.cantidad_re_editar.setText(rs.getString(4));
-                de_gestionar_recursos_x_programa_editar.programa_re_editar.setText(rs.getString(5));
+                de_gestionar_recursos_x_programa_editar.combo_programas_re_editar.setSelectedItem(rs.getString(5));
                 de_gestionar_recursos_x_programa_editar.factura_re_editar.setText(rs.getString(6));
                 de_gestionar_recursos_x_programa_editar.carta_porte_re_editar.setText(rs.getString(7));
             }
         } catch (SQLException ex) {
             opciones_de_gestionar_contrato.lanza_error(ex);
         }
+    }
+     
+     public static String extraer_id(String sql) {
+        String cant = "";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                cant = rs.getString(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(opciones_de_gestionar_prod_programa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cant;
     }
      
      public static int actualizar(consultas_de_gestionar_recursos_x_programa uc) {

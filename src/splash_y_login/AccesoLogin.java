@@ -54,7 +54,7 @@ public class AccesoLogin extends javax.swing.JFrame {
         this.setSize(435, 500);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon(getClass().getResource("/img/splash_logo.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/logo/logo ok.png")).getImage());
         this.setTitle("ACCESO - SIGIUEBPPA");
         
         entrar.requestFocus();

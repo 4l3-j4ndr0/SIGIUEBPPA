@@ -44,11 +44,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jPanel1" alignment="1" pref="940" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -74,73 +70,69 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbl_error_pdf_km_hoja_ruta_editar" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lb_foto" min="-2" pref="480" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="lbl_error_nombre_plano_editar" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="nombre_plano_editar" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="boton_guardar_plano_editar" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                              <Component id="id_plano" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="nombre_plano_control" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                                      <Component id="boton_busca_plano_editar" min="-2" pref="239" max="-2" attributes="0"/>
+                                      <Component id="boton_busca_hoja_ruta_editar" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="id_hoja_ruta" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
-                              <Component id="lbl_error_pdf_plano_editar" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lb_foto" min="-2" pref="564" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="combo_chapa_hoja_ruta_editar" min="-2" pref="249" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="check_android_hoja_ruta_editar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="lbl_error_km_hoja_ruta_editar" alignment="1" max="32767" attributes="0"/>
+                              <Component id="boton_guardar_km_hoja_ruta_editar" alignment="0" max="32767" attributes="0"/>
+                              <Component id="km_hoja_ruta_editar" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="lbl_error_chapa_hoja_ruta_editar" min="-2" pref="249" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="lb_foto" min="-2" pref="376" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="id_plano" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="nombre_plano_control" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="lb_foto" alignment="1" min="-2" pref="376" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="combo_chapa_hoja_ruta_editar" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                                          <Component id="check_android_hoja_ruta_editar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="lbl_error_chapa_hoja_ruta_editar" min="-2" pref="43" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="km_hoja_ruta_editar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="lbl_error_km_hoja_ruta_editar" min="-2" pref="43" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="boton_guardar_km_hoja_ruta_editar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                              <Component id="nombre_plano_editar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="lbl_error_nombre_plano_editar" min="-2" pref="43" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                              <Component id="boton_guardar_plano_editar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="boton_busca_hoja_ruta_editar" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="id_hoja_ruta" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="boton_busca_plano_editar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="lbl_error_pdf_plano_editar" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="lbl_error_pdf_km_hoja_ruta_editar" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace pref="50" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -151,26 +143,26 @@
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img_planos/foto_plano.png"/>
+                  <Image iconType="3" name="/img_hoja_ruta/prueba fibnal.png"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="rojeru_san.RSButtonRiple" name="boton_busca_plano_editar">
+            <Component class="rojeru_san.RSButtonRiple" name="boton_busca_hoja_ruta_editar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ba" green="56" red="26" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Modificar Plano"/>
+                <Property name="text" type="java.lang.String" value="Modificar Hoja de Ruta"/>
                 <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c2" green="bb" red="ad" type="rgb"/>
                 </Property>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_busca_plano_editarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_busca_hoja_ruta_editarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_error_pdf_plano_editar">
+            <Component class="javax.swing.JLabel" name="lbl_error_pdf_km_hoja_ruta_editar">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="35" green="42" red="f3" type="rgb"/>
@@ -178,10 +170,10 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagenes_error/label-error-backup.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&#xa1;Debe buscar un plano!"/>
+                <Property name="text" type="java.lang.String" value="&#xa1;Debe buscar una hoja de ruta!"/>
               </Properties>
             </Component>
-            <Component class="rojeru_san.RSButtonRiple" name="boton_guardar_plano_editar">
+            <Component class="rojeru_san.RSButtonRiple" name="boton_guardar_km_hoja_ruta_editar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ba" green="56" red="26" type="rgb"/>
@@ -193,10 +185,10 @@
                 <Property name="horizontalTextPosition" type="int" value="4"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_guardar_plano_editarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_guardar_km_hoja_ruta_editarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_error_nombre_plano_editar">
+            <Component class="javax.swing.JLabel" name="lbl_error_km_hoja_ruta_editar">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="35" green="42" red="f3" type="rgb"/>
@@ -204,10 +196,10 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagenes_error/label-error-backup.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&#xa1;Debe ingresar un nombre de plano!"/>
+                <Property name="text" type="java.lang.String" value="&#xa1;Debe ingresar un total de km!"/>
               </Properties>
             </Component>
-            <Component class="rojeru_san.rsfield.RSTextMaterial" name="nombre_plano_editar">
+            <Component class="rojeru_san.rsfield.RSTextMaterial" name="km_hoja_ruta_editar">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
@@ -218,28 +210,58 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="14" style="1"/>
                 </Property>
-                <Property name="placeholder" type="java.lang.String" value="Nombre del plano..."/>
+                <Property name="placeholder" type="java.lang.String" value="Total de km recorridos..."/>
                 <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6f" green="17" red="dc" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombre_plano_editarKeyReleased"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombre_plano_editarKeyTyped"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="km_hoja_ruta_editarKeyReleased"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="km_hoja_ruta_editarKeyTyped"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="id_plano">
+            <Component class="org.bolivia.combo.SComboBox" name="combo_chapa_hoja_ruta_editar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel1"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="1">
+                    <StringItem index="0" value="CHAPA DEL VEH&#xcd;CULO"/>
+                  </StringArray>
+                </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_chapa_hoja_ruta_editarActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="nombre_plano_control">
+            <Container class="check_de_android.Switch" name="check_android_hoja_ruta_editar">
+              <Properties>
+                <Property name="onOff" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="check_android_hoja_ruta_editarMouseClicked"/>
+              </Events>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                <Property name="useNullLayout" type="boolean" value="true"/>
+              </Layout>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lbl_error_chapa_hoja_ruta_editar">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="35" green="42" red="f3" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagenes_error/label-error-backup.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#xa1;Debe ingresar una chapa de vehiculo!"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="id_hoja_ruta">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel1"/>
               </Properties>

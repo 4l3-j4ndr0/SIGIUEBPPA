@@ -61,6 +61,22 @@ public class opciones_de_gestionar_prod_programa {
         }
     }
     
+    public static void get_combos2(JComboBox combo1) {         
+        try {
+            
+          
+            // PROGRAMAS
+            String sql_programas = "SELECT `nombre_contrato` FROM `contrato`";
+            Statement st2 = cn.createStatement();
+            ResultSet rs2 = st2.executeQuery(sql_programas); 
+            while (rs2.next()) {
+                combo1.addItem(rs2.getString("nombre_contrato"));
+            }
+        } catch (Exception ex) {
+            lanza_error(ex);
+        }
+    }
+    
     public static int extraer_id(String sql) {
         int cant = 1;
 

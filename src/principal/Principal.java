@@ -9,6 +9,7 @@ import alertas.ErrorAlert;
 import esperas.Guardando_general;
 import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.MouseInfo;
@@ -40,6 +41,7 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal() {
             initComponents();
+            this.setIconImage(new ImageIcon(getClass().getResource("/logo/logo ok.png")).getImage());
             this.setExtendedState(MAXIMIZED_BOTH);
             this.setLocationRelativeTo(this);
             this.uno.setSelected(true);
@@ -153,7 +155,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(user)
                     .addComponent(jLabel8))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,7 +408,7 @@ public class Principal extends javax.swing.JFrame {
 
         gestionar_cartaporte.setBackground(new java.awt.Color(239, 238, 244));
         gestionar_cartaporte.setForeground(new java.awt.Color(128, 128, 131));
-        gestionar_cartaporte.setText("Gestionar cartaporte");
+        gestionar_cartaporte.setText("Gestionar carta de porte");
         gestionar_cartaporte.setColorHover(new java.awt.Color(204, 204, 204));
         gestionar_cartaporte.setColorNormal(new java.awt.Color(239, 238, 244));
         gestionar_cartaporte.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -431,7 +433,6 @@ public class Principal extends javax.swing.JFrame {
         gestionar_prod_programa.setBackground(new java.awt.Color(239, 238, 244));
         gestionar_prod_programa.setForeground(new java.awt.Color(128, 128, 131));
         gestionar_prod_programa.setText("Gestionar producción por programa");
-        gestionar_prod_programa.setActionCommand("Gestionar producción por programa");
         gestionar_prod_programa.setColorHover(new java.awt.Color(204, 204, 204));
         gestionar_prod_programa.setColorNormal(new java.awt.Color(239, 238, 244));
         gestionar_prod_programa.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -481,21 +482,24 @@ public class Principal extends javax.swing.JFrame {
         pnlMenu3.setLayout(pnlMenu3Layout);
         pnlMenu3Layout.setHorizontalGroup(
             pnlMenu3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(uno, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_ficha_costo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_recursos_x_programa, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_proy, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar__planos, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_info_laboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_ekipo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_tarjeta_combustible, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_hoja_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(gestionar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnlMenu3Layout.createSequentialGroup()
+                .addGroup(pnlMenu3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(uno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gestionar_contrato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_ficha_costo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_recursos_x_programa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_proy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar__planos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_prep_tecnica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_ekipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_tarjeta_combustible, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_hoja_ruta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_cartaporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_prod_programa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_usuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionar_info_laboratorio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
         );
         pnlMenu3Layout.setVerticalGroup(
             pnlMenu3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,7 +605,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addContainerGap(301, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,7 +638,10 @@ public class Principal extends javax.swing.JFrame {
         pnlCentro.setLayout(pnlCentroLayout);
         pnlCentroLayout.setHorizontalGroup(
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
+            .addGroup(pnlCentroLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlCentroLayout.setVerticalGroup(
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -798,18 +805,34 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_ficha_costoActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='ficha de costo' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_ficha_costo());
         color_performed(gestionar_ficha_costo,uno,gestionar_contrato,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_ficha_costoActionPerformed
 
     private void gestionar_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_contratoActionPerformed
-        // TODO add your handling code here:    
+        // TODO add your handling code here:  
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='contrato' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_contrato());
         color_performed(gestionar_contrato,uno,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_contratoActionPerformed
 
     private void gestionar_recursos_x_programaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_recursos_x_programaMousePressed
@@ -821,10 +844,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_recursos_x_programaActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='recursos por programa' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_gestionar_recursos_x_programa());
         color_performed(gestionar_recursos_x_programa,uno,gestionar_contrato,gestionar_ficha_costo,gestionar_proy,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_recursos_x_programaActionPerformed
 
     private void gestionar_prep_tecnicaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_prep_tecnicaMousePressed
@@ -836,10 +867,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_prep_tecnicaActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='proyecto' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_proy());
         color_performed(gestionar_prep_tecnica,uno,gestionar_contrato,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar_proy,gestionar__planos,
                 gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
+        
     }//GEN-LAST:event_gestionar_prep_tecnicaActionPerformed
 
     private void gestionar__planosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar__planosMousePressed
@@ -851,10 +891,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar__planosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar__planosActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='plano' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_planos());
         color_performed(gestionar__planos,uno,gestionar_contrato,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar_proy,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar__planosActionPerformed
 
     private void gestionar_proyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_proyMousePressed
@@ -866,10 +914,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_proyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_proyActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='preparación técnica' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_prep_tecnica());
         color_performed(gestionar_proy,uno,gestionar_contrato,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_proyActionPerformed
 
     private void gestionar_info_laboratorioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_info_laboratorioMousePressed
@@ -881,10 +937,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_info_laboratorioActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='información de laboratorio' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_info_laboratorio());
         color_performed(gestionar_info_laboratorio,gestionar_proy,uno,gestionar_contrato,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_info_laboratorioActionPerformed
 
     private void gestionar_ekipoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_ekipoMousePressed
@@ -896,10 +960,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_ekipoActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='equipo' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
          new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_equipo());
         color_performed(gestionar_ekipo,gestionar_proy,uno,gestionar_contrato,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_ekipoActionPerformed
 
     private void gestionar_tarjeta_combustibleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_tarjeta_combustibleMousePressed
@@ -911,10 +983,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_tarjeta_combustibleActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='tarjeta de combustible' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
          new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_tarjeta_combustible());
         color_performed(gestionar_tarjeta_combustible,gestionar_proy,uno,gestionar_contrato,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_hoja_ruta,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_tarjeta_combustibleActionPerformed
 
     private void gestionar_hoja_rutaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_hoja_rutaMousePressed
@@ -926,10 +1006,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_hoja_rutaActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='hoja de ruta' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_hoja_ruta());
         color_performed(gestionar_hoja_ruta,gestionar_proy,uno,gestionar_contrato,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,
                 gestionar_cartaporte,gestionar_prod_programa, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_hoja_rutaActionPerformed
 
     private void gestionar_prod_programaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_prod_programaMousePressed
@@ -941,10 +1029,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_prod_programaActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='producción por programa' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_prod_programa());
         color_performed(gestionar_prod_programa,gestionar_proy,uno,gestionar_cartaporte,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_contrato, gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_prod_programaActionPerformed
 
     private void gestionar_contratoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_contratoMousePressed
@@ -972,18 +1068,34 @@ public class Principal extends javax.swing.JFrame {
 
     private void gestionar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_usuarioActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='usuarios' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_usuarios());
         color_performed(gestionar_usuario,gestionar_prod_programa,gestionar_proy,uno,gestionar_cartaporte,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_contrato );
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_usuarioActionPerformed
 
     private void gestionar_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionar_cartaporteActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+user.getText().trim()+"' and `apartado_permisos`='carta de porte' and listar_permisos=1";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(pnlPrincipal, new paneles.pnl_Gestionar_cartaporte());
         color_performed(gestionar_cartaporte,gestionar_proy,uno,gestionar_contrato,gestionar_ficha_costo,gestionar_recursos_x_programa,gestionar__planos,
                 gestionar_prep_tecnica,gestionar_info_laboratorio,gestionar_ekipo,gestionar_tarjeta_combustible,gestionar_hoja_ruta,
                 gestionar_prod_programa,gestionar_usuario);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_gestionar_cartaporteActionPerformed
 
     private void gestionar_cartaporteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_cartaporteMousePressed
@@ -1058,7 +1170,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel pnlCentro;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlMenu3;
-    private javax.swing.JPanel pnlPrincipal;
+    public static javax.swing.JPanel pnlPrincipal;
     private rsbuttom.RSButtonMetro uno;
     public static javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables

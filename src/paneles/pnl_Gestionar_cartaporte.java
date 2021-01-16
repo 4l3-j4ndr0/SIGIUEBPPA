@@ -5,6 +5,9 @@
  */
 package paneles;
 
+import interaccion_bd.opciones_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_usuarios;
+
 /**
  *
  * @author RojeruSan
@@ -16,6 +19,9 @@ public class pnl_Gestionar_cartaporte extends javax.swing.JPanel {
      */
     public pnl_Gestionar_cartaporte() {
         initComponents();
+        listar_cartaporte.setSelected(true);
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_cartaporte_listar());
+        pnl_Gestionar_contrato.color_performed(listar_cartaporte,add_cartaporte);
     }
 
     /**
@@ -27,44 +33,135 @@ public class pnl_Gestionar_cartaporte extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        panel_contenedor = new javax.swing.JPanel();
+        add_cartaporte = new rsbuttom.RSButtonMetro();
+        listar_cartaporte = new rsbuttom.RSButtonMetro();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/splash_logo.png"))); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Gestionar Cargues");
+        jLabel7.setText("Gestionar Carta de Portes");
+
+        panel_contenedor.setBackground(new java.awt.Color(255, 255, 255));
+        panel_contenedor.setLayout(new javax.swing.BoxLayout(panel_contenedor, javax.swing.BoxLayout.LINE_AXIS));
+
+        add_cartaporte.setBackground(new java.awt.Color(239, 238, 244));
+        add_cartaporte.setForeground(new java.awt.Color(128, 128, 131));
+        add_cartaporte.setText("Añadir");
+        add_cartaporte.setColorHover(new java.awt.Color(204, 204, 204));
+        add_cartaporte.setColorNormal(new java.awt.Color(239, 238, 244));
+        add_cartaporte.setColorPressed(new java.awt.Color(204, 204, 204));
+        add_cartaporte.setColorTextHover(new java.awt.Color(128, 128, 131));
+        add_cartaporte.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        add_cartaporte.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        add_cartaporte.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        add_cartaporte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add_cartaporte.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        add_cartaporte.setIconTextGap(25);
+        add_cartaporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                add_cartaporteMousePressed(evt);
+            }
+        });
+        add_cartaporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_cartaporteActionPerformed(evt);
+            }
+        });
+
+        listar_cartaporte.setBackground(new java.awt.Color(239, 238, 244));
+        listar_cartaporte.setForeground(new java.awt.Color(128, 128, 131));
+        listar_cartaporte.setText("Listar");
+        listar_cartaporte.setColorHover(new java.awt.Color(204, 204, 204));
+        listar_cartaporte.setColorNormal(new java.awt.Color(239, 238, 244));
+        listar_cartaporte.setColorPressed(new java.awt.Color(204, 204, 204));
+        listar_cartaporte.setColorTextHover(new java.awt.Color(128, 128, 131));
+        listar_cartaporte.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        listar_cartaporte.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        listar_cartaporte.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        listar_cartaporte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        listar_cartaporte.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        listar_cartaporte.setIconTextGap(25);
+        listar_cartaporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listar_cartaporteMousePressed(evt);
+            }
+        });
+        listar_cartaporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_cartaporteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel_contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(listar_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel7)
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listar_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panel_contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void add_cartaporteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_cartaporteMousePressed
+        // TODO add your handling code here:
+        pnl_Gestionar_contrato.pressed(add_cartaporte,listar_cartaporte);
+    }//GEN-LAST:event_add_cartaporteMousePressed
+
+    private void add_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_cartaporteActionPerformed
+        // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='carta de porte'"
+                + "and add_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_cartaporte_añadir());
+        pnl_Gestionar_contrato.color_performed(add_cartaporte,listar_cartaporte);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
+    }//GEN-LAST:event_add_cartaporteActionPerformed
+
+    private void listar_cartaporteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listar_cartaporteMousePressed
+        // TODO add your handling code here:
+        pnl_Gestionar_contrato.pressed(listar_cartaporte,add_cartaporte);
+    }//GEN-LAST:event_listar_cartaporteMousePressed
+
+    private void listar_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_cartaporteActionPerformed
+        // TODO add your handling code here:
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_cartaporte_listar());
+        pnl_Gestionar_contrato.color_performed(listar_cartaporte,add_cartaporte);
+    }//GEN-LAST:event_listar_cartaporteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel6;
+    public static rsbuttom.RSButtonMetro add_cartaporte;
     private javax.swing.JLabel jLabel7;
+    public static rsbuttom.RSButtonMetro listar_cartaporte;
+    private javax.swing.JPanel panel_contenedor;
     // End of variables declaration//GEN-END:variables
 }

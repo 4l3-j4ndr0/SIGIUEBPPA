@@ -112,7 +112,7 @@ FROM
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="152" splitType="Stretch">
+		<band height="150" splitType="Stretch">
 			<line>
 				<reportElement x="1" y="149" width="801" height="1" uuid="c08e3097-ba61-4dfd-aee1-97f021cde2c2"/>
 				<graphicElement>

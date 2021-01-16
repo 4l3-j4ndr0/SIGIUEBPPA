@@ -9,68 +9,117 @@ package interaccion_bd;
  *
  * @author 4l3
  */
-public class consultas_de_gestionar_contrato {
-    private String numero_contrato;
-    private String nombre_contrato;
-    private String fecha_inicio_contrato;
-    private String fecha_final_contrato;
-    private String primaryKey;
+public class consultas_de_gestionar_usuarios {
     
+    String usuario;
+    String usuario_control;
+    String pass;
+    String apartado;
+    String listar;
+    String add;
+    String editar;
+    String eliminar;
+    String exportar;
+    String imprimir;
+       
     
-    public static String REGISTRAR = "INSERT INTO contrato(numero_contrato, nombre_contrato, fecha_inicio_contrato, fecha_final_contrato) "
-            + "VALUES(?,?,?,?)";
+    public static String REGISTRAR = "INSERT INTO usuarios(nombre_us, pass) "
+            + "VALUES(?,?)";
     
-    public static String LISTAR = "SELECT * FROM contrato";
+    public static String REGISTRAR_PERMISOS = "INSERT INTO `permisos`(`usuario_permisos`, `apartado_permisos`, `listar_permisos`, `add_permisos`, "
+            + "`editar_permisos`, `eliminar_permisos`, `exportar_permisos`, `imprimir_permisos`) VALUES (?,?,?,?,?,?,?,?)";
     
-    public static String ACTUALIZAR = "UPDATE `contrato` SET `numero_contrato`=?,`nombre_contrato`=?,`fecha_inicio_contrato`=?,"
-            + "`fecha_final_contrato`=? WHERE id=? ";
+    public static String LISTAR = "SELECT * FROM usuarios";
+    
+    public static String ACTUALIZAR_PERMISOS = "UPDATE `permisos` SET `usuario_permisos`=?,`apartado_permisos`=?,"
+            + "`listar_permisos`=?,`add_permisos`=?,`editar_permisos`=?,`eliminar_permisos`=?,"
+            + "`exportar_permisos`=?,`imprimir_permisos`=? WHERE `usuario_permisos`=? and `apartado_permisos`=?";
+    public static String ACTUALIZAR_USER="UPDATE `usuarios` SET `nombre_us`=?,`pass`=? WHERE `nombre_us`=?";
             
-    public static String ELIMINAR = "DELETE FROM contrato WHERE id = ?";
-    
-    
-    
-    
+    public static String ELIMINAR_USER = "DELETE FROM usuarios WHERE nombre_us = ?";
+    public static String ELIMINAR_PERMISOS = "DELETE FROM `permisos` WHERE `usuario_permisos`= ?";
 
-    public String getNumero_contrato() {
-        return numero_contrato;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setNumero_contrato(String numero_contrato) {
-        this.numero_contrato = numero_contrato;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public String getNombre_contrato() {
-        return nombre_contrato;
+    public String getPass() {
+        return pass;
     }
 
-    public void setNombre_contrato(String nombre_contrato) {
-        this.nombre_contrato = nombre_contrato;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
-    public String getFecha_inicio_contrato() {
-        return fecha_inicio_contrato;
+    public String getListar() {
+        return listar;
     }
 
-    public void setFecha_inicio_contrato(String fecha_inicio_contrato) {
-        this.fecha_inicio_contrato = fecha_inicio_contrato;
+    public void setListar(String listar) {
+        this.listar = listar;
     }
 
-    public String getFecha_final_contrato() {
-        return fecha_final_contrato;
+    public String getAdd() {
+        return add;
     }
 
-    public void setFecha_final_contrato(String fecha_final_contrato) {
-        this.fecha_final_contrato = fecha_final_contrato;
+    public void setAdd(String add) {
+        this.add = add;
     }
 
-    public String getPrimaryKey() {
-        return primaryKey;
+    public String getEditar() {
+        return editar;
     }
 
-    public void setPrimaryKey(String primaryKey) {
-        this.primaryKey = primaryKey;
+    public void setEditar(String editar) {
+        this.editar = editar;
     }
-    
+
+    public String getEliminar() {
+        return eliminar;
+    }
+
+    public void setEliminar(String eliminar) {
+        this.eliminar = eliminar;
+    }
+
+    public String getExportar() {
+        return exportar;
+    }
+
+    public void setExportar(String exportar) {
+        this.exportar = exportar;
+    }
+
+    public String getImprimir() {
+        return imprimir;
+    }
+
+    public void setImprimir(String imprimir) {
+        this.imprimir = imprimir;
+    }
+
+    public String getApartado() {
+        return apartado;
+    }
+
+    public void setApartado(String apartado) {
+        this.apartado = apartado;
+    }
+
+    public String getUsuario_control() {
+        return usuario_control;
+    }
+
+    public void setUsuario_control(String usuario_control) {
+        this.usuario_control = usuario_control;
+    }
+
+   
     
     
 }

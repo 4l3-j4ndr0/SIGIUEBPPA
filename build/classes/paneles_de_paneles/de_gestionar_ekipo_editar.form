@@ -81,9 +81,9 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="combo_tipo_auto_ekipo_editar" min="-2" pref="251" max="-2" attributes="0"/>
-                                  <Component id="lbl_error_tipo_auto_ekipo_editar" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="lbl_error_tipo_auto_ekipo_editar" max="32767" attributes="0"/>
+                                  <Component id="combo_tipo_auto_ekipo_editar" pref="251" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
                           </Group>
@@ -230,7 +230,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagenes_error/label-error-backup.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&#xa1;Debe ingresar un tipo de combustible!"/>
+                <Property name="text" type="java.lang.String" value="&#xa1;Debe ingresar un tipo de auto!"/>
               </Properties>
             </Component>
             <Component class="rojeru_san.RSButtonRiple" name="boton_guardar_ekipo_editar">

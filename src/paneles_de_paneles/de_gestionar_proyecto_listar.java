@@ -16,6 +16,8 @@ import conexion.conexion;
 import esperas.Guardando_general;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import static interaccion_bd.opciones_de_gestionar_contrato.lanza_error;
+import interaccion_bd.opciones_de_gestionar_prod_programa;
+import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -312,7 +314,12 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
     }//GEN-LAST:event_txtBuscar_pdfKeyReleased
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-//        if (privilegios.Operaciones.EliminarProducto(principal.Principal.lblID.getText())) {
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='proyecto'"
+                + "and eliminar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
             this.menu.setVisible(false);
             int fila = this.tabla_proy.getSelectedRow();
             int id = Integer.parseInt(tabla_proy.getValueAt(fila, 0).toString());
@@ -350,13 +357,9 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
                 Thread t1 = new Thread(runnable1);
                 t1.start();
             }
-//        } else {
-//            ErrorAlert e = new ErrorAlert(new JFrame(), true);
-//            e.msj1.setText("No cuentas con los privilegios");
-//            e.msj2.setText("para acceder a esta opción.");
-//            e.msj3.setText("");
-//            e.setVisible(true);
-//        }
+        } else {
+            opciones_de_gestionar_prod_programa.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void eliminar_prep_tecnica(int id){
@@ -373,13 +376,22 @@ public class de_gestionar_proyecto_listar extends javax.swing.JPanel {
     }
     
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-            this.menu.setVisible(false);
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='proyecto'"
+                + "and eeditar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+        this.menu.setVisible(false);
             de_gestionar_proyecto_editar m = new de_gestionar_proyecto_editar(new JFrame(), true);
             int fila = de_gestionar_proyecto_listar.tabla_proy.getSelectedRow();
             int id = Integer.parseInt(tabla_proy.getValueAt(fila, 0).toString());
             de_gestionar_proyecto_editar.id_prep_tecnica.setText(String.valueOf(id));
             extraerDatos(m, id);
             m.setVisible(true);
+        }else{
+            opciones_de_gestionar_prod_programa.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void txtBuscar_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscar_pdfActionPerformed

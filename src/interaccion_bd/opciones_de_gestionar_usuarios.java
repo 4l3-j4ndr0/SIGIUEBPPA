@@ -8,6 +8,7 @@ package interaccion_bd;
 import alertas.ErrorAlert;
 import alertas.WarningAlert;
 import conexion.conexion;
+import static interaccion_bd.opciones_de_gestionar_contrato.cn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,8 +19,10 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import paneles.pnl_Gestionar_usuarios;
 import paneles_de_paneles.de_gestionar_contrato_editar;
 import paneles_de_paneles.de_gestionar_contrato_listar;
 import paneles_de_paneles.de_gestionar_plano_listar;
@@ -28,25 +31,23 @@ import paneles_de_paneles.de_gestionar_plano_listar;
  *
  * @author 4l3
  */
-public class opciones_de_gestionar_contrato {
+public class opciones_de_gestionar_usuarios {
     
     static conexion cc = new conexion();
     static Connection cn = cc.conexion();
     static PreparedStatement ps;
     
-    public static int registrar(consultas_de_gestionar_contrato uc) {
+    public static int registrar_user(consultas_de_gestionar_usuarios uc) {
         int rsu = 0;
-        String sql = consultas_de_gestionar_contrato.REGISTRAR;
+        String sql = consultas_de_gestionar_usuarios.REGISTRAR;
         try {
             ps = cn.prepareStatement(sql);
-            ps.setString(1, uc.getNumero_contrato());
-            ps.setString(2, uc.getNombre_contrato());
-            ps.setString(3, uc.getFecha_inicio_contrato());
-            ps.setString(4, uc.getFecha_final_contrato() );  
+            ps.setString(1, uc.getUsuario());
+            ps.setString(2, uc.getPass());
             rsu = ps.executeUpdate();
         } catch (SQLException ex) {
                         ErrorAlert error = new ErrorAlert(new JFrame(), true);
-                        Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(opciones_de_gestionar_usuarios.class.getName()).log(Level.SEVERE, null, ex);
             error.msj1.setText(ex.toString());
             error.msj2.setText("Por favor solucione el error antes de volver a intentarlo.");
             error.msj3.setText("En caso de no saber como corregir el error, por favor contacte con soporte técnico");
@@ -58,21 +59,41 @@ public class opciones_de_gestionar_contrato {
         return rsu;
     }
     
+    public static int registrar_permisos(consultas_de_gestionar_usuarios uc) {
+        int rsu = 0;
+        String sql = consultas_de_gestionar_usuarios.REGISTRAR_PERMISOS;
+        try {
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, uc.getUsuario());
+            ps.setString(2, uc.getApartado());
+            ps.setString(3, uc.getListar());
+            ps.setString(4, uc.getAdd());
+            ps.setString(5, uc.getEditar());
+            ps.setString(6, uc.getEliminar());
+            ps.setString(7, uc.getExportar());
+            ps.setString(8, uc.getImprimir());
+            rsu = ps.executeUpdate();
+        } catch (SQLException ex) {
+                        
+                        Logger.getLogger(opciones_de_gestionar_usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            opciones_de_gestionar_contrato.lanza_error(ex);
+        }
+        System.out.println(sql);
+        return rsu;
+    }
+    
     public static void setListar(String busca) {
-        DefaultTableModel modelo = (DefaultTableModel) de_gestionar_contrato_listar.tabla.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) pnl_Gestionar_usuarios.tabla_usuarios.getModel();
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
         String sql = "";
         if (busca.equals("")) {
-            sql = consultas_de_gestionar_contrato.LISTAR;
+            sql = consultas_de_gestionar_usuarios.LISTAR;
         } else {
-            sql = "SELECT * FROM contrato WHERE ("
-                    + "numero_contrato LIKE'" + busca + "%' OR "
-                    + "nombre_contrato LIKE'" + busca + "%' OR "
-                    + "fecha_inicio_contrato LIKE'" + busca + "%' OR "
-                    + "fecha_final_contrato LIKE'" + busca + "%'"
+            sql = "SELECT * FROM usuarios WHERE ("
+                    + "nombre_us LIKE'" + busca + "%'"
                     + ")";
         }
         String datos[] = new String[4];
@@ -80,10 +101,8 @@ public class opciones_de_gestionar_contrato {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                datos[0] = rs.getString("numero_contrato");
-                datos[1] = rs.getString("nombre_contrato");
-                datos[2] = rs.getString("fecha_inicio_contrato");
-                datos[3] = rs.getString("fecha_final_contrato");
+                datos[0] = rs.getString("nombre_us");
+                datos[1] = rs.getString("pass");
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {
@@ -97,169 +116,78 @@ public class opciones_de_gestionar_contrato {
         }
     }
     
-    
-    public static String getFechaLimite(int idc) {
-        String fecha = "";
-        String sql = "SELECT fecha_final_contrato FROM contrato WHERE numero_contrato = " + idc;
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            if (rs.next()) {
-                fecha = rs.getString(1);
-            }
-        } catch (SQLException ex) {
-            ErrorAlert error = new ErrorAlert(new JFrame(), true);
-            error.msj1.setText(ex.toString());
-            error.msj2.setText("Por favor contacte con soporte técnico");
-            error.msj3.setText("");
-            error.preferredSize();
-            error.pack();
-            error.setVisible(true);
-        }
-        return fecha;
-    }
-    
-    public static String getFechaInicio(int idc) {
-        String fecha = "";
-        String sql = "SELECT fecha_inicio_contrato FROM contrato WHERE numero_contrato = " + idc;
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            if (rs.next()) {
-                fecha = rs.getString(1);
-            }
-        } catch (SQLException ex) {
-            ErrorAlert error = new ErrorAlert(new JFrame(), true);
-            error.msj1.setText(ex.toString());
-            error.msj2.setText("Por favor contacte con soporte técnico");
-            error.msj3.setText("");
-            error.preferredSize();
-            error.pack();
-            error.setVisible(true);
-        }
-        return fecha;
-    }
-    
-    public static String fechaactual() {
-        Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
-        return formatofecha.format(fecha);
-
-    }
-    
-    public static void lanza_error( Exception ex){
-        ErrorAlert error = new ErrorAlert(new JFrame(), true);
-                        Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, ex);
-            error.msj1.setText(ex.toString());
-            error.msj2.setText("Solucione el error antes de volverlo a intentar");
-            error.msj3.setText("En caso de no saber como solucionar el error contacte con soporte técnico");
-            error.preferredSize();
-            error.pack();
-            error.setVisible(true);
-    }
-    
-    public static void lanza_error_variable( Exception ex, String uno, String dos){
-        ErrorAlert error = new ErrorAlert(new JFrame(), true);
-                        Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, ex);
-            error.msj1.setText(ex.toString());
-            error.msj2.setText(uno);
-            error.msj3.setText(dos);
-            error.preferredSize();
-            error.pack();
-            error.setVisible(true);
-    }
-    
-    public static void lanza_error_variable_sin_ex( String cero, String uno, String dos){
-        ErrorAlert error = new ErrorAlert(new JFrame(), true);
-            error.msj1.setText(cero);
-            error.msj2.setText(uno);
-            error.msj3.setText(dos);
-            error.preferredSize();
-            error.pack();
-            error.setVisible(true);
-    }
-    
-    public static void lanza_ALERT(String uno, String dos, String tres){
-        WarningAlert alerta = new WarningAlert(new JFrame(), true);
-            alerta.msj1.setText(uno);
-            alerta.msj2.setText(dos);
-            alerta.msj3.setText(tres);
-            alerta.preferredSize();
-            alerta.pack();
-            alerta.setVisible(true);
-    }
-    
-     public static void extraerDatos(de_gestionar_contrato_editar datos, int id) {
-
-        String sql = "SELECT * FROM contrato WHERE id = " + id;
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            if (rs.next()) {
-                de_gestionar_contrato_editar.numero_contrato_editar.setText(String.valueOf(rs.getString(2))); 
-                de_gestionar_contrato_editar.nombre_cliente_contrato_editar.setText(rs.getString(3));
-                de_gestionar_contrato_editar.fecha_inicio_contrato_editar.setDate(de_gestionar_contrato_editar.ParseFecha(rs.getString(4)));
-                de_gestionar_contrato_editar.lbl_fecha_expira_contrato_editar.setText(rs.getString(5));
-                de_gestionar_contrato_editar.id_editar.setText(String.valueOf(id));
-            }
-        } catch (SQLException ex) {
-            lanza_error(ex);
-        }
-    }
-     
-     public static int actualizar(consultas_de_gestionar_contrato uc) {
+     public static int actualizar_permisos(consultas_de_gestionar_usuarios uc) {
         int rsu = 0;
-        String sql = consultas_de_gestionar_contrato.ACTUALIZAR;
+        String sql = consultas_de_gestionar_usuarios.ACTUALIZAR_PERMISOS;
         try {
             ps = cn.prepareStatement(sql);
-            ps.setString(1, uc.getNumero_contrato());
-            ps.setString(2, uc.getNombre_contrato());
-            ps.setString(3, uc.getFecha_inicio_contrato());
-            ps.setString(4, uc.getFecha_final_contrato());
-            ps.setString(5, uc.getPrimaryKey());
+            ps.setString(1, uc.getUsuario());
+            ps.setString(2, uc.getApartado());
+            ps.setString(3, uc.getListar());
+            ps.setString(4, uc.getAdd());
+            ps.setString(5, uc.getEditar());
+            ps.setString(6, uc.getEliminar());
+            ps.setString(7, uc.getExportar());
+            ps.setString(8, uc.getImprimir());
+            ps.setString(9, uc.getUsuario_control());
+            ps.setString(10, uc.getApartado());
             
             rsu = ps.executeUpdate();
         } catch (SQLException ex) {
-            lanza_error(ex);
+            opciones_de_gestionar_contrato.lanza_error(ex);
         }
         System.out.println(sql);
          System.out.println("result actualizar "+rsu);
         return rsu;
     }
      
-     public static int extraer_id(String sql) {
-        int cant = 1;
-
+     public static int actualizar_user(consultas_de_gestionar_usuarios uc) {
+        int rsu = 0;
+        String sql = consultas_de_gestionar_usuarios.ACTUALIZAR_USER;
         try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                cant = rs.getInt(1);
-            }
-
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, uc.getUsuario());
+            ps.setString(2, uc.getPass());
+            ps.setString(3, uc.getUsuario_control());
+            
+            rsu = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, ex);
+            opciones_de_gestionar_contrato.lanza_error(ex);
         }
-        return cant;
+        System.out.println(sql);
+         System.out.println("result actualizar "+rsu);
+        return rsu;
     }
      
-      public static String extraer_numero(String sql) {
-       String cant = "";
-
+     public static int eliminar_user(String nombre) {
+        int rsu = 0;
+        String sql = consultas_de_gestionar_usuarios.ELIMINAR_USER;
         try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                cant = rs.getString(1);
-            }
-
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, nombre);
+            rsu = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
-        return cant;
+        System.out.println(sql);
+        return rsu;
     }
      
-     public static boolean existe(String nombre,String sql) {
+     public static int eliminar_permisos(String nombre) {
+        int rsul = 0;
+        String sql = consultas_de_gestionar_usuarios.ELIMINAR_PERMISOS;
+        try {
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, nombre);
+            rsul = ps.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println(sql);
+        return rsul;
+    }
+     
+     public static boolean existe(String sql) {
         String c = null;
         boolean existe=false;
         try {
@@ -274,25 +202,137 @@ public class opciones_de_gestionar_contrato {
             
         } catch (SQLException ex) {
             Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, ex);
-            lanza_error(ex);
+            opciones_de_gestionar_contrato.lanza_error(ex);
         }
         return existe;
     }
      
-     public static int eliminar(int id) {
-        int rsu = 0;
-        String sql = consultas_de_gestionar_contrato.ELIMINAR;
+     private void activa_checbox(){
+        
+    }
+     public static void activa_checbox_largo(String user,String sql,JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox exportar,JCheckBox imprimir,JCheckBox desmarcar,JCheckBox marcar) {
+        int listar_permiso = 0;
+        int add_permiso = 0;
+        int editar_permiso = 0;
+        int eliminar_permiso = 0;
+        int exportar_permiso = 0;
+        int imprimir_permiso = 0;
+        String user_permiso="";
 
         try {
-            ps = cn.prepareStatement(sql);
-            ps.setInt(1, id);
-            rsu = ps.executeUpdate();
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                user_permiso = rs.getString(1);
+                listar_permiso = rs.getInt(3);
+                add_permiso = rs.getInt(4);
+                editar_permiso = rs.getInt(5);
+                eliminar_permiso = rs.getInt(6);
+                exportar_permiso = rs.getInt(7);
+                imprimir_permiso = rs.getInt(8);
+            }
+            if(user_permiso.equals(user)){
+                marcar.setSelected(false);
+                desmarcar.setSelected(false);
+                if(listar_permiso==1){
+                    listar.setSelected(true);
+                }else{
+                    listar.setSelected(false);
+                }
+                if(add_permiso==1){
+                    add.setSelected(true);
+                }else{
+                    add.setSelected(false);
+                }
+                if(editar_permiso==1){
+                    editar.setSelected(true);
+                }else{
+                    editar.setSelected(false);
+                }
+                if(eliminar_permiso==1){
+                    eliminar.setSelected(true);
+                }else{
+                    eliminar.setSelected(false);
+                }
+                if(exportar_permiso==1){
+                    exportar.setSelected(true);
+                }else{
+                    exportar.setSelected(false);
+                }
+                if(imprimir_permiso==1){
+                    imprimir.setSelected(true);
+                }else{
+                    imprimir.setSelected(false);
+                }
+                if(listar_permiso==1&&add_permiso==1&&editar_permiso==1&&eliminar_permiso==1&&exportar_permiso==1&&imprimir_permiso==1){
+                    marcar.setSelected(true);
+                }else if(listar_permiso==0&&add_permiso==0&&editar_permiso==0&&eliminar_permiso==0&&exportar_permiso==0&&imprimir_permiso==0){
+                    desmarcar.setSelected(true);
+                }
+                
+            }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(sql);
-        return rsu;
     }
      
-     
+     public static void activa_checbox_corto(String user,String sql,JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox desmarcar,JCheckBox marcar) {
+        int listar_permiso = 0;
+        int add_permiso = 0;
+        int editar_permiso = 0;
+        int eliminar_permiso = 0;
+        String user_permiso="";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                user_permiso = rs.getString(1);
+                listar_permiso = rs.getInt(3);
+                add_permiso = rs.getInt(4);
+                editar_permiso = rs.getInt(5);
+                eliminar_permiso = rs.getInt(6);
+            }
+            if(user_permiso.equals(user)){
+                marcar.setSelected(false);
+                desmarcar.setSelected(false);
+                if(listar_permiso==1){
+                    listar.setSelected(true);
+                }else{
+                    listar.setSelected(false);
+                }
+                if(add_permiso==1){
+                    add.setSelected(true);
+                }else{
+                    add.setSelected(false);
+                }
+                if(editar_permiso==1){
+                    editar.setSelected(true);
+                }else{
+                    editar.setSelected(false);
+                }
+                if(eliminar_permiso==1){
+                    eliminar.setSelected(true);
+                }else{
+                    eliminar.setSelected(false);
+                }
+                if(listar_permiso==1&&add_permiso==1&&editar_permiso==1&&eliminar_permiso==1){
+                    marcar.setSelected(true);
+                    listar.setSelected(true);
+                    add.setSelected(true);
+                    editar.setSelected(true);
+                    eliminar.setSelected(true);
+                }
+                if(listar_permiso==0&&add_permiso==0&&editar_permiso==0&&eliminar_permiso==0){
+                    desmarcar.setSelected(true);
+                    listar.setSelected(false);
+                    add.setSelected(false);
+                    editar.setSelected(false);
+                    eliminar.setSelected(false);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -5,40 +5,20 @@
  */
 package paneles_de_paneles;
 
-import alertas.ErrorAlert;
 import alertas.SuccessAlert;
-import com.toedter.calendar.JDateChooser;
 import esperas.Guardando_general;
-import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.consultas_de_gestionar_recursos_x_programa;
 import interaccion_bd.opciones_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_prod_programa;
 import interaccion_bd.opciones_de_gestionar_recursos_x_programa;
 import java.awt.Event;
-import paneles.*;
-import java.awt.Image;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.lang.reflect.Field;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
-import static paneles_de_paneles.de_gestionar_contrato_editar.nombre_cliente_contrato_editar;
-import static paneles_de_paneles.de_gestionar_contrato_editar.numero_contrato_editar;
-import static paneles_de_paneles.de_gestionar_recursos_x_programa_editar.cantidad_re_editar;
-import static paneles_de_paneles.de_gestionar_recursos_x_programa_editar.carta_porte_re_editar;
-import static paneles_de_paneles.de_gestionar_recursos_x_programa_editar.codigo_re_editar;
-import static paneles_de_paneles.de_gestionar_recursos_x_programa_editar.descripcion_re_editar;
-import static paneles_de_paneles.de_gestionar_recursos_x_programa_editar.factura_re_editar;
-import static paneles_de_paneles.de_gestionar_recursos_x_programa_editar.programa_re_editar;
-import static paneles_de_paneles.de_gestionar_recursos_x_programa_editar.um_re_editar;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -51,14 +31,38 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
      */
     public de_gestionar_recursos_x_programa_añadir() {
         initComponents();
-        lbl_error_codigo_re_add.setVisible(false);
         lbl_error_descripcion_re_add.setVisible(false);
-        lbl_error_um_re_add.setVisible(false);
         lbl_error_cant_re_add.setVisible(false);
         lbl_error_programa_re_add.setVisible(false);
         lbl_error_factura_re_add.setVisible(false);
         lbl_error_carta_porte_add.setVisible(false);
+        codigo_re_add.setEnabled(false);
+        um_re_add.setEnabled(false);
         deshabilitarPegar();
+        opciones_de_gestionar_recursos_x_programa.get_combos(combo_prefabricados_re_add, combo_programas_re_add);
+        //################### detectar cambios en los combobox ######################3
+        combo_prefabricados_re_add.addItemListener(new ItemListener() {
+           public void itemStateChanged(ItemEvent arg0) {
+               //Do Something
+              lbl_error_descripcion_re_add.setVisible(false);
+           }
+           
+            public void itemStateChangedd(ItemEvent e) {
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+       });
+        
+        combo_programas_re_add.addItemListener(new ItemListener() {
+           public void itemStateChanged(ItemEvent arg0) {
+               //Do Something
+              lbl_error_programa_re_add.setVisible(false);
+           }
+           
+            public void itemStateChangedd(ItemEvent e) {
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+       });
+        // ##########################################################################
     }
 
     
@@ -73,20 +77,20 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
 
         jLabel1 = new javax.swing.JLabel();
         cantidad_re_add = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_codigo_re_add = new javax.swing.JLabel();
-        descripcion_re_add = new rojeru_san.rsfield.RSTextMaterial();
         lbl_error_descripcion_re_add = new javax.swing.JLabel();
         lbl_error_cant_re_add = new javax.swing.JLabel();
         boton_guardar_recursos_x_programa_add = new rojeru_san.RSButtonRiple();
         um_re_add = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_um_re_add = new javax.swing.JLabel();
         codigo_re_add = new rojeru_san.rsfield.RSTextMaterial();
-        programa_re_add = new rojeru_san.rsfield.RSTextMaterial();
         factura_re_add = new rojeru_san.rsfield.RSTextMaterial();
         lbl_error_factura_re_add = new javax.swing.JLabel();
         lbl_error_programa_re_add = new javax.swing.JLabel();
         carta_porte_re_add = new rojeru_san.rsfield.RSTextMaterial();
         lbl_error_carta_porte_add = new javax.swing.JLabel();
+        combo_programas_re_add = new org.bolivia.combo.SComboBox();
+        check_programas = new check_de_android.Switch();
+        combo_prefabricados_re_add = new org.bolivia.combo.SComboBox();
+        check_prefabricados = new check_de_android.Switch();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -104,24 +108,6 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 cantidad_re_addKeyTyped(evt);
-            }
-        });
-
-        lbl_error_codigo_re_add.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_codigo_re_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_codigo_re_add.setText("¡Debe ingresar un código de recurso!");
-
-        descripcion_re_add.setForeground(new java.awt.Color(0, 0, 0));
-        descripcion_re_add.setColorMaterial(new java.awt.Color(99, 70, 250));
-        descripcion_re_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        descripcion_re_add.setPlaceholder("Descripción del recurso...");
-        descripcion_re_add.setSelectionColor(new java.awt.Color(220, 23, 111));
-        descripcion_re_add.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                descripcion_re_addKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                descripcion_re_addKeyTyped(evt);
             }
         });
 
@@ -146,46 +132,17 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
         um_re_add.setForeground(new java.awt.Color(0, 0, 0));
         um_re_add.setColorMaterial(new java.awt.Color(99, 70, 250));
         um_re_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        um_re_add.setPlaceholder("Unidad de medida...");
+        um_re_add.setPlaceholder("Unidad de medida... (autocompletable)");
         um_re_add.setSelectionColor(new java.awt.Color(220, 23, 111));
-        um_re_add.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                um_re_addKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                um_re_addKeyTyped(evt);
-            }
-        });
-
-        lbl_error_um_re_add.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_um_re_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_um_re_add.setText("¡Debe ingresar una unidad de medida!");
 
         codigo_re_add.setForeground(new java.awt.Color(0, 0, 0));
         codigo_re_add.setColorMaterial(new java.awt.Color(99, 70, 250));
         codigo_re_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        codigo_re_add.setPlaceholder("Código del recurso...");
+        codigo_re_add.setPlaceholder("Código del recurso...  (autocompletable)");
         codigo_re_add.setSelectionColor(new java.awt.Color(220, 23, 111));
         codigo_re_add.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                codigo_re_addKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 codigo_re_addKeyTyped(evt);
-            }
-        });
-
-        programa_re_add.setForeground(new java.awt.Color(0, 0, 0));
-        programa_re_add.setColorMaterial(new java.awt.Color(99, 70, 250));
-        programa_re_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        programa_re_add.setPlaceholder("Programa al que pertenece...");
-        programa_re_add.setSelectionColor(new java.awt.Color(220, 23, 111));
-        programa_re_add.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                programa_re_addKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                programa_re_addKeyTyped(evt);
             }
         });
 
@@ -229,79 +186,91 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
         lbl_error_carta_porte_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
         lbl_error_carta_porte_add.setText("¡Debe ingresar un número de carta porte!");
 
+        combo_programas_re_add.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PROGRAMA" }));
+
+        check_programas.setToolTipText("Hacer o deshacer editable");
+        check_programas.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_programas.setOnOff(false);
+        check_programas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_programasMouseClicked(evt);
+            }
+        });
+
+        combo_prefabricados_re_add.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MATERIALES" }));
+        combo_prefabricados_re_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_prefabricados_re_addActionPerformed(evt);
+            }
+        });
+
+        check_prefabricados.setToolTipText("Hacer o deshacer editable");
+        check_prefabricados.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_prefabricados.setOnOff(false);
+        check_prefabricados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_prefabricadosMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbl_error_programa_re_add)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(factura_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(carta_porte_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(combo_programas_re_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbl_error_factura_re_add)
+                        .addComponent(lbl_error_carta_porte_add)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(programa_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(factura_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(carta_porte_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(lbl_error_carta_porte_add))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(44, 44, 44)
-                            .addComponent(lbl_error_programa_re_add))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(27, 27, 27)
-                            .addComponent(lbl_error_factura_re_add)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(lbl_error_cant_re_add))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(boton_guardar_recursos_x_programa_add, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(boton_guardar_recursos_x_programa_add, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_error_descripcion_re_add)
+                            .addComponent(um_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cantidad_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(31, 31, 31)
-                                    .addComponent(lbl_error_codigo_re_add))
-                                .addComponent(descripcion_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(lbl_error_descripcion_re_add))
-                                .addComponent(um_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(21, 21, 21)
-                                    .addComponent(lbl_error_um_re_add))
-                                .addComponent(cantidad_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(codigo_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(combo_prefabricados_re_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(check_prefabricados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(codigo_re_add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(lbl_error_cant_re_add))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combo_programas_re_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(check_programas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbl_error_programa_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(codigo_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(lbl_error_codigo_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(descripcion_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(lbl_error_descripcion_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(programa_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combo_prefabricados_re_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(check_prefabricados, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(um_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_error_um_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_error_programa_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbl_error_descripcion_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(um_re_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -337,46 +306,23 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
         }
     }//GEN-LAST:event_cantidad_re_addKeyTyped
 
-    private void descripcion_re_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descripcion_re_addKeyReleased
-        // TODO add your handling code here:
-        if(descripcion_re_add.getText().length()>0){
-            lbl_error_descripcion_re_add.setVisible(false);
-        }
-    }//GEN-LAST:event_descripcion_re_addKeyReleased
-
-    private void descripcion_re_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descripcion_re_addKeyTyped
-        // TODO add your handling code here:
-        char letras = evt.getKeyChar();
-        if ((letras < 'a' || letras > 'z') && (letras < 'A' | letras > 'Z')) {
-            if ((letras != 'ñ') && (letras != 'Ñ') && (letras != 'á') && (letras != 'Á') && (letras != 'é') && (letras != 'É') && (letras != 'í')
-                && (letras != 'Í') && (letras != 'ó') && (letras != 'Ó') && (letras != 'ú') && (letras != 'Ú') && (letras != ' ')) {
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_descripcion_re_addKeyTyped
-
     private void boton_guardar_recursos_x_programa_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_recursos_x_programa_addActionPerformed
-
+        String sql_elemento="select * from materia_prima where `elem__materia_prima`='"+combo_prefabricados_re_add.getSelectedItem().toString()+"'";
+        String sql_programa="SELECT * FROM `contrato` WHERE  `nombre_contrato`='"+combo_programas_re_add.getSelectedItem().toString()+"'";
         String sql="select * from recursos_x_programa where codigo_re='"+codigo_re_add.getText()+"'";
         String mje1="El código de recursos por programa que intenta registrar ya existe";
         String mje2="Por favor introduzca un código distinto de recurso";
-        if (codigo_re_add.getText().isEmpty()||descripcion_re_add.getText().isEmpty()||um_re_add.getText().isEmpty()||
-                cantidad_re_add.getText().isEmpty()||programa_re_add.getText().isEmpty()||factura_re_add.getText().isEmpty()||
-                carta_porte_re_add.getText().isEmpty()) {
-            if(codigo_re_add.getText().isEmpty()){
-                codigo_re_add.requestFocus();
-                lbl_error_codigo_re_add.setVisible(true);
-            }else if(descripcion_re_add.getText().isEmpty()){
-                descripcion_re_add.requestFocus();
+        if (combo_prefabricados_re_add.getSelectedIndex()==0||
+                cantidad_re_add.getText().isEmpty()||combo_programas_re_add.getSelectedIndex()==0||factura_re_add.getText().isEmpty()||
+                carta_porte_re_add.getText().isEmpty()||opciones_de_gestionar_prod_programa.existe(sql_elemento) == false||opciones_de_gestionar_prod_programa.existe(sql_programa) == false) {
+            if(combo_prefabricados_re_add.getSelectedIndex()==0){
+                combo_prefabricados_re_add.requestFocus();
                 lbl_error_descripcion_re_add.setVisible(true);
-            }else if(um_re_add.getText().isEmpty()){
-                um_re_add.requestFocus();
-                lbl_error_um_re_add.setVisible(true);
             }else if(cantidad_re_add.getText().isEmpty()){
                 cantidad_re_add.requestFocus();
                 lbl_error_cant_re_add.setVisible(true);
-            }else if(programa_re_add.getText().isEmpty()){
-                programa_re_add.requestFocus();
+            }else if(combo_programas_re_add.getSelectedIndex()==0){
+                combo_programas_re_add.requestFocus();
                 lbl_error_programa_re_add.setVisible(true);
             }else if(factura_re_add.getText().isEmpty()){
                 factura_re_add.requestFocus();
@@ -384,8 +330,18 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
             }else if(carta_porte_re_add.getText().isEmpty()){
                 carta_porte_re_add.requestFocus();
                 lbl_error_carta_porte_add.setVisible(true);
-            }
-        } else {
+            }else if(opciones_de_gestionar_prod_programa.existe(sql_elemento) == false){
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El elemento descrito no se encuentra en la base de datos.",
+                "Por favor, elija uno de los existentes en nuestra base de datos.",
+                "");
+            combo_prefabricados_re_add.requestFocus();
+            }else if(opciones_de_gestionar_prod_programa.existe(sql_programa) == false){
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El programa descrito no se encuentra en la base de datos.",
+                "Por favor, si es real, regístrelo antes de volver a intentarlo.",
+                "De lo contrario seleccione uno existente en nuestra base de datos");
+            combo_programas_re_add.requestFocus();
+            }        } else {
+
                 if (interaccion_bd.opciones_de_gestionar_contrato.existe(codigo_re_add.getText(), sql)) {
                     opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
                     cantidad_re_add.requestFocus();
@@ -396,10 +352,10 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
                     l.setVisible(true);
                     paneles_de_paneles.de_gestionar_recursos_x_programa_añadir.this.setEnabled(false);
                     uc.setCodigo(codigo_re_add.getText());
-                uc.setDescripcion(descripcion_re_add.getText());
+                uc.setDescripcion(combo_prefabricados_re_add.getSelectedItem().toString());
                 uc.setUm(um_re_add.getText());
                 uc.setCant(cantidad_re_add.getText());
-                uc.setPrograma_pertenece(programa_re_add.getText());
+                uc.setPrograma_pertenece(combo_programas_re_add.getSelectedItem().toString());
                 uc.setFactura(factura_re_add.getText());
                 uc.setCarta_porte(carta_porte_re_add.getText());
                     int control= opciones_de_gestionar_recursos_x_programa.registrar(uc);
@@ -418,58 +374,6 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
             
         }
     }//GEN-LAST:event_boton_guardar_recursos_x_programa_addActionPerformed
-
-    private void um_re_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_um_re_addKeyReleased
-        // TODO add your handling code here:
-        if(um_re_add.getText().length()>0){
-        lbl_error_um_re_add.setVisible(false);
-        }
-    }//GEN-LAST:event_um_re_addKeyReleased
-
-    private void um_re_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_um_re_addKeyTyped
-        // TODO add your handling code here:
-        char letras = evt.getKeyChar();
-        if ((letras < 'a' || letras > 'z') && (letras < 'A' | letras > 'Z')) {
-            if ((letras != 'ñ') && (letras != 'Ñ') && (letras != 'á') && (letras != 'Á') && (letras != 'é') && (letras != 'É') && (letras != 'í')
-                    && (letras != 'Í') && (letras != 'ó') && (letras != 'Ó') && (letras != 'ú') && (letras != 'Ú') && (letras != ' ')) {
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_um_re_addKeyTyped
-
-    private void codigo_re_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigo_re_addKeyReleased
-        // TODO add your handling code here:
-        if(codigo_re_add.getText().length()>0){
-            lbl_error_codigo_re_add.setVisible(false);
-        }
-    }//GEN-LAST:event_codigo_re_addKeyReleased
-
-    private void codigo_re_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigo_re_addKeyTyped
-        // TODO add your handling code here:
-        char num = evt.getKeyChar();
-        if ((num < '0' || num > '9')) {
-            evt.consume();
-            
-        }
-    }//GEN-LAST:event_codigo_re_addKeyTyped
-
-    private void programa_re_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_programa_re_addKeyReleased
-        // TODO add your handling code here:
-        if(programa_re_add.getText().length()>0){
-        lbl_error_programa_re_add.setVisible(false);
-        }
-    }//GEN-LAST:event_programa_re_addKeyReleased
-
-    private void programa_re_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_programa_re_addKeyTyped
-        // TODO add your handling code here:
-        char letras = evt.getKeyChar();
-        if ((letras < 'a' || letras > 'z') && (letras < 'A' | letras > 'Z')) {
-            if ((letras != 'ñ') && (letras != 'Ñ') && (letras != 'á') && (letras != 'Á') && (letras != 'é') && (letras != 'É') && (letras != 'í')
-                    && (letras != 'Í') && (letras != 'ó') && (letras != 'Ó') && (letras != 'ú') && (letras != 'Ú') && (letras != ' ')) {
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_programa_re_addKeyTyped
 
     private void factura_re_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_factura_re_addKeyReleased
         // TODO add your handling code here:
@@ -503,12 +407,49 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
         }
     }//GEN-LAST:event_carta_porte_re_addKeyTyped
 
+    private void check_programasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_programasMouseClicked
+        // TODO add your handling code here:
+        if(check_programas.isOnOff()){
+            combo_programas_re_add.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_programas_re_add);
+        }else{
+            combo_programas_re_add.setEditable(false);
+            combo_programas_re_add.requestFocus();
+        }
+    }//GEN-LAST:event_check_programasMouseClicked
+
+    private void check_prefabricadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_prefabricadosMouseClicked
+        // TODO add your handling code here:
+        if(check_prefabricados.isOnOff()){
+            combo_prefabricados_re_add.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_prefabricados_re_add);
+        }else{
+            combo_prefabricados_re_add.setEditable(false);
+            combo_prefabricados_re_add.requestFocus();
+        }
+    }//GEN-LAST:event_check_prefabricadosMouseClicked
+
+    private void codigo_re_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigo_re_addKeyTyped
+        // TODO add your handling code here:
+        char num = evt.getKeyChar();
+        if ((num < '0' || num > '9')) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_codigo_re_addKeyTyped
+
+    private void combo_prefabricados_re_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_prefabricados_re_addActionPerformed
+        // TODO add your handling code here:
+        String sql_codigo="SELECT `codigo_materia_prima` FROM `materia_prima` WHERE `elem__materia_prima`='"+combo_prefabricados_re_add.getSelectedItem().toString().trim()+"'";
+        String sql_um="SELECT `um_materia_prima` FROM `materia_prima` WHERE `elem__materia_prima`='"+combo_prefabricados_re_add.getSelectedItem().toString().trim()+"'";
+        um_re_add.setText(opciones_de_gestionar_recursos_x_programa.extraer_id(sql_um));
+        codigo_re_add.setText(opciones_de_gestionar_recursos_x_programa.extraer_id(sql_codigo));
+    }//GEN-LAST:event_combo_prefabricados_re_addActionPerformed
+
      private void deshabilitarPegar() {
         InputMap map1 = codigo_re_add.getInputMap(codigo_re_add.WHEN_FOCUSED);
         map1.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
 
-        InputMap map2 = descripcion_re_add.getInputMap(descripcion_re_add.WHEN_FOCUSED);
-        map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
         InputMap map3 = um_re_add.getInputMap(um_re_add.WHEN_FOCUSED);
         map3.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
@@ -516,8 +457,6 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
         InputMap map4 = cantidad_re_add.getInputMap(cantidad_re_add.WHEN_FOCUSED);
         map4.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
-        InputMap map5 = programa_re_add.getInputMap(programa_re_add.WHEN_FOCUSED);
-        map5.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
         InputMap map6 = factura_re_add.getInputMap(factura_re_add.WHEN_FOCUSED);
         map6.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
@@ -528,10 +467,10 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
 
     private void reset_campos(){
         cantidad_re_add.setText("");
-        descripcion_re_add.setText("");
+        combo_prefabricados_re_add.setSelectedIndex(0);
         codigo_re_add.setText("");
         um_re_add.setText("");
-        programa_re_add.setText("");
+        combo_programas_re_add.setSelectedIndex(0);
         factura_re_add.setText("");
         carta_porte_re_add.setText("");
     }
@@ -540,18 +479,18 @@ public class de_gestionar_recursos_x_programa_añadir extends javax.swing.JPanel
     private rojeru_san.RSButtonRiple boton_guardar_recursos_x_programa_add;
     public static rojeru_san.rsfield.RSTextMaterial cantidad_re_add;
     public static rojeru_san.rsfield.RSTextMaterial carta_porte_re_add;
-    public static rojeru_san.rsfield.RSTextMaterial codigo_re_add;
-    public static rojeru_san.rsfield.RSTextMaterial descripcion_re_add;
+    private check_de_android.Switch check_prefabricados;
+    private check_de_android.Switch check_programas;
+    private rojeru_san.rsfield.RSTextMaterial codigo_re_add;
+    private org.bolivia.combo.SComboBox combo_prefabricados_re_add;
+    private org.bolivia.combo.SComboBox combo_programas_re_add;
     public static rojeru_san.rsfield.RSTextMaterial factura_re_add;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl_error_cant_re_add;
     private javax.swing.JLabel lbl_error_carta_porte_add;
-    private javax.swing.JLabel lbl_error_codigo_re_add;
     private javax.swing.JLabel lbl_error_descripcion_re_add;
     private javax.swing.JLabel lbl_error_factura_re_add;
     private javax.swing.JLabel lbl_error_programa_re_add;
-    private javax.swing.JLabel lbl_error_um_re_add;
-    public static rojeru_san.rsfield.RSTextMaterial programa_re_add;
     public static rojeru_san.rsfield.RSTextMaterial um_re_add;
     // End of variables declaration//GEN-END:variables
 }

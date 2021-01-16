@@ -5,17 +5,44 @@
  */
 package paneles;
 
+import alertas.ErrorAlert;
+import alertas.SuccessAlert;
+import com.itextpdf.text.html.HtmlTags;
+import esperas.Guardando_general;
+import interaccion_bd.consultas_de_gestionar_contrato;
+import interaccion_bd.consultas_de_gestionar_usuarios;
+import interaccion_bd.opciones_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_prod_programa;
+import interaccion_bd.opciones_de_gestionar_usuarios;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.InputEvent;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import splash_y_login.inicio;
+
 /**
  *
  * @author RojeruSan
  */
-public class pnl_Gestionar_venta extends javax.swing.JPanel {
+public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
 
+    private int PosicionMouse;
     /**
      * Creates new form pnlHome
      */
-    public pnl_Gestionar_venta() {
+    public pnl_Gestionar_usuarios() {
         initComponents();
+        boton_cancelar_arriba.setVisible(false);
+        this.menu.add(pnlMenu);
+        opciones_de_gestionar_usuarios.setListar("");
+        boton_cancelar.setVisible(false);
+        reset_campos();
     }
 
     /**
@@ -27,18 +54,2050 @@ public class pnl_Gestionar_venta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
+        menu = new rojerusan.RSPopuMenu();
+        pnlMenu = new javax.swing.JPanel();
+        btnBorrar = new rojeru_san.RSButtonRiple();
+        btnEditar = new rojeru_san.RSButtonRiple();
         jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        nombre_usuario = new rojeru_san.rsfield.RSTextMaterial();
+        txtBuscar = new rojeru_san.rsfield.RSTextMaterial();
+        jLabel3 = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        tabla_usuarios = new rojerusan.RSTableMetro();
+        pass = new rojeru_san.RSMPassView();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        marcar_todos_ficha_costo = new javax.swing.JCheckBox();
+        listar_ficha_costo = new javax.swing.JCheckBox();
+        add_ficha_costo = new javax.swing.JCheckBox();
+        editar_ficha_costo = new javax.swing.JCheckBox();
+        desmarcar_ficha_costo = new javax.swing.JCheckBox();
+        eliminar_ficha_costo = new javax.swing.JCheckBox();
+        jPanel11 = new javax.swing.JPanel();
+        marcar_recursos_x_programa = new javax.swing.JCheckBox();
+        listar_recursos_x_programa = new javax.swing.JCheckBox();
+        add_recursos_x_programa = new javax.swing.JCheckBox();
+        editar_recursos_x_programa = new javax.swing.JCheckBox();
+        desmarcar_recursos_x_programa = new javax.swing.JCheckBox();
+        eliminar_recursos_x_programa = new javax.swing.JCheckBox();
+        exportar_recursos_x_programa = new javax.swing.JCheckBox();
+        imprimir_recursos_x_programa = new javax.swing.JCheckBox();
+        jPanel12 = new javax.swing.JPanel();
+        marcar_todos_contrato = new javax.swing.JCheckBox();
+        listar_contrato = new javax.swing.JCheckBox();
+        add_contrato = new javax.swing.JCheckBox();
+        editar_contrato = new javax.swing.JCheckBox();
+        desmarcar_todos_contrato = new javax.swing.JCheckBox();
+        eliminar_contrato = new javax.swing.JCheckBox();
+        exportar_contrato = new javax.swing.JCheckBox();
+        imprimir_contrato = new javax.swing.JCheckBox();
+        jPanel13 = new javax.swing.JPanel();
+        marcar_prep_tecnica = new javax.swing.JCheckBox();
+        listar_prep_tecnica = new javax.swing.JCheckBox();
+        add_prep_tecnica = new javax.swing.JCheckBox();
+        editar_prep_tecnica = new javax.swing.JCheckBox();
+        desmarcar_prep_tecnica = new javax.swing.JCheckBox();
+        eliminar_prep_tecnica = new javax.swing.JCheckBox();
+        jPanel14 = new javax.swing.JPanel();
+        marcar_plano = new javax.swing.JCheckBox();
+        listar_plano = new javax.swing.JCheckBox();
+        add_plano = new javax.swing.JCheckBox();
+        editar_plano = new javax.swing.JCheckBox();
+        desmarcar_plano = new javax.swing.JCheckBox();
+        eliminar_plano = new javax.swing.JCheckBox();
+        jPanel15 = new javax.swing.JPanel();
+        marcar_proyecto = new javax.swing.JCheckBox();
+        listar_proyecto = new javax.swing.JCheckBox();
+        add_proyecto = new javax.swing.JCheckBox();
+        editar_proyecto = new javax.swing.JCheckBox();
+        desmarcar_proyecto = new javax.swing.JCheckBox();
+        eliminar_proyecto = new javax.swing.JCheckBox();
+        jPanel16 = new javax.swing.JPanel();
+        marcar_info_laboratorio = new javax.swing.JCheckBox();
+        listar_info_laboratorio = new javax.swing.JCheckBox();
+        add_info_laboratorio = new javax.swing.JCheckBox();
+        editar_info_laboratorio = new javax.swing.JCheckBox();
+        desmarcar_info_laboratorio = new javax.swing.JCheckBox();
+        eliminar_info_laboratorio = new javax.swing.JCheckBox();
+        exportar_info_laboratorio = new javax.swing.JCheckBox();
+        imprimir_info_laboratorio = new javax.swing.JCheckBox();
+        jPanel17 = new javax.swing.JPanel();
+        marcar_hoja_ruta = new javax.swing.JCheckBox();
+        listar_hoja_ruta = new javax.swing.JCheckBox();
+        add_hoja_ruta = new javax.swing.JCheckBox();
+        editar_hoja_ruta = new javax.swing.JCheckBox();
+        desmarcar_hoja_ruta = new javax.swing.JCheckBox();
+        eliminar_hoja_ruta = new javax.swing.JCheckBox();
+        jPanel18 = new javax.swing.JPanel();
+        marcar_cartaporte = new javax.swing.JCheckBox();
+        listar_cartaporte = new javax.swing.JCheckBox();
+        add_cartaporte = new javax.swing.JCheckBox();
+        editar_cartaporte = new javax.swing.JCheckBox();
+        desmarcar_cartaporte = new javax.swing.JCheckBox();
+        eliminar_cartaporte = new javax.swing.JCheckBox();
+        jPanel19 = new javax.swing.JPanel();
+        marcar_ekipo = new javax.swing.JCheckBox();
+        listar_ekipo = new javax.swing.JCheckBox();
+        add_ekipo = new javax.swing.JCheckBox();
+        editar_ekipo = new javax.swing.JCheckBox();
+        desmarcar_ekipo = new javax.swing.JCheckBox();
+        eliminar_ekipo = new javax.swing.JCheckBox();
+        exportar_ekipo = new javax.swing.JCheckBox();
+        imprimir_ekipo = new javax.swing.JCheckBox();
+        jPanel20 = new javax.swing.JPanel();
+        marcar_tarjeta_combustible = new javax.swing.JCheckBox();
+        listar_tarjeta_combustible = new javax.swing.JCheckBox();
+        add_tarjeta_combustible = new javax.swing.JCheckBox();
+        editar_tarjeta_combustible = new javax.swing.JCheckBox();
+        desmarcar_tarjeta_combustible = new javax.swing.JCheckBox();
+        eliminar_tarjeta_combustible = new javax.swing.JCheckBox();
+        exportar_tarjeta_combustible = new javax.swing.JCheckBox();
+        imprimir_tarjeta_combustible = new javax.swing.JCheckBox();
+        jPanel21 = new javax.swing.JPanel();
+        marcar_usuario = new javax.swing.JCheckBox();
+        listar_usuario = new javax.swing.JCheckBox();
+        add_usuario = new javax.swing.JCheckBox();
+        editar_usuario = new javax.swing.JCheckBox();
+        desmarcar_usuario = new javax.swing.JCheckBox();
+        eliminar_usuario = new javax.swing.JCheckBox();
+        jPanel22 = new javax.swing.JPanel();
+        marcar_prod_programa = new javax.swing.JCheckBox();
+        listar_prod_programa = new javax.swing.JCheckBox();
+        add_prod_programa = new javax.swing.JCheckBox();
+        editar_prod_programa = new javax.swing.JCheckBox();
+        desmarcar_prod_programa = new javax.swing.JCheckBox();
+        eliminar_prod_programa = new javax.swing.JCheckBox();
+        exportar_prod_programa = new javax.swing.JCheckBox();
+        imprimir_prod_programa = new javax.swing.JCheckBox();
+        boton_cancelar = new rojeru_san.RSButtonRiple();
+        boton_registrar = new rojeru_san.RSButtonRiple();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        boton_registrar_arriba = new rojeru_san.RSButtonRiple();
+        boton_cancelar_arriba = new rojeru_san.RSButtonRiple();
+
+        menu.setBackground(new java.awt.Color(255, 255, 255));
+        menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+
+        pnlMenu.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnBorrar.setBackground(new java.awt.Color(69, 87, 252));
+        btnBorrar.setText("ELIMINAR");
+        btnBorrar.setColorHover(new java.awt.Color(87, 103, 253));
+        btnBorrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnBorrar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setBackground(new java.awt.Color(69, 87, 252));
+        btnEditar.setText("EDITAR");
+        btnEditar.setColorHover(new java.awt.Color(87, 103, 253));
+        btnEditar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
+        pnlMenu.setLayout(pnlMenuLayout);
+        pnlMenuLayout.setHorizontalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        pnlMenuLayout.setVerticalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/splash_logo.png"))); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Gestionar Ventas");
+        jLabel7.setText("Gestionar Usuarios");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        nombre_usuario.setForeground(new java.awt.Color(0, 0, 0));
+        nombre_usuario.setColorMaterial(new java.awt.Color(99, 70, 250));
+        nombre_usuario.setPlaceholder("Nombre de usuario...   (*)");
+        nombre_usuario.setSelectionColor(new java.awt.Color(220, 23, 111));
+        nombre_usuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nombre_usuarioKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombre_usuarioKeyTyped(evt);
+            }
+        });
+
+        txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        txtBuscar.setColorMaterial(new java.awt.Color(38, 86, 186));
+        txtBuscar.setPlaceholder("Buscar");
+        txtBuscar.setSelectionColor(new java.awt.Color(220, 23, 111));
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_coontrato/label-buscar.png"))); // NOI18N
+
+        scroll.setBorder(null);
+
+        tabla_usuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NOMBRE USUSARIO", "CONTRASEÑA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla_usuarios.setToolTipText("");
+        tabla_usuarios.setAltoHead(30);
+        tabla_usuarios.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
+        tabla_usuarios.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        tabla_usuarios.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tabla_usuarios.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tabla_usuarios.setColorHoverBackgound(new java.awt.Color(69, 87, 252));
+        tabla_usuarios.setColorSelBackgound(new java.awt.Color(69, 87, 252));
+        tabla_usuarios.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tabla_usuarios.setFuenteHead(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tabla_usuarios.setGrosorBordeFilas(0);
+        tabla_usuarios.setHover(true);
+        tabla_usuarios.setMultipleSeleccion(false);
+        tabla_usuarios.setRowHeight(30);
+        tabla_usuarios.setSelectionBackground(new java.awt.Color(99, 70, 250));
+        tabla_usuarios.getTableHeader().setReorderingAllowed(false);
+        tabla_usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_usuariosMouseClicked(evt);
+            }
+        });
+        scroll.setViewportView(tabla_usuarios);
+
+        pass.setBackground(new java.awt.Color(255, 255, 255));
+        pass.setForeground(new java.awt.Color(0, 0, 0));
+        pass.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        pass.setPlaceholder("Contraseña...   (*)");
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("PERMISOS");
+
+        jPanel10.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "FICHA DE COSTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_todos_ficha_costo.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_todos_ficha_costo.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_todos_ficha_costo.setText("MARCAR TODOS");
+        marcar_todos_ficha_costo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_todos_ficha_costo.setIconTextGap(12);
+        marcar_todos_ficha_costo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_todos_ficha_costo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_todos_ficha_costoActionPerformed(evt);
+            }
+        });
+
+        listar_ficha_costo.setBackground(new java.awt.Color(248, 248, 248));
+        listar_ficha_costo.setForeground(new java.awt.Color(102, 102, 102));
+        listar_ficha_costo.setText("LISTAR");
+        listar_ficha_costo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_ficha_costo.setIconTextGap(12);
+        listar_ficha_costo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_ficha_costo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_ficha_costoActionPerformed(evt);
+            }
+        });
+
+        add_ficha_costo.setBackground(new java.awt.Color(248, 248, 248));
+        add_ficha_costo.setForeground(new java.awt.Color(102, 102, 102));
+        add_ficha_costo.setText("AÑADIR");
+        add_ficha_costo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_ficha_costo.setIconTextGap(12);
+        add_ficha_costo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_ficha_costo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_ficha_costoActionPerformed(evt);
+            }
+        });
+
+        editar_ficha_costo.setBackground(new java.awt.Color(248, 248, 248));
+        editar_ficha_costo.setForeground(new java.awt.Color(102, 102, 102));
+        editar_ficha_costo.setText("EDITAR");
+        editar_ficha_costo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_ficha_costo.setIconTextGap(12);
+        editar_ficha_costo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_ficha_costo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_ficha_costoActionPerformed(evt);
+            }
+        });
+
+        desmarcar_ficha_costo.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_ficha_costo.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_ficha_costo.setText("DESMARCAR TODOS");
+        desmarcar_ficha_costo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_ficha_costo.setIconTextGap(12);
+        desmarcar_ficha_costo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_ficha_costo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_ficha_costoActionPerformed(evt);
+            }
+        });
+
+        eliminar_ficha_costo.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_ficha_costo.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_ficha_costo.setText("ELIMINAR");
+        eliminar_ficha_costo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_ficha_costo.setIconTextGap(12);
+        eliminar_ficha_costo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_ficha_costo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_ficha_costoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_todos_ficha_costo)
+                    .addComponent(editar_ficha_costo)
+                    .addComponent(listar_ficha_costo)
+                    .addComponent(add_ficha_costo))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_ficha_costo)
+                    .addComponent(eliminar_ficha_costo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(desmarcar_ficha_costo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_ficha_costo))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(marcar_todos_ficha_costo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_ficha_costo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_ficha_costo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_ficha_costo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel11.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "RECURSOS POR PROGRAMA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_recursos_x_programa.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_recursos_x_programa.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_recursos_x_programa.setText("MARCAR TODOS");
+        marcar_recursos_x_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_recursos_x_programa.setIconTextGap(12);
+        marcar_recursos_x_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_recursos_x_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_recursos_x_programaActionPerformed(evt);
+            }
+        });
+
+        listar_recursos_x_programa.setBackground(new java.awt.Color(248, 248, 248));
+        listar_recursos_x_programa.setForeground(new java.awt.Color(102, 102, 102));
+        listar_recursos_x_programa.setText("LISTAR");
+        listar_recursos_x_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_recursos_x_programa.setIconTextGap(12);
+        listar_recursos_x_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_recursos_x_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_recursos_x_programaActionPerformed(evt);
+            }
+        });
+
+        add_recursos_x_programa.setBackground(new java.awt.Color(248, 248, 248));
+        add_recursos_x_programa.setForeground(new java.awt.Color(102, 102, 102));
+        add_recursos_x_programa.setText("AÑADIR");
+        add_recursos_x_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_recursos_x_programa.setIconTextGap(12);
+        add_recursos_x_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_recursos_x_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_recursos_x_programaActionPerformed(evt);
+            }
+        });
+
+        editar_recursos_x_programa.setBackground(new java.awt.Color(248, 248, 248));
+        editar_recursos_x_programa.setForeground(new java.awt.Color(102, 102, 102));
+        editar_recursos_x_programa.setText("EDITAR");
+        editar_recursos_x_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_recursos_x_programa.setIconTextGap(12);
+        editar_recursos_x_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_recursos_x_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_recursos_x_programaActionPerformed(evt);
+            }
+        });
+
+        desmarcar_recursos_x_programa.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_recursos_x_programa.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_recursos_x_programa.setText("DESMARCAR TODOS");
+        desmarcar_recursos_x_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_recursos_x_programa.setIconTextGap(12);
+        desmarcar_recursos_x_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_recursos_x_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_recursos_x_programaActionPerformed(evt);
+            }
+        });
+
+        eliminar_recursos_x_programa.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_recursos_x_programa.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_recursos_x_programa.setText("ELIMINAR");
+        eliminar_recursos_x_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_recursos_x_programa.setIconTextGap(12);
+        eliminar_recursos_x_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_recursos_x_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_recursos_x_programaActionPerformed(evt);
+            }
+        });
+
+        exportar_recursos_x_programa.setBackground(new java.awt.Color(248, 248, 248));
+        exportar_recursos_x_programa.setForeground(new java.awt.Color(102, 102, 102));
+        exportar_recursos_x_programa.setText("EXPORTAR");
+        exportar_recursos_x_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        exportar_recursos_x_programa.setIconTextGap(12);
+        exportar_recursos_x_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        exportar_recursos_x_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportar_recursos_x_programaActionPerformed(evt);
+            }
+        });
+
+        imprimir_recursos_x_programa.setBackground(new java.awt.Color(248, 248, 248));
+        imprimir_recursos_x_programa.setForeground(new java.awt.Color(102, 102, 102));
+        imprimir_recursos_x_programa.setText("IMPRIMIR");
+        imprimir_recursos_x_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        imprimir_recursos_x_programa.setIconTextGap(12);
+        imprimir_recursos_x_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        imprimir_recursos_x_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimir_recursos_x_programaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_recursos_x_programa)
+                    .addComponent(editar_recursos_x_programa)
+                    .addComponent(listar_recursos_x_programa)
+                    .addComponent(add_recursos_x_programa))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_recursos_x_programa)
+                    .addComponent(imprimir_recursos_x_programa)
+                    .addComponent(eliminar_recursos_x_programa)
+                    .addComponent(exportar_recursos_x_programa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(desmarcar_recursos_x_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_recursos_x_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exportar_recursos_x_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imprimir_recursos_x_programa))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(marcar_recursos_x_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_recursos_x_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_recursos_x_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_recursos_x_programa)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel12.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "CONTRATO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_todos_contrato.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_todos_contrato.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_todos_contrato.setText("MARCAR TODOS");
+        marcar_todos_contrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_todos_contrato.setIconTextGap(12);
+        marcar_todos_contrato.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_todos_contrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_todos_contratoActionPerformed(evt);
+            }
+        });
+
+        listar_contrato.setBackground(new java.awt.Color(248, 248, 248));
+        listar_contrato.setForeground(new java.awt.Color(102, 102, 102));
+        listar_contrato.setText("LISTAR");
+        listar_contrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_contrato.setIconTextGap(12);
+        listar_contrato.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_contrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_contratoActionPerformed(evt);
+            }
+        });
+
+        add_contrato.setBackground(new java.awt.Color(248, 248, 248));
+        add_contrato.setForeground(new java.awt.Color(102, 102, 102));
+        add_contrato.setText("AÑADIR");
+        add_contrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_contrato.setIconTextGap(12);
+        add_contrato.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_contrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_contratoActionPerformed(evt);
+            }
+        });
+
+        editar_contrato.setBackground(new java.awt.Color(248, 248, 248));
+        editar_contrato.setForeground(new java.awt.Color(102, 102, 102));
+        editar_contrato.setText("EDITAR");
+        editar_contrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_contrato.setIconTextGap(12);
+        editar_contrato.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_contrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_contratoActionPerformed(evt);
+            }
+        });
+
+        desmarcar_todos_contrato.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_todos_contrato.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_todos_contrato.setText("DESMARCAR TODOS");
+        desmarcar_todos_contrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_todos_contrato.setIconTextGap(12);
+        desmarcar_todos_contrato.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_todos_contrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_todos_contratoActionPerformed(evt);
+            }
+        });
+
+        eliminar_contrato.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_contrato.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_contrato.setText("ELIMINAR");
+        eliminar_contrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_contrato.setIconTextGap(12);
+        eliminar_contrato.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_contrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_contratoActionPerformed(evt);
+            }
+        });
+
+        exportar_contrato.setBackground(new java.awt.Color(248, 248, 248));
+        exportar_contrato.setForeground(new java.awt.Color(102, 102, 102));
+        exportar_contrato.setText("EXPORTAR");
+        exportar_contrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        exportar_contrato.setIconTextGap(12);
+        exportar_contrato.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        exportar_contrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportar_contratoActionPerformed(evt);
+            }
+        });
+
+        imprimir_contrato.setBackground(new java.awt.Color(248, 248, 248));
+        imprimir_contrato.setForeground(new java.awt.Color(102, 102, 102));
+        imprimir_contrato.setText("IMPRIMIR");
+        imprimir_contrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        imprimir_contrato.setIconTextGap(12);
+        imprimir_contrato.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        imprimir_contrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimir_contratoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_todos_contrato)
+                    .addComponent(editar_contrato)
+                    .addComponent(listar_contrato)
+                    .addComponent(add_contrato))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_todos_contrato)
+                    .addComponent(imprimir_contrato)
+                    .addComponent(eliminar_contrato)
+                    .addComponent(exportar_contrato))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(desmarcar_todos_contrato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_contrato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exportar_contrato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imprimir_contrato))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(marcar_todos_contrato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_contrato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_contrato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_contrato)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel13.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "PREPARACIÓN TÉCNICA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_prep_tecnica.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_prep_tecnica.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_prep_tecnica.setText("MARCAR TODOS");
+        marcar_prep_tecnica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_prep_tecnica.setIconTextGap(12);
+        marcar_prep_tecnica.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_prep_tecnica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_prep_tecnicaActionPerformed(evt);
+            }
+        });
+
+        listar_prep_tecnica.setBackground(new java.awt.Color(248, 248, 248));
+        listar_prep_tecnica.setForeground(new java.awt.Color(102, 102, 102));
+        listar_prep_tecnica.setText("LISTAR");
+        listar_prep_tecnica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_prep_tecnica.setIconTextGap(12);
+        listar_prep_tecnica.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_prep_tecnica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_prep_tecnicaActionPerformed(evt);
+            }
+        });
+
+        add_prep_tecnica.setBackground(new java.awt.Color(248, 248, 248));
+        add_prep_tecnica.setForeground(new java.awt.Color(102, 102, 102));
+        add_prep_tecnica.setText("AÑADIR");
+        add_prep_tecnica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_prep_tecnica.setIconTextGap(12);
+        add_prep_tecnica.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_prep_tecnica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_prep_tecnicaActionPerformed(evt);
+            }
+        });
+
+        editar_prep_tecnica.setBackground(new java.awt.Color(248, 248, 248));
+        editar_prep_tecnica.setForeground(new java.awt.Color(102, 102, 102));
+        editar_prep_tecnica.setText("EDITAR");
+        editar_prep_tecnica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_prep_tecnica.setIconTextGap(12);
+        editar_prep_tecnica.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_prep_tecnica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_prep_tecnicaActionPerformed(evt);
+            }
+        });
+
+        desmarcar_prep_tecnica.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_prep_tecnica.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_prep_tecnica.setText("DESMARCAR TODOS");
+        desmarcar_prep_tecnica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_prep_tecnica.setIconTextGap(12);
+        desmarcar_prep_tecnica.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_prep_tecnica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_prep_tecnicaActionPerformed(evt);
+            }
+        });
+
+        eliminar_prep_tecnica.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_prep_tecnica.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_prep_tecnica.setText("ELIMINAR");
+        eliminar_prep_tecnica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_prep_tecnica.setIconTextGap(12);
+        eliminar_prep_tecnica.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_prep_tecnica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_prep_tecnicaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_prep_tecnica)
+                    .addComponent(editar_prep_tecnica)
+                    .addComponent(listar_prep_tecnica)
+                    .addComponent(add_prep_tecnica))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_prep_tecnica)
+                    .addComponent(eliminar_prep_tecnica))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(desmarcar_prep_tecnica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_prep_tecnica))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(marcar_prep_tecnica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_prep_tecnica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_prep_tecnica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_prep_tecnica)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel14.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "PLANO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_plano.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_plano.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_plano.setText("MARCAR TODOS");
+        marcar_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_plano.setIconTextGap(12);
+        marcar_plano.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_plano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_planoActionPerformed(evt);
+            }
+        });
+
+        listar_plano.setBackground(new java.awt.Color(248, 248, 248));
+        listar_plano.setForeground(new java.awt.Color(102, 102, 102));
+        listar_plano.setText("LISTAR");
+        listar_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_plano.setIconTextGap(12);
+        listar_plano.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_plano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_planoActionPerformed(evt);
+            }
+        });
+
+        add_plano.setBackground(new java.awt.Color(248, 248, 248));
+        add_plano.setForeground(new java.awt.Color(102, 102, 102));
+        add_plano.setText("AÑADIR");
+        add_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_plano.setIconTextGap(12);
+        add_plano.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_plano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_planoActionPerformed(evt);
+            }
+        });
+
+        editar_plano.setBackground(new java.awt.Color(248, 248, 248));
+        editar_plano.setForeground(new java.awt.Color(102, 102, 102));
+        editar_plano.setText("EDITAR");
+        editar_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_plano.setIconTextGap(12);
+        editar_plano.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_plano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_planoActionPerformed(evt);
+            }
+        });
+
+        desmarcar_plano.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_plano.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_plano.setText("DESMARCAR TODOS");
+        desmarcar_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_plano.setIconTextGap(12);
+        desmarcar_plano.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_plano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_planoActionPerformed(evt);
+            }
+        });
+
+        eliminar_plano.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_plano.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_plano.setText("ELIMINAR");
+        eliminar_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_plano.setIconTextGap(12);
+        eliminar_plano.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_plano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_planoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_plano)
+                    .addComponent(editar_plano)
+                    .addComponent(listar_plano)
+                    .addComponent(add_plano))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_plano)
+                    .addComponent(eliminar_plano))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(desmarcar_plano)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_plano))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(marcar_plano)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_plano)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_plano)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_plano)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel15.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "PROYECTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_proyecto.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_proyecto.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_proyecto.setText("MARCAR TODOS");
+        marcar_proyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_proyecto.setIconTextGap(12);
+        marcar_proyecto.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_proyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_proyectoActionPerformed(evt);
+            }
+        });
+
+        listar_proyecto.setBackground(new java.awt.Color(248, 248, 248));
+        listar_proyecto.setForeground(new java.awt.Color(102, 102, 102));
+        listar_proyecto.setText("LISTAR");
+        listar_proyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_proyecto.setIconTextGap(12);
+        listar_proyecto.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_proyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_proyectoActionPerformed(evt);
+            }
+        });
+
+        add_proyecto.setBackground(new java.awt.Color(248, 248, 248));
+        add_proyecto.setForeground(new java.awt.Color(102, 102, 102));
+        add_proyecto.setText("AÑADIR");
+        add_proyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_proyecto.setIconTextGap(12);
+        add_proyecto.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_proyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_proyectoActionPerformed(evt);
+            }
+        });
+
+        editar_proyecto.setBackground(new java.awt.Color(248, 248, 248));
+        editar_proyecto.setForeground(new java.awt.Color(102, 102, 102));
+        editar_proyecto.setText("EDITAR");
+        editar_proyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_proyecto.setIconTextGap(12);
+        editar_proyecto.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_proyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_proyectoActionPerformed(evt);
+            }
+        });
+
+        desmarcar_proyecto.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_proyecto.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_proyecto.setText("DESMARCAR TODOS");
+        desmarcar_proyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_proyecto.setIconTextGap(12);
+        desmarcar_proyecto.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_proyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_proyectoActionPerformed(evt);
+            }
+        });
+
+        eliminar_proyecto.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_proyecto.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_proyecto.setText("ELIMINAR");
+        eliminar_proyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_proyecto.setIconTextGap(12);
+        eliminar_proyecto.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_proyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_proyectoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_proyecto)
+                    .addComponent(editar_proyecto)
+                    .addComponent(listar_proyecto)
+                    .addComponent(add_proyecto))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_proyecto)
+                    .addComponent(eliminar_proyecto))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(desmarcar_proyecto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_proyecto))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(marcar_proyecto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_proyecto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_proyecto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_proyecto)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel16.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "INFORMACIÓN DE LABORATORIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_info_laboratorio.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_info_laboratorio.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_info_laboratorio.setText("MARCAR TODOS");
+        marcar_info_laboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_info_laboratorio.setIconTextGap(12);
+        marcar_info_laboratorio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_info_laboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_info_laboratorioActionPerformed(evt);
+            }
+        });
+
+        listar_info_laboratorio.setBackground(new java.awt.Color(248, 248, 248));
+        listar_info_laboratorio.setForeground(new java.awt.Color(102, 102, 102));
+        listar_info_laboratorio.setText("LISTAR");
+        listar_info_laboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_info_laboratorio.setIconTextGap(12);
+        listar_info_laboratorio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_info_laboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_info_laboratorioActionPerformed(evt);
+            }
+        });
+
+        add_info_laboratorio.setBackground(new java.awt.Color(248, 248, 248));
+        add_info_laboratorio.setForeground(new java.awt.Color(102, 102, 102));
+        add_info_laboratorio.setText("AÑADIR");
+        add_info_laboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_info_laboratorio.setIconTextGap(12);
+        add_info_laboratorio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_info_laboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_info_laboratorioActionPerformed(evt);
+            }
+        });
+
+        editar_info_laboratorio.setBackground(new java.awt.Color(248, 248, 248));
+        editar_info_laboratorio.setForeground(new java.awt.Color(102, 102, 102));
+        editar_info_laboratorio.setText("EDITAR");
+        editar_info_laboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_info_laboratorio.setIconTextGap(12);
+        editar_info_laboratorio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_info_laboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_info_laboratorioActionPerformed(evt);
+            }
+        });
+
+        desmarcar_info_laboratorio.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_info_laboratorio.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_info_laboratorio.setText("DESMARCAR TODOS");
+        desmarcar_info_laboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_info_laboratorio.setIconTextGap(12);
+        desmarcar_info_laboratorio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_info_laboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_info_laboratorioActionPerformed(evt);
+            }
+        });
+
+        eliminar_info_laboratorio.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_info_laboratorio.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_info_laboratorio.setText("ELIMINAR");
+        eliminar_info_laboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_info_laboratorio.setIconTextGap(12);
+        eliminar_info_laboratorio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_info_laboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_info_laboratorioActionPerformed(evt);
+            }
+        });
+
+        exportar_info_laboratorio.setBackground(new java.awt.Color(248, 248, 248));
+        exportar_info_laboratorio.setForeground(new java.awt.Color(102, 102, 102));
+        exportar_info_laboratorio.setText("EXPORTAR");
+        exportar_info_laboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        exportar_info_laboratorio.setIconTextGap(12);
+        exportar_info_laboratorio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        exportar_info_laboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportar_info_laboratorioActionPerformed(evt);
+            }
+        });
+
+        imprimir_info_laboratorio.setBackground(new java.awt.Color(248, 248, 248));
+        imprimir_info_laboratorio.setForeground(new java.awt.Color(102, 102, 102));
+        imprimir_info_laboratorio.setText("IMPRIMIR");
+        imprimir_info_laboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        imprimir_info_laboratorio.setIconTextGap(12);
+        imprimir_info_laboratorio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        imprimir_info_laboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimir_info_laboratorioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_info_laboratorio)
+                    .addComponent(editar_info_laboratorio)
+                    .addComponent(listar_info_laboratorio)
+                    .addComponent(add_info_laboratorio))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_info_laboratorio)
+                    .addComponent(imprimir_info_laboratorio)
+                    .addComponent(eliminar_info_laboratorio)
+                    .addComponent(exportar_info_laboratorio))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(desmarcar_info_laboratorio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_info_laboratorio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exportar_info_laboratorio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imprimir_info_laboratorio))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(marcar_info_laboratorio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_info_laboratorio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_info_laboratorio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_info_laboratorio)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel17.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "HOJA DE RUTA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_hoja_ruta.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_hoja_ruta.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_hoja_ruta.setText("MARCAR TODOS");
+        marcar_hoja_ruta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_hoja_ruta.setIconTextGap(12);
+        marcar_hoja_ruta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_hoja_ruta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_hoja_rutaActionPerformed(evt);
+            }
+        });
+
+        listar_hoja_ruta.setBackground(new java.awt.Color(248, 248, 248));
+        listar_hoja_ruta.setForeground(new java.awt.Color(102, 102, 102));
+        listar_hoja_ruta.setText("LISTAR");
+        listar_hoja_ruta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_hoja_ruta.setIconTextGap(12);
+        listar_hoja_ruta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_hoja_ruta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_hoja_rutaActionPerformed(evt);
+            }
+        });
+
+        add_hoja_ruta.setBackground(new java.awt.Color(248, 248, 248));
+        add_hoja_ruta.setForeground(new java.awt.Color(102, 102, 102));
+        add_hoja_ruta.setText("AÑADIR");
+        add_hoja_ruta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_hoja_ruta.setIconTextGap(12);
+        add_hoja_ruta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_hoja_ruta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_hoja_rutaActionPerformed(evt);
+            }
+        });
+
+        editar_hoja_ruta.setBackground(new java.awt.Color(248, 248, 248));
+        editar_hoja_ruta.setForeground(new java.awt.Color(102, 102, 102));
+        editar_hoja_ruta.setText("EDITAR");
+        editar_hoja_ruta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_hoja_ruta.setIconTextGap(12);
+        editar_hoja_ruta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_hoja_ruta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_hoja_rutaActionPerformed(evt);
+            }
+        });
+
+        desmarcar_hoja_ruta.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_hoja_ruta.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_hoja_ruta.setText("DESMARCAR TODOS");
+        desmarcar_hoja_ruta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_hoja_ruta.setIconTextGap(12);
+        desmarcar_hoja_ruta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_hoja_ruta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_hoja_rutaActionPerformed(evt);
+            }
+        });
+
+        eliminar_hoja_ruta.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_hoja_ruta.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_hoja_ruta.setText("ELIMINAR");
+        eliminar_hoja_ruta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_hoja_ruta.setIconTextGap(12);
+        eliminar_hoja_ruta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_hoja_ruta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_hoja_rutaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_hoja_ruta)
+                    .addComponent(editar_hoja_ruta)
+                    .addComponent(listar_hoja_ruta)
+                    .addComponent(add_hoja_ruta))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_hoja_ruta)
+                    .addComponent(eliminar_hoja_ruta))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addComponent(desmarcar_hoja_ruta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_hoja_ruta))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addComponent(marcar_hoja_ruta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_hoja_ruta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_hoja_ruta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_hoja_ruta)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel18.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "CARTA DE PORTE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_cartaporte.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_cartaporte.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_cartaporte.setText("MARCAR TODOS");
+        marcar_cartaporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_cartaporte.setIconTextGap(12);
+        marcar_cartaporte.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_cartaporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_cartaporteActionPerformed(evt);
+            }
+        });
+
+        listar_cartaporte.setBackground(new java.awt.Color(248, 248, 248));
+        listar_cartaporte.setForeground(new java.awt.Color(102, 102, 102));
+        listar_cartaporte.setText("LISTAR");
+        listar_cartaporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_cartaporte.setIconTextGap(12);
+        listar_cartaporte.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_cartaporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_cartaporteActionPerformed(evt);
+            }
+        });
+
+        add_cartaporte.setBackground(new java.awt.Color(248, 248, 248));
+        add_cartaporte.setForeground(new java.awt.Color(102, 102, 102));
+        add_cartaporte.setText("AÑADIR");
+        add_cartaporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_cartaporte.setIconTextGap(12);
+        add_cartaporte.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_cartaporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_cartaporteActionPerformed(evt);
+            }
+        });
+
+        editar_cartaporte.setBackground(new java.awt.Color(248, 248, 248));
+        editar_cartaporte.setForeground(new java.awt.Color(102, 102, 102));
+        editar_cartaporte.setText("EDITAR");
+        editar_cartaporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_cartaporte.setIconTextGap(12);
+        editar_cartaporte.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_cartaporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_cartaporteActionPerformed(evt);
+            }
+        });
+
+        desmarcar_cartaporte.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_cartaporte.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_cartaporte.setText("DESMARCAR TODOS");
+        desmarcar_cartaporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_cartaporte.setIconTextGap(12);
+        desmarcar_cartaporte.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_cartaporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_cartaporteActionPerformed(evt);
+            }
+        });
+
+        eliminar_cartaporte.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_cartaporte.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_cartaporte.setText("ELIMINAR");
+        eliminar_cartaporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_cartaporte.setIconTextGap(12);
+        eliminar_cartaporte.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_cartaporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_cartaporteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_cartaporte)
+                    .addComponent(editar_cartaporte)
+                    .addComponent(listar_cartaporte)
+                    .addComponent(add_cartaporte))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_cartaporte)
+                    .addComponent(eliminar_cartaporte))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addComponent(desmarcar_cartaporte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_cartaporte))
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addComponent(marcar_cartaporte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_cartaporte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_cartaporte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_cartaporte)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel19.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "EQUIPO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_ekipo.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_ekipo.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_ekipo.setText("MARCAR TODOS");
+        marcar_ekipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_ekipo.setIconTextGap(12);
+        marcar_ekipo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_ekipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_ekipoActionPerformed(evt);
+            }
+        });
+
+        listar_ekipo.setBackground(new java.awt.Color(248, 248, 248));
+        listar_ekipo.setForeground(new java.awt.Color(102, 102, 102));
+        listar_ekipo.setText("LISTAR");
+        listar_ekipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_ekipo.setIconTextGap(12);
+        listar_ekipo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_ekipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_ekipoActionPerformed(evt);
+            }
+        });
+
+        add_ekipo.setBackground(new java.awt.Color(248, 248, 248));
+        add_ekipo.setForeground(new java.awt.Color(102, 102, 102));
+        add_ekipo.setText("AÑADIR");
+        add_ekipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_ekipo.setIconTextGap(12);
+        add_ekipo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_ekipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_ekipoActionPerformed(evt);
+            }
+        });
+
+        editar_ekipo.setBackground(new java.awt.Color(248, 248, 248));
+        editar_ekipo.setForeground(new java.awt.Color(102, 102, 102));
+        editar_ekipo.setText("EDITAR");
+        editar_ekipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_ekipo.setIconTextGap(12);
+        editar_ekipo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_ekipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_ekipoActionPerformed(evt);
+            }
+        });
+
+        desmarcar_ekipo.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_ekipo.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_ekipo.setText("DESMARCAR TODOS");
+        desmarcar_ekipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_ekipo.setIconTextGap(12);
+        desmarcar_ekipo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_ekipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_ekipoActionPerformed(evt);
+            }
+        });
+
+        eliminar_ekipo.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_ekipo.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_ekipo.setText("ELIMINAR");
+        eliminar_ekipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_ekipo.setIconTextGap(12);
+        eliminar_ekipo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_ekipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_ekipoActionPerformed(evt);
+            }
+        });
+
+        exportar_ekipo.setBackground(new java.awt.Color(248, 248, 248));
+        exportar_ekipo.setForeground(new java.awt.Color(102, 102, 102));
+        exportar_ekipo.setText("EXPORTAR");
+        exportar_ekipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        exportar_ekipo.setIconTextGap(12);
+        exportar_ekipo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        exportar_ekipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportar_ekipoActionPerformed(evt);
+            }
+        });
+
+        imprimir_ekipo.setBackground(new java.awt.Color(248, 248, 248));
+        imprimir_ekipo.setForeground(new java.awt.Color(102, 102, 102));
+        imprimir_ekipo.setText("IMPRIMIR");
+        imprimir_ekipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        imprimir_ekipo.setIconTextGap(12);
+        imprimir_ekipo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        imprimir_ekipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimir_ekipoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_ekipo)
+                    .addComponent(editar_ekipo)
+                    .addComponent(listar_ekipo)
+                    .addComponent(add_ekipo))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_ekipo)
+                    .addComponent(eliminar_ekipo)
+                    .addComponent(imprimir_ekipo)
+                    .addComponent(exportar_ekipo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(desmarcar_ekipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_ekipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exportar_ekipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imprimir_ekipo))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(marcar_ekipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_ekipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_ekipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_ekipo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel20.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "TARJETA DE COMBUSTIBLE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_tarjeta_combustible.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_tarjeta_combustible.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_tarjeta_combustible.setText("MARCAR TODOS");
+        marcar_tarjeta_combustible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_tarjeta_combustible.setIconTextGap(12);
+        marcar_tarjeta_combustible.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_tarjeta_combustible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_tarjeta_combustibleActionPerformed(evt);
+            }
+        });
+
+        listar_tarjeta_combustible.setBackground(new java.awt.Color(248, 248, 248));
+        listar_tarjeta_combustible.setForeground(new java.awt.Color(102, 102, 102));
+        listar_tarjeta_combustible.setText("LISTAR");
+        listar_tarjeta_combustible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_tarjeta_combustible.setIconTextGap(12);
+        listar_tarjeta_combustible.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_tarjeta_combustible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_tarjeta_combustibleActionPerformed(evt);
+            }
+        });
+
+        add_tarjeta_combustible.setBackground(new java.awt.Color(248, 248, 248));
+        add_tarjeta_combustible.setForeground(new java.awt.Color(102, 102, 102));
+        add_tarjeta_combustible.setText("AÑADIR");
+        add_tarjeta_combustible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_tarjeta_combustible.setIconTextGap(12);
+        add_tarjeta_combustible.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_tarjeta_combustible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_tarjeta_combustibleActionPerformed(evt);
+            }
+        });
+
+        editar_tarjeta_combustible.setBackground(new java.awt.Color(248, 248, 248));
+        editar_tarjeta_combustible.setForeground(new java.awt.Color(102, 102, 102));
+        editar_tarjeta_combustible.setText("EDITAR");
+        editar_tarjeta_combustible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_tarjeta_combustible.setIconTextGap(12);
+        editar_tarjeta_combustible.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_tarjeta_combustible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_tarjeta_combustibleActionPerformed(evt);
+            }
+        });
+
+        desmarcar_tarjeta_combustible.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_tarjeta_combustible.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_tarjeta_combustible.setText("DESMARCAR TODOS");
+        desmarcar_tarjeta_combustible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_tarjeta_combustible.setIconTextGap(12);
+        desmarcar_tarjeta_combustible.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_tarjeta_combustible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_tarjeta_combustibleActionPerformed(evt);
+            }
+        });
+
+        eliminar_tarjeta_combustible.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_tarjeta_combustible.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_tarjeta_combustible.setText("ELIMINAR");
+        eliminar_tarjeta_combustible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_tarjeta_combustible.setIconTextGap(12);
+        eliminar_tarjeta_combustible.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_tarjeta_combustible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_tarjeta_combustibleActionPerformed(evt);
+            }
+        });
+
+        exportar_tarjeta_combustible.setBackground(new java.awt.Color(248, 248, 248));
+        exportar_tarjeta_combustible.setForeground(new java.awt.Color(102, 102, 102));
+        exportar_tarjeta_combustible.setText("EXPORTAR");
+        exportar_tarjeta_combustible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        exportar_tarjeta_combustible.setIconTextGap(12);
+        exportar_tarjeta_combustible.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        exportar_tarjeta_combustible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportar_tarjeta_combustibleActionPerformed(evt);
+            }
+        });
+
+        imprimir_tarjeta_combustible.setBackground(new java.awt.Color(248, 248, 248));
+        imprimir_tarjeta_combustible.setForeground(new java.awt.Color(102, 102, 102));
+        imprimir_tarjeta_combustible.setText("IMPRIMIR");
+        imprimir_tarjeta_combustible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        imprimir_tarjeta_combustible.setIconTextGap(12);
+        imprimir_tarjeta_combustible.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        imprimir_tarjeta_combustible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimir_tarjeta_combustibleActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_tarjeta_combustible)
+                    .addComponent(editar_tarjeta_combustible)
+                    .addComponent(listar_tarjeta_combustible)
+                    .addComponent(add_tarjeta_combustible))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_tarjeta_combustible)
+                    .addComponent(imprimir_tarjeta_combustible)
+                    .addComponent(eliminar_tarjeta_combustible)
+                    .addComponent(exportar_tarjeta_combustible))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(desmarcar_tarjeta_combustible)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_tarjeta_combustible)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exportar_tarjeta_combustible)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imprimir_tarjeta_combustible))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(marcar_tarjeta_combustible)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_tarjeta_combustible)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_tarjeta_combustible)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_tarjeta_combustible)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel21.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "USUARIOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_usuario.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_usuario.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_usuario.setText("MARCAR TODOS");
+        marcar_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_usuario.setIconTextGap(12);
+        marcar_usuario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_usuarioActionPerformed(evt);
+            }
+        });
+
+        listar_usuario.setBackground(new java.awt.Color(248, 248, 248));
+        listar_usuario.setForeground(new java.awt.Color(102, 102, 102));
+        listar_usuario.setText("LISTAR");
+        listar_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_usuario.setIconTextGap(12);
+        listar_usuario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_usuarioActionPerformed(evt);
+            }
+        });
+
+        add_usuario.setBackground(new java.awt.Color(248, 248, 248));
+        add_usuario.setForeground(new java.awt.Color(102, 102, 102));
+        add_usuario.setText("AÑADIR");
+        add_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_usuario.setIconTextGap(12);
+        add_usuario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_usuarioActionPerformed(evt);
+            }
+        });
+
+        editar_usuario.setBackground(new java.awt.Color(248, 248, 248));
+        editar_usuario.setForeground(new java.awt.Color(102, 102, 102));
+        editar_usuario.setText("EDITAR");
+        editar_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_usuario.setIconTextGap(12);
+        editar_usuario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_usuarioActionPerformed(evt);
+            }
+        });
+
+        desmarcar_usuario.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_usuario.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_usuario.setText("DESMARCAR TODOS");
+        desmarcar_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_usuario.setIconTextGap(12);
+        desmarcar_usuario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_usuarioActionPerformed(evt);
+            }
+        });
+
+        eliminar_usuario.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_usuario.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_usuario.setText("ELIMINAR");
+        eliminar_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_usuario.setIconTextGap(12);
+        eliminar_usuario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_usuarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_usuario)
+                    .addComponent(editar_usuario)
+                    .addComponent(listar_usuario)
+                    .addComponent(add_usuario))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_usuario)
+                    .addComponent(eliminar_usuario))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addComponent(desmarcar_usuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_usuario))
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addComponent(marcar_usuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_usuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_usuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_usuario)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel22.setBackground(new java.awt.Color(248, 248, 248));
+        jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 104, 178)), "PRODUCCIÓN POR PROGRAMA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        marcar_prod_programa.setBackground(new java.awt.Color(248, 248, 248));
+        marcar_prod_programa.setForeground(new java.awt.Color(102, 102, 102));
+        marcar_prod_programa.setText("MARCAR TODOS");
+        marcar_prod_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        marcar_prod_programa.setIconTextGap(12);
+        marcar_prod_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        marcar_prod_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcar_prod_programaActionPerformed(evt);
+            }
+        });
+
+        listar_prod_programa.setBackground(new java.awt.Color(248, 248, 248));
+        listar_prod_programa.setForeground(new java.awt.Color(102, 102, 102));
+        listar_prod_programa.setText("LISTAR");
+        listar_prod_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        listar_prod_programa.setIconTextGap(12);
+        listar_prod_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        listar_prod_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_prod_programaActionPerformed(evt);
+            }
+        });
+
+        add_prod_programa.setBackground(new java.awt.Color(248, 248, 248));
+        add_prod_programa.setForeground(new java.awt.Color(102, 102, 102));
+        add_prod_programa.setText("AÑADIR");
+        add_prod_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        add_prod_programa.setIconTextGap(12);
+        add_prod_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        add_prod_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_prod_programaActionPerformed(evt);
+            }
+        });
+
+        editar_prod_programa.setBackground(new java.awt.Color(248, 248, 248));
+        editar_prod_programa.setForeground(new java.awt.Color(102, 102, 102));
+        editar_prod_programa.setText("EDITAR");
+        editar_prod_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        editar_prod_programa.setIconTextGap(12);
+        editar_prod_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        editar_prod_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_prod_programaActionPerformed(evt);
+            }
+        });
+
+        desmarcar_prod_programa.setBackground(new java.awt.Color(248, 248, 248));
+        desmarcar_prod_programa.setForeground(new java.awt.Color(102, 102, 102));
+        desmarcar_prod_programa.setText("DESMARCAR TODOS");
+        desmarcar_prod_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        desmarcar_prod_programa.setIconTextGap(12);
+        desmarcar_prod_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        desmarcar_prod_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desmarcar_prod_programaActionPerformed(evt);
+            }
+        });
+
+        eliminar_prod_programa.setBackground(new java.awt.Color(248, 248, 248));
+        eliminar_prod_programa.setForeground(new java.awt.Color(102, 102, 102));
+        eliminar_prod_programa.setText("ELIMINAR");
+        eliminar_prod_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        eliminar_prod_programa.setIconTextGap(12);
+        eliminar_prod_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        eliminar_prod_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_prod_programaActionPerformed(evt);
+            }
+        });
+
+        exportar_prod_programa.setBackground(new java.awt.Color(248, 248, 248));
+        exportar_prod_programa.setForeground(new java.awt.Color(102, 102, 102));
+        exportar_prod_programa.setText("EXPORTAR");
+        exportar_prod_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        exportar_prod_programa.setIconTextGap(12);
+        exportar_prod_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        exportar_prod_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportar_prod_programaActionPerformed(evt);
+            }
+        });
+
+        imprimir_prod_programa.setBackground(new java.awt.Color(248, 248, 248));
+        imprimir_prod_programa.setForeground(new java.awt.Color(102, 102, 102));
+        imprimir_prod_programa.setText("IMPRIMIR");
+        imprimir_prod_programa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/uncheck.png"))); // NOI18N
+        imprimir_prod_programa.setIconTextGap(12);
+        imprimir_prod_programa.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/check.png"))); // NOI18N
+        imprimir_prod_programa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimir_prod_programaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marcar_prod_programa)
+                    .addComponent(editar_prod_programa)
+                    .addComponent(listar_prod_programa)
+                    .addComponent(add_prod_programa))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desmarcar_prod_programa)
+                    .addComponent(imprimir_prod_programa)
+                    .addComponent(eliminar_prod_programa)
+                    .addComponent(exportar_prod_programa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(desmarcar_prod_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminar_prod_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exportar_prod_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imprimir_prod_programa))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(marcar_prod_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listar_prod_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_prod_programa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar_prod_programa)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        boton_cancelar.setBackground(new java.awt.Color(255, 51, 51));
+        boton_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btn-cancelar.png"))); // NOI18N
+        boton_cancelar.setText("CANCELAR");
+        boton_cancelar.setColorHover(new java.awt.Color(173, 187, 194));
+        boton_cancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        boton_cancelar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_cancelarActionPerformed(evt);
+            }
+        });
+
+        boton_registrar.setBackground(new java.awt.Color(38, 86, 186));
+        boton_registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnRegistrar.png"))); // NOI18N
+        boton_registrar.setText("REGISTRAR");
+        boton_registrar.setColorHover(new java.awt.Color(173, 187, 194));
+        boton_registrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        boton_registrar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        boton_registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_registrarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/label-nombre.png"))); // NOI18N
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/label-contraseña.png"))); // NOI18N
+
+        boton_registrar_arriba.setBackground(new java.awt.Color(38, 86, 186));
+        boton_registrar_arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnRegistrar.png"))); // NOI18N
+        boton_registrar_arriba.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        boton_registrar_arriba.setLabel("REGISTRAR");
+        boton_registrar_arriba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_registrar_arribaActionPerformed(evt);
+            }
+        });
+
+        boton_cancelar_arriba.setBackground(new java.awt.Color(255, 51, 51));
+        boton_cancelar_arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btn-cancelar.png"))); // NOI18N
+        boton_cancelar_arriba.setText("CANCELAR");
+        boton_cancelar_arriba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_cancelar_arribaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nombre_usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addComponent(scroll))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(boton_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(boton_registrar_arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(boton_cancelar_arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombre_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boton_registrar_arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_cancelar_arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 27, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -47,24 +2106,2220 @@ public class pnl_Gestionar_venta extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inicio_largo(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox exportar,JCheckBox imprimir,JCheckBox marcar,JCheckBox desmarcar){
+         listar.setSelected(true);
+        add.setSelected(false);
+        editar.setSelected(false);
+        eliminar.setSelected(false);
+        exportar.setSelected(true);
+        imprimir.setSelected(true);
+        marcar.setSelected(false);
+        desmarcar.setSelected(false);
+    }
+    
+    private void inicio_corto(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox marcar,JCheckBox desmarcar){
+         listar.setSelected(true);
+        add.setSelected(false);
+        editar.setSelected(false);
+        eliminar.setSelected(false);
+        marcar.setSelected(false);
+        desmarcar.setSelected(false);
+    }
+    
+    private boolean  obliga_listar_largo(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox exportar,JCheckBox imprimir){
+        boolean falta_listar=false;
+        if(listar.isSelected()==false&&(add.isSelected()||editar.isSelected()||eliminar.isSelected()||exportar.isSelected()||imprimir.isSelected())){
+            falta_listar=true;
+        }
+        return falta_listar;
+    }
+    
+    private boolean  obliga_listar_corto(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar){
+        boolean falta_listar=false;
+        if(listar.isSelected()==false&&(add.isSelected()||editar.isSelected()||eliminar.isSelected())){
+            falta_listar=true;
+        }
+        return falta_listar;
+    }
+    
+    private void desmarca_largo_control(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox exportar,JCheckBox imprimir,JCheckBox desmarcar,JCheckBox marcar){
+        if(desmarcar.isSelected()){
+            if(listar.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(add.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(editar.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(eliminar.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(exportar.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(imprimir.isSelected()){
+                desmarcar.setSelected(false);
+            }
+        }else if(marcar.isSelected()){
+            if(!listar.isSelected()){
+                marcar.setSelected(false);
+            }else if(!add.isSelected()){
+                marcar.setSelected(false);
+            }else if(!editar.isSelected()){
+                marcar.setSelected(false);
+            }else if(!eliminar.isSelected()){
+                marcar.setSelected(false);
+            }else if(!exportar.isSelected()){
+                marcar.setSelected(false);
+            }else if(!imprimir.isSelected()){
+                marcar.setSelected(false);
+            }
+        }
+    }
+    
+    private void desmarca_corto_control(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox desmarcar,JCheckBox marcar){
+        if(desmarcar.isSelected()){
+            if(listar.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(add.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(editar.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(eliminar.isSelected()){
+                desmarcar.setSelected(false);
+            }
+        }else if(marcar.isSelected()){
+            if(!listar.isSelected()){
+                marcar.setSelected(false);
+            }else if(!add.isSelected()){
+                marcar.setSelected(false);
+            }else if(!editar.isSelected()){
+                marcar.setSelected(false);
+            }else if(!eliminar.isSelected()){
+                marcar.setSelected(false);
+            }
+        }
+    }
+    
+    private void desmarca_menor_control(JCheckBox uno,JCheckBox dos,JCheckBox tres,JCheckBox cuatro,JCheckBox desmarcar){
+        if(desmarcar.isSelected()){
+            if(uno.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(dos.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(tres.isSelected()){
+                desmarcar.setSelected(false);
+            }else if(cuatro.isSelected()){
+                desmarcar.setSelected(false);
+            }
+        }
+    }
+    
+    private void marcar_mayor(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox exportar,JCheckBox imprimir,JCheckBox desmarcar,JCheckBox marcar) {
+        if(marcar.isSelected()){
+            desmarcar.setSelected(false);
+            listar.setSelected(true);
+            add.setSelected(true);
+            editar.setSelected(true);
+            eliminar.setSelected(true);
+            exportar.setSelected(true);
+            imprimir.setSelected(true);
+        }else{
+            desmarcar.setSelected(false);
+            listar.setSelected(true);
+            add.setSelected(false);
+            editar.setSelected(false);
+            eliminar.setSelected(false);
+            exportar.setSelected(true);
+            imprimir.setSelected(true);
+        }
+    }
+    
+    private void marcar_menor(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox desmarcar,JCheckBox marcar) {
+        if(marcar.isSelected()){
+            desmarcar.setSelected(false);
+            listar.setSelected(true);
+            add.setSelected(true);
+            editar.setSelected(true);
+            eliminar.setSelected(true);
+        }else{
+            desmarcar.setSelected(false);
+            listar.setSelected(true);
+            add.setSelected(false);
+            editar.setSelected(false);
+            eliminar.setSelected(false);
+        }
+    }
+    
+    private void desmarcar_mayor(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox exportar,JCheckBox imprimir,JCheckBox desmarcar,JCheckBox marcar) {
+        if(desmarcar.isSelected()){
+            marcar.setSelected(false);
+            listar.setSelected(false);
+            add.setSelected(false);
+            editar.setSelected(false);
+            eliminar.setSelected(false);
+            exportar.setSelected(false);
+            imprimir.setSelected(false);
+        }else{
+            marcar.setSelected(false);
+            listar.setSelected(true);
+            add.setSelected(false);
+            editar.setSelected(false);
+            eliminar.setSelected(false);
+            exportar.setSelected(true);
+            imprimir.setSelected(true);
+        }
+    }
+    
+    private void desmarcar_menor(JCheckBox listar,JCheckBox add,JCheckBox editar,JCheckBox eliminar,JCheckBox desmarcar,JCheckBox marcar) {
+        if(desmarcar.isSelected()){
+            marcar.setSelected(false);
+            listar.setSelected(false);
+            add.setSelected(false);
+            editar.setSelected(false);
+            eliminar.setSelected(false);
+        }else{
+            marcar.setSelected(false);
+            listar.setSelected(true);
+            add.setSelected(false);
+            editar.setSelected(false);
+            eliminar.setSelected(false);
+        }
+    }
+    
+    private void nombre_usuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_usuarioKeyTyped
+        // TODO add your handling code here:
+        char letras = evt.getKeyChar();
+        if ((letras < 'a' || letras > 'z') && (letras < 'A' | letras > 'Z')) {
+            if ((letras != 'ñ') && (letras != 'Ñ') && (letras != 'á') && (letras != 'Á') && (letras != 'é') && (letras != 'É') && (letras != 'í')
+                    && (letras != 'Í') && (letras != 'ó') && (letras != 'Ó') && (letras != 'ú') && (letras != 'Ú') && (letras != ' ')) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_nombre_usuarioKeyTyped
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        interaccion_bd.opciones_de_gestionar_usuarios.setListar(this.txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    
+    private void tabla_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_usuariosMouseClicked
+        int row = tabla_usuarios.rowAtPoint(evt.getPoint());
+        if ((evt.getModifiers() & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
+            pnl_Gestionar_usuarios.tabla_usuarios.setRowSelectionInterval(row, row);
+            PosicionMouse = evt.getY() / 16;
+            menu.show(evt.getComponent(), evt.getX(), evt.getY());
+        } else {
+            pnl_Gestionar_usuarios.tabla_usuarios.setRowSelectionInterval(row, row);
+        }
+    }//GEN-LAST:event_tabla_usuariosMouseClicked
+
+    private void marcar_todos_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_todos_ficha_costoActionPerformed
+        // TODO add your handling code here:
+         if(marcar_todos_ficha_costo.isSelected()){
+            desmarcar_ficha_costo.setSelected(false);
+            listar_ficha_costo.setSelected(true);
+            add_ficha_costo.setSelected(true);
+            editar_ficha_costo.setSelected(true);
+            eliminar_ficha_costo.setSelected(true);
+        }else{
+             desmarcar_ficha_costo.setSelected(false);
+            listar_ficha_costo.setSelected(true);
+            add_ficha_costo.setSelected(false);
+            editar_ficha_costo.setSelected(false);
+            eliminar_ficha_costo.setSelected(false);
+        }
+    }//GEN-LAST:event_marcar_todos_ficha_costoActionPerformed
+
+    private void marcar_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_recursos_x_programaActionPerformed
+        // TODO add your handling code here:
+        if (marcar_recursos_x_programa.isSelected()) {
+            desmarcar_recursos_x_programa.setSelected(false);
+            listar_recursos_x_programa.setSelected(true);
+            add_recursos_x_programa.setSelected(true);
+            editar_recursos_x_programa.setSelected(true);
+            eliminar_recursos_x_programa.setSelected(true);
+            exportar_recursos_x_programa.setSelected(true);
+            imprimir_recursos_x_programa.setSelected(true);
+        } else {
+            desmarcar_recursos_x_programa.setSelected(false);
+            listar_recursos_x_programa.setSelected(true);
+            add_recursos_x_programa.setSelected(false);
+            editar_recursos_x_programa.setSelected(false);
+            eliminar_recursos_x_programa.setSelected(false);
+            exportar_recursos_x_programa.setSelected(true);
+            imprimir_recursos_x_programa.setSelected(true);
+        }
+    }//GEN-LAST:event_marcar_recursos_x_programaActionPerformed
+
+    private void marcar_todos_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_todos_contratoActionPerformed
+        // TODO add your handling code here:
+        if(marcar_todos_contrato.isSelected()){
+            desmarcar_todos_contrato.setSelected(false);
+            listar_contrato.setSelected(true);
+            add_contrato.setSelected(true);
+            editar_contrato.setSelected(true);
+            eliminar_contrato.setSelected(true);
+            exportar_contrato.setSelected(true);
+            imprimir_contrato.setSelected(true);
+        }else{
+            desmarcar_todos_contrato.setSelected(false);
+            listar_contrato.setSelected(true);
+            add_contrato.setSelected(false);
+            editar_contrato.setSelected(false);
+            eliminar_contrato.setSelected(false);
+            exportar_contrato.setSelected(true);
+            imprimir_contrato.setSelected(true);
+        }
+    }//GEN-LAST:event_marcar_todos_contratoActionPerformed
+
+    private void marcar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_prep_tecnicaActionPerformed
+        // TODO add your handling code here:
+        marcar_menor(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica, desmarcar_prep_tecnica, marcar_prep_tecnica);
+    }//GEN-LAST:event_marcar_prep_tecnicaActionPerformed
+
+    private void marcar_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_planoActionPerformed
+        // TODO add your handling code here:
+        marcar_menor(listar_plano, add_plano, editar_plano, eliminar_plano, desmarcar_plano, marcar_plano);
+    }//GEN-LAST:event_marcar_planoActionPerformed
+
+    private void marcar_proyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_proyectoActionPerformed
+        // TODO add your handling code here:
+        marcar_menor(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto, desmarcar_proyecto, marcar_proyecto);
+    }//GEN-LAST:event_marcar_proyectoActionPerformed
+
+    private void marcar_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_info_laboratorioActionPerformed
+        // TODO add your handling code here:
+        marcar_mayor(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
+    }//GEN-LAST:event_marcar_info_laboratorioActionPerformed
+
+    private void marcar_hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_hoja_rutaActionPerformed
+        // TODO add your handling code here:
+        marcar_menor(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta, desmarcar_hoja_ruta, marcar_hoja_ruta);
+    }//GEN-LAST:event_marcar_hoja_rutaActionPerformed
+
+    private void marcar_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_cartaporteActionPerformed
+        // TODO add your handling code here:
+        marcar_menor(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte, desmarcar_cartaporte, marcar_cartaporte);
+    }//GEN-LAST:event_marcar_cartaporteActionPerformed
+
+    private void marcar_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_ekipoActionPerformed
+        // TODO add your handling code here:
+        marcar_mayor(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, desmarcar_ekipo, marcar_ekipo);
+    }//GEN-LAST:event_marcar_ekipoActionPerformed
+
+    private void marcar_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_tarjeta_combustibleActionPerformed
+        // TODO add your handling code here:
+        marcar_mayor(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, desmarcar_tarjeta_combustible, marcar_tarjeta_combustible);
+    }//GEN-LAST:event_marcar_tarjeta_combustibleActionPerformed
+
+    private void marcar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_usuarioActionPerformed
+        // TODO add your handling code here:
+        marcar_menor(listar_usuario, add_usuario, editar_usuario, eliminar_usuario, desmarcar_usuario, marcar_usuario);
+    }//GEN-LAST:event_marcar_usuarioActionPerformed
+
+    private void marcar_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcar_prod_programaActionPerformed
+        // TODO add your handling code here:
+        marcar_mayor(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, desmarcar_prod_programa, marcar_prod_programa);
+    }//GEN-LAST:event_marcar_prod_programaActionPerformed
+
+    private void boton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cancelarActionPerformed
+        reset_campos();
+        reset_botones();
+    }//GEN-LAST:event_boton_cancelarActionPerformed
+
+    private boolean activos_todos(){
+        boolean activos=false;
+        if(marcar_cartaporte.isSelected()&&marcar_ekipo.isSelected()&&marcar_hoja_ruta.isSelected()&&marcar_info_laboratorio.isSelected()&&
+                marcar_plano.isSelected()&&marcar_prep_tecnica.isSelected()&&marcar_prod_programa.isSelected()&&marcar_proyecto.isSelected()&&
+                marcar_recursos_x_programa.isSelected()&&marcar_tarjeta_combustible.isSelected()&&marcar_todos_contrato.isSelected()&&
+                marcar_todos_ficha_costo.isSelected()&&marcar_usuario.isSelected()){
+            activos=true;
+        }
+        return activos;
+    }
+    
+    private boolean desactivos_todos(){
+        boolean desactivos=false;
+        if(desmarcar_cartaporte.isSelected()&&desmarcar_ekipo.isSelected()&&desmarcar_hoja_ruta.isSelected()&&desmarcar_info_laboratorio.isSelected()&&
+             desmarcar_plano.isSelected()&&desmarcar_prep_tecnica.isSelected()&&desmarcar_prod_programa.isSelected()&&desmarcar_proyecto.isSelected()&&
+             desmarcar_recursos_x_programa.isSelected()&&desmarcar_tarjeta_combustible.isSelected()&&desmarcar_todos_contrato.isSelected()&&
+             desmarcar_ficha_costo.isSelected()&&desmarcar_usuario.isSelected()){
+            desactivos=true;
+        }
+        return desactivos;
+    }
+    
+    private void boton_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrarActionPerformed
+        // TODO add your handling code here:
+        if(boton_registrar.getText().equals("REGISTRAR")){
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='usuarios' " 
+                + "and add_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+        String sql="select * from usuarios where nombre_us='"+nombre_usuario.getText()+"'";
+       String mje1="El nombre de usuario que intenta registrar ya existe";
+       String mje2="Por favor introduzca un nombre de usuario distinto.";
+        if (nombre_usuario.getText().isEmpty()||pass.getText().isEmpty()||interaccion_bd.opciones_de_gestionar_usuarios.existe(sql)||
+                (obliga_listar_largo(listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato)||
+                               obliga_listar_corto(listar_ficha_costo, add_ficha_costo, editar_ficha_costo, eliminar_ficha_costo)||
+                               obliga_listar_largo(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa)||
+                               obliga_listar_corto(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica)||
+                               obliga_listar_corto(listar_plano, add_plano, editar_plano, eliminar_plano)||
+                               obliga_listar_corto(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto)||
+                               obliga_listar_largo(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio)||
+                               obliga_listar_largo(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo)||
+                               obliga_listar_largo(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible)||
+                               obliga_listar_corto(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta)||
+                               obliga_listar_corto(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte)||
+                               obliga_listar_largo(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa)||
+                               obliga_listar_corto(listar_usuario, add_usuario, editar_usuario, eliminar_usuario))) {
+            if(nombre_usuario.getText().isEmpty()){
+                nombre_usuario.requestFocus();
+                opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("todos los campos con asterisco son obligatorios", "", "");
+            }else if(pass.getText().isEmpty()){
+                pass.requestFocus();
+                opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("todos los campos con asterisco son obligatorios", "", "");
+            }else if (interaccion_bd.opciones_de_gestionar_usuarios.existe( sql)) {
+                            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
+                            nombre_usuario.requestFocus();
+                        }else if(obliga_listar_largo(listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato)||
+                               obliga_listar_corto(listar_ficha_costo, add_ficha_costo, editar_ficha_costo, eliminar_ficha_costo)||
+                               obliga_listar_largo(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa)||
+                               obliga_listar_corto(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica)||
+                               obliga_listar_corto(listar_plano, add_plano, editar_plano, eliminar_plano)||
+                               obliga_listar_corto(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto)||
+                               obliga_listar_largo(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio)||
+                               obliga_listar_largo(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo)||
+                               obliga_listar_largo(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible)||
+                               obliga_listar_corto(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta)||
+                              obliga_listar_corto(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte)||
+                               obliga_listar_largo(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa)||
+                               obliga_listar_corto(listar_usuario, add_usuario, editar_usuario, eliminar_usuario)){
+                            String A="Si un usuario contendrá permisos sobre un apartado, el permiso 'LISTAR' debe de estar";
+                           String B="contemplado obligatoriamente dentro de estos. Por favor revise todos los apartados y";
+                           String C="verifique que esta norma del sistema se cumpla en cada uno de ellos.";
+                            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(A, B, C);
+                        }
+            
+        } else {
+            Runnable runnable1 = new Runnable() {
+                public void run() {
+                    int control_permisos=0;
+                    int control_permisos_contratos=0;
+                    int control_permisos_ficha_costo=0;
+                    int control_permisos_recursos_x_programa=0;
+                    int control_permisos_prep_tecnica=0;
+                    int control_permisos_plano=0;
+                    int control_permisos_proyecto=0;
+                    int control_permisos_info_lab=0;
+                    int control_permisos_ekipo=0;
+                    int control_permisos_tarj_combustible=0;
+                    int control_permisos_hoja_ruta=0;
+                    int control_permisos_cartaporte=0;
+                    int control_permisos_prod_x_programa=0;
+                    int control_permisos_ususarios=0;
+                    Guardando_general l = new Guardando_general(new JFrame(), true);
+                    consultas_de_gestionar_usuarios uc=new consultas_de_gestionar_usuarios();
+                    l.setVisible(true);
+                    try{
+                    pnl_Gestionar_usuarios.this.setEnabled(false);
+                    uc.setUsuario(nombre_usuario.getText());
+                    uc.setPass(pass.getText());
+                    int control_user= opciones_de_gestionar_usuarios.registrar_user(uc);
+                        // contrato
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("CONTRATO");
+                        if(listar_contrato.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_contrato.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_contrato.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_contrato.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_contrato.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_contrato.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_contratos= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // ficha de costo
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("FICHA DE COSTO");
+                        if(listar_ficha_costo.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_ficha_costo.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_ficha_costo.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_ficha_costo.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                           
+                            uc.setExportar("0");
+                        
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_ficha_costo= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // recursos x prog
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("RECURSOS POR PROGRAMA");
+                        if(listar_recursos_x_programa.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_recursos_x_programa.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_recursos_x_programa.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_recursos_x_programa.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_recursos_x_programa.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_recursos_x_programa.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_recursos_x_programa= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // prep tecnica
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("PREPARACIÓN TÉCNICA");
+                        if(listar_prep_tecnica.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_prep_tecnica.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_prep_tecnica.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_prep_tecnica.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                         
+                        control_permisos_prep_tecnica= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // plano
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("PLANO");
+                        if(listar_plano.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_plano.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_plano.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_plano.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_plano= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // proyecto
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("PROYECTO");
+                        if(listar_proyecto.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_proyecto.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_proyecto.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_proyecto.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_proyecto= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // INFO LABORATORIO
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("INFORMACIÓN DE LABORATORIO");
+                        if(listar_info_laboratorio.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_info_laboratorio.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_info_laboratorio.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_info_laboratorio.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_info_laboratorio.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_info_laboratorio.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_info_lab= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // EKIPO
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("EQUIPO");
+                        if(listar_ekipo.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_ekipo.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_ekipo.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_ekipo.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_ekipo.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_ekipo.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_ekipo= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // TARJETA COMBUSTIBLE
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("TARJETA DE COMBUSTIBLE");
+                        if(listar_tarjeta_combustible.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_tarjeta_combustible.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_tarjeta_combustible.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_tarjeta_combustible.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_tarjeta_combustible.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_tarjeta_combustible.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_tarj_combustible= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // HOJA RUTA
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("HOJA DE RUTA");
+                        if(listar_hoja_ruta.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_hoja_ruta.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_hoja_ruta.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_hoja_ruta.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_hoja_ruta= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // CARTAPORTE
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("CARTA DE PORTE");
+                        if(listar_cartaporte.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_cartaporte.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_cartaporte.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_cartaporte.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_cartaporte= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // PRODUC X PROGRAMA
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("PRODUCCIÓN POR PROGRAMA");
+                        if(listar_prod_programa.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_prod_programa.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_prod_programa.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_prod_programa.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_prod_programa.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_prod_programa.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_prod_x_programa= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                        // USUARIO
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("USUARIOS");
+                        if(listar_usuario.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_usuario.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_usuario.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_usuario.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                         
+                        control_permisos_ususarios= opciones_de_gestionar_usuarios.registrar_permisos(uc);
+                        
+                       
+                        
+                    
+                    reset_campos();
+                    pnl_Gestionar_usuarios.this.setEnabled(true);
+                    l.setVisible(false);
+                    if(control_user==1 && control_permisos==1){
+                    SuccessAlert e = new SuccessAlert(new JFrame(), true);
+            e.msj1.setText("¡Los datos del usuario fueron");
+            e.msj2.setText("guardados exitosamente!.");
+            e.msj3.setText("");
+            e.setLocationRelativeTo(null);
+            centrar_componente(e);
+            e.setVisible(true);
+            
+                    }else if(control_user==1 && (control_permisos_contratos==1&&control_permisos_ficha_costo==1
+                            &&control_permisos_recursos_x_programa==1&&control_permisos_prep_tecnica==1&&control_permisos_plano==1
+                            &&control_permisos_proyecto==1&&control_permisos_info_lab==1&&control_permisos_ekipo==1
+                            &&control_permisos_tarj_combustible==1&&control_permisos_hoja_ruta==1&&control_permisos_cartaporte==1
+                            &&control_permisos_prod_x_programa==1&&control_permisos_ususarios==1)){
+                        SuccessAlert e = new SuccessAlert(new JFrame(), true);
+            e.msj1.setText("¡Los datos del usuario fueron");
+            e.msj2.setText("guardados exitosamente!.");
+            e.msj3.setText("");
+            e.setLocationRelativeTo(null);
+            centrar_componente(e);
+            e.setVisible(true);
+                    }else if(control_user==1 && (control_permisos_contratos==0||control_permisos_ficha_costo==0
+                            ||control_permisos_recursos_x_programa==0||control_permisos_prep_tecnica==0||control_permisos_plano==0
+                            ||control_permisos_proyecto==0||control_permisos_info_lab==0||control_permisos_ekipo==0
+                            ||control_permisos_tarj_combustible==0||control_permisos_hoja_ruta==0&&control_permisos_cartaporte==0
+                            ||control_permisos_prod_x_programa==0||control_permisos_ususarios==0)){
+                        opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("Los datos del usuario se registraron satisfactoriamente",
+                                "pero hubo algun problema al guardar los permisos", "");
+            
+                    }
+                    
+                    
+                    }catch(Exception e){
+                        opciones_de_gestionar_contrato.lanza_error(e);
+                        
+                    }
+                }
+            };
+            Thread t1 = new Thread(runnable1);
+            t1.start();
+        }
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
+        }else if(boton_registrar.getText().equals("GUARDAR CAMBIOS")){
+            int fila=tabla_usuarios.getSelectedRow();
+            String user_control=tabla_usuarios.getValueAt(fila, 0).toString();
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='usuarios' " 
+                + "and add_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+        String sql="select * from usuarios where nombre_us='"+nombre_usuario.getText()+"'";
+       String mje1="El nombre de usuario que intenta registrar ya existe";
+       String mje2="Por favor introduzca un nombre de usuario distinto.";
+        if (nombre_usuario.getText().isEmpty()||pass.getText().isEmpty()||(interaccion_bd.opciones_de_gestionar_usuarios.existe(sql) && !nombre_usuario.getText().equals(user_control))||
+                (obliga_listar_largo(listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato)||
+                               obliga_listar_corto(listar_ficha_costo, add_ficha_costo, editar_ficha_costo, eliminar_ficha_costo)||
+                               obliga_listar_largo(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa)||
+                               obliga_listar_corto(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica)||
+                               obliga_listar_corto(listar_plano, add_plano, editar_plano, eliminar_plano)||
+                               obliga_listar_corto(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto)||
+                               obliga_listar_largo(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio)||
+                               obliga_listar_largo(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo)||
+                               obliga_listar_largo(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible)||
+                               obliga_listar_corto(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta)||
+                              obliga_listar_corto(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte)||
+                               obliga_listar_largo(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa)||
+                               obliga_listar_corto(listar_usuario, add_usuario, editar_usuario, eliminar_usuario))) {
+            if(nombre_usuario.getText().isEmpty()){
+                nombre_usuario.requestFocus();
+                opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("Todos los campos con asterisco son obligatorios", "", "");
+            }else if(pass.getText().isEmpty()){
+                pass.requestFocus();
+                opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("Todos los campos con asterisco son obligatorios", "", "");
+            }else if (interaccion_bd.opciones_de_gestionar_usuarios.existe( sql)&& !nombre_usuario.getText().equals(user_control)) {
+                            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
+                            nombre_usuario.requestFocus();
+                        }else if(obliga_listar_largo(listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato)||
+                               obliga_listar_corto(listar_ficha_costo, add_ficha_costo, editar_ficha_costo, eliminar_ficha_costo)||
+                               obliga_listar_largo(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa)||
+                               obliga_listar_corto(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica)||
+                               obliga_listar_corto(listar_plano, add_plano, editar_plano, eliminar_plano)||
+                               obliga_listar_corto(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto)||
+                               obliga_listar_largo(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio)||
+                               obliga_listar_largo(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo)||
+                               obliga_listar_largo(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible)||
+                               obliga_listar_corto(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta)||
+                              obliga_listar_corto(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte)||
+                               obliga_listar_largo(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa)||
+                               obliga_listar_corto(listar_usuario, add_usuario, editar_usuario, eliminar_usuario)){
+                            String A="Si un usuario contendrá permisos sobre un apartado, el permiso 'LISTAR' debe de estar";
+                           String B="contemplado obligatoriamente dentro de estos. Por favor revise todos los apartados y";
+                           String C="verifique que esta norma del sistema se cumpla en cada uno de ellos.";
+                            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(A, B, C);
+                        }
+            
+        } else {
+            Runnable runnable1 = new Runnable() {
+                public void run() {
+                    int control_permisos=0;
+                    int control_permisos_contratos=0;
+                    int control_permisos_ficha_costo=0;
+                    int control_permisos_recursos_x_programa=0;
+                    int control_permisos_prep_tecnica=0;
+                    int control_permisos_plano=0;
+                    int control_permisos_proyecto=0;
+                    int control_permisos_info_lab=0;
+                    int control_permisos_ekipo=0;
+                    int control_permisos_tarj_combustible=0;
+                    int control_permisos_hoja_ruta=0;
+                    int control_permisos_cartaporte=0;
+                    int control_permisos_prod_x_programa=0;
+                    int control_permisos_ususarios=0;
+                    Guardando_general l = new Guardando_general(new JFrame(), true);
+                    consultas_de_gestionar_usuarios uc=new consultas_de_gestionar_usuarios();
+                    l.setVisible(true);
+                    try{
+                    pnl_Gestionar_usuarios.this.setEnabled(false);
+                    uc.setUsuario_control(user_control);
+                    uc.setUsuario(nombre_usuario.getText());
+                    uc.setPass(pass.getText());
+                    int control_user= opciones_de_gestionar_usuarios.actualizar_user(uc);
+                        // contrato
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("CONTRATO");
+                        if(listar_contrato.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_contrato.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_contrato.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_contrato.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_contrato.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_contrato.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_contratos= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // ficha de costo
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("FICHA DE COSTO");
+                        if(listar_ficha_costo.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_ficha_costo.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_ficha_costo.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_ficha_costo.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                           
+                            uc.setExportar("0");
+                        
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_ficha_costo= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // recursos x prog
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("RECURSOS POR PROGRAMA");
+                        if(listar_recursos_x_programa.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_recursos_x_programa.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_recursos_x_programa.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_recursos_x_programa.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_recursos_x_programa.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_recursos_x_programa.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_recursos_x_programa= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // prep tecnica
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("PREPARACIÓN TÉCNICA");
+                        if(listar_prep_tecnica.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_prep_tecnica.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_prep_tecnica.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_prep_tecnica.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                         
+                        control_permisos_prep_tecnica= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // plano
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("PLANO");
+                        if(listar_plano.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_plano.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_plano.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_plano.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_plano= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // proyecto
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("PROYECTO");
+                        if(listar_proyecto.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_proyecto.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_proyecto.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_proyecto.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_proyecto= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // INFO LABORATORIO
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("INFORMACIÓN DE LABORATORIO");
+                        if(listar_info_laboratorio.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_info_laboratorio.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_info_laboratorio.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_info_laboratorio.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_info_laboratorio.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_info_laboratorio.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_info_lab= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // EKIPO
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("EQUIPO");
+                        if(listar_ekipo.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_ekipo.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_ekipo.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_ekipo.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_ekipo.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_ekipo.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_ekipo= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // TARJETA COMBUSTIBLE
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("TARJETA DE COMBUSTIBLE");
+                        if(listar_tarjeta_combustible.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_tarjeta_combustible.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_tarjeta_combustible.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_tarjeta_combustible.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_tarjeta_combustible.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_tarjeta_combustible.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_tarj_combustible= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // HOJA RUTA
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("HOJA DE RUTA");
+                        if(listar_hoja_ruta.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_hoja_ruta.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_hoja_ruta.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_hoja_ruta.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_hoja_ruta= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // CARTAPORTE
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("CARTA DE PORTE");
+                        if(listar_cartaporte.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_cartaporte.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_cartaporte.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_cartaporte.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                          
+                        control_permisos_cartaporte= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // PRODUC X PROGRAMA
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("PRODUCCIÓN POR PROGRAMA");
+                        if(listar_prod_programa.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_prod_programa.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_prod_programa.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_prod_programa.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        if(exportar_prod_programa.isSelected()){
+                            uc.setExportar("1");
+                        }else{
+                            uc.setExportar("0");
+                        }  
+                        if(imprimir_prod_programa.isSelected()){
+                            uc.setImprimir("1");
+                        }else{
+                            uc.setImprimir("0");
+                        }  
+                        control_permisos_prod_x_programa= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                        // USUARIO
+                        uc.setUsuario(nombre_usuario.getText());
+                        uc.setApartado("USUARIOS");
+                        if(listar_usuario.isSelected()){
+                            uc.setListar("1");
+                        }else{
+                            uc.setListar("0");
+                        }
+                        if(add_usuario.isSelected()){
+                            uc.setAdd("1");
+                        }else{
+                            uc.setAdd("0");
+                        }                  
+                        if(editar_usuario.isSelected()){
+                            uc.setEditar("1");
+                        }else{
+                            uc.setEditar("0");
+                        }  
+                        if(eliminar_usuario.isSelected()){
+                            uc.setEliminar("1");
+                        }else{
+                            uc.setEliminar("0");
+                        }  
+                        
+                            uc.setExportar("0");
+                          
+                        
+                            uc.setImprimir("0");
+                         
+                        control_permisos_ususarios= opciones_de_gestionar_usuarios.actualizar_permisos(uc);
+                        
+                       
+                        
+                    
+                    reset_campos();
+                    reset_botones();
+                    pnl_Gestionar_usuarios.this.setEnabled(true);
+                    l.setVisible(false);
+                    if(control_user==1 && control_permisos==1){
+                    SuccessAlert e = new SuccessAlert(new JFrame(), true);
+            e.msj1.setText("¡Los datos del usuario fueron");
+            e.msj2.setText("editados exitosamente!.");
+            e.msj3.setText("");
+            e.setLocationRelativeTo(null);
+            centrar_componente(e);
+            e.setVisible(true);
+            
+                    }else if(control_user==1 && (control_permisos_contratos==1&&control_permisos_ficha_costo==1
+                            &&control_permisos_recursos_x_programa==1&&control_permisos_prep_tecnica==1&&control_permisos_plano==1
+                            &&control_permisos_proyecto==1&&control_permisos_info_lab==1&&control_permisos_ekipo==1
+                            &&control_permisos_tarj_combustible==1&&control_permisos_hoja_ruta==1&&control_permisos_cartaporte==1
+                            &&control_permisos_prod_x_programa==1&&control_permisos_ususarios==1)){
+                        SuccessAlert e = new SuccessAlert(new JFrame(), true);
+            e.msj1.setText("¡Los datos del usuario fueron");
+            e.msj2.setText("editados exitosamente!.");
+            e.msj3.setText("");
+            e.setLocationRelativeTo(null);
+            centrar_componente(e);
+            e.setVisible(true);
+                    }else if(control_user==1 && (control_permisos_contratos==0||control_permisos_ficha_costo==0
+                            ||control_permisos_recursos_x_programa==0||control_permisos_prep_tecnica==0||control_permisos_plano==0
+                            ||control_permisos_proyecto==0||control_permisos_info_lab==0||control_permisos_ekipo==0
+                            ||control_permisos_tarj_combustible==0||control_permisos_hoja_ruta==0&&control_permisos_cartaporte==0
+                            ||control_permisos_prod_x_programa==0||control_permisos_ususarios==0)){
+                        opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("Los datos del usuario se editados satisfactoriamente",
+                                "pero hubo algun problema al guardar los cambios en los permisos", "");
+            
+                    }
+                    
+                    
+                    }catch(Exception e){
+                        opciones_de_gestionar_contrato.lanza_error(e);
+                        
+                    }
+                }
+            };
+            Thread t1 = new Thread(runnable1);
+            t1.start();
+        }
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
+        }
+    }//GEN-LAST:event_boton_registrarActionPerformed
+
+    private void centrar_componente(Component c){
+        Dimension pantalla_size=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frame_size=c.getSize();
+        if(frame_size.height>pantalla_size.height){
+            frame_size.height=pantalla_size.height;
+        }
+        if(frame_size.width>pantalla_size.width){
+            frame_size.width=pantalla_size.width;
+        }
+        c.setLocation((pantalla_size.width-frame_size.width)/2, (pantalla_size.height-frame_size.height)/2);
+    }
+    
+    private void reset_campos(){
+        nombre_usuario.setText("");
+        pass.setText("");
+        txtBuscar.setText("");
+        opciones_de_gestionar_usuarios.setListar("");
+         // contrato
+        listar_contrato.setSelected(true);
+        add_contrato.setSelected(false);
+        editar_contrato.setSelected(false);
+        eliminar_contrato.setSelected(false);
+        exportar_contrato.setSelected(true);
+        imprimir_contrato.setSelected(true);
+        marcar_todos_contrato.setSelected(false);
+        desmarcar_todos_contrato.setSelected(false);
+        // ficha costo
+        listar_ficha_costo.setSelected(true);
+        add_ficha_costo.setSelected(false);
+        editar_ficha_costo.setSelected(false);
+        eliminar_ficha_costo.setSelected(false);
+        marcar_todos_ficha_costo.setSelected(false);
+        desmarcar_ficha_costo.setSelected(false);
+        //recursos x programa
+        listar_recursos_x_programa.setSelected(true);
+        add_recursos_x_programa.setSelected(false);
+        editar_recursos_x_programa.setSelected(false);
+        eliminar_recursos_x_programa.setSelected(false);
+        exportar_recursos_x_programa.setSelected(true);
+        imprimir_recursos_x_programa.setSelected(true);
+        marcar_recursos_x_programa.setSelected(false);
+        desmarcar_recursos_x_programa.setSelected(false);
+        // prep tecnica
+        inicio_corto(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica,marcar_prep_tecnica,desmarcar_prep_tecnica);
+        // plano
+        inicio_corto(listar_plano, add_plano, editar_plano, eliminar_plano,marcar_plano,desmarcar_plano);
+        // proyecto
+        inicio_corto(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto,marcar_proyecto,desmarcar_proyecto);
+        // info laboratorio
+        inicio_largo(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, marcar_info_laboratorio, desmarcar_info_laboratorio);
+        // ekipo
+        inicio_largo(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, marcar_ekipo, desmarcar_ekipo);
+        // tarj combustible
+        inicio_largo(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, marcar_tarjeta_combustible,desmarcar_tarjeta_combustible);
+        // hoja ruta
+        inicio_corto(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta, marcar_hoja_ruta, desmarcar_hoja_ruta);
+        // cartaporte
+        inicio_corto(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte, marcar_cartaporte, desmarcar_cartaporte);
+        // prod x programa
+        inicio_largo(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, marcar_prod_programa, desmarcar_prod_programa);
+        // ususario
+        inicio_corto(listar_usuario, add_usuario, editar_usuario, eliminar_usuario, marcar_usuario, desmarcar_usuario);
+        
+    }
+    
+    private void reset_botones(){
+        boton_cancelar.setVisible(false);
+        boton_cancelar_arriba.setVisible(false);
+        boton_registrar.setText("REGISTRAR");
+        boton_registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnguardar.png"))); 
+        boton_registrar_arriba.setText("REGISTRAR");
+        boton_registrar_arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnguardar.png"))); 
+    }
+    
+    private void desmarcar_todos_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_todos_contratoActionPerformed
+        // TODO add your handling code here:
+        if(desmarcar_todos_contrato.isSelected()){
+            marcar_todos_contrato.setSelected(false);
+            listar_contrato.setSelected(false);
+            add_contrato.setSelected(false);
+            editar_contrato.setSelected(false);
+            eliminar_contrato.setSelected(false);
+            exportar_contrato.setSelected(false);
+            imprimir_contrato.setSelected(false);
+        }else{
+            marcar_todos_contrato.setSelected(false);
+            listar_contrato.setSelected(true);
+            add_contrato.setSelected(false);
+            editar_contrato.setSelected(false);
+            eliminar_contrato.setSelected(false);
+            exportar_contrato.setSelected(true);
+            imprimir_contrato.setSelected(true);
+        }
+    }//GEN-LAST:event_desmarcar_todos_contratoActionPerformed
+
+    private void desmarcar_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_ficha_costoActionPerformed
+        // TODO add your handling code here:
+        if(desmarcar_ficha_costo.isSelected()){
+            marcar_todos_ficha_costo.setSelected(false);
+            listar_ficha_costo.setSelected(false);
+            add_ficha_costo.setSelected(false);
+            editar_ficha_costo.setSelected(false);
+            eliminar_ficha_costo.setSelected(false);
+        }else{
+            marcar_todos_ficha_costo.setSelected(false);
+            listar_ficha_costo.setSelected(true);
+            add_ficha_costo.setSelected(false);
+            editar_ficha_costo.setSelected(false);
+            eliminar_ficha_costo.setSelected(false);
+        }
+    }//GEN-LAST:event_desmarcar_ficha_costoActionPerformed
+
+    private void desmarcar_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_recursos_x_programaActionPerformed
+        // TODO add your handling code here:
+        if (desmarcar_recursos_x_programa.isSelected()) {
+            marcar_recursos_x_programa.setSelected(false);
+            listar_recursos_x_programa.setSelected(false);
+            add_recursos_x_programa.setSelected(false);
+            editar_recursos_x_programa.setSelected(false);
+            eliminar_recursos_x_programa.setSelected(false);
+            exportar_recursos_x_programa.setSelected(false);
+            imprimir_recursos_x_programa.setSelected(false);
+        } else {
+            marcar_recursos_x_programa.setSelected(false);
+            listar_recursos_x_programa.setSelected(true);
+            add_recursos_x_programa.setSelected(false);
+            editar_recursos_x_programa.setSelected(false);
+            eliminar_recursos_x_programa.setSelected(false);
+            exportar_recursos_x_programa.setSelected(true);
+            imprimir_recursos_x_programa.setSelected(true);
+        }
+    }//GEN-LAST:event_desmarcar_recursos_x_programaActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='usuarios'"
+                + "and eliminar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+            this.menu.setVisible(false);
+            int fila = this.tabla_usuarios.getSelectedRow();
+            String nombre = this.tabla_usuarios.getValueAt(fila, 0).toString().trim();
+
+            alertas.WarningAlert w = new alertas.WarningAlert(new JFrame(), true);
+            w.msj1.setText("Se eliminara el usuario de");
+            w.msj2.setText("nombre (" + nombre + ")");
+            w.msj3.setText("de manera permanente del sistema.");
+            w.setVisible(true);
+
+            if (w.hecho) {
+                int control_user=opciones_de_gestionar_usuarios.eliminar_user(nombre);
+                int control_permisos=opciones_de_gestionar_usuarios.eliminar_permisos(nombre);
+                System.out.println("control user "+control_user);
+                System.out.println("control permisos "+control_permisos);
+                if (control_user==1 && control_permisos==13) {
+                    opciones_de_gestionar_usuarios.setListar("");
+                    reset_campos();
+                    reset_botones();
+                    SuccessAlert s = new SuccessAlert(new JFrame(), true);
+                    s.msj1.setText("Contrato eliminado con éxito");
+                    s.msj2.setText("");
+                    s.msj3.setText("");
+                    s.setVisible(true);
+                } else {
+                    ErrorAlert e = new ErrorAlert(new JFrame(), true);
+                    e.msj1.setText("Algo salio mal. No fue posible");
+                    e.msj2.setText("continuar con esta acción.");
+                    e.msj3.setText("");
+                    e.setVisible(true);
+                }
+            }
+                    } else {
+                        opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+                    }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int fila = tabla_usuarios.getSelectedRow();
+            String user=tabla_usuarios.getValueAt(fila, 0).toString();
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='usuarios'"
+                + "and editar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+            String sql_contrato="Select * from permisos where apartado_permisos='contrato' and `usuario_permisos`='"+user+"'";
+            String sql_ficha_costo="Select * from permisos where apartado_permisos='ficha de costo'  and `usuario_permisos`='"+user+"'";
+            String sql_rec_x_programa="Select * from permisos where apartado_permisos='recursos por programa'  and `usuario_permisos`='"+user+"'";
+            String sql_prep_tecnica="Select * from permisos where apartado_permisos='preparación técnica'  and `usuario_permisos`='"+user+"'";
+            String sql_plano="Select * from permisos where apartado_permisos='plano'  and `usuario_permisos`='"+user+"'";
+            String sql_proyecto="Select * from permisos where apartado_permisos='proyecto'  and `usuario_permisos`='"+user+"'";
+            String sql_info_lab="Select * from permisos where apartado_permisos='información de laboratorio'  and `usuario_permisos`='"+user+"'";
+            String sql_ekipo="Select * from permisos where apartado_permisos='equipo'  and `usuario_permisos`='"+user+"'";
+            String sql_tarj_combustible="Select * from permisos where apartado_permisos='tarjeta de combustible'  and `usuario_permisos`='"+user+"'";
+            String sql_hoja_ruta="Select * from permisos where apartado_permisos='hoja de ruta'  and `usuario_permisos`='"+user+"'";
+            String sql_cartaporte="Select * from permisos where apartado_permisos='carta de porte'  and `usuario_permisos`='"+user+"'";
+            String sql_prod_x_programa="Select * from permisos where apartado_permisos='producción por programa'  and `usuario_permisos`='"+user+"'";
+            String sql_usuario="Select * from permisos where apartado_permisos='usuarios'  and `usuario_permisos`='"+user+"'";
+            
+            nombre_usuario.setText(user);
+            pass.setText(tabla_usuarios.getValueAt(fila,1).toString());
+            boton_cancelar.setVisible(true);
+            boton_cancelar_arriba.setVisible(true);
+            boton_registrar.setText("GUARDAR CAMBIOS");
+            boton_registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnguardar.png"))); 
+            boton_registrar_arriba.setText("GUARDAR CAMBIOS");
+            boton_registrar_arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnguardar.png"))); 
+            opciones_de_gestionar_usuarios.activa_checbox_largo(user, sql_contrato, listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato, desmarcar_todos_contrato, marcar_todos_contrato);
+            opciones_de_gestionar_usuarios.activa_checbox_largo(user, sql_rec_x_programa, listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa, desmarcar_recursos_x_programa, marcar_recursos_x_programa);
+            opciones_de_gestionar_usuarios.activa_checbox_largo(user, sql_info_lab, listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
+            opciones_de_gestionar_usuarios.activa_checbox_largo(user, sql_ekipo, listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, desmarcar_ekipo, marcar_ekipo);
+            opciones_de_gestionar_usuarios.activa_checbox_largo(user, sql_tarj_combustible, listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, desmarcar_tarjeta_combustible, marcar_tarjeta_combustible);
+            opciones_de_gestionar_usuarios.activa_checbox_largo(user, sql_prod_x_programa, listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, desmarcar_prod_programa, marcar_prod_programa);
+            
+            opciones_de_gestionar_usuarios.activa_checbox_corto(user, sql_ficha_costo, listar_ficha_costo, add_ficha_costo, editar_ficha_costo, eliminar_ficha_costo, desmarcar_ficha_costo, marcar_todos_ficha_costo);
+            opciones_de_gestionar_usuarios.activa_checbox_corto(user, sql_prep_tecnica, listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica, desmarcar_prep_tecnica, marcar_prep_tecnica);
+            opciones_de_gestionar_usuarios.activa_checbox_corto(user, sql_plano, listar_plano, add_plano, editar_plano, eliminar_plano, desmarcar_plano, marcar_plano);
+            opciones_de_gestionar_usuarios.activa_checbox_corto(user, sql_proyecto, listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto, desmarcar_proyecto, marcar_proyecto);
+            opciones_de_gestionar_usuarios.activa_checbox_corto(user, sql_hoja_ruta, listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta, desmarcar_hoja_ruta, marcar_hoja_ruta);
+            opciones_de_gestionar_usuarios.activa_checbox_corto(user, sql_cartaporte, listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte, desmarcar_cartaporte, marcar_cartaporte);
+            opciones_de_gestionar_usuarios.activa_checbox_corto(user, sql_usuario, listar_usuario, add_usuario, editar_usuario, eliminar_usuario, desmarcar_usuario, marcar_usuario);
+            
+        this.menu.setVisible(false);
+        
+
+                    } else {
+                        opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+                    }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void listar_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_contratoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato, desmarcar_todos_contrato, marcar_todos_contrato);
+    }//GEN-LAST:event_listar_contratoActionPerformed
+
+    private void desmarcar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_prep_tecnicaActionPerformed
+        // TODO add your handling code here:
+        desmarcar_menor(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica, desmarcar_prep_tecnica, marcar_prep_tecnica);
+    }//GEN-LAST:event_desmarcar_prep_tecnicaActionPerformed
+
+    private void desmarcar_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_info_laboratorioActionPerformed
+        // TODO add your handling code here:
+        desmarcar_mayor(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
+    }//GEN-LAST:event_desmarcar_info_laboratorioActionPerformed
+
+    private void desmarcar_hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_hoja_rutaActionPerformed
+        // TODO add your handling code here:
+        desmarcar_menor(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta, desmarcar_hoja_ruta, marcar_hoja_ruta);
+    }//GEN-LAST:event_desmarcar_hoja_rutaActionPerformed
+
+    private void desmarcar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_usuarioActionPerformed
+        // TODO add your handling code here:
+        desmarcar_menor(listar_usuario, add_usuario, editar_usuario, eliminar_usuario, desmarcar_usuario, marcar_usuario);
+    }//GEN-LAST:event_desmarcar_usuarioActionPerformed
+
+    private void desmarcar_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_planoActionPerformed
+        // TODO add your handling code here:
+        desmarcar_menor(listar_plano, add_plano, editar_plano, eliminar_plano, desmarcar_plano, marcar_plano);
+    }//GEN-LAST:event_desmarcar_planoActionPerformed
+
+    private void desmarcar_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_ekipoActionPerformed
+        // TODO add your handling code here:
+        desmarcar_mayor(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, desmarcar_ekipo, marcar_ekipo);
+    }//GEN-LAST:event_desmarcar_ekipoActionPerformed
+
+    private void desmarcar_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_cartaporteActionPerformed
+        // TODO add your handling code here:
+        desmarcar_menor(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte, desmarcar_cartaporte, marcar_cartaporte);
+    }//GEN-LAST:event_desmarcar_cartaporteActionPerformed
+
+    private void desmarcar_proyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_proyectoActionPerformed
+        // TODO add your handling code here:
+        desmarcar_menor(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto, desmarcar_proyecto, marcar_proyecto);
+    }//GEN-LAST:event_desmarcar_proyectoActionPerformed
+
+    private void desmarcar_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_tarjeta_combustibleActionPerformed
+        // TODO add your handling code here:
+        desmarcar_mayor(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, desmarcar_tarjeta_combustible, marcar_tarjeta_combustible);
+    }//GEN-LAST:event_desmarcar_tarjeta_combustibleActionPerformed
+
+    private void desmarcar_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_prod_programaActionPerformed
+        // TODO add your handling code here:
+        desmarcar_mayor(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, desmarcar_prod_programa, marcar_prod_programa);
+    }//GEN-LAST:event_desmarcar_prod_programaActionPerformed
+
+    private void add_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_contratoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(add_contrato, editar_contrato,listar_contrato,  eliminar_contrato, exportar_contrato, imprimir_contrato, desmarcar_todos_contrato, marcar_todos_contrato);
+    }//GEN-LAST:event_add_contratoActionPerformed
+
+    private void editar_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_contratoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato, desmarcar_todos_contrato, marcar_todos_contrato);
+    }//GEN-LAST:event_editar_contratoActionPerformed
+
+    private void eliminar_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_contratoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato, desmarcar_todos_contrato, marcar_todos_contrato);
+    }//GEN-LAST:event_eliminar_contratoActionPerformed
+
+    private void exportar_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportar_contratoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato, desmarcar_todos_contrato, marcar_todos_contrato);
+    }//GEN-LAST:event_exportar_contratoActionPerformed
+
+    private void imprimir_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimir_contratoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato, desmarcar_todos_contrato, marcar_todos_contrato);
+    }//GEN-LAST:event_imprimir_contratoActionPerformed
+
+    private void listar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_prep_tecnicaActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica, desmarcar_prep_tecnica, marcar_prep_tecnica);
+    }//GEN-LAST:event_listar_prep_tecnicaActionPerformed
+
+    private void add_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_prep_tecnicaActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica, desmarcar_prep_tecnica, marcar_prep_tecnica);
+    }//GEN-LAST:event_add_prep_tecnicaActionPerformed
+
+    private void editar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_prep_tecnicaActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica, desmarcar_prep_tecnica, marcar_prep_tecnica);
+    }//GEN-LAST:event_editar_prep_tecnicaActionPerformed
+
+    private void eliminar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_prep_tecnicaActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_prep_tecnica, add_prep_tecnica, editar_prep_tecnica, eliminar_prep_tecnica, desmarcar_prep_tecnica, marcar_prep_tecnica);
+    }//GEN-LAST:event_eliminar_prep_tecnicaActionPerformed
+
+    private void listar_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_info_laboratorioActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
+    }//GEN-LAST:event_listar_info_laboratorioActionPerformed
+
+    private void add_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_info_laboratorioActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
+    }//GEN-LAST:event_add_info_laboratorioActionPerformed
+
+    private void editar_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_info_laboratorioActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
+    }//GEN-LAST:event_editar_info_laboratorioActionPerformed
+
+    private void eliminar_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_info_laboratorioActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
+    }//GEN-LAST:event_eliminar_info_laboratorioActionPerformed
+
+    private void exportar_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportar_info_laboratorioActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
+    }//GEN-LAST:event_exportar_info_laboratorioActionPerformed
+
+    private void imprimir_info_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimir_info_laboratorioActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
+    }//GEN-LAST:event_imprimir_info_laboratorioActionPerformed
+
+    private void listar_hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_hoja_rutaActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta, desmarcar_hoja_ruta, marcar_hoja_ruta);
+    }//GEN-LAST:event_listar_hoja_rutaActionPerformed
+
+    private void add_hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_hoja_rutaActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta, desmarcar_hoja_ruta, marcar_hoja_ruta);
+    }//GEN-LAST:event_add_hoja_rutaActionPerformed
+
+    private void editar_hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_hoja_rutaActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta, desmarcar_hoja_ruta, marcar_hoja_ruta);
+    }//GEN-LAST:event_editar_hoja_rutaActionPerformed
+
+    private void eliminar_hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_hoja_rutaActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_hoja_ruta, add_hoja_ruta, editar_hoja_ruta, eliminar_hoja_ruta, desmarcar_hoja_ruta, marcar_hoja_ruta);
+    }//GEN-LAST:event_eliminar_hoja_rutaActionPerformed
+
+    private void listar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_usuarioActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_usuario, add_usuario, editar_usuario, eliminar_usuario, desmarcar_usuario, marcar_usuario);
+    }//GEN-LAST:event_listar_usuarioActionPerformed
+
+    private void add_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_usuarioActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_usuario, add_usuario, editar_usuario, eliminar_usuario, desmarcar_usuario, marcar_usuario);
+    }//GEN-LAST:event_add_usuarioActionPerformed
+
+    private void editar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_usuarioActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_usuario, add_usuario, editar_usuario, eliminar_usuario, desmarcar_usuario, marcar_usuario);
+    }//GEN-LAST:event_editar_usuarioActionPerformed
+
+    private void eliminar_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_usuarioActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_usuario, add_usuario, editar_usuario, eliminar_usuario, desmarcar_usuario, marcar_usuario);
+    }//GEN-LAST:event_eliminar_usuarioActionPerformed
+
+    private void listar_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_ficha_costoActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_ficha_costo, add_ficha_costo, editar_ficha_costo, eliminar_ficha_costo, desmarcar_ficha_costo, marcar_todos_contrato);
+    }//GEN-LAST:event_listar_ficha_costoActionPerformed
+
+    private void add_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_ficha_costoActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_ficha_costo, add_ficha_costo, editar_ficha_costo, eliminar_ficha_costo, desmarcar_ficha_costo, marcar_todos_contrato);
+    }//GEN-LAST:event_add_ficha_costoActionPerformed
+
+    private void editar_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_ficha_costoActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_ficha_costo, add_ficha_costo, editar_ficha_costo, eliminar_ficha_costo, desmarcar_ficha_costo, marcar_todos_contrato);
+    }//GEN-LAST:event_editar_ficha_costoActionPerformed
+
+    private void eliminar_ficha_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_ficha_costoActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_ficha_costo, add_ficha_costo, editar_ficha_costo, eliminar_ficha_costo, desmarcar_ficha_costo, marcar_todos_contrato);
+    }//GEN-LAST:event_eliminar_ficha_costoActionPerformed
+
+    private void listar_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_planoActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_plano, add_plano, editar_plano, eliminar_plano, desmarcar_plano, marcar_plano);
+    }//GEN-LAST:event_listar_planoActionPerformed
+
+    private void add_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_planoActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_plano, add_plano, editar_plano, eliminar_plano, desmarcar_plano, marcar_plano);
+    }//GEN-LAST:event_add_planoActionPerformed
+
+    private void editar_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_planoActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_plano, add_plano, editar_plano, eliminar_plano, desmarcar_plano, marcar_plano);
+    }//GEN-LAST:event_editar_planoActionPerformed
+
+    private void eliminar_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_planoActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_plano, add_plano, editar_plano, eliminar_plano, desmarcar_plano, marcar_plano);
+    }//GEN-LAST:event_eliminar_planoActionPerformed
+
+    private void listar_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_ekipoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, desmarcar_ekipo, marcar_ekipo);
+    }//GEN-LAST:event_listar_ekipoActionPerformed
+
+    private void add_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_ekipoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, desmarcar_ekipo, marcar_ekipo);
+    }//GEN-LAST:event_add_ekipoActionPerformed
+
+    private void editar_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_ekipoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, desmarcar_ekipo, marcar_ekipo);
+    }//GEN-LAST:event_editar_ekipoActionPerformed
+
+    private void eliminar_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_ekipoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, desmarcar_ekipo, marcar_ekipo);
+    }//GEN-LAST:event_eliminar_ekipoActionPerformed
+
+    private void exportar_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportar_ekipoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, desmarcar_ekipo, marcar_ekipo);
+    }//GEN-LAST:event_exportar_ekipoActionPerformed
+
+    private void imprimir_ekipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimir_ekipoActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_ekipo, add_ekipo, editar_ekipo, eliminar_ekipo, exportar_ekipo, imprimir_ekipo, desmarcar_ekipo, marcar_ekipo);
+    }//GEN-LAST:event_imprimir_ekipoActionPerformed
+
+    private void listar_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_cartaporteActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte, desmarcar_cartaporte, marcar_cartaporte);
+    }//GEN-LAST:event_listar_cartaporteActionPerformed
+
+    private void add_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_cartaporteActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte, desmarcar_cartaporte, marcar_cartaporte);
+    }//GEN-LAST:event_add_cartaporteActionPerformed
+
+    private void editar_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_cartaporteActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte, desmarcar_cartaporte, marcar_cartaporte);
+    }//GEN-LAST:event_editar_cartaporteActionPerformed
+
+    private void eliminar_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_cartaporteActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_cartaporte, add_cartaporte, editar_cartaporte, eliminar_cartaporte, desmarcar_cartaporte, marcar_cartaporte);
+    }//GEN-LAST:event_eliminar_cartaporteActionPerformed
+
+    private void listar_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_recursos_x_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa, desmarcar_recursos_x_programa, marcar_recursos_x_programa);
+    }//GEN-LAST:event_listar_recursos_x_programaActionPerformed
+
+    private void add_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_recursos_x_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa, desmarcar_recursos_x_programa, marcar_recursos_x_programa);
+    }//GEN-LAST:event_add_recursos_x_programaActionPerformed
+
+    private void editar_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_recursos_x_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa, desmarcar_recursos_x_programa, marcar_recursos_x_programa);
+    }//GEN-LAST:event_editar_recursos_x_programaActionPerformed
+
+    private void eliminar_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_recursos_x_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa, desmarcar_recursos_x_programa, marcar_recursos_x_programa);
+    }//GEN-LAST:event_eliminar_recursos_x_programaActionPerformed
+
+    private void exportar_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportar_recursos_x_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa, desmarcar_recursos_x_programa, marcar_recursos_x_programa);
+    }//GEN-LAST:event_exportar_recursos_x_programaActionPerformed
+
+    private void imprimir_recursos_x_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimir_recursos_x_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa, desmarcar_recursos_x_programa, marcar_recursos_x_programa);
+    }//GEN-LAST:event_imprimir_recursos_x_programaActionPerformed
+
+    private void listar_proyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_proyectoActionPerformed
+        // TODO add your handling code here:
+        desmarca_corto_control(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto, desmarcar_proyecto, marcar_proyecto);
+    }//GEN-LAST:event_listar_proyectoActionPerformed
+
+    private void add_proyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_proyectoActionPerformed
+        // TODO add your handling code here:
+         desmarca_corto_control(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto, desmarcar_proyecto, marcar_proyecto);
+    }//GEN-LAST:event_add_proyectoActionPerformed
+
+    private void editar_proyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_proyectoActionPerformed
+        // TODO add your handling code here:
+         desmarca_corto_control(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto, desmarcar_proyecto, marcar_proyecto);
+    }//GEN-LAST:event_editar_proyectoActionPerformed
+
+    private void eliminar_proyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_proyectoActionPerformed
+        // TODO add your handling code here:
+         desmarca_corto_control(listar_proyecto, add_proyecto, editar_proyecto, eliminar_proyecto, desmarcar_proyecto, marcar_proyecto);
+    }//GEN-LAST:event_eliminar_proyectoActionPerformed
+
+    private void listar_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_tarjeta_combustibleActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, desmarcar_tarjeta_combustible, marcar_tarjeta_combustible);
+    }//GEN-LAST:event_listar_tarjeta_combustibleActionPerformed
+
+    private void add_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_tarjeta_combustibleActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, desmarcar_tarjeta_combustible, marcar_tarjeta_combustible);
+    }//GEN-LAST:event_add_tarjeta_combustibleActionPerformed
+
+    private void editar_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_tarjeta_combustibleActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, desmarcar_tarjeta_combustible, marcar_tarjeta_combustible);
+    }//GEN-LAST:event_editar_tarjeta_combustibleActionPerformed
+
+    private void eliminar_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_tarjeta_combustibleActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, desmarcar_tarjeta_combustible, marcar_tarjeta_combustible);
+    }//GEN-LAST:event_eliminar_tarjeta_combustibleActionPerformed
+
+    private void exportar_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportar_tarjeta_combustibleActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, desmarcar_tarjeta_combustible, marcar_tarjeta_combustible);
+    }//GEN-LAST:event_exportar_tarjeta_combustibleActionPerformed
+
+    private void imprimir_tarjeta_combustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimir_tarjeta_combustibleActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_tarjeta_combustible, add_tarjeta_combustible, editar_tarjeta_combustible, eliminar_tarjeta_combustible, exportar_tarjeta_combustible, imprimir_tarjeta_combustible, desmarcar_tarjeta_combustible, marcar_tarjeta_combustible);
+    }//GEN-LAST:event_imprimir_tarjeta_combustibleActionPerformed
+
+    private void listar_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_prod_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, desmarcar_prod_programa, marcar_prod_programa);
+    }//GEN-LAST:event_listar_prod_programaActionPerformed
+
+    private void add_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_prod_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, desmarcar_prod_programa, marcar_prod_programa);
+    }//GEN-LAST:event_add_prod_programaActionPerformed
+
+    private void editar_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_prod_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, desmarcar_prod_programa, marcar_prod_programa);
+    }//GEN-LAST:event_editar_prod_programaActionPerformed
+
+    private void eliminar_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_prod_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, desmarcar_prod_programa, marcar_prod_programa);
+    }//GEN-LAST:event_eliminar_prod_programaActionPerformed
+
+    private void exportar_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportar_prod_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, desmarcar_prod_programa, marcar_prod_programa);
+    }//GEN-LAST:event_exportar_prod_programaActionPerformed
+
+    private void imprimir_prod_programaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimir_prod_programaActionPerformed
+        // TODO add your handling code here:
+        desmarca_largo_control(listar_prod_programa, add_prod_programa, editar_prod_programa, eliminar_prod_programa, exportar_prod_programa, imprimir_prod_programa, desmarcar_prod_programa, marcar_prod_programa);
+    }//GEN-LAST:event_imprimir_prod_programaActionPerformed
+
+    private void nombre_usuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_usuarioKeyReleased
+        // TODO add your handling code here:
+        nombre_usuario.setText(nombre_usuario.getText().toUpperCase());
+    }//GEN-LAST:event_nombre_usuarioKeyReleased
+
+    private void boton_registrar_arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_arribaActionPerformed
+        // TODO add your handling code here:
+        boton_registrarActionPerformed(evt);
+    }//GEN-LAST:event_boton_registrar_arribaActionPerformed
+
+    private void boton_cancelar_arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cancelar_arribaActionPerformed
+        // TODO add your handling code here:
+        reset_botones();
+        reset_campos();
+    }//GEN-LAST:event_boton_cancelar_arribaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JCheckBox add_cartaporte;
+    private javax.swing.JCheckBox add_contrato;
+    private javax.swing.JCheckBox add_ekipo;
+    private javax.swing.JCheckBox add_ficha_costo;
+    private javax.swing.JCheckBox add_hoja_ruta;
+    private javax.swing.JCheckBox add_info_laboratorio;
+    private javax.swing.JCheckBox add_plano;
+    private javax.swing.JCheckBox add_prep_tecnica;
+    private javax.swing.JCheckBox add_prod_programa;
+    private javax.swing.JCheckBox add_proyecto;
+    private javax.swing.JCheckBox add_recursos_x_programa;
+    private javax.swing.JCheckBox add_tarjeta_combustible;
+    private javax.swing.JCheckBox add_usuario;
+    private rojeru_san.RSButtonRiple boton_cancelar;
+    private rojeru_san.RSButtonRiple boton_cancelar_arriba;
+    private rojeru_san.RSButtonRiple boton_registrar;
+    private rojeru_san.RSButtonRiple boton_registrar_arriba;
+    private rojeru_san.RSButtonRiple btnBorrar;
+    private rojeru_san.RSButtonRiple btnEditar;
+    private javax.swing.JCheckBox desmarcar_cartaporte;
+    private javax.swing.JCheckBox desmarcar_ekipo;
+    private javax.swing.JCheckBox desmarcar_ficha_costo;
+    private javax.swing.JCheckBox desmarcar_hoja_ruta;
+    private javax.swing.JCheckBox desmarcar_info_laboratorio;
+    private javax.swing.JCheckBox desmarcar_plano;
+    private javax.swing.JCheckBox desmarcar_prep_tecnica;
+    private javax.swing.JCheckBox desmarcar_prod_programa;
+    private javax.swing.JCheckBox desmarcar_proyecto;
+    private javax.swing.JCheckBox desmarcar_recursos_x_programa;
+    private javax.swing.JCheckBox desmarcar_tarjeta_combustible;
+    private javax.swing.JCheckBox desmarcar_todos_contrato;
+    private javax.swing.JCheckBox desmarcar_usuario;
+    private javax.swing.JCheckBox editar_cartaporte;
+    private javax.swing.JCheckBox editar_contrato;
+    private javax.swing.JCheckBox editar_ekipo;
+    private javax.swing.JCheckBox editar_ficha_costo;
+    private javax.swing.JCheckBox editar_hoja_ruta;
+    private javax.swing.JCheckBox editar_info_laboratorio;
+    private javax.swing.JCheckBox editar_plano;
+    private javax.swing.JCheckBox editar_prep_tecnica;
+    private javax.swing.JCheckBox editar_prod_programa;
+    private javax.swing.JCheckBox editar_proyecto;
+    private javax.swing.JCheckBox editar_recursos_x_programa;
+    private javax.swing.JCheckBox editar_tarjeta_combustible;
+    private javax.swing.JCheckBox editar_usuario;
+    private javax.swing.JCheckBox eliminar_cartaporte;
+    private javax.swing.JCheckBox eliminar_contrato;
+    private javax.swing.JCheckBox eliminar_ekipo;
+    private javax.swing.JCheckBox eliminar_ficha_costo;
+    private javax.swing.JCheckBox eliminar_hoja_ruta;
+    private javax.swing.JCheckBox eliminar_info_laboratorio;
+    private javax.swing.JCheckBox eliminar_plano;
+    private javax.swing.JCheckBox eliminar_prep_tecnica;
+    private javax.swing.JCheckBox eliminar_prod_programa;
+    private javax.swing.JCheckBox eliminar_proyecto;
+    private javax.swing.JCheckBox eliminar_recursos_x_programa;
+    private javax.swing.JCheckBox eliminar_tarjeta_combustible;
+    private javax.swing.JCheckBox eliminar_usuario;
+    private javax.swing.JCheckBox exportar_contrato;
+    private javax.swing.JCheckBox exportar_ekipo;
+    private javax.swing.JCheckBox exportar_info_laboratorio;
+    private javax.swing.JCheckBox exportar_prod_programa;
+    private javax.swing.JCheckBox exportar_recursos_x_programa;
+    private javax.swing.JCheckBox exportar_tarjeta_combustible;
+    private javax.swing.JCheckBox imprimir_contrato;
+    private javax.swing.JCheckBox imprimir_ekipo;
+    private javax.swing.JCheckBox imprimir_info_laboratorio;
+    private javax.swing.JCheckBox imprimir_prod_programa;
+    private javax.swing.JCheckBox imprimir_recursos_x_programa;
+    private javax.swing.JCheckBox imprimir_tarjeta_combustible;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
+    public static javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JCheckBox listar_cartaporte;
+    private javax.swing.JCheckBox listar_contrato;
+    private javax.swing.JCheckBox listar_ekipo;
+    private javax.swing.JCheckBox listar_ficha_costo;
+    private javax.swing.JCheckBox listar_hoja_ruta;
+    private javax.swing.JCheckBox listar_info_laboratorio;
+    private javax.swing.JCheckBox listar_plano;
+    private javax.swing.JCheckBox listar_prep_tecnica;
+    private javax.swing.JCheckBox listar_prod_programa;
+    private javax.swing.JCheckBox listar_proyecto;
+    private javax.swing.JCheckBox listar_recursos_x_programa;
+    private javax.swing.JCheckBox listar_tarjeta_combustible;
+    private javax.swing.JCheckBox listar_usuario;
+    private javax.swing.JCheckBox marcar_cartaporte;
+    private javax.swing.JCheckBox marcar_ekipo;
+    private javax.swing.JCheckBox marcar_hoja_ruta;
+    private javax.swing.JCheckBox marcar_info_laboratorio;
+    private javax.swing.JCheckBox marcar_plano;
+    private javax.swing.JCheckBox marcar_prep_tecnica;
+    private javax.swing.JCheckBox marcar_prod_programa;
+    private javax.swing.JCheckBox marcar_proyecto;
+    private javax.swing.JCheckBox marcar_recursos_x_programa;
+    private javax.swing.JCheckBox marcar_tarjeta_combustible;
+    private javax.swing.JCheckBox marcar_todos_contrato;
+    private javax.swing.JCheckBox marcar_todos_ficha_costo;
+    private javax.swing.JCheckBox marcar_usuario;
+    private rojerusan.RSPopuMenu menu;
+    public static rojeru_san.rsfield.RSTextMaterial nombre_usuario;
+    private rojeru_san.RSMPassView pass;
+    private javax.swing.JPanel pnlMenu;
+    private javax.swing.JScrollPane scroll;
+    public static rojerusan.RSTableMetro tabla_usuarios;
+    public static rojeru_san.rsfield.RSTextMaterial txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

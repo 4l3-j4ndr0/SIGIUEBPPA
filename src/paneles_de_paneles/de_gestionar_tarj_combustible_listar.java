@@ -14,6 +14,7 @@ import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.consultas_de_gestionar_tarj_combustible;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_tarj_combustible;
+import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -328,6 +329,12 @@ public class de_gestionar_tarj_combustible_listar extends javax.swing.JPanel {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='tarjeta de combustible'"
+                + "and exportar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         try{
             generarExcel();
         } catch(Exception ex) {
@@ -336,6 +343,9 @@ public class de_gestionar_tarj_combustible_listar extends javax.swing.JPanel {
             e.msj2.setText("Corrija el error antes de volver a intentarlo.");
             e.msj3.setText("En caso de no saber como corregir el error contacte con soporte tñecnico");
             e.setVisible(true);
+        }
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
         }
     }//GEN-LAST:event_btnExportarActionPerformed
 
@@ -423,7 +433,12 @@ public class de_gestionar_tarj_combustible_listar extends javax.swing.JPanel {
     }
     
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-//        public void report() {
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='tarjeta de combustible'"
+                + "and imprimir_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         try {
             
             reportes.Reportes_box r = new reportes.Reportes_box();
@@ -446,11 +461,18 @@ public class de_gestionar_tarj_combustible_listar extends javax.swing.JPanel {
         } catch (JRException ex) {
             opciones_de_gestionar_contrato.lanza_error(ex);
         }
-    
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-//        if (privilegios.Operaciones.EliminarProducto(principal.Principal.lblID.getText())) {
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='tarjeta de combustible'"
+                + "and eliminar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
             this.menu.setVisible(false);
             int fila = this.tabla_tarj_combustible.getSelectedRow();
             String id = tabla_tarj_combustible.getValueAt(fila, 0).toString();
@@ -481,17 +503,19 @@ public class de_gestionar_tarj_combustible_listar extends javax.swing.JPanel {
                     e.setVisible(true);
                 }
             }
-//        } else {
-//            ErrorAlert e = new ErrorAlert(new JFrame(), true);
-//            e.msj1.setText("No cuentas con los privilegios");
-//            e.msj2.setText("para acceder a esta opción.");
-//            e.msj3.setText("");
-//            e.setVisible(true);
-//        }
+        } else {
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-            consultas_de_gestionar_tarj_combustible c=new consultas_de_gestionar_tarj_combustible();
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='tarjeta de combustible'"
+                + "and editar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+        consultas_de_gestionar_tarj_combustible c=new consultas_de_gestionar_tarj_combustible();
             this.menu.setVisible(false);
             de_gestionar_tarj_combustible_editar m = new de_gestionar_tarj_combustible_editar(new JFrame(), true);
             int fila = de_gestionar_tarj_combustible_listar.tabla_tarj_combustible.getSelectedRow();
@@ -499,21 +523,9 @@ public class de_gestionar_tarj_combustible_listar extends javax.swing.JPanel {
             interaccion_bd.opciones_de_gestionar_tarj_combustible.extraerDatos(m, id);
             m.setVisible(true);
             
-//        if (privilegios.Operaciones.EditarProducto(principal.Principal.lblID.getText())) {
-//            this.menu.setVisible(false);
-//            ModalEditar m = new ModalEditar(new JFrame(), true);
-//            int fila = this.tabla.getSelectedRow();
-//
-//            int id = Integer.parseInt(this.tabla.getValueAt(fila, 0).toString());
-//            Operaciones.extraerDatos(m, String.valueOf(id));
-//            m.setVisible(true);
-//        } else {
-//            ErrorAlert e = new ErrorAlert(new JFrame(), true);
-//            e.msj1.setText("No cuentas con los privilegios");
-//            e.msj2.setText("para acceder a esta opción.");
-//            e.msj3.setText("");
-//            e.setVisible(true);
-//        }
+        } else {
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     public String dia(){

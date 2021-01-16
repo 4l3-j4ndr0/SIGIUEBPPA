@@ -277,7 +277,7 @@ public class de_gestionar_prod_programa_añadir extends javax.swing.JPanel {
                         .addComponent(fecha_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
                         .addComponent(lbl_error_fecha_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
+                        .addGap(28, 28, 28)
                         .addComponent(boton_guardar_nodelo_mercantil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(34, 34, 34))
         );
@@ -353,14 +353,14 @@ public class de_gestionar_prod_programa_añadir extends javax.swing.JPanel {
                         uc.setGravilla((double) Math.round(((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen))*0.69) * 100d) / 100d);
                         uc.setAditivo((double) Math.round(((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen))*4.45) * 100d) / 100d);
                                                                                                                                                                       // en toneladas
-                        uc.setUn_cuarto(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_1_4))/1000) * 100d) / 100d);
-                        uc.setTres_octavo(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_3_8))/1000) * 100d) / 100d);
-                        uc.setUn_medio(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_1_2))/1000) * 100d) / 100d);
-                        uc.setCinco_octavo(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_5_8))/1000) * 100d) / 100d);
-                        uc.setTres_cuartos(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_3_4))/1000) * 100d) / 100d);
-                        uc.setUno(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_1))/1000) * 100d) / 100d);
-                        uc.setAl(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_al))/1000) * 100d) / 100d);
-                        uc.setEl(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_el))/1000) * 100d) / 100d);
+                        uc.setUn_cuarto(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_1_4))) * 100d) / 100d);
+                        uc.setTres_octavo(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_3_8))) * 100d) / 100d);
+                        uc.setUn_medio(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_1_2))) * 100d) / 100d);
+                        uc.setCinco_octavo(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_5_8))) * 100d) / 100d);
+                        uc.setTres_cuartos(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_3_4))) * 100d) / 100d);
+                        uc.setUno(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_1))) * 100d) / 100d);
+                        uc.setAl(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_al))) * 100d) / 100d);
+                        uc.setEl(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_el))) * 100d) / 100d);
                         
                     
                     
@@ -449,6 +449,7 @@ public class de_gestionar_prod_programa_añadir extends javax.swing.JPanel {
         fecha_modelo.setDate(null);
         combo_prefabricados.setSelectedIndex(0);
         combo_programas.setSelectedIndex(0);
+        lbl_error_fecha_modelo.setVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

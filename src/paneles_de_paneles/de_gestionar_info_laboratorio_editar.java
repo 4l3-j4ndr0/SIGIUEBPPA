@@ -40,11 +40,11 @@ import rojeru_san.complementos.RSUtilities;
  *
  * @author RojeruSan
  */
-public class de_gestionar_tarj_combustible_editar extends javax.swing.JDialog {
+public class de_gestionar_info_laboratorio_editar extends javax.swing.JDialog {
     /**
      * Creates new form ErrorAlert
      */
-    public de_gestionar_tarj_combustible_editar(java.awt.Frame parent, boolean modal) {
+    public de_gestionar_info_laboratorio_editar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         addEventKey();
         initComponents();
@@ -415,10 +415,10 @@ public class de_gestionar_tarj_combustible_editar extends javax.swing.JDialog {
                 public void run() {
                     Guardando_general l = new Guardando_general(new JFrame(), true);
                     consultas_de_gestionar_tarj_combustible uc=new consultas_de_gestionar_tarj_combustible();
-                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_tarj_combustible_editar.this);
+                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_info_laboratorio_editar.this);
                     l.setVisible(true);
                     try{            //toma_fecha()
-                    paneles_de_paneles.de_gestionar_tarj_combustible_editar.this.setEnabled(false);
+                    paneles_de_paneles.de_gestionar_info_laboratorio_editar.this.setEnabled(false);
                     uc.setNumero_tarjeta(numero_tarjeta_tarjeta_editar.getText());
                     uc.setTipo_combustible_tarjeta(combo_tipo_combustible_editar.getSelectedItem().toString());
                     uc.setPing_tarjeta(ping_tarjeta_editar.getText());
@@ -427,7 +427,7 @@ public class de_gestionar_tarj_combustible_editar extends javax.swing.JDialog {
                     uc.setFecha_asignacion_tarjeta(toma_fecha(fecha_asignacion_tarjeta_editar));
                    int control= opciones_de_gestionar_tarj_combustible.actualizar(uc);
                     reset_campos();
-                    paneles_de_paneles.de_gestionar_tarj_combustible_editar.this.setEnabled(true);
+                    paneles_de_paneles.de_gestionar_info_laboratorio_editar.this.setEnabled(true);
                     l.setVisible(false);
                     if(control==1){
                     SuccessAlert e = new SuccessAlert(new JFrame(), true);
@@ -620,14 +620,16 @@ public class de_gestionar_tarj_combustible_editar extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(de_gestionar_tarj_combustible_editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(de_gestionar_info_laboratorio_editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(de_gestionar_tarj_combustible_editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(de_gestionar_info_laboratorio_editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(de_gestionar_tarj_combustible_editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(de_gestionar_info_laboratorio_editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(de_gestionar_tarj_combustible_editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(de_gestionar_info_laboratorio_editar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
@@ -635,7 +637,7 @@ public class de_gestionar_tarj_combustible_editar extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                de_gestionar_tarj_combustible_editar dialog = new de_gestionar_tarj_combustible_editar(new javax.swing.JFrame(), true);
+                de_gestionar_info_laboratorio_editar dialog = new de_gestionar_info_laboratorio_editar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

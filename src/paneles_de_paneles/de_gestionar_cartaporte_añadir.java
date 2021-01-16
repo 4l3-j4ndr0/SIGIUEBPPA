@@ -6,8 +6,10 @@
 package paneles_de_paneles;
 
 import DAO.PdfDAO;
+import DAO.PdfDAO_cartaporte;
 import Tabla.Tabla_PdfVO;
 import VO.PdfVO;
+import VO.PdfVO_cartaporte;
 import alertas.ErrorAlert;
 import alertas.SuccessAlert;
 import alertas.WarningAlert;
@@ -32,15 +34,15 @@ import static paneles_de_paneles.de_gestionar_contrato_añadir.numero_contrato;
  *
  * @author RojeruSan
  */
-public class de_gestionar_plano_añadir extends javax.swing.JPanel {
+public class de_gestionar_cartaporte_añadir extends javax.swing.JPanel {
 
     /**
      * Creates new form pnlHome
      */
-    public de_gestionar_plano_añadir() {
+    public de_gestionar_cartaporte_añadir() {
         initComponents();
-        lbl_error_nombre_plano.setVisible(false);
-        lbl_error_pdf_plano.setVisible(false);
+        lbl_error_numero_cartaporte.setVisible(false);
+        lbl_error_pdf_cartaporte.setVisible(false);
         deshabilitarPegar();
     }
 
@@ -55,59 +57,59 @@ public class de_gestionar_plano_añadir extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nombre_plano = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_nombre_plano = new javax.swing.JLabel();
-        boton_guardar_plano = new rojeru_san.RSButtonRiple();
+        numero_cartaporte = new rojeru_san.rsfield.RSTextMaterial();
+        lbl_error_numero_cartaporte = new javax.swing.JLabel();
+        boton_guardar_cartaporte = new rojeru_san.RSButtonRiple();
         lb_foto = new javax.swing.JLabel();
-        boton_busca_plano = new rojeru_san.RSButtonRiple();
-        lbl_error_pdf_plano = new javax.swing.JLabel();
+        boton_busca_cartaporte = new rojeru_san.RSButtonRiple();
+        lbl_error_pdf_cartaporte = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        nombre_plano.setForeground(new java.awt.Color(0, 0, 0));
-        nombre_plano.setColorMaterial(new java.awt.Color(99, 70, 250));
-        nombre_plano.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        nombre_plano.setPlaceholder("Nombre del plano...");
-        nombre_plano.setSelectionColor(new java.awt.Color(220, 23, 111));
-        nombre_plano.addKeyListener(new java.awt.event.KeyAdapter() {
+        numero_cartaporte.setForeground(new java.awt.Color(0, 0, 0));
+        numero_cartaporte.setColorMaterial(new java.awt.Color(99, 70, 250));
+        numero_cartaporte.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        numero_cartaporte.setPlaceholder("Número de carta de porte...");
+        numero_cartaporte.setSelectionColor(new java.awt.Color(220, 23, 111));
+        numero_cartaporte.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                nombre_planoKeyReleased(evt);
+                numero_cartaporteKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombre_planoKeyTyped(evt);
+                numero_cartaporteKeyTyped(evt);
             }
         });
 
-        lbl_error_nombre_plano.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_nombre_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_nombre_plano.setText("¡Debe ingresar un nombre de plano!");
+        lbl_error_numero_cartaporte.setForeground(new java.awt.Color(243, 66, 53));
+        lbl_error_numero_cartaporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_numero_cartaporte.setText("¡Debe ingresar un número de carta de porte!");
 
-        boton_guardar_plano.setBackground(new java.awt.Color(38, 86, 186));
-        boton_guardar_plano.setText("Guardar Plano");
-        boton_guardar_plano.setColorHover(new java.awt.Color(173, 187, 194));
-        boton_guardar_plano.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        boton_guardar_plano.addActionListener(new java.awt.event.ActionListener() {
+        boton_guardar_cartaporte.setBackground(new java.awt.Color(38, 86, 186));
+        boton_guardar_cartaporte.setText("Guardar Carta de Porte");
+        boton_guardar_cartaporte.setColorHover(new java.awt.Color(173, 187, 194));
+        boton_guardar_cartaporte.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        boton_guardar_cartaporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_guardar_planoActionPerformed(evt);
+                boton_guardar_cartaporteActionPerformed(evt);
             }
         });
 
         lb_foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_planos/foto_plano.png"))); // NOI18N
+        lb_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_carta_porte/cartaporte.png"))); // NOI18N
 
-        boton_busca_plano.setBackground(new java.awt.Color(38, 86, 186));
-        boton_busca_plano.setText("Buscar Plano");
-        boton_busca_plano.setColorHover(new java.awt.Color(173, 187, 194));
-        boton_busca_plano.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        boton_busca_plano.addActionListener(new java.awt.event.ActionListener() {
+        boton_busca_cartaporte.setBackground(new java.awt.Color(38, 86, 186));
+        boton_busca_cartaporte.setText("Buscar Carta de Porte");
+        boton_busca_cartaporte.setColorHover(new java.awt.Color(173, 187, 194));
+        boton_busca_cartaporte.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        boton_busca_cartaporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_busca_planoActionPerformed(evt);
+                boton_busca_cartaporteActionPerformed(evt);
             }
         });
 
-        lbl_error_pdf_plano.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_pdf_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_pdf_plano.setText("¡Debe buscar un plano!");
+        lbl_error_pdf_cartaporte.setForeground(new java.awt.Color(243, 66, 53));
+        lbl_error_pdf_cartaporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_pdf_cartaporte.setText("¡Debe buscar un plano!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -116,98 +118,99 @@ public class de_gestionar_plano_añadir extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lb_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
+                        .addComponent(lb_foto)
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boton_guardar_plano, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton_guardar_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lbl_error_nombre_plano, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nombre_plano, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lbl_error_numero_cartaporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(numero_cartaporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
+                        .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boton_busca_plano, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton_busca_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(lbl_error_pdf_plano)))))
-                .addContainerGap(130, Short.MAX_VALUE))
+                                .addComponent(lbl_error_pdf_cartaporte)))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(nombre_plano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(numero_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(lbl_error_nombre_plano, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbl_error_numero_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
-                        .addComponent(boton_guardar_plano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(lb_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(boton_busca_plano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boton_guardar_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addComponent(boton_busca_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_error_pdf_plano, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addComponent(lbl_error_pdf_cartaporte, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nombre_planoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_planoKeyReleased
+    private void numero_cartaporteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_cartaporteKeyReleased
         // TODO add your handling code here:
-        if(nombre_plano.getText().length()>0){
-            lbl_error_nombre_plano.setVisible(false);
+        if(numero_cartaporte.getText().length()>0){
+            lbl_error_numero_cartaporte.setVisible(false);
         }
-    }//GEN-LAST:event_nombre_planoKeyReleased
+    }//GEN-LAST:event_numero_cartaporteKeyReleased
 
-    private void nombre_planoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_planoKeyTyped
+    private void numero_cartaporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_cartaporteKeyTyped
         // TODO add your handling code here:
-        char letras = evt.getKeyChar();
-        if ((letras < 'a' || letras > 'z') && (letras < 'A' | letras > 'Z')) {
-            if ((letras != 'ñ') && (letras != 'Ñ') && (letras != 'á') && (letras != 'Á') && (letras != 'é') && (letras != 'É') && (letras != 'í')
-                && (letras != 'Í') && (letras != 'ó') && (letras != 'Ó') && (letras != 'ú') && (letras != 'Ú') && (letras != ' ')) {
-                evt.consume();
-            }
+       if(numero_cartaporte.getText().length()<6){
+        char num = evt.getKeyChar();
+        if ((num < '0' || num > '9')) {
+            evt.consume();
         }
-    }//GEN-LAST:event_nombre_planoKeyTyped
+        }else{
+             evt.consume();
+        }
+    }//GEN-LAST:event_numero_cartaporteKeyTyped
 
     Tabla_PdfVO tpdf = new Tabla_PdfVO();
-    private void boton_guardar_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_planoActionPerformed
-       String sql="select * from planos where nombre_plano='"+nombre_plano.getText()+"'";
-       String mje1="Ya existe un plano con ese nombre("+nombre_plano.getText()+")";
-       String mje2="¿Desea guardarlo de todas farmas?";
-       String mje3="La base de datos contendrá más de un plano con el mismo nombre";
-        if (nombre_plano.getText().isEmpty()||boton_busca_plano.getText().equals("Buscar Plano")) {
-               if(nombre_plano.getText().isEmpty()){
-                lbl_error_nombre_plano.setVisible(true);
-               }else if(boton_busca_plano.getText().equals("Buscar Plano")){
-                lbl_error_pdf_plano.setVisible(true);
+    private void boton_guardar_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_cartaporteActionPerformed
+       String sql="select * from cartaportes where numero_cartaporte='"+numero_cartaporte.getText()+"'";
+       String mje1="Ya existe una carta de porte con ese número("+numero_cartaporte.getText()+")";
+       String mje2="¿Desea guardarla de todas farmas?";
+       String mje3="La base de datos contendrá más de una carta de porte con el mismo número";
+        if (numero_cartaporte.getText().isEmpty()||boton_busca_cartaporte.getText().equals("Buscar Carta de Porte")) {
+               if(numero_cartaporte.getText().isEmpty()){
+                lbl_error_numero_cartaporte.setVisible(true);
+               }else if(boton_busca_cartaporte.getText().equals("Buscar Carta de Porte")){
+                lbl_error_pdf_cartaporte.setVisible(true);
                }
         } else {
-            if (interaccion_bd.opciones_de_gestionar_contrato.existe(nombre_plano.getText(), sql)) {
+            if (interaccion_bd.opciones_de_gestionar_contrato.existe(numero_cartaporte.getText(), sql)) {
                 WarningAlert a=new WarningAlert(new JFrame(), true);
                             a.msj1.setText(mje1);
                             a.msj2.setText(mje2);
                             a.msj3.setText(mje3);
+                            a.preferredSize();
+                            a.pack();
                             a.setVisible(true);
                             if(a.hecho==false){
-                            nombre_plano.requestFocus();
+                            numero_cartaporte.requestFocus();
                             }else{
                                 Runnable runnable1 = new Runnable() {
                 public void run() {
                     Guardando_general l = new Guardando_general(new JFrame(), true);
-                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_plano_añadir.this);
+                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_cartaporte_añadir.this);
                     l.setVisible(true);
                     try{
-                    paneles_de_paneles.de_gestionar_plano_añadir.this.setEnabled(false);
+                    paneles_de_paneles.de_gestionar_cartaporte_añadir.this.setEnabled(false);
                     accion_guardar();
-                    paneles_de_paneles.de_gestionar_plano_añadir.this.setEnabled(true);
+                    paneles_de_paneles.de_gestionar_cartaporte_añadir.this.setEnabled(true);
                     l.setVisible(false);
                         
                     }catch(Exception e){
-                        Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, e);
+                        Logger.getLogger(de_gestionar_cartaporte_añadir.class.getName()).log(Level.SEVERE, null, e);
                         opciones_de_gestionar_contrato.lanza_error(e);
                     }
                 }
@@ -219,12 +222,12 @@ public class de_gestionar_plano_añadir extends javax.swing.JPanel {
             Runnable runnable1 = new Runnable() {
                 public void run() {
                     Guardando_general l = new Guardando_general(new JFrame(), true);
-                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_plano_añadir.this);
+                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_cartaporte_añadir.this);
                     l.setVisible(true);
                     try{
-                    paneles_de_paneles.de_gestionar_plano_añadir.this.setEnabled(false);
+                    paneles_de_paneles.de_gestionar_cartaporte_añadir.this.setEnabled(false);
                     accion_guardar();
-                    paneles_de_paneles.de_gestionar_plano_añadir.this.setEnabled(true);
+                    paneles_de_paneles.de_gestionar_cartaporte_añadir.this.setEnabled(true);
                     l.setVisible(false);
                         
                     }catch(Exception e){
@@ -243,11 +246,11 @@ public class de_gestionar_plano_añadir extends javax.swing.JPanel {
             t1.start();
         }
     }
-    }//GEN-LAST:event_boton_guardar_planoActionPerformed
+    }//GEN-LAST:event_boton_guardar_cartaporteActionPerformed
 
     public void accion_guardar(){
         try{
-        String nombre = nombre_plano.getText();
+        String nombre = numero_cartaporte.getText();
         File ruta = new File(ruta_archivo);
         if (nombre.trim().length() != 0 && ruta_archivo.trim().length() != 0) {
             guardar_pdf(nombre, ruta);
@@ -255,8 +258,8 @@ public class de_gestionar_plano_añadir extends javax.swing.JPanel {
             ruta_archivo = "";
             reset_campos();
             SuccessAlert e = new SuccessAlert(new JFrame(), true);
-            e.msj1.setText("¡Los datos del plano fueron");
-            e.msj2.setText("guardados exitosamente!.");
+            e.msj1.setText("¡Los datos de la carta de porte fueron");
+            e.msj2.setText("guardados exitosamente!");
             e.msj3.setText("");
             e.setVisible(true);
         } 
@@ -266,8 +269,8 @@ public class de_gestionar_plano_añadir extends javax.swing.JPanel {
     }
     
     public void guardar_pdf( String nombre, File ruta) {
-        PdfDAO pa = new PdfDAO();
-        PdfVO po = new PdfVO();
+        PdfDAO_cartaporte pa = new PdfDAO_cartaporte();
+        PdfVO_cartaporte po = new PdfVO_cartaporte();
         po.setNombrepdf(nombre);
         try {
             byte[] pdf = new byte[(int) ruta.length()];
@@ -280,7 +283,7 @@ public class de_gestionar_plano_añadir extends javax.swing.JPanel {
         pa.Agregar_PdfVO(po);
     }
     
-    private void boton_busca_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_busca_planoActionPerformed
+    private void boton_busca_cartaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_busca_cartaporteActionPerformed
         // TODO add your handling code here:
         try{
          JFileChooser j = new JFileChooser();
@@ -288,34 +291,34 @@ public class de_gestionar_plano_añadir extends javax.swing.JPanel {
         j.setFileFilter(fi);
         int se = j.showOpenDialog(this);
         if (se == 0) {
-            this.boton_busca_plano.setText("" + j.getSelectedFile().getName());
+            this.boton_busca_cartaporte.setText("" + j.getSelectedFile().getName());
           ruta_archivo = j.getSelectedFile().getAbsolutePath();
           
           lb_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_planos/pdf2.png"))); 
-          lbl_error_pdf_plano.setVisible(false);
+          lbl_error_pdf_cartaporte.setVisible(false);
         }  
         }catch(Exception ex){
             opciones_de_gestionar_contrato.lanza_error(ex);
         }
-    }//GEN-LAST:event_boton_busca_planoActionPerformed
+    }//GEN-LAST:event_boton_busca_cartaporteActionPerformed
 
      private void deshabilitarPegar() {
-        InputMap map2 = nombre_plano.getInputMap(nombre_plano.WHEN_FOCUSED);
+        InputMap map2 = numero_cartaporte.getInputMap(numero_cartaporte.WHEN_FOCUSED);
         map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
     }
                
     private void reset_campos(){
-        nombre_plano.setText("");
-        boton_busca_plano.setText("Buscar Plano");
-        lb_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_planos/foto_plano.png")));
+        numero_cartaporte.setText("");
+        boton_busca_cartaporte.setText("Buscar Carta de Porte");
+        lb_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_carta_porte/cartaporte.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojeru_san.RSButtonRiple boton_busca_plano;
-    private rojeru_san.RSButtonRiple boton_guardar_plano;
+    private rojeru_san.RSButtonRiple boton_busca_cartaporte;
+    private rojeru_san.RSButtonRiple boton_guardar_cartaporte;
     private javax.swing.JLabel lb_foto;
-    private javax.swing.JLabel lbl_error_nombre_plano;
-    private javax.swing.JLabel lbl_error_pdf_plano;
-    public static rojeru_san.rsfield.RSTextMaterial nombre_plano;
+    private javax.swing.JLabel lbl_error_numero_cartaporte;
+    private javax.swing.JLabel lbl_error_pdf_cartaporte;
+    public static rojeru_san.rsfield.RSTextMaterial numero_cartaporte;
     // End of variables declaration//GEN-END:variables
 }

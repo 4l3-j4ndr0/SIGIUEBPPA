@@ -1,13 +1,13 @@
 package VO;
 
-public class PdfVO_proy {
+public class PdfVO_cartaporte {
 
     /*Todo los atributos*/
     int codigopdf;
     String nombrepdf;
     byte[] archivopdf;
 
-    public PdfVO_proy() {
+    public PdfVO_cartaporte() {
     }
 
     /*Todo los codigos get*/

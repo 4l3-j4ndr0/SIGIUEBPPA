@@ -6,13 +6,18 @@
 package paneles_de_paneles;
 
 import DAO.PdfDAO;
+import DAO.PdfDAO_cartaporte;
 import Tabla.Tabla_PdfVO;
+import Tabla.Tabla_PdfVO_cartaporte;
 import VO.PdfVO;
+import VO.PdfVO_cartaporte;
 import alertas.SuccessAlert;
 import conexion.conexion;
 import esperas.Guardando_general;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import static interaccion_bd.opciones_de_gestionar_contrato.lanza_error;
+import interaccion_bd.opciones_de_gestionar_prod_programa;
+import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -36,26 +41,26 @@ import javax.swing.Timer;
  *
  * @author 4l3
  */
-public class de_gestionar_plano_listar extends javax.swing.JPanel {
+public class de_gestionar_cartaporte_listar extends javax.swing.JPanel {
 
     /**
      * Creates new form pnlHome
      */
     
     private int PosicionMouse;
-    Tabla_PdfVO tpdf = new Tabla_PdfVO();
+    Tabla_PdfVO_cartaporte tpdf = new Tabla_PdfVO_cartaporte();
     int id = -1;
     
-    public de_gestionar_plano_listar() {
+    public de_gestionar_cartaporte_listar() {
         initComponents();
         
-        this.tabla_plano.setCursor(new Cursor(12));
+        this.tabla_cartaporte.setCursor(new Cursor(12));
         this.scroll.getViewport().setBackground(Color.WHITE);
         this.menu.add(pnlMenu);
         
-        tpdf.visualizar_PdfVO(tabla_plano);
+        tpdf.visualizar_PdfVO(tabla_cartaporte);
 
-        this.tabla_plano.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
+        this.tabla_cartaporte.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
 
         Timer timer = new Timer(500, new ActionListener() {
             @Override
@@ -88,7 +93,7 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
-        tabla_plano = new rojerusan.RSTableMetro();
+        tabla_cartaporte = new rojerusan.RSTableMetro();
         jLabel3 = new javax.swing.JLabel();
         txtBuscar_pdf = new rojeru_san.rsfield.RSTextMaterial();
 
@@ -142,12 +147,12 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
 
         scroll.setBorder(null);
 
-        tabla_plano.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_cartaporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "PLANO", "PDF"
+                "ID", "NÚMERO CARTAPORTE", "PDF"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -158,30 +163,30 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tabla_plano.setToolTipText("");
-        tabla_plano.setAltoHead(30);
-        tabla_plano.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
-        tabla_plano.setColorBordeHead(new java.awt.Color(255, 255, 255));
-        tabla_plano.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        tabla_plano.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
-        tabla_plano.setColorHoverBackgound(new java.awt.Color(69, 87, 252));
-        tabla_plano.setColorSelBackgound(new java.awt.Color(69, 87, 252));
-        tabla_plano.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        tabla_plano.setFuenteHead(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        tabla_plano.setGrosorBordeFilas(0);
-        tabla_plano.setHover(true);
-        tabla_plano.setMultipleSeleccion(false);
-        tabla_plano.setRowHeight(30);
-        tabla_plano.setSelectionBackground(new java.awt.Color(99, 70, 250));
-        tabla_plano.getTableHeader().setReorderingAllowed(false);
-        tabla_plano.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabla_cartaporte.setToolTipText("");
+        tabla_cartaporte.setAltoHead(30);
+        tabla_cartaporte.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
+        tabla_cartaporte.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        tabla_cartaporte.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tabla_cartaporte.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tabla_cartaporte.setColorHoverBackgound(new java.awt.Color(69, 87, 252));
+        tabla_cartaporte.setColorSelBackgound(new java.awt.Color(69, 87, 252));
+        tabla_cartaporte.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tabla_cartaporte.setFuenteHead(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tabla_cartaporte.setGrosorBordeFilas(0);
+        tabla_cartaporte.setHover(true);
+        tabla_cartaporte.setMultipleSeleccion(false);
+        tabla_cartaporte.setRowHeight(30);
+        tabla_cartaporte.setSelectionBackground(new java.awt.Color(99, 70, 250));
+        tabla_cartaporte.getTableHeader().setReorderingAllowed(false);
+        tabla_cartaporte.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabla_planoMouseClicked(evt);
+                tabla_cartaporteMouseClicked(evt);
             }
         });
-        scroll.setViewportView(tabla_plano);
-        if (tabla_plano.getColumnModel().getColumnCount() > 0) {
-            tabla_plano.getColumnModel().getColumn(1).setPreferredWidth(10);
+        scroll.setViewportView(tabla_cartaporte);
+        if (tabla_cartaporte.getColumnModel().getColumnCount() > 0) {
+            tabla_cartaporte.getColumnModel().getColumn(1).setPreferredWidth(10);
         }
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_coontrato/label-buscar.png"))); // NOI18N
@@ -249,22 +254,22 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabla_planoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_planoMouseClicked
-        int row = tabla_plano.rowAtPoint(evt.getPoint());
+    private void tabla_cartaporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_cartaporteMouseClicked
+        int row = tabla_cartaporte.rowAtPoint(evt.getPoint());
         if ((evt.getModifiers() & InputEvent.BUTTON3_MASK) == InputEvent.BUTTON3_MASK) {
-            this.tabla_plano.setRowSelectionInterval(row, row);
+            this.tabla_cartaporte.setRowSelectionInterval(row, row);
             PosicionMouse = evt.getY() / 16;
             menu.show(evt.getComponent(), evt.getX(), evt.getY());
         } else {
-            this.tabla_plano.setRowSelectionInterval(row, row);
+            this.tabla_cartaporte.setRowSelectionInterval(row, row);
         }
         
         // ver plano
-        int column = tabla_plano.getColumnModel().getColumnIndexAtX(evt.getX());
-        int row_pdf = evt.getY() / tabla_plano.getRowHeight();
-        if (row_pdf < tabla_plano.getRowCount() && row_pdf >= 0 && column < tabla_plano.getColumnCount() && column >= 0 && (evt.getModifiers() & InputEvent.BUTTON3_MASK) != InputEvent.BUTTON3_MASK) {
-            id = (int) tabla_plano.getValueAt(row_pdf, 0);
-            Object value = tabla_plano.getValueAt(row_pdf, column);
+        int column = tabla_cartaporte.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row_pdf = evt.getY() / tabla_cartaporte.getRowHeight();
+        if (row_pdf < tabla_cartaporte.getRowCount() && row_pdf >= 0 && column < tabla_cartaporte.getColumnCount() && column >= 0 && (evt.getModifiers() & InputEvent.BUTTON3_MASK) != InputEvent.BUTTON3_MASK) {
+            id = (int) tabla_cartaporte.getValueAt(row_pdf, 0);
+            Object value = tabla_cartaporte.getValueAt(row_pdf, column);
             try{
                 Runnable runnable1 = new Runnable() {
                 public void run() {
@@ -276,7 +281,7 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
                 if (boton.getText().equals("Vacio")) {
                     JOptionPane.showMessageDialog(null, "No hay archivo");
                 } else {
-                    PdfDAO pd = new PdfDAO();
+                    PdfDAO_cartaporte pd = new PdfDAO_cartaporte();
                     pd.ejecutar_archivoPDF(id);
                     try {
                         Desktop.getDesktop().open(new File("new.pdf"));
@@ -287,7 +292,7 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
 
             } 
                     }catch(Exception e){
-                        Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, e);
+                        Logger.getLogger(de_gestionar_cartaporte_listar.class.getName()).log(Level.SEVERE, null, e);
                         opciones_de_gestionar_contrato.lanza_error(e);
                     }
                 }
@@ -300,25 +305,30 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
         }else{
             
         }
-    }//GEN-LAST:event_tabla_planoMouseClicked
+    }//GEN-LAST:event_tabla_cartaporteMouseClicked
 
     
     
     private void txtBuscar_pdfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscar_pdfKeyReleased
-      Tabla_PdfVO tabla=new Tabla_PdfVO();
-        tabla.visualizar_PdfVO_buscar(tabla_plano, txtBuscar_pdf.getText());
+        Tabla_PdfVO_cartaporte tabla=new Tabla_PdfVO_cartaporte();
+        tabla.visualizar_PdfVO_buscar(tabla_cartaporte, txtBuscar_pdf.getText());
     }//GEN-LAST:event_txtBuscar_pdfKeyReleased
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-//        if (privilegios.Operaciones.EliminarProducto(principal.Principal.lblID.getText())) {
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='carta de porte'"
+                + "and eliminar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
             this.menu.setVisible(false);
-            int fila = this.tabla_plano.getSelectedRow();
-            int id = Integer.parseInt(tabla_plano.getValueAt(fila, 0).toString());
-            String nombre = this.tabla_plano.getValueAt(fila, 1).toString();
+            int fila = this.tabla_cartaporte.getSelectedRow();
+            int id = Integer.parseInt(tabla_cartaporte.getValueAt(fila, 0).toString());
+            String numero = this.tabla_cartaporte.getValueAt(fila, 1).toString();
 
             alertas.WarningAlert w = new alertas.WarningAlert(new JFrame(), true);
-            w.msj1.setText("Se eliminara el plano de");
-            w.msj2.setText("nombre (" + nombre + ")");
+            w.msj1.setText("Se eliminara la cartaporte de");
+            w.msj2.setText("número (" + numero + ")");
             w.msj3.setText("de manera permanente del sistema.");
             w.setVisible(true);
 
@@ -327,20 +337,20 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
                 Runnable runnable1 = new Runnable() {
                     public void run() {
                         Guardando_general l = new Guardando_general(new JFrame(), true);
-                        l.setLocationRelativeTo(de_gestionar_plano_listar.this);
+                        l.setLocationRelativeTo(de_gestionar_cartaporte_listar.this);
                         l.setVisible(true);
                         try{
-                            de_gestionar_plano_listar.this.setEnabled(false);
+                            de_gestionar_cartaporte_listar.this.setEnabled(false);
                             eliminar_plano(id);
                             SuccessAlert e = new SuccessAlert(new JFrame(), true);
-                            e.msj1.setText("¡El plano fue eliminado satisfactoriamente!");
+                            e.msj1.setText("¡La cartaporte fue eliminada satisfactoriamente!");
                             e.msj2.setText("");
                             e.msj3.setText("");
                             e.setVisible(true);
-                            de_gestionar_plano_listar.this.setEnabled(true);
+                            de_gestionar_cartaporte_listar.this.setEnabled(true);
                             l.setVisible(false);
                         }catch(Exception e){
-                            Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, e);
+                            Logger.getLogger(de_gestionar_cartaporte_listar.class.getName()).log(Level.SEVERE, null, e);
                             opciones_de_gestionar_contrato.lanza_error(e);
                         }
                     }
@@ -348,36 +358,40 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
                 Thread t1 = new Thread(runnable1);
                 t1.start();
             }
-//        } else {
-//            ErrorAlert e = new ErrorAlert(new JFrame(), true);
-//            e.msj1.setText("No cuentas con los privilegios");
-//            e.msj2.setText("para acceder a esta opción.");
-//            e.msj3.setText("");
-//            e.setVisible(true);
-//        }
+        } else {
+            opciones_de_gestionar_prod_programa.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void eliminar_plano(int id){
         eliminar_pdf(id);
-        tpdf.visualizar_PdfVO(tabla_plano);
-        this.tabla_plano.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
+        tpdf.visualizar_PdfVO(tabla_cartaporte);
+        this.tabla_cartaporte.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Planos());
     }
     
     public void eliminar_pdf(int codigo) {
-        PdfDAO pa = new PdfDAO();
-        PdfVO po = new PdfVO();
+        PdfDAO_cartaporte pa = new PdfDAO_cartaporte();
+        PdfVO_cartaporte po = new PdfVO_cartaporte();
         po.setCodigopdf(codigo);
         pa.Eliminar_PdfVO(po); 
     }
     
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+           String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='carta de porte'"
+                + "and editar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
             this.menu.setVisible(false);
-            de_gestionar_plano_editar m = new de_gestionar_plano_editar(new JFrame(), true);
-            int fila = de_gestionar_plano_listar.tabla_plano.getSelectedRow();
-            int id = Integer.parseInt(tabla_plano.getValueAt(fila, 0).toString());
-            de_gestionar_plano_editar.id_plano.setText(String.valueOf(id));
+            de_gestionar_cartaporte_editar m = new de_gestionar_cartaporte_editar(new JFrame(), true);
+            int fila = de_gestionar_cartaporte_listar.tabla_cartaporte.getSelectedRow();
+            int id = Integer.parseInt(tabla_cartaporte.getValueAt(fila, 0).toString());
             extraerDatos(m, id);
             m.setVisible(true);
+        }else{
+            opciones_de_gestionar_prod_programa.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void txtBuscar_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscar_pdfActionPerformed
@@ -388,16 +402,17 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
     static conexion cc = new conexion();
     static Connection cn = cc.conexion();
     static PreparedStatement ps;
-    public static void extraerDatos(de_gestionar_plano_editar datos, int id) {
+    public static void extraerDatos(de_gestionar_cartaporte_editar datos, int id) {
 
-        String sql = "SELECT nombre_plano FROM planos WHERE id_plano = " + id;
+        String sql = "SELECT numero_cartaporte FROM cartaportes WHERE id_cartaporte = " + id;
         try {
             
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
-                datos.nombre_plano_editar.setText(String.valueOf(rs.getString(1))); 
-                datos.nombre_plano_control.setText(String.valueOf(rs.getString(1)));
+                de_gestionar_cartaporte_editar.numero_cartaporte_editar.setText(String.valueOf(rs.getString(1))); 
+                de_gestionar_cartaporte_editar.numero_cartaporte_control.setText(String.valueOf(rs.getString(1))); 
+                de_gestionar_cartaporte_editar.id_cartaporte.setText(String.valueOf(String.valueOf(id))); 
             }
         } catch (SQLException ex) {
             lanza_error(ex);
@@ -413,7 +428,7 @@ public class de_gestionar_plano_listar extends javax.swing.JPanel {
     private rojerusan.RSPopuMenu menu;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JScrollPane scroll;
-    public static rojerusan.RSTableMetro tabla_plano;
+    public static rojerusan.RSTableMetro tabla_cartaporte;
     public static rojeru_san.rsfield.RSTextMaterial txtBuscar_pdf;
     // End of variables declaration//GEN-END:variables
 }

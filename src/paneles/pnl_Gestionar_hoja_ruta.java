@@ -5,6 +5,9 @@
  */
 package paneles;
 
+import interaccion_bd.opciones_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_usuarios;
+
 /**
  *
  * @author RojeruSan
@@ -141,8 +144,17 @@ public class pnl_Gestionar_hoja_ruta extends javax.swing.JPanel {
 
     private void add_hoja_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_hoja_rutaActionPerformed
         // TODO add your handling code here:
+        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='hoja de ruta'"
+                + "and add_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_hoja_ruta_añadir());
         pnl_Gestionar_contrato.color_performed(add_hoja_ruta,listar_hoja_ruta);
+        }else{
+            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_add_hoja_rutaActionPerformed
 
 
