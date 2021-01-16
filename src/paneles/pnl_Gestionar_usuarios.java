@@ -9,12 +9,12 @@ package paneles;
  *
  * @author RojeruSan
  */
-public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
+public class pnl_Gestionar_venta extends javax.swing.JPanel {
 
     /**
      * Creates new form pnlHome
      */
-    public pnl_Gestionar_usuarios() {
+    public pnl_Gestionar_venta() {
         initComponents();
     }
 
@@ -38,7 +38,7 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Configuración");
+        jLabel7.setText("Gestionar Ventas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -55,10 +55,10 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
