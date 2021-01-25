@@ -323,7 +323,7 @@ public class de_gestionar_prod_programa_añadir extends javax.swing.JPanel {
                 opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El elemento descrito no se encuentra en la base de datos.",
                 "",
                 "Seleccione uno existente en nuestra base de datos");
-            combo_programas.requestFocus();
+            combo_prefabricados.requestFocus();
             }
             
         } else {

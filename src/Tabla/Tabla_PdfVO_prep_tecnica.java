@@ -37,7 +37,7 @@ public class Tabla_PdfVO_prep_tecnica {
         PdfVO_prep_tecnica vo = new PdfVO_prep_tecnica();
         ArrayList<PdfVO_prep_tecnica> list = dao.Listar_PdfVO();
 
-        if (list.size() > 0) {
+        if (list.size() >= 0) {
             for (int i = 0; i < list.size(); i++) {
                 Object fila[] = new Object[3];
                 vo = list.get(i);

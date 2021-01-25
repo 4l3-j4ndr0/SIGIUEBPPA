@@ -5,35 +5,24 @@
  */
 package paneles_de_paneles;
 
-import alertas.ErrorAlert;
 import alertas.SuccessAlert;
-import com.toedter.calendar.JDateChooser;
 import esperas.Guardando_general;
-import interaccion_bd.consultas_de_gestionar_contrato;
-import interaccion_bd.consultas_de_gestionar_tarj_combustible;
+import interaccion_bd.consultas_de_gestionar_recursos_x_programa;
 import interaccion_bd.opciones_de_gestionar_contrato;
-import interaccion_bd.opciones_de_gestionar_tarj_combustible;
+import interaccion_bd.opciones_de_gestionar_info_lab;
+import interaccion_bd.opciones_de_gestionar_prod_programa;
+import interaccion_bd.opciones_de_gestionar_recursos_x_programa;
 import java.awt.Event;
-import paneles.*;
-import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.lang.reflect.Field;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
-import static paneles_de_paneles.de_gestionar_contrato_editar.nombre_cliente_contrato_editar;
-import static paneles_de_paneles.de_gestionar_contrato_editar.numero_contrato_editar;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -46,36 +35,37 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
      */
     public de_gestionar_info_laboratorio_añadir() {
         initComponents();
-        lbl_error_cant_litro_tarjeta.setVisible(false);
-        lbl_error_numero_tarjeta.setVisible(false);
-        lbl_error_fecha_asignacion_tarjeta.setVisible(false);
-        lbl_error_tipo_combustible.setVisible(false);
-        lbl_error_ping_tarjeta.setVisible(false);
-        lbl_error_numero_chapa.setVisible(false);
-
-      //  detectar cambio en jdateChoser (fecha de inicio en agregar contrato)
-        fecha_iasignacion_tarjeta.getDateEditor().addPropertyChangeListener(
-                new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent e) {
-                if ("date".equals(e.getPropertyName())) {
-                    System.out.println(e.getPropertyName()
-                            + ": " + (Date) e.getNewValue());
-                    if(fecha_iasignacion_tarjeta.getDate()==null){
-                    lbl_error_fecha_asignacion_tarjeta.setVisible(true);
-                    }
-                }else{
-                    lbl_error_fecha_asignacion_tarjeta.setVisible(false);
-                }
-            }
-        });
-        this.add(fecha_iasignacion_tarjeta);
         
-         //################### detectar cambios en los combobox ######################3
-        combo_tipo_combustible.addItemListener(new ItemListener() {
+        lbl_error_asent_add.setVisible(false);
+        lbl_error_vol_m3_add.setVisible(false);
+        lbl_error_fecha_info_lab_add.setVisible(false);
+        lbl_error_lm_add.setVisible(false);
+        lbl_error_num_materiales_add.setVisible(false);
+        lbl_error_pm_add.setVisible(false);
+        lbl_error_x1_28dias_add.setEnabled(false);
+        lbl_error_x1_add.setEnabled(false);
+        lbl_error_x2_28dias_add.setEnabled(false);
+        lbl_error_x2_add.setEnabled(false);
+        lbl_error_x3_28dias_add.setEnabled(false);
+        lbl_error_x3_add.setEnabled(false);
+        deshabilitarPegar();
+        opciones_de_gestionar_info_lab.get_combos(combo_lm, combo_pm);
+        //################### detectar cambios en los combobox ######################3
+        combo_lm.addItemListener(new ItemListener() {
            public void itemStateChanged(ItemEvent arg0) {
                //Do Something
-              lbl_error_tipo_combustible.setVisible(false);
+              lbl_error_lm_add.setVisible(false);
+           }
+           
+            public void itemStateChangedd(ItemEvent e) {
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+       });
+        
+        combo_pm.addItemListener(new ItemListener() {
+           public void itemStateChanged(ItemEvent arg0) {
+               //Do Something
+              lbl_error_pm_add.setVisible(false);
            }
            
             public void itemStateChangedd(ItemEvent e) {
@@ -83,9 +73,25 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             }
        });
         // ##########################################################################
+    
         
-        
-        deshabilitarPegar();
+        //  detectar cambio en jdateChoser (fecha de inicio en agregar contrato)
+        fecha_info_lab_add.getDateEditor().addPropertyChangeListener(
+                new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                if ("date".equals(e.getPropertyName())) {
+                    System.out.println(e.getPropertyName()
+                            + ": " + (Date) e.getNewValue());
+                    if(fecha_info_lab_add.getDate()==null){
+                       lbl_error_fecha_info_lab_add.setVisible(true);
+                    }
+                }else{
+                    lbl_error_fecha_info_lab_add.setVisible(false);
+                }
+            }
+        });
+        this.add(fecha_info_lab_add);
     }
 
     
@@ -99,482 +105,1132 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        numero_tarjeta_tarjeta = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_numero_tarjeta = new javax.swing.JLabel();
-        ping_tarjeta = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_ping_tarjeta = new javax.swing.JLabel();
-        numero_cant_litros_tarjeta = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_cant_litro_tarjeta = new javax.swing.JLabel();
-        lbl_error_numero_chapa = new javax.swing.JLabel();
-        fecha_iasignacion_tarjeta = new com.toedter.calendar.JDateChooser();
-        lbl_error_fecha_asignacion_tarjeta = new javax.swing.JLabel();
-        lbl_error_tipo_combustible = new javax.swing.JLabel();
-        combo_tipo_combustible = new org.bolivia.combo.SComboBox();
-        boton_guardar_tarjeta = new rojeru_san.RSButtonRiple();
-        numero_chapa_tarjeta = new rojeru_san.rsfield.RSTextMaterial();
+        boton_guardar_recursos_x_programa_add = new rojeru_san.RSButtonRiple();
+        num_materiales_add = new rojeru_san.rsfield.RSTextMaterial();
+        lbl_error_num_materiales_add = new javax.swing.JLabel();
+        vol_m3_add = new rojeru_san.rsfield.RSTextMaterial();
+        fecha_info_lab_add = new com.toedter.calendar.JDateChooser();
+        asent_add = new rojeru_san.rsfield.RSTextMaterial();
+        x2_add = new rojeru_san.rsfield.RSTextMaterial();
+        x1_add = new rojeru_san.rsfield.RSTextMaterial();
+        x3_add = new rojeru_san.rsfield.RSTextMaterial();
+        combo_lm = new org.bolivia.combo.SComboBox();
+        check_prefabricados1 = new check_de_android.Switch();
+        check_prefabricados2 = new check_de_android.Switch();
+        combo_pm = new org.bolivia.combo.SComboBox();
+        check_prefabricados3 = new check_de_android.Switch();
+        x1_28dias_add = new rojeru_san.rsfield.RSTextMaterial();
+        x2_28dias_add = new rojeru_san.rsfield.RSTextMaterial();
+        x3_28dias_add = new rojeru_san.rsfield.RSTextMaterial();
+        lbl_error_lm_add = new javax.swing.JLabel();
+        lbl_error_pm_add = new javax.swing.JLabel();
+        lbl_error_fecha_info_lab_add = new javax.swing.JLabel();
+        lbl_error_x1_add = new javax.swing.JLabel();
+        lbl_error_x2_add = new javax.swing.JLabel();
+        lbl_error_x3_add = new javax.swing.JLabel();
+        lbl_error_x3_28dias_add = new javax.swing.JLabel();
+        lbl_error_vol_m3_add = new javax.swing.JLabel();
+        lbl_error_asent_add = new javax.swing.JLabel();
+        lbl_error_x1_28dias_add = new javax.swing.JLabel();
+        lbl_error_x2_28dias_add = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_tarj_combustible/tarjeta_combustible3.png"))); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_info_lab/info_lab.png"))); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        numero_tarjeta_tarjeta.setForeground(new java.awt.Color(0, 0, 0));
-        numero_tarjeta_tarjeta.setColorMaterial(new java.awt.Color(99, 70, 250));
-        numero_tarjeta_tarjeta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        numero_tarjeta_tarjeta.setPlaceholder("Número de tarjeta...");
-        numero_tarjeta_tarjeta.setSelectionColor(new java.awt.Color(220, 23, 111));
-        numero_tarjeta_tarjeta.addActionListener(new java.awt.event.ActionListener() {
+        boton_guardar_recursos_x_programa_add.setBackground(new java.awt.Color(38, 86, 186));
+        boton_guardar_recursos_x_programa_add.setText("Guardar Cambios");
+        boton_guardar_recursos_x_programa_add.setColorHover(new java.awt.Color(173, 187, 194));
+        boton_guardar_recursos_x_programa_add.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        boton_guardar_recursos_x_programa_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numero_tarjeta_tarjetaActionPerformed(evt);
+                boton_guardar_recursos_x_programa_addActionPerformed(evt);
             }
         });
-        numero_tarjeta_tarjeta.addKeyListener(new java.awt.event.KeyAdapter() {
+
+        num_materiales_add.setForeground(new java.awt.Color(0, 0, 0));
+        num_materiales_add.setColorMaterial(new java.awt.Color(99, 70, 250));
+        num_materiales_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        num_materiales_add.setPlaceholder("Número de materiales...");
+        num_materiales_add.setSelectionColor(new java.awt.Color(220, 23, 111));
+        num_materiales_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                num_materiales_addActionPerformed(evt);
+            }
+        });
+        num_materiales_add.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                numero_tarjeta_tarjetaKeyReleased(evt);
+                num_materiales_addKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                numero_tarjeta_tarjetaKeyTyped(evt);
+                num_materiales_addKeyTyped(evt);
             }
         });
 
-        lbl_error_numero_tarjeta.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_numero_tarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_numero_tarjeta.setText("¡Debe ingresar número de tarjeta!");
+        lbl_error_num_materiales_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_num_materiales_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_num_materiales_add.setText("¡Debe ingresar un número!");
 
-        ping_tarjeta.setForeground(new java.awt.Color(0, 0, 0));
-        ping_tarjeta.setColorMaterial(new java.awt.Color(99, 70, 250));
-        ping_tarjeta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        ping_tarjeta.setPlaceholder("Ping de tarjeta...");
-        ping_tarjeta.setSelectionColor(new java.awt.Color(220, 23, 111));
-        ping_tarjeta.addKeyListener(new java.awt.event.KeyAdapter() {
+        vol_m3_add.setForeground(new java.awt.Color(0, 0, 0));
+        vol_m3_add.setColorMaterial(new java.awt.Color(99, 70, 250));
+        vol_m3_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        vol_m3_add.setPlaceholder("Volumen (m3)...");
+        vol_m3_add.setSelectionColor(new java.awt.Color(220, 23, 111));
+        vol_m3_add.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                ping_tarjetaKeyReleased(evt);
+                vol_m3_addKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                ping_tarjetaKeyTyped(evt);
+                vol_m3_addKeyTyped(evt);
             }
         });
 
-        lbl_error_ping_tarjeta.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_ping_tarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_ping_tarjeta.setText("¡Debe ingresar ping de tarjeta!");
-
-        numero_cant_litros_tarjeta.setForeground(new java.awt.Color(0, 0, 0));
-        numero_cant_litros_tarjeta.setColorMaterial(new java.awt.Color(99, 70, 250));
-        numero_cant_litros_tarjeta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        numero_cant_litros_tarjeta.setPlaceholder("Cantidad de litros...");
-        numero_cant_litros_tarjeta.setSelectionColor(new java.awt.Color(220, 23, 111));
-        numero_cant_litros_tarjeta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                numero_cant_litros_tarjetaKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                numero_cant_litros_tarjetaKeyTyped(evt);
-            }
-        });
-
-        lbl_error_cant_litro_tarjeta.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_cant_litro_tarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_cant_litro_tarjeta.setText("¡Debe ingresar una cantidad de litros!");
-
-        lbl_error_numero_chapa.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_numero_chapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_numero_chapa.setText("¡Debe ingresar número de chapa!");
-
-        fecha_iasignacion_tarjeta.setDateFormatString("dd/MM/yyyy");
-        fecha_iasignacion_tarjeta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        fecha_iasignacion_tarjeta.addAncestorListener(new javax.swing.event.AncestorListener() {
+        fecha_info_lab_add.setDateFormatString("dd/MM/yyyy");
+        fecha_info_lab_add.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        fecha_info_lab_add.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-                fecha_iasignacion_tarjetaAncestorRemoved(evt);
+                fecha_info_lab_addAncestorRemoved(evt);
             }
         });
 
-        lbl_error_fecha_asignacion_tarjeta.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_fecha_asignacion_tarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_fecha_asignacion_tarjeta.setText("¡Debe ingresar una fecha!");
-
-        lbl_error_tipo_combustible.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_tipo_combustible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_tipo_combustible.setText("¡Debe ingresar un tipo de combustible!");
-
-        combo_tipo_combustible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIPO COMBUSTIBLE", "GASOLINA", "PETRÓLEO" }));
-
-        boton_guardar_tarjeta.setBackground(new java.awt.Color(38, 86, 186));
-        boton_guardar_tarjeta.setText("Guardar Tarjeta");
-        boton_guardar_tarjeta.setColorHover(new java.awt.Color(173, 187, 194));
-        boton_guardar_tarjeta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        boton_guardar_tarjeta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_guardar_tarjetaActionPerformed(evt);
-            }
-        });
-
-        numero_chapa_tarjeta.setForeground(new java.awt.Color(0, 0, 0));
-        numero_chapa_tarjeta.setColorMaterial(new java.awt.Color(99, 70, 250));
-        numero_chapa_tarjeta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        numero_chapa_tarjeta.setPlaceholder("Chapa a la que pertenece...");
-        numero_chapa_tarjeta.setSelectionColor(new java.awt.Color(220, 23, 111));
-        numero_chapa_tarjeta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numero_chapa_tarjetaActionPerformed(evt);
-            }
-        });
-        numero_chapa_tarjeta.addKeyListener(new java.awt.event.KeyAdapter() {
+        asent_add.setForeground(new java.awt.Color(0, 0, 0));
+        asent_add.setColorMaterial(new java.awt.Color(99, 70, 250));
+        asent_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        asent_add.setPlaceholder("Asent. (cm)...");
+        asent_add.setSelectionColor(new java.awt.Color(220, 23, 111));
+        asent_add.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                numero_chapa_tarjetaKeyReleased(evt);
+                asent_addKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                numero_chapa_tarjetaKeyTyped(evt);
+                asent_addKeyTyped(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(numero_tarjeta_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(lbl_error_numero_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_error_numero_chapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fecha_iasignacion_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_error_fecha_asignacion_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(numero_chapa_tarjeta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(72, 72, 72)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_error_tipo_combustible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_error_ping_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ping_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(numero_cant_litros_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(combo_tipo_combustible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_error_cant_litro_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(boton_guardar_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(134, 134, 134)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ping_tarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(numero_tarjeta_tarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_error_numero_tarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_error_ping_tarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numero_chapa_tarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(numero_cant_litros_tarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_error_numero_chapa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_error_cant_litro_tarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(fecha_iasignacion_tarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(combo_tipo_combustible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_error_fecha_asignacion_tarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_error_tipo_combustible, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addComponent(boton_guardar_tarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        x2_add.setForeground(new java.awt.Color(0, 0, 0));
+        x2_add.setColorMaterial(new java.awt.Color(99, 70, 250));
+        x2_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        x2_add.setPlaceholder("x2 (3 días)...");
+        x2_add.setSelectionColor(new java.awt.Color(220, 23, 111));
+        x2_add.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                x2_addKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                x2_addKeyTyped(evt);
+            }
+        });
+
+        x1_add.setForeground(new java.awt.Color(0, 0, 0));
+        x1_add.setColorMaterial(new java.awt.Color(99, 70, 250));
+        x1_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        x1_add.setPlaceholder("X1 (3 días)...");
+        x1_add.setSelectionColor(new java.awt.Color(220, 23, 111));
+        x1_add.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                x1_addKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                x1_addKeyTyped(evt);
+            }
+        });
+
+        x3_add.setForeground(new java.awt.Color(0, 0, 0));
+        x3_add.setColorMaterial(new java.awt.Color(99, 70, 250));
+        x3_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        x3_add.setPlaceholder("X3 (3 días)...");
+        x3_add.setSelectionColor(new java.awt.Color(220, 23, 111));
+        x3_add.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                x3_addKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                x3_addKeyTyped(evt);
+            }
+        });
+
+        combo_lm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MATERIALES (LM)" }));
+        combo_lm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_lmActionPerformed(evt);
+            }
+        });
+
+        check_prefabricados1.setToolTipText("Hacer o deshacer editable");
+        check_prefabricados1.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_prefabricados1.setOnOff(false);
+        check_prefabricados1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_prefabricados1MouseClicked(evt);
+            }
+        });
+
+        check_prefabricados2.setToolTipText("Hacer o deshacer editable");
+        check_prefabricados2.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_prefabricados2.setOnOff(false);
+        check_prefabricados2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_prefabricados2MouseClicked(evt);
+            }
+        });
+
+        combo_pm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MATERIALES (PM)" }));
+        combo_pm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_pmActionPerformed(evt);
+            }
+        });
+
+        check_prefabricados3.setToolTipText("Unir materiales");
+        check_prefabricados3.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_prefabricados3.setOnOff(false);
+        check_prefabricados3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_prefabricados3MouseClicked(evt);
+            }
+        });
+
+        x1_28dias_add.setForeground(new java.awt.Color(0, 0, 0));
+        x1_28dias_add.setColorMaterial(new java.awt.Color(99, 70, 250));
+        x1_28dias_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        x1_28dias_add.setPlaceholder("X1 (28 días)...");
+        x1_28dias_add.setSelectionColor(new java.awt.Color(220, 23, 111));
+        x1_28dias_add.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                x1_28dias_addKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                x1_28dias_addKeyTyped(evt);
+            }
+        });
+
+        x2_28dias_add.setForeground(new java.awt.Color(0, 0, 0));
+        x2_28dias_add.setColorMaterial(new java.awt.Color(99, 70, 250));
+        x2_28dias_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        x2_28dias_add.setPlaceholder("x2 (28 días)...");
+        x2_28dias_add.setSelectionColor(new java.awt.Color(220, 23, 111));
+        x2_28dias_add.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                x2_28dias_addKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                x2_28dias_addKeyTyped(evt);
+            }
+        });
+
+        x3_28dias_add.setForeground(new java.awt.Color(0, 0, 0));
+        x3_28dias_add.setColorMaterial(new java.awt.Color(99, 70, 250));
+        x3_28dias_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        x3_28dias_add.setPlaceholder("X3 (28 días)...");
+        x3_28dias_add.setSelectionColor(new java.awt.Color(220, 23, 111));
+        x3_28dias_add.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                x3_28dias_addKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                x3_28dias_addKeyTyped(evt);
+            }
+        });
+
+        lbl_error_lm_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_lm_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_lm_add.setText("¡Debe ingresar un material!");
+
+        lbl_error_pm_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_pm_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_pm_add.setText("¡Debe ingresar un material!");
+
+        lbl_error_fecha_info_lab_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_fecha_info_lab_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_fecha_info_lab_add.setText("¡Debe ingresar una fecha!");
+
+        lbl_error_x1_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_x1_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_x1_add.setText("¡Debe ingresar un número!");
+
+        lbl_error_x2_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_x2_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_x2_add.setText("¡Debe ingresar un número!");
+
+        lbl_error_x3_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_x3_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_x3_add.setText("¡Debe ingresar un número!");
+
+        lbl_error_x3_28dias_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_x3_28dias_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_x3_28dias_add.setText("¡Debe ingresar un número!");
+
+        lbl_error_vol_m3_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_vol_m3_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_vol_m3_add.setText("¡Debe ingresar un número!");
+
+        lbl_error_asent_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_asent_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_asent_add.setText("¡Debe ingresar un número!");
+
+        lbl_error_x1_28dias_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_x1_28dias_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_x1_28dias_add.setText("¡Debe ingresar un número!");
+
+        lbl_error_x2_28dias_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_x2_28dias_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_x2_28dias_add.setText("¡Debe ingresar un número!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(x1_28dias_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(x2_28dias_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_error_vol_m3_add)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(asent_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(vol_m3_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(check_prefabricados1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(combo_lm, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(lbl_error_lm_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lbl_error_asent_add)
+                            .addComponent(lbl_error_x1_28dias_add)
+                            .addComponent(lbl_error_x2_28dias_add))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(check_prefabricados3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(x1_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(combo_pm, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(check_prefabricados2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(x3_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lbl_error_num_materiales_add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(num_materiales_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fecha_info_lab_add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_error_fecha_info_lab_add, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(x2_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(x3_28dias_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_error_pm_add, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_error_x1_add)
+                    .addComponent(lbl_error_x2_add)
+                    .addComponent(lbl_error_x3_add)
+                    .addComponent(lbl_error_x3_28dias_add))
+                .addContainerGap(104, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(boton_guardar_recursos_x_programa_add, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(num_materiales_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_num_materiales_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(fecha_info_lab_add, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_error_fecha_info_lab_add)))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vol_m3_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(x1_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_error_x1_add)
+                    .addComponent(lbl_error_vol_m3_add))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(asent_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(x2_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_error_asent_add)
+                    .addComponent(lbl_error_x2_add))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(x1_28dias_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(x3_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_error_x3_add)
+                    .addComponent(lbl_error_x1_28dias_add))
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1))
+                        .addComponent(x2_28dias_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_x2_28dias_add))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(x3_28dias_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_x3_28dias_add)))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(combo_lm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(check_prefabricados1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(combo_pm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(check_prefabricados2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_error_lm_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_error_pm_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(check_prefabricados3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addComponent(boton_guardar_recursos_x_programa_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void boton_guardar_recursos_x_programa_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_recursos_x_programa_addActionPerformed
+//        String sql_elemento="select * from materia_prima where `elem__materia_prima`='"+combo_prefabricados_re_add.getSelectedItem().toString()+"'";
+//        String sql_programa="SELECT * FROM `contrato` WHERE  `nombre_contrato`='"+combo_programas_re_add.getSelectedItem().toString()+"'";
+//        String sql="select * from recursos_x_programa where codigo_re='"+num_materiales_add.getText()+"'";
+//        String mje1="El código de recursos por programa que intenta registrar ya existe";
+//        String mje2="Por favor introduzca un código distinto de recurso";
+//        if (combo_prefabricados_re_add.getSelectedIndex()==0||
+//                cantidad_re_add.getText().isEmpty()||combo_programas_re_add.getSelectedIndex()==0||factura_re_add.getText().isEmpty()||
+//                carta_porte_re_add.getText().isEmpty()||opciones_de_gestionar_prod_programa.existe(sql_elemento) == false||opciones_de_gestionar_prod_programa.existe(sql_programa) == false) {
+//            if(combo_prefabricados_re_add.getSelectedIndex()==0){
+//                combo_prefabricados_re_add.requestFocus();
+//                lbl_error_descripcion_re_add.setVisible(true);
+//            }else if(cantidad_re_add.getText().isEmpty()){
+//                cantidad_re_add.requestFocus();
+//                lbl_error_cant_re_add.setVisible(true);
+//            }else if(combo_programas_re_add.getSelectedIndex()==0){
+//                combo_programas_re_add.requestFocus();
+//                lbl_error_programa_re_add.setVisible(true);
+//            }else if(factura_re_add.getText().isEmpty()){
+//                factura_re_add.requestFocus();
+//                lbl_error_factura_re_add.setVisible(true);
+//            }else if(carta_porte_re_add.getText().isEmpty()){
+//                carta_porte_re_add.requestFocus();
+//                lbl_error_carta_porte_add.setVisible(true);
+//            }else if(opciones_de_gestionar_prod_programa.existe(sql_elemento) == false){
+//            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El elemento descrito no se encuentra en la base de datos.",
+//                "Por favor, elija uno de los existentes en nuestra base de datos.",
+//                "");
+//            combo_prefabricados_re_add.requestFocus();
+//            }else if(opciones_de_gestionar_prod_programa.existe(sql_programa) == false){
+//            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El programa descrito no se encuentra en la base de datos.",
+//                "Por favor, si es real, regístrelo antes de volver a intentarlo.",
+//                "De lo contrario seleccione uno existente en nuestra base de datos");
+//            combo_programas_re_add.requestFocus();
+//            }        } else {
+//
+//                if (interaccion_bd.opciones_de_gestionar_contrato.existe(num_materiales_add.getText(), sql)) {
+//                    opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
+//                    cantidad_re_add.requestFocus();
+//                }else{
+//                    Guardando_general l = new Guardando_general(new JFrame(), true);
+//                    consultas_de_gestionar_recursos_x_programa uc=new consultas_de_gestionar_recursos_x_programa();
+//                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this);
+//                    l.setVisible(true);
+//                    paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(false);
+//                    uc.setCodigo(num_materiales_add.getText());
+//                uc.setDescripcion(combo_prefabricados_re_add.getSelectedItem().toString());
+//                uc.setUm(um_re_add.getText());
+//                uc.setCant(cantidad_re_add.getText());
+//                uc.setPrograma_pertenece(combo_programas_re_add.getSelectedItem().toString());
+//                uc.setFactura(factura_re_add.getText());
+//                uc.setCarta_porte(carta_porte_re_add.getText());
+//                    int control= opciones_de_gestionar_recursos_x_programa.registrar(uc);
+//                    paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(true);
+//                    l.setVisible(false);
+//                    if(control==1){
+//                        reset_campos();
+//                        opciones_de_gestionar_recursos_x_programa.setListar("");
+//                        SuccessAlert e = new SuccessAlert(new JFrame(), true);
+//                        e.msj1.setText("¡Los datos del recurso fueron");
+//                        e.msj2.setText("guardados exitosamente!.");
+//                        e.msj3.setText("");
+//                        e.setVisible(true);
+//                    }
+//                }
+//            
+//        }
+    }//GEN-LAST:event_boton_guardar_recursos_x_programa_addActionPerformed
+    
+    
+    
+    private void num_materiales_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_num_materiales_addKeyTyped
+        // TODO add your handling code here:
+         if(num_materiales_add.getText().length()<10){
+        char num = evt.getKeyChar();
+        if ((num < '0' || num > '9')) {
+            evt.consume();
+        }
+        }else{
+             evt.consume();
+        }
+    }//GEN-LAST:event_num_materiales_addKeyTyped
+
+    private void num_materiales_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_num_materiales_addActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_num_materiales_addActionPerformed
+
+    private void vol_m3_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_vol_m3_addKeyReleased
+        // TODO add your handling code here:
+        if(vol_m3_add.getText().length()>0){
+            lbl_error_vol_m3_add.setVisible(false);
+        }
+    }//GEN-LAST:event_vol_m3_addKeyReleased
+
+    
+//    int control=0;
+    private void vol_m3_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_vol_m3_addKeyTyped
+        // TODO add your handling code here:
+        int pto=0;
+    int lugares=0;
+        char caracter = evt.getKeyChar();
+        if(caracter=='.'){
+            pto++;
+        }
+        if( pto>=2){
+            pto=2;
+        }
+        if( lugares>=3){
+            lugares--;
+        }
+
+        if(caracter == KeyEvent.VK_BACK_SPACE){
+            if( pto>=0){
+                lugares--;
+            }
+
+            if(!vol_m3_add.getText().contains(".")){
+                pto=0;
+            }
+            if( pto==0){
+                lugares=0;
+            }
+        }
+        if (vol_m3_add.getText().length() <1 ) {
+            char car = evt.getKeyChar();
+            if (car!='.' && Character.isDigit(car)) {
+                // escribe
+            } else {
+                evt.consume();  // desecha
+            }
+
+        }else{
+            if(vol_m3_add.getText().length()<10){
+                char num = evt.getKeyChar();
+                if (Character.isDigit(num)||num=='.') {
+                    if(num=='.'&&pto<2){
+                        // escribe
+                    }else{
+                        if(pto!=0&&num!='.'){
+                            lugares++;
+                        }
+                        if(lugares<3 && num!='.'){
+                            // escribe
+                        }else{
+                            evt.consume();
+                        }
+                    }
+                }else{
+                    evt.consume();
+                }
+            }else{
+                evt.consume();
+            }
+        }
+
+    }//GEN-LAST:event_vol_m3_addKeyTyped
+
+    private void fecha_info_lab_addAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_fecha_info_lab_addAncestorRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fecha_info_lab_addAncestorRemoved
+
+    private void asent_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_asent_addKeyReleased
+        // TODO add your handling code here:
+        if(asent_add.getText().length()>0){
+            lbl_error_asent_add.setVisible(false);
+        }
+    }//GEN-LAST:event_asent_addKeyReleased
+
+    private void asent_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_asent_addKeyTyped
+        // TODO add your handling code here:
+         int pto=0;
+    int lugares=0;
+        char caracter = evt.getKeyChar();
+        if(caracter=='.'){
+            pto++;
+        }
+        if( pto>=2){
+            pto=2;
+        }
+        if( lugares>=3){
+            lugares--;
+        }
+
+        if(caracter == KeyEvent.VK_BACK_SPACE){
+            if( pto>=0){
+                lugares--;
+            }
+
+            if(!asent_add.getText().contains(".")){
+                pto=0;
+            }
+            if( pto==0){
+                lugares=0;
+            }
+        }
+        if (asent_add.getText().length() <1 ) {
+            char car = evt.getKeyChar();
+            if (car!='.' && Character.isDigit(car)) {
+                // escribe
+            } else {
+                evt.consume();  // desecha
+            }
+
+        }else{
+            if(asent_add.getText().length()<10){
+                char num = evt.getKeyChar();
+                if (Character.isDigit(num)||num=='.') {
+                    if(num=='.'&&pto<2){
+                        // escribe
+                    }else{
+                        if(pto!=0&&num!='.'){
+                            lugares++;
+                        }
+                        if(lugares<3 && num!='.'){
+                            // escribe
+                        }else{
+                            evt.consume();
+                        }
+                    }
+                }else{
+                    evt.consume();
+                }
+            }else{
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_asent_addKeyTyped
+
+    private void x2_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x2_addKeyReleased
+        // TODO add your handling code here:
+        if(x2_add.getText().length()>0){
+            lbl_error_x2_add.setVisible(false);
+        }
+    }//GEN-LAST:event_x2_addKeyReleased
+
+    private void x2_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x2_addKeyTyped
+        // TODO add your handling code here:
+        int pto=0;
+    int lugares=0;
+        char caracter = evt.getKeyChar();
+        if(caracter=='.'){
+            pto++;
+        }
+        if( pto>=2){
+            pto=2;
+        }
+        if( lugares>=3){
+            lugares--;
+        }
+
+        if(caracter == KeyEvent.VK_BACK_SPACE){
+            if( pto>=0){
+                lugares--;
+            }
+
+            if(!x2_add.getText().contains(".")){
+                pto=0;
+            }
+            if( pto==0){
+                lugares=0;
+            }
+        }
+        if (x2_add.getText().length() <1 ) {
+            char car = evt.getKeyChar();
+            if (car!='.' && Character.isDigit(car)) {
+                // escribe
+            } else {
+                evt.consume();  // desecha
+            }
+
+        }else{
+            if(x2_add.getText().length()<10){
+                char num = evt.getKeyChar();
+                if (Character.isDigit(num)||num=='.') {
+                    if(num=='.'&&pto<2){
+                        // escribe
+                    }else{
+                        if(pto!=0&&num!='.'){
+                            lugares++;
+                        }
+                        if(lugares<3 && num!='.'){
+                            // escribe
+                        }else{
+                            evt.consume();
+                        }
+                    }
+                }else{
+                    evt.consume();
+                }
+            }else{
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_x2_addKeyTyped
+
+    private void x1_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x1_addKeyReleased
+        // TODO add your handling code here:
+         if(x1_add.getText().length()>0){
+            lbl_error_x1_add.setVisible(false);
+        }
+    }//GEN-LAST:event_x1_addKeyReleased
+
+    private void x1_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x1_addKeyTyped
+        // TODO add your handling code here:
+        int pto=0;
+    int lugares=0;
+        char caracter = evt.getKeyChar();
+        if(caracter=='.'){
+            pto++;
+        }
+        if( pto>=2){
+            pto=2;
+        }
+        if( lugares>=3){
+            lugares--;
+        }
+
+        if(caracter == KeyEvent.VK_BACK_SPACE){
+            if( pto>=0){
+                lugares--;
+            }
+
+            if(!x1_add.getText().contains(".")){
+                pto=0;
+            }
+            if( pto==0){
+                lugares=0;
+            }
+        }
+        if (x1_add.getText().length() <1 ) {
+            char car = evt.getKeyChar();
+            if (car!='.' && Character.isDigit(car)) {
+                // escribe
+            } else {
+                evt.consume();  // desecha
+            }
+
+        }else{
+            if(x1_add.getText().length()<10){
+                char num = evt.getKeyChar();
+                if (Character.isDigit(num)||num=='.') {
+                    if(num=='.'&&pto<2){
+                        // escribe
+                    }else{
+                        if(pto!=0&&num!='.'){
+                            lugares++;
+                        }
+                        if(lugares<3 && num!='.'){
+                            // escribe
+                        }else{
+                            evt.consume();
+                        }
+                    }
+                }else{
+                    evt.consume();
+                }
+            }else{
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_x1_addKeyTyped
+
+    private void x3_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x3_addKeyReleased
+        // TODO add your handling code here:
+        if(x3_add.getText().length()>0){
+            lbl_error_x3_add.setVisible(false);
+        }
+    }//GEN-LAST:event_x3_addKeyReleased
+
+    private void x3_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x3_addKeyTyped
+        // TODO add your handling code here:
+        int pto=0;
+    int lugares=0;
+        char caracter = evt.getKeyChar();
+        if(caracter=='.'){
+            pto++;
+        }
+        if( pto>=2){
+            pto=2;
+        }
+        if( lugares>=3){
+            lugares--;
+        }
+
+        if(caracter == KeyEvent.VK_BACK_SPACE){
+            if( pto>=0){
+                lugares--;
+            }
+
+            if(!x3_add.getText().contains(".")){
+                pto=0;
+            }
+            if( pto==0){
+                lugares=0;
+            }
+        }
+        if (x3_add.getText().length() <1 ) {
+            char car = evt.getKeyChar();
+            if (car!='.' && Character.isDigit(car)) {
+                // escribe
+            } else {
+                evt.consume();  // desecha
+            }
+
+        }else{
+            if(x3_add.getText().length()<10){
+                char num = evt.getKeyChar();
+                if (Character.isDigit(num)||num=='.') {
+                    if(num=='.'&&pto<2){
+                        // escribe
+                    }else{
+                        if(pto!=0&&num!='.'){
+                            lugares++;
+                        }
+                        if(lugares<3 && num!='.'){
+                            // escribe
+                        }else{
+                            evt.consume();
+                        }
+                    }
+                }else{
+                    evt.consume();
+                }
+            }else{
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_x3_addKeyTyped
+
+    private void combo_lmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_lmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_lmActionPerformed
+
+    private void check_prefabricados1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_prefabricados1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_check_prefabricados1MouseClicked
+
+    private void check_prefabricados2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_prefabricados2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_check_prefabricados2MouseClicked
+
+    private void combo_pmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_pmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_pmActionPerformed
+
+    private void check_prefabricados3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_prefabricados3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_check_prefabricados3MouseClicked
+
+    private void num_materiales_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_num_materiales_addKeyReleased
+        // TODO add your handling code here:
+        if(vol_m3_add.getText().length()>0){
+        lbl_error_vol_m3_add.setVisible(false);
+    }
+    }//GEN-LAST:event_num_materiales_addKeyReleased
+
+    private void x1_28dias_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x1_28dias_addKeyReleased
+        // TODO add your handling code here:
+        if(x1_28dias_add.getText().length()>0){
+            lbl_error_x1_28dias_add.setVisible(false);
+        }
+    }//GEN-LAST:event_x1_28dias_addKeyReleased
+
+    private void x1_28dias_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x1_28dias_addKeyTyped
+        // TODO add your handling code here:
+        int pto=0;
+    int lugares=0;
+        char caracter = evt.getKeyChar();
+        if(caracter=='.'){
+            pto++;
+        }
+        if( pto>=2){
+            pto=2;
+        }
+        if( lugares>=3){
+            lugares--;
+        }
+
+        if(caracter == KeyEvent.VK_BACK_SPACE){
+            if( pto>=0){
+                lugares--;
+            }
+
+            if(!x1_28dias_add.getText().contains(".")){
+                pto=0;
+            }
+            if( pto==0){
+                lugares=0;
+            }
+        }
+        if (x1_28dias_add.getText().length() <1 ) {
+            char car = evt.getKeyChar();
+            if (car!='.' && Character.isDigit(car)) {
+                // escribe
+            } else {
+                evt.consume();  // desecha
+            }
+
+        }else{
+            if(x1_28dias_add.getText().length()<10){
+                char num = evt.getKeyChar();
+                if (Character.isDigit(num)||num=='.') {
+                    if(num=='.'&&pto<2){
+                        // escribe
+                    }else{
+                        if(pto!=0&&num!='.'){
+                            lugares++;
+                        }
+                        if(lugares<3 && num!='.'){
+                            // escribe
+                        }else{
+                            evt.consume();
+                        }
+                    }
+                }else{
+                    evt.consume();
+                }
+            }else{
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_x1_28dias_addKeyTyped
+
+    private void x2_28dias_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x2_28dias_addKeyReleased
+        // TODO add your handling code here:
+        if(x2_28dias_add.getText().length()>0){
+            lbl_error_x2_28dias_add.setVisible(false);
+        }
+    }//GEN-LAST:event_x2_28dias_addKeyReleased
+
+    private void x2_28dias_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x2_28dias_addKeyTyped
+        // TODO add your handling code here:
+        int pto=0;
+    int lugares=0;
+        char caracter = evt.getKeyChar();
+        if(caracter=='.'){
+            pto++;
+        }
+        if( pto>=2){
+            pto=2;
+        }
+        if( lugares>=3){
+            lugares--;
+        }
+
+        if(caracter == KeyEvent.VK_BACK_SPACE){
+            if( pto>=0){
+                lugares--;
+            }
+
+            if(!x2_28dias_add.getText().contains(".")){
+                pto=0;
+            }
+            if( pto==0){
+                lugares=0;
+            }
+        }
+        if (x2_28dias_add.getText().length() <1 ) {
+            char car = evt.getKeyChar();
+            if (car!='.' && Character.isDigit(car)) {
+                // escribe
+            } else {
+                evt.consume();  // desecha
+            }
+
+        }else{
+            if(x2_28dias_add.getText().length()<10){
+                char num = evt.getKeyChar();
+                if (Character.isDigit(num)||num=='.') {
+                    if(num=='.'&&pto<2){
+                        // escribe
+                    }else{
+                        if(pto!=0&&num!='.'){
+                            lugares++;
+                        }
+                        if(lugares<3 && num!='.'){
+                            // escribe
+                        }else{
+                            evt.consume();
+                        }
+                    }
+                }else{
+                    evt.consume();
+                }
+            }else{
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_x2_28dias_addKeyTyped
+
+    private void x3_28dias_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x3_28dias_addKeyReleased
+        // TODO add your handling code here:
+        if(x3_28dias_add.getText().length()>0){
+            lbl_error_x3_28dias_add.setVisible(false);
+        }
+    }//GEN-LAST:event_x3_28dias_addKeyReleased
+
+    private void x3_28dias_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x3_28dias_addKeyTyped
+        // TODO add your handling code here:
+        int pto=0;
+    int lugares=0;
+        char caracter = evt.getKeyChar();
+        if(caracter=='.'){
+            pto++;
+        }
+        if( pto>=2){
+            pto=2;
+        }
+        if( lugares>=3){
+            lugares--;
+        }
+
+        if(caracter == KeyEvent.VK_BACK_SPACE){
+            if( pto>=0){
+                lugares--;
+            }
+
+            if(!x3_28dias_add.getText().contains(".")){
+                pto=0;
+            }
+            if( pto==0){
+                lugares=0;
+            }
+        }
+        if (x3_28dias_add.getText().length() <1 ) {
+            char car = evt.getKeyChar();
+            if (car!='.' && Character.isDigit(car)) {
+                // escribe
+            } else {
+                evt.consume();  // desecha
+            }
+
+        }else{
+            if(x3_28dias_add.getText().length()<10){
+                char num = evt.getKeyChar();
+                if (Character.isDigit(num)||num=='.') {
+                    if(num=='.'&&pto<2){
+                        // escribe
+                    }else{
+                        if(pto!=0&&num!='.'){
+                            lugares++;
+                        }
+                        if(lugares<3 && num!='.'){
+                            // escribe
+                        }else{
+                            evt.consume();
+                        }
+                    }
+                }else{
+                    evt.consume();
+                }
+            }else{
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_x3_28dias_addKeyTyped
+
      private void deshabilitarPegar() {
-        InputMap map1 = numero_tarjeta_tarjeta.getInputMap(numero_tarjeta_tarjeta.WHEN_FOCUSED);
+        InputMap map1 = num_materiales_add.getInputMap(num_materiales_add.WHEN_FOCUSED);
         map1.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
 
-        InputMap map2 = numero_cant_litros_tarjeta.getInputMap(numero_cant_litros_tarjeta.WHEN_FOCUSED);
+        InputMap map2 = x3_28dias_add.getInputMap(x3_28dias_add.WHEN_FOCUSED);
         map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
-        InputMap map3 = ping_tarjeta.getInputMap(ping_tarjeta.WHEN_FOCUSED);
+        InputMap map3 = fecha_info_lab_add.getInputMap(fecha_info_lab_add.WHEN_FOCUSED);
         map3.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
-        InputMap map4= numero_chapa_tarjeta.getInputMap(numero_chapa_tarjeta.WHEN_FOCUSED);
+        InputMap map4 = vol_m3_add.getInputMap(vol_m3_add.WHEN_FOCUSED);
         map4.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
-    }
-    
-    private void numero_tarjeta_tarjetaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_tarjeta_tarjetaKeyReleased
-        // TODO add your handling code here:
-        if(numero_tarjeta_tarjeta.getText().length()>0){
-            lbl_error_numero_tarjeta.setVisible(false);
-        }
-
-    }//GEN-LAST:event_numero_tarjeta_tarjetaKeyReleased
-
-    private void numero_cant_litros_tarjetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_cant_litros_tarjetaKeyTyped
-        // TODO add your handling code here:
-        if(numero_cant_litros_tarjeta.getText().length()<10){
-        char num = evt.getKeyChar();
-        if ((num < '0' || num > '9')) {
-            evt.consume();
-        }
-        }else{
-            evt.consume();
-        }
-    }//GEN-LAST:event_numero_cant_litros_tarjetaKeyTyped
-
-    private void numero_tarjeta_tarjetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_tarjeta_tarjetaKeyTyped
-        // TODO add your handling code here:
-        if(numero_tarjeta_tarjeta.getText().length()<16){
-        char num = evt.getKeyChar();
-        if ((num < '0' || num > '9')) {
-            evt.consume();
-            
-        }
-        }else{
-            evt.consume();
-        }
-    }//GEN-LAST:event_numero_tarjeta_tarjetaKeyTyped
-
-    private void numero_cant_litros_tarjetaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_cant_litros_tarjetaKeyReleased
-        // TODO add your handling code here:
-        if(numero_cant_litros_tarjeta.getText().length()>0){
-        lbl_error_cant_litro_tarjeta.setVisible(false);
-    }
-    }//GEN-LAST:event_numero_cant_litros_tarjetaKeyReleased
-
-    private void boton_guardar_tarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_tarjetaActionPerformed
-      String sql="SELECT * FROM `tarj_combustible` WHERE `numero_tarj`='"+numero_tarjeta_tarjeta+"'";
-      String mje1="La tarjeta que intenta introducir al sistema ya existe";
-      String mje2="Por favor introduzca una nueva";
-        if (numero_tarjeta_tarjeta.getText().isEmpty()||combo_tipo_combustible.getSelectedIndex()==0 || 
-                ping_tarjeta.getText().isEmpty()|| numero_chapa_tarjeta.getText().isEmpty()|| 
-                numero_cant_litros_tarjeta.getText().isEmpty() ||fecha_iasignacion_tarjeta.getDate()==null ||
-                interaccion_bd.opciones_de_gestionar_contrato.existe(numero_tarjeta_tarjeta.getText(), sql)||
-                numero_tarjeta_tarjeta.getText().length()<16 || ping_tarjeta.getText().length()<4 || 
-                numero_chapa_tarjeta.getText().length()<7) {
-            if(numero_tarjeta_tarjeta.getText().isEmpty()){
-                numero_tarjeta_tarjeta.requestFocus();
-                lbl_error_numero_tarjeta.setText("¡Debe ingresar número de tarjeta!");
-                lbl_error_numero_tarjeta.setVisible(true);
-            }else if(ping_tarjeta.getText().isEmpty()){
-                ping_tarjeta.requestFocus();
-                lbl_error_ping_tarjeta.setText("¡Debe ingresar ping de tarjeta!");
-                lbl_error_ping_tarjeta.setVisible(true);
-            }else if(numero_chapa_tarjeta.getText().isEmpty()){
-                numero_chapa_tarjeta.requestFocus();
-                lbl_error_numero_chapa.setText("¡Debe ingresar número de chapa!");
-                lbl_error_numero_chapa.setVisible(true);
-            }else if(numero_cant_litros_tarjeta.getText().isEmpty()){
-                numero_cant_litros_tarjeta.requestFocus();
-                lbl_error_cant_litro_tarjeta.setVisible(true);
-            }else if(fecha_iasignacion_tarjeta.getDate()==null){
-                fecha_iasignacion_tarjeta.requestFocus();
-                lbl_error_fecha_asignacion_tarjeta.setVisible(true);
-            }else if(combo_tipo_combustible.getSelectedIndex()==0){
-                combo_tipo_combustible.requestFocus();
-                lbl_error_tipo_combustible.setVisible(true);
-            }else if (interaccion_bd.opciones_de_gestionar_contrato.existe(numero_tarjeta_tarjeta.getText(), sql)) {
-                            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mje1,mje2,"");
-                            numero_tarjeta_tarjeta.requestFocus();
-                        }else if(numero_tarjeta_tarjeta.getText().length()<16){
-                numero_tarjeta_tarjeta.requestFocus();
-                lbl_error_numero_tarjeta.setText("¡El número debe contener 16 dígitos!");
-                lbl_error_numero_tarjeta.setVisible(true);
-                        }else if(ping_tarjeta.getText().length()<4){
-                ping_tarjeta.requestFocus();
-                lbl_error_ping_tarjeta.setText("¡El número debe contener 4 dígitos!");
-                lbl_error_ping_tarjeta.setVisible(true);
-            }else if(numero_chapa_tarjeta.getText().length()<7){
-                numero_chapa_tarjeta.requestFocus();
-                lbl_error_numero_chapa.setText("¡El campo debe contener 1 letra y 6 dígitos!");
-                lbl_error_numero_chapa.setVisible(true);
-            }
-        } else {
-            Runnable runnable1 = new Runnable() {
-                public void run() {
-                    Guardando_general l = new Guardando_general(new JFrame(), true);
-                    consultas_de_gestionar_tarj_combustible uc=new consultas_de_gestionar_tarj_combustible();
-                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this);
-                    l.setVisible(true);
-                    try{            //toma_fecha()
-                    paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(false);
-                    uc.setNumero_tarjeta(numero_tarjeta_tarjeta.getText());
-                    uc.setTipo_combustible_tarjeta(combo_tipo_combustible.getSelectedItem().toString());
-                    uc.setPing_tarjeta(ping_tarjeta.getText());
-                    uc.setChapa_tarjeta(numero_chapa_tarjeta.getText());
-                    uc.setCant_litros_tarjeta(numero_cant_litros_tarjeta.getText());
-                    uc.setFecha_asignacion_tarjeta(toma_fecha(fecha_iasignacion_tarjeta));
-                   int control= opciones_de_gestionar_tarj_combustible.registrar(uc);
-                    reset_campos();
-                    paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(true);
-                    l.setVisible(false);
-                    if(control==1){
-                    SuccessAlert e = new SuccessAlert(new JFrame(), true);
-            e.msj1.setText("¡Los datos del contrato fueron");
-            e.msj2.setText("guardados exitosamente!.");
-            e.msj3.setText("");
-            e.setVisible(true);
-                    }
-                    
-                    }catch(Exception e){
-                        ErrorAlert error = new ErrorAlert(new JFrame(), true);
-                        Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, e);
-            error.msj1.setText(e.toString());
-            error.msj2.setText("Por favor solucione el error antes de volver a intentarlo.");
-            error.msj3.setText("En caso de no saber como corregir el error, por favor contacte con soporte técnico");
-            error.preferredSize();
-            error.pack();
-            error.setVisible(true);
-                    }
-                }
-            };
-            Thread t1 = new Thread(runnable1);
-            t1.start();
-        }
-
-    }//GEN-LAST:event_boton_guardar_tarjetaActionPerformed
-
-    private void ping_tarjetaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ping_tarjetaKeyReleased
-        // TODO add your handling code here:
-        if(ping_tarjeta.getText().length()>0){
-            lbl_error_ping_tarjeta.setVisible(false);
-        }
-    }//GEN-LAST:event_ping_tarjetaKeyReleased
-
-    private void ping_tarjetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ping_tarjetaKeyTyped
-        // TODO add your handling code here:
-        if(ping_tarjeta.getText().length()<4){
-                char num = evt.getKeyChar();
-        if ((num < '0' || num > '9')) {
-            evt.consume();
-            
-        }
-        }else{
-            evt.consume();
-        }
-    }//GEN-LAST:event_ping_tarjetaKeyTyped
-
-    private void numero_tarjeta_tarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numero_tarjeta_tarjetaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numero_tarjeta_tarjetaActionPerformed
-
-    private void numero_chapa_tarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numero_chapa_tarjetaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numero_chapa_tarjetaActionPerformed
-
-    private void numero_chapa_tarjetaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_chapa_tarjetaKeyReleased
-        // TODO add your handling code here:
         
-        if(numero_chapa_tarjeta.getText().length()>0){
-            lbl_error_numero_chapa.setVisible(false);
-            char car = numero_chapa_tarjeta.getText().charAt(0);
-            car=Character.toUpperCase(car);
-            String txt=numero_chapa_tarjeta.getText().substring(1);
-            numero_chapa_tarjeta.setText(String.valueOf(car)+txt);
-        }
-    }//GEN-LAST:event_numero_chapa_tarjetaKeyReleased
+        InputMap map5 = x1_add.getInputMap(x1_add.WHEN_FOCUSED);
+        map5.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+        
+        InputMap map6 = x2_add.getInputMap(x2_add.WHEN_FOCUSED);
+        map6.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+        
+        InputMap map7 = x3_add.getInputMap(x3_add.WHEN_FOCUSED);
+        map7.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+        
+        InputMap map8 = asent_add.getInputMap(asent_add.WHEN_FOCUSED);
+        map8.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+        
+        InputMap map9 = x1_28dias_add.getInputMap(x1_28dias_add.WHEN_FOCUSED);
+        map9.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+        
+        InputMap map10 = x2_28dias_add.getInputMap(x2_28dias_add.WHEN_FOCUSED);
+        map10.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+    }
 
-    private void numero_chapa_tarjetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_chapa_tarjetaKeyTyped
-        // TODO add your handling code here:
-            
-        if (numero_chapa_tarjeta.getText().length() > 0 &&numero_chapa_tarjeta.getText().length() < 7) {
-            char car = evt.getKeyChar();
-            if (Character.isDigit(car)) {
-                
-            } else {
-                evt.consume();
-            }
-
-        }else{
-            if(numero_chapa_tarjeta.getText().length() < 7){
-        char car = evt.getKeyChar();
-        if ( Character.isLetter(car)) {
-            
-        } else {
-            evt.consume();
-        }
-        }else{
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_numero_chapa_tarjetaKeyTyped
-
-    private void fecha_iasignacion_tarjetaAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_fecha_iasignacion_tarjetaAncestorRemoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fecha_iasignacion_tarjetaAncestorRemoved
-
-    private String toma_fecha(JDateChooser fecha) {      
-        String txt_fecha = null;
-        if (fecha.getDate() != null) {
-             String formato = fecha.getDateFormatString();
-            Date date = fecha.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            txt_fecha=String.valueOf(sdf.format(date));
-        }
-        return txt_fecha;
-    }                   
-    
     private void reset_campos(){
-        numero_tarjeta_tarjeta.setText("");
-        numero_cant_litros_tarjeta.setText("");
-        ping_tarjeta.setText("");
-        numero_chapa_tarjeta.setText("");
-        fecha_iasignacion_tarjeta.setDate(null);
-        combo_tipo_combustible.setSelectedIndex(0);
-        lbl_error_cant_litro_tarjeta.setVisible(false);
-        lbl_error_numero_tarjeta.setVisible(false);
-        lbl_error_fecha_asignacion_tarjeta.setVisible(false);
-        lbl_error_tipo_combustible.setVisible(false);
-        lbl_error_ping_tarjeta.setVisible(false);
-        lbl_error_numero_chapa.setVisible(false);
+////        cantidad_re_add.setText("");
+////        combo_prefabricados_re_add.setSelectedIndex(0);
+////        num_materiales_add.setText("");
+////        um_re_add.setText("");
+////        combo_programas_re_add.setSelectedIndex(0);
+////        factura_re_add.setText("");
+////        carta_porte_re_add.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojeru_san.RSButtonRiple boton_guardar_tarjeta;
-    private org.bolivia.combo.SComboBox combo_tipo_combustible;
-    private com.toedter.calendar.JDateChooser fecha_iasignacion_tarjeta;
+    public static rojeru_san.rsfield.RSTextMaterial asent_add;
+    private rojeru_san.RSButtonRiple boton_guardar_recursos_x_programa_add;
+    private check_de_android.Switch check_prefabricados1;
+    private check_de_android.Switch check_prefabricados2;
+    private check_de_android.Switch check_prefabricados3;
+    private org.bolivia.combo.SComboBox combo_lm;
+    private org.bolivia.combo.SComboBox combo_pm;
+    private com.toedter.calendar.JDateChooser fecha_info_lab_add;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbl_error_cant_litro_tarjeta;
-    private javax.swing.JLabel lbl_error_fecha_asignacion_tarjeta;
-    private javax.swing.JLabel lbl_error_numero_chapa;
-    private javax.swing.JLabel lbl_error_numero_tarjeta;
-    private javax.swing.JLabel lbl_error_ping_tarjeta;
-    private javax.swing.JLabel lbl_error_tipo_combustible;
-    public static rojeru_san.rsfield.RSTextMaterial numero_cant_litros_tarjeta;
-    public static rojeru_san.rsfield.RSTextMaterial numero_chapa_tarjeta;
-    public static rojeru_san.rsfield.RSTextMaterial numero_tarjeta_tarjeta;
-    public static rojeru_san.rsfield.RSTextMaterial ping_tarjeta;
+    private javax.swing.JLabel lbl_error_asent_add;
+    private javax.swing.JLabel lbl_error_fecha_info_lab_add;
+    private javax.swing.JLabel lbl_error_lm_add;
+    private javax.swing.JLabel lbl_error_num_materiales_add;
+    private javax.swing.JLabel lbl_error_pm_add;
+    private javax.swing.JLabel lbl_error_vol_m3_add;
+    private javax.swing.JLabel lbl_error_x1_28dias_add;
+    private javax.swing.JLabel lbl_error_x1_add;
+    private javax.swing.JLabel lbl_error_x2_28dias_add;
+    private javax.swing.JLabel lbl_error_x2_add;
+    private javax.swing.JLabel lbl_error_x3_28dias_add;
+    private javax.swing.JLabel lbl_error_x3_add;
+    public static rojeru_san.rsfield.RSTextMaterial num_materiales_add;
+    public static rojeru_san.rsfield.RSTextMaterial vol_m3_add;
+    public static rojeru_san.rsfield.RSTextMaterial x1_28dias_add;
+    public static rojeru_san.rsfield.RSTextMaterial x1_add;
+    public static rojeru_san.rsfield.RSTextMaterial x2_28dias_add;
+    public static rojeru_san.rsfield.RSTextMaterial x2_add;
+    public static rojeru_san.rsfield.RSTextMaterial x3_28dias_add;
+    public static rojeru_san.rsfield.RSTextMaterial x3_add;
     // End of variables declaration//GEN-END:variables
 }

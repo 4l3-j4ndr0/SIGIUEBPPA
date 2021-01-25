@@ -39,7 +39,7 @@ public class Tabla_PdfVO_proy {
         PdfVO_proy vo = new PdfVO_proy();
         ArrayList<PdfVO_proy> list = dao.Listar_PdfVO();
 
-        if (list.size() > 0) {
+        if (list.size() >= 0) {
             for (int i = 0; i < list.size(); i++) {
                 Object fila[] = new Object[3];
                 vo = list.get(i);

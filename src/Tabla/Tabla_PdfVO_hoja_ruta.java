@@ -43,7 +43,7 @@ public class Tabla_PdfVO_hoja_ruta {
         PdfVO_hoja_ruta vo = new PdfVO_hoja_ruta();
         ArrayList<PdfVO_hoja_ruta> list = dao.Listar_PdfVO();
 
-        if (list.size() > 0) {
+        if (list.size() >= 0) {
             for (int i = 0; i < list.size(); i++) {
                 Object fila[] = new Object[5];
                 vo = list.get(i);

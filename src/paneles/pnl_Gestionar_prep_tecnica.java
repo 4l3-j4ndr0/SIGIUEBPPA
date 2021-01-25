@@ -7,6 +7,7 @@ package paneles;
 
 import interaccion_bd.opciones_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_usuarios;
+import java.awt.Color;
 
 /**
  *
@@ -21,7 +22,7 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
         initComponents();
         this.listar_prep_tecnica.setSelected(true);
         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prep_tecnica_listar());
-        pnl_Gestionar_contrato.color_performed(listar_prep_tecnica,add_prep_tecnica);
+        color_performed(listar_prep_tecnica,add_prep_tecnica,preModelo_prep_tecnica);
     }
 
     /**
@@ -37,6 +38,7 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
         listar_prep_tecnica = new rsbuttom.RSButtonMetro();
         add_prep_tecnica = new rsbuttom.RSButtonMetro();
         panel_contenedor = new javax.swing.JPanel();
+        preModelo_prep_tecnica = new rsbuttom.RSButtonMetro();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -96,6 +98,30 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
         panel_contenedor.setBackground(new java.awt.Color(255, 255, 255));
         panel_contenedor.setLayout(new javax.swing.BoxLayout(panel_contenedor, javax.swing.BoxLayout.LINE_AXIS));
 
+        preModelo_prep_tecnica.setBackground(new java.awt.Color(239, 238, 244));
+        preModelo_prep_tecnica.setForeground(new java.awt.Color(128, 128, 131));
+        preModelo_prep_tecnica.setText("PRE- MODELO MERCANTIL");
+        preModelo_prep_tecnica.setColorHover(new java.awt.Color(204, 204, 204));
+        preModelo_prep_tecnica.setColorNormal(new java.awt.Color(239, 238, 244));
+        preModelo_prep_tecnica.setColorPressed(new java.awt.Color(204, 204, 204));
+        preModelo_prep_tecnica.setColorTextHover(new java.awt.Color(128, 128, 131));
+        preModelo_prep_tecnica.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        preModelo_prep_tecnica.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        preModelo_prep_tecnica.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        preModelo_prep_tecnica.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        preModelo_prep_tecnica.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        preModelo_prep_tecnica.setIconTextGap(25);
+        preModelo_prep_tecnica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                preModelo_prep_tecnicaMousePressed(evt);
+            }
+        });
+        preModelo_prep_tecnica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preModelo_prep_tecnicaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,6 +135,8 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
                         .addComponent(listar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(add_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(preModelo_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -120,7 +148,8 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listar_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(preModelo_prep_tecnica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE))
         );
@@ -143,25 +172,63 @@ public class pnl_Gestionar_prep_tecnica extends javax.swing.JPanel {
 
     private void add_prep_tecnicaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_prep_tecnicaMousePressed
         // TODO add your handling code here:
-        pnl_Gestionar_contrato.pressed(add_prep_tecnica,listar_prep_tecnica);
+        pressed(add_prep_tecnica,listar_prep_tecnica,preModelo_prep_tecnica);
     }//GEN-LAST:event_add_prep_tecnicaMousePressed
 
     private void listar_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_prep_tecnicaActionPerformed
         // TODO add your handling code here:
         new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prep_tecnica_listar());
-        pnl_Gestionar_contrato.color_performed(listar_prep_tecnica,add_prep_tecnica);
+        color_performed(listar_prep_tecnica,add_prep_tecnica,preModelo_prep_tecnica);
     }//GEN-LAST:event_listar_prep_tecnicaActionPerformed
 
     private void listar_prep_tecnicaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listar_prep_tecnicaMousePressed
         // TODO add your handling code here:
-        pnl_Gestionar_contrato.pressed(listar_prep_tecnica,add_prep_tecnica);
+        pressed(listar_prep_tecnica,add_prep_tecnica,preModelo_prep_tecnica);
     }//GEN-LAST:event_listar_prep_tecnicaMousePressed
+
+    private void preModelo_prep_tecnicaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_preModelo_prep_tecnicaMousePressed
+        // TODO add your handling code here:
+         pressed(preModelo_prep_tecnica,listar_prep_tecnica,add_prep_tecnica);
+    }//GEN-LAST:event_preModelo_prep_tecnicaMousePressed
+
+    private void preModelo_prep_tecnicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preModelo_prep_tecnicaActionPerformed
+        // TODO add your handling code here:
+        new CambiaPanel(panel_contenedor, new paneles_de_paneles.de_gestionar_prep_tecnica_preModelo_mercantil_listar());
+        color_performed(preModelo_prep_tecnica,listar_prep_tecnica,add_prep_tecnica);
+    }//GEN-LAST:event_preModelo_prep_tecnicaActionPerformed
+
+    public static void color_performed(rsbuttom.RSButtonMetro principal, rsbuttom.RSButtonMetro uno, rsbuttom.RSButtonMetro dos){
+        if(principal.isSelected()){
+            principal.setColorNormal(new Color(204,204,204));
+            principal.setColorHover(new Color(204,204,204));
+            principal.setColorPressed(new Color(204,204,204));
+            
+            uno.setColorNormal(new Color(239,238,244));
+            uno.setColorHover(new Color(204,204,204));
+            uno.setColorPressed(new Color(204,204,204));
+            
+            dos.setColorNormal(new Color(239,238,244));
+            dos.setColorHover(new Color(204,204,204));
+            dos.setColorPressed(new Color(204,204,204));
+        }else{
+            principal.setColorNormal(new Color(239,238,244));
+            principal.setColorHover(new Color(204,204,204));
+            principal.setColorPressed(new Color(204,204,204));
+        }
+    }
+    
+    public static  void pressed(rsbuttom.RSButtonMetro principal, rsbuttom.RSButtonMetro uno, rsbuttom.RSButtonMetro dos){
+        principal.setSelected(true);
+        uno.setSelected(false);
+        dos.setSelected(false);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro add_prep_tecnica;
+    public static rsbuttom.RSButtonMetro add_prep_tecnica;
     private javax.swing.JLabel jLabel7;
-    private rsbuttom.RSButtonMetro listar_prep_tecnica;
-    private javax.swing.JPanel panel_contenedor;
+    public static rsbuttom.RSButtonMetro listar_prep_tecnica;
+    public static javax.swing.JPanel panel_contenedor;
+    public static rsbuttom.RSButtonMetro preModelo_prep_tecnica;
     // End of variables declaration//GEN-END:variables
 }

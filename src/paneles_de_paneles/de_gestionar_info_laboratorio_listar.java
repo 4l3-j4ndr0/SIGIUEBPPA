@@ -64,9 +64,9 @@ public class de_gestionar_info_laboratorio_listar extends javax.swing.JPanel {
         this.scroll.getViewport().setBackground(Color.WHITE);
         this.menu.add(pnlMenu);
         
-        interaccion_bd.opciones_de_gestionar_tarj_combustible.setListar("");
+//        interaccion_bd.opciones_de_gestionar_tarj_combustible.setListar("");
 
-        this.tabla_tarj_combustible.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Tarj_Combustible());
+        this.tabla_tarj_combustible.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_info_lab());
 
         Timer timer = new Timer(500, new ActionListener() {
             @Override
@@ -126,6 +126,7 @@ public class de_gestionar_info_laboratorio_listar extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         btnExportar = new rojeru_san.RSButtonRiple();
         btnPrint = new rojeru_san.RSButtonRiple();
+        jLabel1 = new javax.swing.JLabel();
 
         menu.setBackground(new java.awt.Color(255, 255, 255));
         menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -175,18 +176,16 @@ public class de_gestionar_info_laboratorio_listar extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        scroll.setBorder(null);
-
         tabla_tarj_combustible.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "No. TARJETA", "TIPO COMBUSTIBLE", "PING", "CHAPA", "CANT. LITROS", "FECHA ASIGNACIÓN"
+                "", "No. TARJETA", "TIPO COMBUSTIBLE", "PING", "CHAPA", "CANT. LITROS", "FECHA ASIGNACIÓN", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13", "Title 14", "Title 15", "Title 16", "Title 17", "Title 18", "Title 19", "Title 20"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -195,6 +194,7 @@ public class de_gestionar_info_laboratorio_listar extends javax.swing.JPanel {
         });
         tabla_tarj_combustible.setToolTipText("");
         tabla_tarj_combustible.setAltoHead(30);
+        tabla_tarj_combustible.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tabla_tarj_combustible.setColorBackgoundHead(new java.awt.Color(38, 86, 186));
         tabla_tarj_combustible.setColorBordeHead(new java.awt.Color(255, 255, 255));
         tabla_tarj_combustible.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
@@ -208,19 +208,13 @@ public class de_gestionar_info_laboratorio_listar extends javax.swing.JPanel {
         tabla_tarj_combustible.setMultipleSeleccion(false);
         tabla_tarj_combustible.setRowHeight(30);
         tabla_tarj_combustible.setSelectionBackground(new java.awt.Color(99, 70, 250));
-        tabla_tarj_combustible.getTableHeader().setReorderingAllowed(false);
+        tabla_tarj_combustible.setTableHeader(null);
         tabla_tarj_combustible.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_tarj_combustibleMouseClicked(evt);
             }
         });
         scroll.setViewportView(tabla_tarj_combustible);
-        if (tabla_tarj_combustible.getColumnModel().getColumnCount() > 0) {
-            tabla_tarj_combustible.getColumnModel().getColumn(0).setPreferredWidth(10);
-            tabla_tarj_combustible.getColumnModel().getColumn(1).setPreferredWidth(10);
-            tabla_tarj_combustible.getColumnModel().getColumn(3).setPreferredWidth(10);
-            tabla_tarj_combustible.getColumnModel().getColumn(4).setPreferredWidth(10);
-        }
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_coontrato/label-buscar.png"))); // NOI18N
 
@@ -262,6 +256,8 @@ public class de_gestionar_info_laboratorio_listar extends javax.swing.JPanel {
         });
         jPanel3.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 99, 42));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_info_lab/cabza tabla.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -274,7 +270,11 @@ public class de_gestionar_info_laboratorio_listar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(scroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(scroll, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,8 +284,10 @@ public class de_gestionar_info_laboratorio_listar extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addGap(1, 1, 1)
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -565,6 +567,7 @@ public class de_gestionar_info_laboratorio_listar extends javax.swing.JPanel {
     private rojeru_san.RSButtonRiple btnEditar;
     private rojeru_san.RSButtonRiple btnExportar;
     private rojeru_san.RSButtonRiple btnPrint;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

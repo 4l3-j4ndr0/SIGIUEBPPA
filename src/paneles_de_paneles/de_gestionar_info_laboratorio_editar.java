@@ -6,24 +6,15 @@
 package paneles_de_paneles;
 
 import alertas.*;
-import com.toedter.calendar.JDateChooser;
 import esperas.Guardando_general;
-import interaccion_bd.consultas_de_gestionar_contrato;
-import interaccion_bd.consultas_de_gestionar_tarj_combustible;
+import interaccion_bd.consultas_de_gestionar_recursos_x_programa;
 import interaccion_bd.opciones_de_gestionar_contrato;
-import interaccion_bd.opciones_de_gestionar_tarj_combustible;
+import interaccion_bd.opciones_de_gestionar_recursos_x_programa;
 import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.ParseException; 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.InputMap;
@@ -31,14 +22,13 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 import necesario.RSAWTUtilities;
-import static paneles_de_paneles.de_gestionar_contrato_añadir.nombre_cliente_contrato;
-import static paneles_de_paneles.de_gestionar_contrato_añadir.numero_contrato;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import rojeru_san.complementos.RSMoveObject;
 import rojeru_san.complementos.RSUtilities;
 
 /**
  *
- * @author RojeruSan
+ * @author 4L3
  */
 public class de_gestionar_info_laboratorio_editar extends javax.swing.JDialog {
     /**
@@ -52,36 +42,32 @@ public class de_gestionar_info_laboratorio_editar extends javax.swing.JDialog {
         RSAWTUtilities.setOpaque(this, false);
         RSUtilities.setCentrarVentana(this);
         RSMoveObject.setMoverVentana(this);
-        
-        lbl_error_cant_litro_tarjeta_editar1.setVisible(false);
-        lbl_error_numero_tarjeta_editar1.setVisible(false);
-        lbl_error_fecha_asignacion_tarjeta_editar.setVisible(false);
-        lbl_error_tipo_combustible_editar.setVisible(false);
-        lbl_error_ping_tarjeta_editar1.setVisible(false);
-        lbl_error_numero_chapa_editar1.setVisible(false);
-        
-          //  detectar cambio en jdateChoser (fecha de inicio en agregar contrato)
-        fecha_asignacion_tarjeta_editar.getDateEditor().addPropertyChangeListener(
-                new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent e) {
-                if ("date".equals(e.getPropertyName())) {
-                    System.out.println(e.getPropertyName()
-                            + ": " + (Date) e.getNewValue());
-                    if(fecha_asignacion_tarjeta_editar.getDate()==null){
-                    lbl_error_fecha_asignacion_tarjeta_editar.setVisible(true);
-                    }
-                }else{
-                    lbl_error_fecha_asignacion_tarjeta_editar.setVisible(false);
-                }
-            }
-        });
-        
-         //################### detectar cambios en los combobox ######################3
-        combo_tipo_combustible_editar.addItemListener(new ItemListener() {
+        codigo_re_editar.setEnabled(false);
+        um_re_editar.setEnabled(false);
+        lbl_error_descripcion_re_editar.setVisible(false);
+        lbl_error_cant_re_editar.setVisible(false);
+        lbl_error_programa_re_editar.setVisible(false);
+        lbl_error_factura_re_editar.setVisible(false);
+        lbl_error_carta_porte_re_editar.setVisible(false);
+        codigo_editar_control.setVisible(false);
+      deshabilitarPegar();
+      opciones_de_gestionar_recursos_x_programa.get_combos(combo_prefabricados_re_editar, combo_programas_re_editar);
+      //################### detectar cambios en los combobox ######################3
+        combo_prefabricados_re_editar.addItemListener(new ItemListener() {
            public void itemStateChanged(ItemEvent arg0) {
                //Do Something
-              lbl_error_tipo_combustible_editar.setVisible(false);
+              lbl_error_descripcion_re_editar.setVisible(false);
+           }
+           
+            public void itemStateChangedd(ItemEvent e) {
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+       });
+        
+        combo_programas_re_editar.addItemListener(new ItemListener() {
+           public void itemStateChanged(ItemEvent arg0) {
+               //Do Something
+              lbl_error_programa_re_editar.setVisible(false);
            }
            
             public void itemStateChangedd(ItemEvent e) {
@@ -89,23 +75,25 @@ public class de_gestionar_info_laboratorio_editar extends javax.swing.JDialog {
             }
        });
         // ##########################################################################
-        
-        
-        deshabilitarPegar();
     }
     
-      private void deshabilitarPegar() {
-        InputMap map1 = numero_tarjeta_tarjeta_editar.getInputMap(numero_tarjeta_tarjeta_editar.WHEN_FOCUSED);
+     private void deshabilitarPegar() {
+        InputMap map1 = codigo_re_editar.getInputMap(codigo_re_editar.WHEN_FOCUSED);
         map1.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
 
-        InputMap map2 = numero_cant_litros_tarjeta_editar.getInputMap(numero_cant_litros_tarjeta_editar.WHEN_FOCUSED);
-        map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
-        InputMap map3 = ping_tarjeta_editar.getInputMap(ping_tarjeta_editar.WHEN_FOCUSED);
+        InputMap map3 = um_re_editar.getInputMap(um_re_editar.WHEN_FOCUSED);
         map3.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
         
-        InputMap map4= numero_chapa_tarjeta_editar.getInputMap(numero_chapa_tarjeta_editar.WHEN_FOCUSED);
+        InputMap map4 = cantidad_re_editar.getInputMap(cantidad_re_editar.WHEN_FOCUSED);
         map4.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+        
+        
+        InputMap map6 = factura_re_editar.getInputMap(factura_re_editar.WHEN_FOCUSED);
+        map6.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+        
+        InputMap map7 = carta_porte_re_editar.getInputMap(carta_porte_re_editar.WHEN_FOCUSED);
+        map7.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
     }
     
     private void addEventKey() {
@@ -121,7 +109,7 @@ public class de_gestionar_info_laboratorio_editar extends javax.swing.JDialog {
          KeyStroke enter = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false);
         Action enterAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                boton_guardar_tarj_combustible_editarActionPerformed(e);
+                boton_guardar_recursos_x_programa_editarActionPerformed(e);
             }
         };
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(enter, "ENTER");
@@ -142,209 +130,258 @@ public class de_gestionar_info_laboratorio_editar extends javax.swing.JDialog {
     private void initComponents() {
 
         rSPanelShadow1 = new rojeru_san.rspanel.RSPanelShadow();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        numero_tarjeta_tarjeta_editar = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_numero_tarjeta_editar1 = new javax.swing.JLabel();
-        lbl_error_ping_tarjeta_editar1 = new javax.swing.JLabel();
-        ping_tarjeta_editar = new rojeru_san.rsfield.RSTextMaterial();
-        numero_cant_litros_tarjeta_editar = new rojeru_san.rsfield.RSTextMaterial();
-        numero_chapa_tarjeta_editar = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_numero_chapa_editar1 = new javax.swing.JLabel();
-        lbl_error_cant_litro_tarjeta_editar1 = new javax.swing.JLabel();
-        combo_tipo_combustible_editar = new org.bolivia.combo.SComboBox();
-        lbl_error_fecha_asignacion_tarjeta_editar = new javax.swing.JLabel();
-        lbl_error_tipo_combustible_editar = new javax.swing.JLabel();
-        boton_guardar_tarj_combustible_editar = new rojeru_san.RSButtonRiple();
-        fecha_asignacion_tarjeta_editar = new com.toedter.calendar.JDateChooser();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        cantidad_re_editar = new rojeru_san.rsfield.RSTextMaterial();
+        lbl_error_descripcion_re_editar = new javax.swing.JLabel();
+        lbl_error_cant_re_editar = new javax.swing.JLabel();
+        boton_guardar_recursos_x_programa_editar = new rojeru_san.RSButtonRiple();
+        um_re_editar = new rojeru_san.rsfield.RSTextMaterial();
+        codigo_re_editar = new rojeru_san.rsfield.RSTextMaterial();
+        factura_re_editar = new rojeru_san.rsfield.RSTextMaterial();
+        lbl_error_factura_re_editar = new javax.swing.JLabel();
+        lbl_error_programa_re_editar = new javax.swing.JLabel();
+        carta_porte_re_editar = new rojeru_san.rsfield.RSTextMaterial();
+        lbl_error_carta_porte_re_editar = new javax.swing.JLabel();
+        codigo_editar_control = new javax.swing.JLabel();
+        combo_prefabricados_re_editar = new org.bolivia.combo.SComboBox();
+        check_prefabricados = new check_de_android.Switch();
+        combo_programas_re_editar = new org.bolivia.combo.SComboBox();
+        check_programas = new check_de_android.Switch();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         rSPanelShadow1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(782, 552));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(782, 552));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_tarj_combustible/tarjeta_combustible3.png"))); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_recursos_x_programa/recursos.jpg"))); // NOI18N
 
-        numero_tarjeta_tarjeta_editar.setForeground(new java.awt.Color(0, 0, 0));
-        numero_tarjeta_tarjeta_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
-        numero_tarjeta_tarjeta_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        numero_tarjeta_tarjeta_editar.setPlaceholder("Número de tarjeta...");
-        numero_tarjeta_tarjeta_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
-        numero_tarjeta_tarjeta_editar.addKeyListener(new java.awt.event.KeyAdapter() {
+        cantidad_re_editar.setForeground(new java.awt.Color(0, 0, 0));
+        cantidad_re_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
+        cantidad_re_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cantidad_re_editar.setPlaceholder("Cantidad...");
+        cantidad_re_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
+        cantidad_re_editar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                numero_tarjeta_tarjeta_editarKeyReleased(evt);
+                cantidad_re_editarKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                numero_tarjeta_tarjeta_editarKeyTyped(evt);
+                cantidad_re_editarKeyTyped(evt);
             }
         });
 
-        lbl_error_numero_tarjeta_editar1.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_numero_tarjeta_editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_numero_tarjeta_editar1.setText("¡Debe ingresar número de tarjeta!");
+        lbl_error_descripcion_re_editar.setForeground(new java.awt.Color(243, 66, 53));
+        lbl_error_descripcion_re_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_descripcion_re_editar.setText("¡Debe ingresar una descripcion del recurso!");
 
-        lbl_error_ping_tarjeta_editar1.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_ping_tarjeta_editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_ping_tarjeta_editar1.setText("¡Debe ingresar ping de tarjeta!");
+        lbl_error_cant_re_editar.setForeground(new java.awt.Color(243, 66, 53));
+        lbl_error_cant_re_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_cant_re_editar.setText("¡Debe ingresar una cantidad!");
 
-        ping_tarjeta_editar.setForeground(new java.awt.Color(0, 0, 0));
-        ping_tarjeta_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
-        ping_tarjeta_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        ping_tarjeta_editar.setPlaceholder("Ping de tarjeta...");
-        ping_tarjeta_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
-        ping_tarjeta_editar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                ping_tarjeta_editarKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ping_tarjeta_editarKeyTyped(evt);
-            }
-        });
-
-        numero_cant_litros_tarjeta_editar.setForeground(new java.awt.Color(0, 0, 0));
-        numero_cant_litros_tarjeta_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
-        numero_cant_litros_tarjeta_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        numero_cant_litros_tarjeta_editar.setPlaceholder("Cantidad de litros...");
-        numero_cant_litros_tarjeta_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
-        numero_cant_litros_tarjeta_editar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                numero_cant_litros_tarjeta_editarKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                numero_cant_litros_tarjeta_editarKeyTyped(evt);
-            }
-        });
-
-        numero_chapa_tarjeta_editar.setForeground(new java.awt.Color(0, 0, 0));
-        numero_chapa_tarjeta_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
-        numero_chapa_tarjeta_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        numero_chapa_tarjeta_editar.setPlaceholder("Chapa a la que pertenece...");
-        numero_chapa_tarjeta_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
-        numero_chapa_tarjeta_editar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                numero_chapa_tarjeta_editarKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                numero_chapa_tarjeta_editarKeyTyped(evt);
-            }
-        });
-
-        lbl_error_numero_chapa_editar1.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_numero_chapa_editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_numero_chapa_editar1.setText("¡Debe ingresar número de chapa!");
-
-        lbl_error_cant_litro_tarjeta_editar1.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_cant_litro_tarjeta_editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_cant_litro_tarjeta_editar1.setText("¡Debe ingresar una cantidad de litros!");
-
-        combo_tipo_combustible_editar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIPO COMBUSTIBLE", "GASOLINA", "PETRÓLEO" }));
-        combo_tipo_combustible_editar.addActionListener(new java.awt.event.ActionListener() {
+        boton_guardar_recursos_x_programa_editar.setBackground(new java.awt.Color(38, 86, 186));
+        boton_guardar_recursos_x_programa_editar.setText("Guardar Cambios");
+        boton_guardar_recursos_x_programa_editar.setColorHover(new java.awt.Color(173, 187, 194));
+        boton_guardar_recursos_x_programa_editar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        boton_guardar_recursos_x_programa_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_tipo_combustible_editarActionPerformed(evt);
+                boton_guardar_recursos_x_programa_editarActionPerformed(evt);
             }
         });
 
-        lbl_error_fecha_asignacion_tarjeta_editar.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_fecha_asignacion_tarjeta_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_fecha_asignacion_tarjeta_editar.setText("¡Debe ingresar una fecha!");
+        um_re_editar.setForeground(new java.awt.Color(0, 0, 0));
+        um_re_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
+        um_re_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        um_re_editar.setPlaceholder("Unidad de medida...");
+        um_re_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
 
-        lbl_error_tipo_combustible_editar.setForeground(new java.awt.Color(243, 66, 53));
-        lbl_error_tipo_combustible_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_tipo_combustible_editar.setText("¡Debe ingresar un tipo de combustible!");
+        codigo_re_editar.setForeground(new java.awt.Color(0, 0, 0));
+        codigo_re_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
+        codigo_re_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        codigo_re_editar.setPlaceholder("Código del recurso...");
+        codigo_re_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
 
-        boton_guardar_tarj_combustible_editar.setBackground(new java.awt.Color(38, 86, 186));
-        boton_guardar_tarj_combustible_editar.setText("Guardar Cambios");
-        boton_guardar_tarj_combustible_editar.setColorHover(new java.awt.Color(173, 187, 194));
-        boton_guardar_tarj_combustible_editar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        boton_guardar_tarj_combustible_editar.addActionListener(new java.awt.event.ActionListener() {
+        factura_re_editar.setForeground(new java.awt.Color(0, 0, 0));
+        factura_re_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
+        factura_re_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        factura_re_editar.setPlaceholder("Número de factura...");
+        factura_re_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
+        factura_re_editar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                factura_re_editarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                factura_re_editarKeyTyped(evt);
+            }
+        });
+
+        lbl_error_factura_re_editar.setForeground(new java.awt.Color(243, 66, 53));
+        lbl_error_factura_re_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_factura_re_editar.setText("¡Debe ingresar un número de factura!");
+
+        lbl_error_programa_re_editar.setForeground(new java.awt.Color(243, 66, 53));
+        lbl_error_programa_re_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_programa_re_editar.setText("¡Debe ingresar un programa!");
+
+        carta_porte_re_editar.setForeground(new java.awt.Color(0, 0, 0));
+        carta_porte_re_editar.setColorMaterial(new java.awt.Color(99, 70, 250));
+        carta_porte_re_editar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        carta_porte_re_editar.setPlaceholder("Número de carta porte...");
+        carta_porte_re_editar.setSelectionColor(new java.awt.Color(220, 23, 111));
+        carta_porte_re_editar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                carta_porte_re_editarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                carta_porte_re_editarKeyTyped(evt);
+            }
+        });
+
+        lbl_error_carta_porte_re_editar.setForeground(new java.awt.Color(243, 66, 53));
+        lbl_error_carta_porte_re_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_carta_porte_re_editar.setText("¡Debe ingresar un número de carta porte!");
+
+        codigo_editar_control.setText("jLabel1");
+
+        combo_prefabricados_re_editar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MATERIALES" }));
+        combo_prefabricados_re_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_guardar_tarj_combustible_editarActionPerformed(evt);
+                combo_prefabricados_re_editarActionPerformed(evt);
             }
         });
 
-        fecha_asignacion_tarjeta_editar.setDateFormatString("dd/MM/yyyy");
-        fecha_asignacion_tarjeta_editar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        check_prefabricados.setToolTipText("Hacer o deshacer editable");
+        check_prefabricados.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_prefabricados.setOnOff(false);
+        check_prefabricados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_prefabricadosMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_error_numero_chapa_editar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(numero_chapa_tarjeta_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(numero_tarjeta_tarjeta_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_error_fecha_asignacion_tarjeta_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_error_numero_tarjeta_editar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fecha_asignacion_tarjeta_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(combo_tipo_combustible_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_error_cant_litro_tarjeta_editar1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_error_ping_tarjeta_editar1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(numero_cant_litros_tarjeta_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ping_tarjeta_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_error_tipo_combustible_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(boton_guardar_tarj_combustible_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(163, 163, 163))
+        combo_programas_re_editar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PROGRAMA" }));
+
+        check_programas.setToolTipText("Hacer o deshacer editable");
+        check_programas.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_programas.setOnOff(false);
+        check_programas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_programasMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(carta_porte_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lbl_error_carta_porte_re_editar))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(combo_programas_re_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(factura_re_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbl_error_programa_re_editar)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(lbl_error_factura_re_editar)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(lbl_error_cant_re_editar))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(codigo_editar_control))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codigo_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(boton_guardar_recursos_x_programa_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(lbl_error_descripcion_re_editar))
+                                    .addComponent(um_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cantidad_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(combo_prefabricados_re_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(check_prefabricados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(numero_tarjeta_tarjeta_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(lbl_error_numero_tarjeta_editar1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)
-                                .addComponent(numero_chapa_tarjeta_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(lbl_error_numero_chapa_editar1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ping_tarjeta_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(lbl_error_ping_tarjeta_editar1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)
-                                .addComponent(numero_cant_litros_tarjeta_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(lbl_error_cant_litro_tarjeta_editar1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(combo_tipo_combustible_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbl_error_tipo_combustible_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(fecha_asignacion_tarjeta_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(lbl_error_fecha_asignacion_tarjeta_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(11, 11, 11)
-                .addComponent(boton_guardar_tarj_combustible_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combo_programas_re_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_programa_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(codigo_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combo_prefabricados_re_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(check_prefabricados, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_descripcion_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(um_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cantidad_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_cant_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(factura_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lbl_error_factura_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(carta_porte_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_guardar_recursos_x_programa_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_error_carta_porte_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigo_editar_control))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout rSPanelShadow1Layout = new javax.swing.GroupLayout(rSPanelShadow1);
         rSPanelShadow1.setLayout(rSPanelShadow1Layout);
         rSPanelShadow1Layout.setHorizontalGroup(
             rSPanelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1023, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(rSPanelShadow1Layout.createSequentialGroup()
+                .addGap(0, 1, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         rSPanelShadow1Layout.setVerticalGroup(
             rSPanelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelShadow1Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -362,245 +399,182 @@ public class de_gestionar_info_laboratorio_editar extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boton_guardar_tarj_combustible_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_tarj_combustible_editarActionPerformed
+    private void cantidad_re_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidad_re_editarKeyReleased
         // TODO add your handling code here:
-        String sql="SELECT * FROM `tarj_combustible` WHERE `numero_tarj`='"+numero_tarjeta_tarjeta_editar+"'";
-      String mje1="La tarjeta que intenta introducir al sistema ya existe";
-      String mje2="Por favor introduzca una nueva";
-        if (numero_tarjeta_tarjeta_editar.getText().isEmpty()||combo_tipo_combustible_editar.getSelectedIndex()==0 || 
-                ping_tarjeta_editar.getText().isEmpty()|| numero_chapa_tarjeta_editar.getText().isEmpty()|| 
-                numero_cant_litros_tarjeta_editar.getText().isEmpty() ||fecha_asignacion_tarjeta_editar.getDate()==null ||
-                interaccion_bd.opciones_de_gestionar_contrato.existe(numero_tarjeta_tarjeta_editar.getText(), sql)||
-                numero_tarjeta_tarjeta_editar.getText().length()<16 || ping_tarjeta_editar.getText().length()<4 || 
-                numero_chapa_tarjeta_editar.getText().length()<7) {
-            if(numero_tarjeta_tarjeta_editar.getText().isEmpty()){
-                numero_tarjeta_tarjeta_editar.requestFocus();
-                lbl_error_numero_tarjeta_editar1.setText("¡Debe ingresar número de tarjeta!");
-                lbl_error_numero_tarjeta_editar1.setVisible(true);
-            }else if(ping_tarjeta_editar.getText().isEmpty()){
-                ping_tarjeta_editar.requestFocus();
-                lbl_error_ping_tarjeta_editar1.setText("¡Debe ingresar ping de tarjeta!");
-                lbl_error_ping_tarjeta_editar1.setVisible(true);
-            }else if(numero_chapa_tarjeta_editar.getText().isEmpty()){
-                numero_chapa_tarjeta_editar.requestFocus();
-                lbl_error_numero_chapa_editar1.setText("¡Debe ingresar número de chapa!");
-                lbl_error_numero_chapa_editar1.setVisible(true);
-            }else if(numero_cant_litros_tarjeta_editar.getText().isEmpty()){
-                numero_cant_litros_tarjeta_editar.requestFocus();
-                lbl_error_cant_litro_tarjeta_editar1.setVisible(true);
-            }else if(fecha_asignacion_tarjeta_editar.getDate()==null){
-                fecha_asignacion_tarjeta_editar.requestFocus();
-                lbl_error_fecha_asignacion_tarjeta_editar.setVisible(true);
-            }else if(combo_tipo_combustible_editar.getSelectedIndex()==0){
-                combo_tipo_combustible_editar.requestFocus();
-                lbl_error_tipo_combustible_editar.setVisible(true);
-            }else if (interaccion_bd.opciones_de_gestionar_contrato.existe(numero_tarjeta_tarjeta_editar.getText(), sql)) {
-                            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mje1,mje2,"");
-                            numero_tarjeta_tarjeta_editar.requestFocus();
-                        }else if(numero_tarjeta_tarjeta_editar.getText().length()<16){
-                numero_tarjeta_tarjeta_editar.requestFocus();
-                lbl_error_numero_tarjeta_editar1.setText("¡El número debe contener 16 dígitos!");
-                lbl_error_numero_tarjeta_editar1.setVisible(true);
-                        }else if(ping_tarjeta_editar.getText().length()<4){
-                ping_tarjeta_editar.requestFocus();
-                lbl_error_ping_tarjeta_editar1.setText("¡El número debe contener 4 dígitos!");
-                lbl_error_ping_tarjeta_editar1.setVisible(true);
-            }else if(numero_chapa_tarjeta_editar.getText().length()<7){
-                numero_chapa_tarjeta_editar.requestFocus();
-                lbl_error_numero_chapa_editar1.setText("¡El campo debe contener 1 letra y 6 dígitos!");
-                lbl_error_numero_chapa_editar1.setVisible(true);
+        if(cantidad_re_editar.getText().length()>0){
+            lbl_error_cant_re_editar.setVisible(false);
+        }
+    }//GEN-LAST:event_cantidad_re_editarKeyReleased
+
+    private void cantidad_re_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidad_re_editarKeyTyped
+        // TODO add your handling code here:
+        char num = evt.getKeyChar();
+        if ((num < '0' || num > '9')) {
+            evt.consume();
+            
+        }
+    }//GEN-LAST:event_cantidad_re_editarKeyTyped
+
+    private void boton_guardar_recursos_x_programa_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_recursos_x_programa_editarActionPerformed
+        // TODO add your handling code here:
+        String sql="select * from recursos_x_programa where codigo_re='"+codigo_re_editar.getText()+"'";
+        String mje1="El código de recursos por programa que intenta registrar ya existe";
+        String mje2="Por favor introduzca un código distinto de recurso";
+        String codigo=codigo_editar_control.getText();
+        if (combo_prefabricados_re_editar.getSelectedIndex()==0||cantidad_re_editar.getText().isEmpty()||
+                combo_programas_re_editar.getSelectedIndex()==0||factura_re_editar.getText().isEmpty()||
+                carta_porte_re_editar.getText().isEmpty()) {
+            if(combo_prefabricados_re_editar.getSelectedIndex()==0){
+                combo_prefabricados_re_editar.requestFocus();
+                lbl_error_descripcion_re_editar.setVisible(true);
+            }else if(cantidad_re_editar.getText().isEmpty()){
+                cantidad_re_editar.requestFocus();
+                lbl_error_cant_re_editar.setVisible(true);
+            }else if(combo_programas_re_editar.getSelectedIndex()==0){
+                combo_programas_re_editar.requestFocus();
+                lbl_error_programa_re_editar.setVisible(true);
+            }else if(factura_re_editar.getText().isEmpty()){
+                factura_re_editar.requestFocus();
+                lbl_error_factura_re_editar.setVisible(true);
+            }else if(carta_porte_re_editar.getText().isEmpty()){
+                carta_porte_re_editar.requestFocus();
+                lbl_error_carta_porte_re_editar.setVisible(true);
             }
         } else {
-            Runnable runnable1 = new Runnable() {
-                public void run() {
+            if(codigo.equals(codigo_re_editar.getText())){
+                Guardando_general l = new Guardando_general(new JFrame(), true);
+                consultas_de_gestionar_recursos_x_programa uc=new consultas_de_gestionar_recursos_x_programa();
+                l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_info_laboratorio_editar.this);
+                l.setVisible(true);
+                paneles_de_paneles.de_gestionar_info_laboratorio_editar.this.setEnabled(false);
+                uc.setCodigo(codigo_re_editar.getText());
+                uc.setDescripcion(combo_prefabricados_re_editar.getSelectedItem().toString());
+                uc.setUm(um_re_editar.getText());
+                uc.setCant(cantidad_re_editar.getText());
+                uc.setPrograma_pertenece(combo_programas_re_editar.getSelectedItem().toString());
+                uc.setFactura(factura_re_editar.getText());
+                uc.setCarta_porte(carta_porte_re_editar.getText());
+                int control= opciones_de_gestionar_recursos_x_programa.actualizar(uc);
+                paneles_de_paneles.de_gestionar_info_laboratorio_editar.this.setEnabled(true);
+                l.setVisible(false);
+                if(control==1){
+                    reset_campos();
+                    opciones_de_gestionar_recursos_x_programa.setListar("");
+                    SuccessAlert e = new SuccessAlert(new JFrame(), true);
+                    e.msj1.setText("¡Los datos del recurso fueron");
+                    e.msj2.setText("guardados exitosamente!.");
+                    e.msj3.setText("");
+                    e.setVisible(true);
+                }
+                this.dispose();
+            }else{
+                if (interaccion_bd.opciones_de_gestionar_contrato.existe(codigo_re_editar.getText(), sql)) {
+                    opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
+                    codigo_re_editar.requestFocus();
+                }else{
                     Guardando_general l = new Guardando_general(new JFrame(), true);
-                    consultas_de_gestionar_tarj_combustible uc=new consultas_de_gestionar_tarj_combustible();
+                    consultas_de_gestionar_recursos_x_programa uc=new consultas_de_gestionar_recursos_x_programa();
                     l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_info_laboratorio_editar.this);
                     l.setVisible(true);
-                    try{            //toma_fecha()
                     paneles_de_paneles.de_gestionar_info_laboratorio_editar.this.setEnabled(false);
-                    uc.setNumero_tarjeta(numero_tarjeta_tarjeta_editar.getText());
-                    uc.setTipo_combustible_tarjeta(combo_tipo_combustible_editar.getSelectedItem().toString());
-                    uc.setPing_tarjeta(ping_tarjeta_editar.getText());
-                    uc.setChapa_tarjeta(numero_chapa_tarjeta_editar.getText());
-                    uc.setCant_litros_tarjeta(numero_cant_litros_tarjeta_editar.getText());
-                    uc.setFecha_asignacion_tarjeta(toma_fecha(fecha_asignacion_tarjeta_editar));
-                   int control= opciones_de_gestionar_tarj_combustible.actualizar(uc);
-                    reset_campos();
+                    uc.setCodigo(codigo_re_editar.getText());
+                uc.setDescripcion(combo_prefabricados_re_editar.getSelectedItem().toString());
+                uc.setUm(um_re_editar.getText());
+                uc.setCant(cantidad_re_editar.getText());
+                uc.setPrograma_pertenece(combo_programas_re_editar.getSelectedItem().toString());
+                uc.setFactura(factura_re_editar.getText());
+                uc.setCarta_porte(carta_porte_re_editar.getText());
+                    int control= opciones_de_gestionar_recursos_x_programa.actualizar(uc);
                     paneles_de_paneles.de_gestionar_info_laboratorio_editar.this.setEnabled(true);
                     l.setVisible(false);
                     if(control==1){
-                    SuccessAlert e = new SuccessAlert(new JFrame(), true);
-            e.msj1.setText("¡Los datos del contrato fueron");
-            e.msj2.setText("guardados exitosamente!.");
-            e.msj3.setText("");
-            e.setVisible(true);
-                        opciones_de_gestionar_tarj_combustible.setListar("");
+                        reset_campos();
+                        opciones_de_gestionar_recursos_x_programa.setListar("");
+                        SuccessAlert e = new SuccessAlert(new JFrame(), true);
+                        e.msj1.setText("¡Los datos del recurso fueron");
+                        e.msj2.setText("guardados exitosamente!.");
+                        e.msj3.setText("");
+                        e.setVisible(true);
                     }
-                    
-                    }catch(Exception e){
-                        ErrorAlert error = new ErrorAlert(new JFrame(), true);
-                        Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, e);
-            error.msj1.setText(e.toString());
-            error.msj2.setText("Por favor solucione el error antes de volver a intentarlo.");
-            error.msj3.setText("En caso de no saber como corregir el error, por favor contacte con soporte técnico");
-            error.preferredSize();
-            error.pack();
-            error.setVisible(true);
-                    }
+                    this.dispose();
                 }
-            };
-            Thread t1 = new Thread(runnable1);
-            t1.start();
-            this.dispose();
-        }
-    }//GEN-LAST:event_boton_guardar_tarj_combustible_editarActionPerformed
-
-    private void combo_tipo_combustible_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_tipo_combustible_editarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_tipo_combustible_editarActionPerformed
-
-    private void numero_chapa_tarjeta_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_chapa_tarjeta_editarKeyTyped
-        // TODO add your handling code here:
-        if (numero_chapa_tarjeta_editar.getText().length() > 0 &&numero_chapa_tarjeta_editar.getText().length() < 7) {
-            char car = evt.getKeyChar();
-            if (Character.isDigit(car)) {
-            } else {
-                evt.consume();
-            }
-
-        }else{
-            if(numero_chapa_tarjeta_editar.getText().length() < 7){
-        char car = evt.getKeyChar();
-        if ( Character.isLetter(car)) {
-        } else {
-            evt.consume();
-        }
-        }else{
-                evt.consume();
             }
         }
-    }//GEN-LAST:event_numero_chapa_tarjeta_editarKeyTyped
+    }//GEN-LAST:event_boton_guardar_recursos_x_programa_editarActionPerformed
 
-    private void numero_chapa_tarjeta_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_chapa_tarjeta_editarKeyReleased
+    private void factura_re_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_factura_re_editarKeyReleased
         // TODO add your handling code here:
-        if(numero_chapa_tarjeta_editar.getText().length()>0){
-            lbl_error_numero_chapa_editar1.setVisible(false);
-            char car = numero_chapa_tarjeta_editar.getText().charAt(0);
-            car=Character.toUpperCase(car);
-            String txt=numero_chapa_tarjeta_editar.getText().substring(1);
-            numero_chapa_tarjeta_editar.setText(String.valueOf(car)+txt);
+        if(factura_re_editar.getText().length()>0){
+            lbl_error_factura_re_editar.setVisible(false);
         }
-    }//GEN-LAST:event_numero_chapa_tarjeta_editarKeyReleased
+    }//GEN-LAST:event_factura_re_editarKeyReleased
 
-    private void numero_cant_litros_tarjeta_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_cant_litros_tarjeta_editarKeyTyped
+    private void factura_re_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_factura_re_editarKeyTyped
         // TODO add your handling code here:
-        if(numero_cant_litros_tarjeta_editar.getText().length()<10){
-        char num = evt.getKeyChar();
-        if ((num < '0' || num > '9')) {
-            evt.consume();
-        }
-        }else{
-            evt.consume();
-        }
-    }//GEN-LAST:event_numero_cant_litros_tarjeta_editarKeyTyped
-
-    private void numero_cant_litros_tarjeta_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_cant_litros_tarjeta_editarKeyReleased
-        // TODO add your handling code here:
-        if(numero_cant_litros_tarjeta_editar.getText().length()>0){
-        lbl_error_cant_litro_tarjeta_editar1.setVisible(false);
-    }
-    }//GEN-LAST:event_numero_cant_litros_tarjeta_editarKeyReleased
-
-    private void ping_tarjeta_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ping_tarjeta_editarKeyTyped
-        // TODO add your handling code here:
-        if(ping_tarjeta_editar.getText().length()<4){
-                char num = evt.getKeyChar();
-        if ((num < '0' || num > '9')) {
-            evt.consume();
-            
-        }
-        }else{
-            evt.consume();
-        }
-    }//GEN-LAST:event_ping_tarjeta_editarKeyTyped
-
-    private void ping_tarjeta_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ping_tarjeta_editarKeyReleased
-        // TODO add your handling code here:
-        if(ping_tarjeta_editar.getText().length()>0){
-            lbl_error_ping_tarjeta_editar1.setVisible(false);
-        }
-    }//GEN-LAST:event_ping_tarjeta_editarKeyReleased
-
-    private void numero_tarjeta_tarjeta_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_tarjeta_tarjeta_editarKeyTyped
-        // TODO add your handling code here:
-        if(numero_tarjeta_tarjeta_editar.getText().length()<16){
         char num = evt.getKeyChar();
         if ((num < '0' || num > '9')) {
             evt.consume();
             
         }
-        }else{
-            evt.consume();
-        }
-    }//GEN-LAST:event_numero_tarjeta_tarjeta_editarKeyTyped
+    }//GEN-LAST:event_factura_re_editarKeyTyped
 
-    private void numero_tarjeta_tarjeta_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numero_tarjeta_tarjeta_editarKeyReleased
+    private void carta_porte_re_editarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carta_porte_re_editarKeyReleased
         // TODO add your handling code here:
-        if(numero_tarjeta_tarjeta_editar.getText().length()>0){
-            lbl_error_numero_tarjeta_editar1.setVisible(false);
+        if(carta_porte_re_editar.getText().length()>0){
+            lbl_error_carta_porte_re_editar.setVisible(false);
         }
-    }//GEN-LAST:event_numero_tarjeta_tarjeta_editarKeyReleased
+    }//GEN-LAST:event_carta_porte_re_editarKeyReleased
 
-    public static String toma_fecha(JDateChooser fecha) {      
-        String txt_fecha = null;
-        if (fecha.getDate() != null) {
-             String formato = fecha.getDateFormatString();
-            Date date = fecha.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            txt_fecha=String.valueOf(sdf.format(date));
+    private void carta_porte_re_editarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carta_porte_re_editarKeyTyped
+        // TODO add your handling code here:
+        char num = evt.getKeyChar();
+        if ((num < '0' || num > '9')) {
+            evt.consume();
+            
         }
-        return txt_fecha;
-    }   
-    
-    public static String convierte_fecha_string(Date fecha) {      
-        String txt_fecha = null;
-        if (fecha != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            txt_fecha=String.valueOf(sdf.format(fecha));
+    }//GEN-LAST:event_carta_porte_re_editarKeyTyped
+
+    private void combo_prefabricados_re_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_prefabricados_re_editarActionPerformed
+        // TODO add your handling code here:
+        String sql_codigo="SELECT `codigo_materia_prima` FROM `materia_prima` WHERE `elem__materia_prima`='"+combo_prefabricados_re_editar.getSelectedItem().toString().trim()+"'";
+        String sql_um="SELECT `um_materia_prima` FROM `materia_prima` WHERE `elem__materia_prima`='"+combo_prefabricados_re_editar.getSelectedItem().toString().trim()+"'";
+        um_re_editar.setText(opciones_de_gestionar_recursos_x_programa.extraer_id(sql_um));
+        codigo_re_editar.setText(opciones_de_gestionar_recursos_x_programa.extraer_id(sql_codigo));
+    }//GEN-LAST:event_combo_prefabricados_re_editarActionPerformed
+
+    private void check_prefabricadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_prefabricadosMouseClicked
+        // TODO add your handling code here:
+        if(check_prefabricados.isOnOff()){
+            combo_prefabricados_re_editar.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_prefabricados_re_editar);
+        }else{
+            combo_prefabricados_re_editar.setEditable(false);
+            combo_prefabricados_re_editar.requestFocus();
         }
-        return txt_fecha;
-    }  
-    
-    
-    // tomar fecha en string y pasarla a date
-     public static Date ParseFecha(String fecha)
-    {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(fecha);
-        } 
-        catch (ParseException ex) 
-        {
-            System.out.println(ex);
+    }//GEN-LAST:event_check_prefabricadosMouseClicked
+
+    private void check_programasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_programasMouseClicked
+        // TODO add your handling code here:
+        if(check_programas.isOnOff()){
+            combo_programas_re_editar.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_programas_re_editar);
+        }else{
+            combo_programas_re_editar.setEditable(false);
+            combo_programas_re_editar.requestFocus();
         }
-        return fechaDate;
-    }
+    }//GEN-LAST:event_check_programasMouseClicked
+
+    
+    
     
     private void reset_campos(){
-        numero_tarjeta_tarjeta_editar.setText("");
-        numero_cant_litros_tarjeta_editar.setText("");
-        ping_tarjeta_editar.setText("");
-        numero_chapa_tarjeta_editar.setText("");
-        fecha_asignacion_tarjeta_editar.setDate(null);
-        combo_tipo_combustible_editar.setSelectedIndex(0);
-        lbl_error_cant_litro_tarjeta_editar1.setVisible(false);
-        lbl_error_numero_tarjeta_editar1.setVisible(false);
-        lbl_error_fecha_asignacion_tarjeta_editar.setVisible(false);
-        lbl_error_tipo_combustible_editar.setVisible(false);
-        lbl_error_ping_tarjeta_editar1.setVisible(false);
-        lbl_error_numero_chapa_editar1.setVisible(false);
+        cantidad_re_editar.setText("");
+        combo_prefabricados_re_editar.setSelectedIndex(0);
+        codigo_re_editar.setText("");
+        um_re_editar.setText("");
+        combo_programas_re_editar.setSelectedIndex(0);
+        factura_re_editar.setText("");
+        carta_porte_re_editar.setText("");
     }
     
     /**
@@ -650,21 +624,24 @@ public class de_gestionar_info_laboratorio_editar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojeru_san.RSButtonRiple boton_guardar_tarj_combustible_editar;
-    public static org.bolivia.combo.SComboBox combo_tipo_combustible_editar;
-    public static com.toedter.calendar.JDateChooser fecha_asignacion_tarjeta_editar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbl_error_cant_litro_tarjeta_editar1;
-    private javax.swing.JLabel lbl_error_fecha_asignacion_tarjeta_editar;
-    private javax.swing.JLabel lbl_error_numero_chapa_editar1;
-    private javax.swing.JLabel lbl_error_numero_tarjeta_editar1;
-    private javax.swing.JLabel lbl_error_ping_tarjeta_editar1;
-    private javax.swing.JLabel lbl_error_tipo_combustible_editar;
-    public static rojeru_san.rsfield.RSTextMaterial numero_cant_litros_tarjeta_editar;
-    public static rojeru_san.rsfield.RSTextMaterial numero_chapa_tarjeta_editar;
-    public static rojeru_san.rsfield.RSTextMaterial numero_tarjeta_tarjeta_editar;
-    public static rojeru_san.rsfield.RSTextMaterial ping_tarjeta_editar;
+    private rojeru_san.RSButtonRiple boton_guardar_recursos_x_programa_editar;
+    public static rojeru_san.rsfield.RSTextMaterial cantidad_re_editar;
+    public static rojeru_san.rsfield.RSTextMaterial carta_porte_re_editar;
+    private check_de_android.Switch check_prefabricados;
+    private check_de_android.Switch check_programas;
+    public static javax.swing.JLabel codigo_editar_control;
+    public static rojeru_san.rsfield.RSTextMaterial codigo_re_editar;
+    public static org.bolivia.combo.SComboBox combo_prefabricados_re_editar;
+    public static org.bolivia.combo.SComboBox combo_programas_re_editar;
+    public static rojeru_san.rsfield.RSTextMaterial factura_re_editar;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbl_error_cant_re_editar;
+    private javax.swing.JLabel lbl_error_carta_porte_re_editar;
+    private javax.swing.JLabel lbl_error_descripcion_re_editar;
+    private javax.swing.JLabel lbl_error_factura_re_editar;
+    private javax.swing.JLabel lbl_error_programa_re_editar;
     private rojeru_san.rspanel.RSPanelShadow rSPanelShadow1;
+    public static rojeru_san.rsfield.RSTextMaterial um_re_editar;
     // End of variables declaration//GEN-END:variables
 }
