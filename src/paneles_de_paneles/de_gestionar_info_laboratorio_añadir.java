@@ -38,16 +38,15 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         
         lbl_error_asent_add.setVisible(false);
         lbl_error_vol_m3_add.setVisible(false);
-        lbl_error_fecha_info_lab_add.setVisible(false);
         lbl_error_lm_add.setVisible(false);
         lbl_error_num_materiales_add.setVisible(false);
         lbl_error_pm_add.setVisible(false);
-        lbl_error_x1_28dias_add.setEnabled(false);
-        lbl_error_x1_add.setEnabled(false);
-        lbl_error_x2_28dias_add.setEnabled(false);
-        lbl_error_x2_add.setEnabled(false);
-        lbl_error_x3_28dias_add.setEnabled(false);
-        lbl_error_x3_add.setEnabled(false);
+        lbl_error_x1_28dias_add.setVisible(false);
+        lbl_error_x1_add.setVisible(false);
+        lbl_error_x2_28dias_add.setVisible(false);
+        lbl_error_x2_add.setVisible(false);
+        lbl_error_x3_28dias_add.setVisible(false);
+        lbl_error_x3_add.setVisible(false);
         deshabilitarPegar();
         opciones_de_gestionar_info_lab.get_combos(combo_lm, combo_pm);
         //################### detectar cambios en los combobox ######################3
@@ -115,8 +114,8 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         x1_add = new rojeru_san.rsfield.RSTextMaterial();
         x3_add = new rojeru_san.rsfield.RSTextMaterial();
         combo_lm = new org.bolivia.combo.SComboBox();
-        check_prefabricados1 = new check_de_android.Switch();
-        check_prefabricados2 = new check_de_android.Switch();
+        check_lm = new check_de_android.Switch();
+        check_pm = new check_de_android.Switch();
         combo_pm = new org.bolivia.combo.SComboBox();
         check_prefabricados3 = new check_de_android.Switch();
         x1_28dias_add = new rojeru_san.rsfield.RSTextMaterial();
@@ -261,21 +260,21 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             }
         });
 
-        check_prefabricados1.setToolTipText("Hacer o deshacer editable");
-        check_prefabricados1.setBackgroundColor(new java.awt.Color(38, 86, 186));
-        check_prefabricados1.setOnOff(false);
-        check_prefabricados1.addMouseListener(new java.awt.event.MouseAdapter() {
+        check_lm.setToolTipText("Hacer o deshacer editable");
+        check_lm.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_lm.setOnOff(false);
+        check_lm.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                check_prefabricados1MouseClicked(evt);
+                check_lmMouseClicked(evt);
             }
         });
 
-        check_prefabricados2.setToolTipText("Hacer o deshacer editable");
-        check_prefabricados2.setBackgroundColor(new java.awt.Color(38, 86, 186));
-        check_prefabricados2.setOnOff(false);
-        check_prefabricados2.addMouseListener(new java.awt.event.MouseAdapter() {
+        check_pm.setToolTipText("Hacer o deshacer editable");
+        check_pm.setBackgroundColor(new java.awt.Color(38, 86, 186));
+        check_pm.setOnOff(false);
+        check_pm.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                check_prefabricados2MouseClicked(evt);
+                check_pmMouseClicked(evt);
             }
         });
 
@@ -401,22 +400,22 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
                                 .addComponent(asent_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(vol_m3_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(check_prefabricados1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(check_lm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(combo_lm, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                                 .addComponent(lbl_error_lm_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(lbl_error_asent_add)
                             .addComponent(lbl_error_x1_28dias_add)
                             .addComponent(lbl_error_x2_28dias_add))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addComponent(check_prefabricados3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(x1_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(combo_pm, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(check_prefabricados2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(check_pm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(x3_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(lbl_error_num_materiales_add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -431,8 +430,8 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
                     .addComponent(lbl_error_x3_add)
                     .addComponent(lbl_error_x3_28dias_add))
                 .addContainerGap(104, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(215, 215, 215)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(270, 270, 270)
                 .addComponent(boton_guardar_recursos_x_programa_add, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -490,16 +489,16 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(combo_lm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(check_prefabricados1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(check_lm, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(combo_pm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(check_prefabricados2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(check_pm, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_error_lm_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_error_pm_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(check_prefabricados3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(boton_guardar_recursos_x_programa_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -597,34 +596,33 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_vol_m3_addKeyReleased
 
-    
+    int pto=0;
+    int lugares=0;
 //    int control=0;
     private void vol_m3_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_vol_m3_addKeyTyped
         // TODO add your handling code here:
-        int pto=0;
-    int lugares=0;
         char caracter = evt.getKeyChar();
         if(caracter=='.'){
             pto++;
         }
-        if( pto>=2){
+         if( pto>=2){
             pto=2;
-        }
+           }
         if( lugares>=3){
             lugares--;
-        }
-
+           }
+        
         if(caracter == KeyEvent.VK_BACK_SPACE){
-            if( pto>=0){
-                lugares--;
-            }
-
-            if(!vol_m3_add.getText().contains(".")){
-                pto=0;
-            }
-            if( pto==0){
-                lugares=0;
-            }
+          if( pto>=0){
+            lugares--;
+           }
+          
+          if(!vol_m3_add.getText().contains(".")){
+              pto=0;
+          }
+          if( pto==0){
+            lugares=0;
+           }
         }
         if (vol_m3_add.getText().length() <1 ) {
             char car = evt.getKeyChar();
@@ -635,29 +633,28 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             }
 
         }else{
-            if(vol_m3_add.getText().length()<10){
-                char num = evt.getKeyChar();
-                if (Character.isDigit(num)||num=='.') {
-                    if(num=='.'&&pto<2){
-                        // escribe
-                    }else{
-                        if(pto!=0&&num!='.'){
-                            lugares++;
-                        }
-                        if(lugares<3 && num!='.'){
-                            // escribe
-                        }else{
-                            evt.consume();
-                        }
-                    }
+            if(vol_m3_add.getText().length()<10){     
+        char num = evt.getKeyChar();
+        if (Character.isDigit(num)||num=='.') {
+            if(num=='.'&&pto<2){
+                   // escribe
+                }else{
+                if(pto!=0&&num!='.'){
+                lugares++;
+                }
+                if(lugares<3 && num!='.'){
+                    // escribe
                 }else{
                     evt.consume();
                 }
-            }else{
-                evt.consume();
-            }
+                }
+        }else{
+            evt.consume();
         }
-
+        }else{
+            evt.consume();
+        }
+        }
     }//GEN-LAST:event_vol_m3_addKeyTyped
 
     private void fecha_info_lab_addAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_fecha_info_lab_addAncestorRemoved
@@ -671,31 +668,32 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_asent_addKeyReleased
 
+    int ptoasent_add=0;
+    int lugaresasent_add=0;
     private void asent_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_asent_addKeyTyped
         // TODO add your handling code here:
-         int pto=0;
-    int lugares=0;
+         
         char caracter = evt.getKeyChar();
         if(caracter=='.'){
-            pto++;
+            ptoasent_add++;
         }
-        if( pto>=2){
-            pto=2;
+        if( ptoasent_add>=2){
+            ptoasent_add=2;
         }
-        if( lugares>=3){
-            lugares--;
+        if( lugaresasent_add>=3){
+            lugaresasent_add--;
         }
 
         if(caracter == KeyEvent.VK_BACK_SPACE){
-            if( pto>=0){
-                lugares--;
+            if( ptoasent_add>=0){
+                lugaresasent_add--;
             }
 
             if(!asent_add.getText().contains(".")){
-                pto=0;
+                ptoasent_add=0;
             }
-            if( pto==0){
-                lugares=0;
+            if( ptoasent_add==0){
+                lugaresasent_add=0;
             }
         }
         if (asent_add.getText().length() <1 ) {
@@ -710,13 +708,13 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             if(asent_add.getText().length()<10){
                 char num = evt.getKeyChar();
                 if (Character.isDigit(num)||num=='.') {
-                    if(num=='.'&&pto<2){
+                    if(num=='.'&&ptoasent_add<2){
                         // escribe
                     }else{
-                        if(pto!=0&&num!='.'){
-                            lugares++;
+                        if(ptoasent_add!=0&&num!='.'){
+                            lugaresasent_add++;
                         }
-                        if(lugares<3 && num!='.'){
+                        if(lugaresasent_add<3 && num!='.'){
                             // escribe
                         }else{
                             evt.consume();
@@ -738,31 +736,32 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_x2_addKeyReleased
 
+    int ptox2_add=0;
+    int lugaresx2_add=0;
     private void x2_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x2_addKeyTyped
         // TODO add your handling code here:
-        int pto=0;
-    int lugares=0;
+        
         char caracter = evt.getKeyChar();
         if(caracter=='.'){
-            pto++;
+            ptox2_add++;
         }
-        if( pto>=2){
-            pto=2;
+        if( ptox2_add>=2){
+            ptox2_add=2;
         }
-        if( lugares>=3){
-            lugares--;
+        if( lugaresx2_add>=3){
+            lugaresx2_add--;
         }
 
         if(caracter == KeyEvent.VK_BACK_SPACE){
-            if( pto>=0){
-                lugares--;
+            if( ptox2_add>=0){
+                lugaresx2_add--;
             }
 
             if(!x2_add.getText().contains(".")){
-                pto=0;
+                ptox2_add=0;
             }
-            if( pto==0){
-                lugares=0;
+            if( ptox2_add==0){
+                lugaresx2_add=0;
             }
         }
         if (x2_add.getText().length() <1 ) {
@@ -777,13 +776,13 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             if(x2_add.getText().length()<10){
                 char num = evt.getKeyChar();
                 if (Character.isDigit(num)||num=='.') {
-                    if(num=='.'&&pto<2){
+                    if(num=='.'&&ptox2_add<2){
                         // escribe
                     }else{
-                        if(pto!=0&&num!='.'){
-                            lugares++;
+                        if(ptox2_add!=0&&num!='.'){
+                            lugaresx2_add++;
                         }
-                        if(lugares<3 && num!='.'){
+                        if(lugaresx2_add<3 && num!='.'){
                             // escribe
                         }else{
                             evt.consume();
@@ -805,31 +804,32 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_x1_addKeyReleased
 
+    int ptox1_add=0;
+    int lugaresx1_add=0;
     private void x1_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x1_addKeyTyped
         // TODO add your handling code here:
-        int pto=0;
-    int lugares=0;
+        
         char caracter = evt.getKeyChar();
         if(caracter=='.'){
-            pto++;
+            ptox1_add++;
         }
-        if( pto>=2){
-            pto=2;
+        if( ptox1_add>=2){
+            ptox1_add=2;
         }
-        if( lugares>=3){
-            lugares--;
+        if( lugaresx1_add>=3){
+            lugaresx1_add--;
         }
 
         if(caracter == KeyEvent.VK_BACK_SPACE){
-            if( pto>=0){
-                lugares--;
+            if( ptox1_add>=0){
+                lugaresx1_add--;
             }
 
             if(!x1_add.getText().contains(".")){
-                pto=0;
+                ptox1_add=0;
             }
-            if( pto==0){
-                lugares=0;
+            if( ptox1_add==0){
+                lugaresx1_add=0;
             }
         }
         if (x1_add.getText().length() <1 ) {
@@ -844,13 +844,13 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             if(x1_add.getText().length()<10){
                 char num = evt.getKeyChar();
                 if (Character.isDigit(num)||num=='.') {
-                    if(num=='.'&&pto<2){
+                    if(num=='.'&&ptox1_add<2){
                         // escribe
                     }else{
-                        if(pto!=0&&num!='.'){
-                            lugares++;
+                        if(ptox1_add!=0&&num!='.'){
+                            lugaresx1_add++;
                         }
-                        if(lugares<3 && num!='.'){
+                        if(lugaresx1_add<3 && num!='.'){
                             // escribe
                         }else{
                             evt.consume();
@@ -872,31 +872,31 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_x3_addKeyReleased
 
+    int ptox3_add=0;
+    int lugaresx3_add=0;
     private void x3_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x3_addKeyTyped
         // TODO add your handling code here:
-        int pto=0;
-    int lugares=0;
         char caracter = evt.getKeyChar();
         if(caracter=='.'){
-            pto++;
+            ptox3_add++;
         }
-        if( pto>=2){
-            pto=2;
+        if( ptox3_add>=2){
+            ptox3_add=2;
         }
-        if( lugares>=3){
-            lugares--;
+        if( lugaresx3_add>=3){
+            lugaresx3_add--;
         }
 
         if(caracter == KeyEvent.VK_BACK_SPACE){
-            if( pto>=0){
-                lugares--;
+            if( ptox3_add>=0){
+                lugaresx3_add--;
             }
 
             if(!x3_add.getText().contains(".")){
-                pto=0;
+                ptox3_add=0;
             }
-            if( pto==0){
-                lugares=0;
+            if( ptox3_add==0){
+                lugaresx3_add=0;
             }
         }
         if (x3_add.getText().length() <1 ) {
@@ -911,13 +911,13 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             if(x3_add.getText().length()<10){
                 char num = evt.getKeyChar();
                 if (Character.isDigit(num)||num=='.') {
-                    if(num=='.'&&pto<2){
+                    if(num=='.'&&ptox3_add<2){
                         // escribe
                     }else{
-                        if(pto!=0&&num!='.'){
-                            lugares++;
+                        if(ptox3_add!=0&&num!='.'){
+                            lugaresx3_add++;
                         }
-                        if(lugares<3 && num!='.'){
+                        if(lugaresx3_add<3 && num!='.'){
                             // escribe
                         }else{
                             evt.consume();
@@ -936,13 +936,27 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_lmActionPerformed
 
-    private void check_prefabricados1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_prefabricados1MouseClicked
+    private void check_lmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_lmMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_check_prefabricados1MouseClicked
+        if(check_lm.isOnOff()){
+            combo_lm.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_lm);
+        }else{
+            combo_lm.setEditable(false);
+            combo_lm.requestFocus();
+        }
+    }//GEN-LAST:event_check_lmMouseClicked
 
-    private void check_prefabricados2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_prefabricados2MouseClicked
+    private void check_pmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_pmMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_check_prefabricados2MouseClicked
+        if(check_pm.isOnOff()){
+            combo_pm.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_pm);
+        }else{
+            combo_pm.setEditable(false);
+            combo_pm.requestFocus();
+        }
+    }//GEN-LAST:event_check_pmMouseClicked
 
     private void combo_pmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_pmActionPerformed
         // TODO add your handling code here:
@@ -966,31 +980,32 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_x1_28dias_addKeyReleased
 
+    int ptox1_28dias_add=0;
+    int lugaresx1_28dias_add=0;
     private void x1_28dias_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x1_28dias_addKeyTyped
         // TODO add your handling code here:
-        int pto=0;
-    int lugares=0;
+        
         char caracter = evt.getKeyChar();
         if(caracter=='.'){
-            pto++;
+            ptox1_28dias_add++;
         }
-        if( pto>=2){
-            pto=2;
+        if( ptox1_28dias_add>=2){
+            ptox1_28dias_add=2;
         }
-        if( lugares>=3){
-            lugares--;
+        if( lugaresx1_28dias_add>=3){
+            lugaresx1_28dias_add--;
         }
 
         if(caracter == KeyEvent.VK_BACK_SPACE){
-            if( pto>=0){
-                lugares--;
+            if( ptox1_28dias_add>=0){
+                lugaresx1_28dias_add--;
             }
 
             if(!x1_28dias_add.getText().contains(".")){
-                pto=0;
+                ptox1_28dias_add=0;
             }
-            if( pto==0){
-                lugares=0;
+            if( ptox1_28dias_add==0){
+                lugaresx1_28dias_add=0;
             }
         }
         if (x1_28dias_add.getText().length() <1 ) {
@@ -1005,13 +1020,13 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             if(x1_28dias_add.getText().length()<10){
                 char num = evt.getKeyChar();
                 if (Character.isDigit(num)||num=='.') {
-                    if(num=='.'&&pto<2){
+                    if(num=='.'&&ptox1_28dias_add<2){
                         // escribe
                     }else{
-                        if(pto!=0&&num!='.'){
-                            lugares++;
+                        if(ptox1_28dias_add!=0&&num!='.'){
+                            lugaresx1_28dias_add++;
                         }
-                        if(lugares<3 && num!='.'){
+                        if(lugaresx1_28dias_add<3 && num!='.'){
                             // escribe
                         }else{
                             evt.consume();
@@ -1033,31 +1048,32 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_x2_28dias_addKeyReleased
 
+    int ptox2_28dias_add=0;
+    int lugaresx2_28dias_add=0;
     private void x2_28dias_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x2_28dias_addKeyTyped
         // TODO add your handling code here:
-        int pto=0;
-    int lugares=0;
+        
         char caracter = evt.getKeyChar();
         if(caracter=='.'){
-            pto++;
+            ptox2_28dias_add++;
         }
-        if( pto>=2){
-            pto=2;
+        if( ptox2_28dias_add>=2){
+            ptox2_28dias_add=2;
         }
-        if( lugares>=3){
-            lugares--;
+        if( lugaresx2_28dias_add>=3){
+            lugaresx2_28dias_add--;
         }
 
         if(caracter == KeyEvent.VK_BACK_SPACE){
-            if( pto>=0){
-                lugares--;
+            if( ptox2_28dias_add>=0){
+                lugaresx2_28dias_add--;
             }
 
             if(!x2_28dias_add.getText().contains(".")){
-                pto=0;
+                ptox2_28dias_add=0;
             }
-            if( pto==0){
-                lugares=0;
+            if( ptox2_28dias_add==0){
+                lugaresx2_28dias_add=0;
             }
         }
         if (x2_28dias_add.getText().length() <1 ) {
@@ -1072,13 +1088,13 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             if(x2_28dias_add.getText().length()<10){
                 char num = evt.getKeyChar();
                 if (Character.isDigit(num)||num=='.') {
-                    if(num=='.'&&pto<2){
+                    if(num=='.'&&ptox2_28dias_add<2){
                         // escribe
                     }else{
-                        if(pto!=0&&num!='.'){
-                            lugares++;
+                        if(ptox2_28dias_add!=0&&num!='.'){
+                            lugaresx2_28dias_add++;
                         }
-                        if(lugares<3 && num!='.'){
+                        if(lugaresx2_28dias_add<3 && num!='.'){
                             // escribe
                         }else{
                             evt.consume();
@@ -1100,31 +1116,31 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_x3_28dias_addKeyReleased
 
+    int ptox3_28dias_add=0;
+    int lugaresx3_28dias_add=0;
     private void x3_28dias_addKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x3_28dias_addKeyTyped
         // TODO add your handling code here:
-        int pto=0;
-    int lugares=0;
         char caracter = evt.getKeyChar();
         if(caracter=='.'){
-            pto++;
+            ptox3_28dias_add++;
         }
-        if( pto>=2){
-            pto=2;
+        if( ptox3_28dias_add>=2){
+            ptox3_28dias_add=2;
         }
-        if( lugares>=3){
-            lugares--;
+        if( lugaresx3_28dias_add>=3){
+            lugaresx3_28dias_add--;
         }
 
         if(caracter == KeyEvent.VK_BACK_SPACE){
-            if( pto>=0){
-                lugares--;
+            if( ptox3_28dias_add>=0){
+                lugaresx3_28dias_add--;
             }
 
             if(!x3_28dias_add.getText().contains(".")){
-                pto=0;
+                ptox3_28dias_add=0;
             }
-            if( pto==0){
-                lugares=0;
+            if( ptox3_28dias_add==0){
+                lugaresx3_28dias_add=0;
             }
         }
         if (x3_28dias_add.getText().length() <1 ) {
@@ -1139,13 +1155,13 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             if(x3_28dias_add.getText().length()<10){
                 char num = evt.getKeyChar();
                 if (Character.isDigit(num)||num=='.') {
-                    if(num=='.'&&pto<2){
+                    if(num=='.'&&ptox3_28dias_add<2){
                         // escribe
                     }else{
-                        if(pto!=0&&num!='.'){
-                            lugares++;
+                        if(ptox3_28dias_add!=0&&num!='.'){
+                            lugaresx3_28dias_add++;
                         }
-                        if(lugares<3 && num!='.'){
+                        if(lugaresx3_28dias_add<3 && num!='.'){
                             // escribe
                         }else{
                             evt.consume();
@@ -1205,8 +1221,8 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static rojeru_san.rsfield.RSTextMaterial asent_add;
     private rojeru_san.RSButtonRiple boton_guardar_recursos_x_programa_add;
-    private check_de_android.Switch check_prefabricados1;
-    private check_de_android.Switch check_prefabricados2;
+    private check_de_android.Switch check_lm;
+    private check_de_android.Switch check_pm;
     private check_de_android.Switch check_prefabricados3;
     private org.bolivia.combo.SComboBox combo_lm;
     private org.bolivia.combo.SComboBox combo_pm;

@@ -38,7 +38,7 @@
                               <Component id="asent_add" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
                               <Component id="vol_m3_add" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="check_prefabricados1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="check_lm" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="combo_lm" pref="0" max="32767" attributes="0"/>
                               </Group>
@@ -48,9 +48,9 @@
                           <Component id="lbl_error_x1_28dias_add" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_error_x2_28dias_add" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="46" max="32767" attributes="0"/>
                       <Component id="check_prefabricados3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -58,7 +58,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="combo_pm" min="-2" pref="188" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="check_prefabricados2" min="-2" max="-2" attributes="0"/>
+                      <Component id="check_pm" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="x3_add" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -77,8 +77,8 @@
               </Group>
               <EmptySpace pref="104" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
               <Component id="boton_guardar_recursos_x_programa_add" min="-2" pref="297" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -150,9 +150,9 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="combo_lm" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="check_prefabricados1" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="check_lm" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="combo_pm" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="check_prefabricados2" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="check_pm" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbl_error_lm_add" min="-2" pref="43" max="-2" attributes="0"/>
@@ -161,9 +161,9 @@
                   </Group>
                   <Component id="check_prefabricados3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace pref="60" max="32767" attributes="0"/>
               <Component id="boton_guardar_recursos_x_programa_add" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -371,7 +371,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_lmActionPerformed"/>
       </Events>
     </Component>
-    <Container class="check_de_android.Switch" name="check_prefabricados1">
+    <Container class="check_de_android.Switch" name="check_lm">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Hacer o deshacer editable"/>
         <Property name="backgroundColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -380,14 +380,14 @@
         <Property name="onOff" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="check_prefabricados1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="check_lmMouseClicked"/>
       </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
     </Container>
-    <Container class="check_de_android.Switch" name="check_prefabricados2">
+    <Container class="check_de_android.Switch" name="check_pm">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Hacer o deshacer editable"/>
         <Property name="backgroundColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -396,7 +396,7 @@
         <Property name="onOff" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="check_prefabricados2MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="check_pmMouseClicked"/>
       </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
