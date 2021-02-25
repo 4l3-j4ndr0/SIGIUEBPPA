@@ -31,6 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -340,7 +341,7 @@ public class de_gestionar_prod_programa_añadir extends javax.swing.JPanel {
                         uc.setCodigo(opciones_de_gestionar_prod_programa.extraer_numero(sql_codigo));
                         uc.setDescripcion(combo_prefabricados.getSelectedItem().toString());
                         uc.setPrograma(combo_programas.getSelectedItem().toString());
-                        uc.setFecha(toma_fecha(fecha_modelo));
+                        uc.setFecha(fecha_modelo.getDate());
                         uc.setTotal_m3((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen)) * 100d) / 100d);
                         uc.setImporte((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_precio)) * 100d) / 100d);
                         uc.setVolumen_unidad(opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen));
@@ -348,22 +349,95 @@ public class de_gestionar_prod_programa_añadir extends javax.swing.JPanel {
                         uc.setRbk("25");
                         uc.setU_m("U");
                         uc.setPreciio(opciones_de_gestionar_prod_programa.extraer_volumen(sql_precio));            //opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen))*0.445
+                       int disponiblidad=0;
+                        ArrayList materiales = new ArrayList();
                         uc.setCemento((double) Math.round(((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen))*0.445) * 100d) / 100d);
+                        double cemento=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='cemento' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(cemento_modelo) from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"'),2) as cantidad from  recursos_x_programa where  programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='cemento' group by `programa_re`");
+                        System.out.println("CEMENTO "+cemento);
+                        if(cemento>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Cemento ("+cemento+")");
+                        }
                         uc.setArena((double) Math.round(((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen))*0.65) * 100d) / 100d);
+                        double arena=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='arena' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(arena_modelo) from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"'),2) as cantidad from  recursos_x_programa where  programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='arena' group by `programa_re`");
+                        if(arena>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Arena ("+arena+")");
+                        }
                         uc.setGravilla((double) Math.round(((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen))*0.69) * 100d) / 100d);
+                        double gravilla=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='gravilla' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(gravilla_modelo) from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"'),2) as cantidad from  recursos_x_programa where  programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='gravilla' group by `programa_re`");
+                        if(gravilla>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Gravilla ("+gravilla+")");
+                        }
                         uc.setAditivo((double) Math.round(((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen))*4.45) * 100d) / 100d);
-                                                                                                                                                                      // en toneladas
+                        double aditivo=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='aditivo' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(aditivo_modelo) from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"'),2) as cantidad from  recursos_x_programa where  programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='aditivo' group by `programa_re`");
+                        if(aditivo>0){
+                            disponiblidad++;
+                        } else{
+                            materiales.add("Aditivo ("+aditivo+")");
+                        }
                         uc.setUn_cuarto(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_1_4))) * 100d) / 100d);
+                        double un_cuarto=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 1/4' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(1_4_modelo)/100 from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"' ),2) as cantidad from recursos_x_programa where programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='acero 1/4' group by `programa_re` ");
+                        if(un_cuarto>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Acero 1/4 ("+un_cuarto+")");
+                        }
                         uc.setTres_octavo(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_3_8))) * 100d) / 100d);
+                        double tres_octavo=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 3/8' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(3_4_modelo)/100 from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"' ),2) as cantidad from recursos_x_programa where programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='acero 3/8' group by `programa_re` ");
+                        if(tres_octavo>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Acero 3/8 ("+tres_octavo+")");
+                        }
                         uc.setUn_medio(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_1_2))) * 100d) / 100d);
+                        double un_medio=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 1/2' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(1_2_modelo)/100 from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"' ),2) as cantidad from recursos_x_programa where programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='acero 1/2' group by `programa_re` ");
+                        if(un_medio>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Acero 1/2 ("+un_medio+")");
+                        }
                         uc.setCinco_octavo(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_5_8))) * 100d) / 100d);
+                        double cinco_octavo=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 5/8' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(5_8_modelo)/100 from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"' ),2) as cantidad from recursos_x_programa where programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='acero 5/8' group by `programa_re` ");
+                        if(cinco_octavo>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Acero 5/8 ("+cinco_octavo+")");
+                        }
                         uc.setTres_cuartos(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_3_4))) * 100d) / 100d);
+                        double tres_cuarto=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 3/4' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(3_4_modelo)/100 from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"' ),2) as cantidad from recursos_x_programa where programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='acero 3/4' group by `programa_re` ");
+                        if(tres_cuarto>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Acero 3/4 ("+tres_cuarto+")");
+                        }
                         uc.setUno(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_1))) * 100d) / 100d);
+                        double uno=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 1' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(1_modelo)/100 from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"' ),2) as cantidad from recursos_x_programa where programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='acero 1' group by `programa_re` ");
+                        if(uno>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Acero 1 ("+uno+")");
+                        }
                         uc.setAl(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_al))) * 100d) / 100d);
+                        double al=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='alambre galvan' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(al_modelo)/100 from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"' ),2) as cantidad from recursos_x_programa where programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='alambre galvan' group by `programa_re` ");
+                        if(al>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Alambre Galván ("+al+")");
+                        }
                         uc.setEl(((double) Math.round((Double.parseDouble(cantidad_modelo.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_el))) * 100d) / 100d);
-                        
+                        double el=opciones_de_gestionar_prod_programa.extraer_volumen("select truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='electrodo' and `programa_re`='"+combo_programas.getSelectedItem().toString()+"')-(select sum(el_modelo)/100 from modelo_mercantil where programa_modelo='"+combo_programas.getSelectedItem().toString()+"' ),2) as cantidad from recursos_x_programa where programa_re= '"+combo_programas.getSelectedItem().toString()+"' and `descripcion_re` ='electrodo' group by `programa_re` ");
+                        if(el>0){
+                            disponiblidad++;
+                        }else{
+                            materiales.add("Electrodo ("+el+")");
+                        }
                     
-                    
+                        if(disponiblidad==12){
                         int control = opciones_de_gestionar_prod_programa.registrar(uc);
                         reset_campos();
                         paneles_de_paneles.de_gestionar_prod_programa_añadir.this.setEnabled(true);
@@ -375,7 +449,17 @@ public class de_gestionar_prod_programa_añadir extends javax.swing.JPanel {
                             e.msj3.setText("");
                             e.setVisible(true);
                         }
-
+                        }else{
+                            System.out.println(materiales.toString());
+                            ErrorAlert error = new ErrorAlert(new JFrame(), true);
+            error.msj1.setText("Materiales Insuficientes.");
+            error.msj2.setText("Falta:");
+            error.msj3.setText(materiales.toString().replace("[", "").replace("]", ""));
+            error.preferredSize();
+            error.pack();
+            error.setVisible(true);
+                            
+                        }
                     } catch (Exception e) {
                         Logger.getLogger(opciones_de_gestionar_contrato.class.getName()).log(Level.SEVERE, null, e);
                         opciones_de_gestionar_contrato.lanza_error(e);

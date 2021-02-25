@@ -7,6 +7,7 @@ package paneles_de_paneles;
 
 import alertas.SuccessAlert;
 import esperas.Guardando_general;
+import interaccion_bd.consultas_de_gestionar_info_lab;
 import interaccion_bd.consultas_de_gestionar_recursos_x_programa;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_info_lab;
@@ -21,8 +22,11 @@ import java.beans.PropertyChangeListener;
 import java.util.Date;
 import javax.swing.InputMap;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import static paneles_de_paneles.de_gestionar_contrato_editar.toma_fecha;
+import static paneles_de_paneles.de_gestionar_info_laboratorio_listar.tabla_info_lab;
 
 /**
  *
@@ -38,9 +42,8 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         
         lbl_error_asent_add.setVisible(false);
         lbl_error_vol_m3_add.setVisible(false);
-        lbl_error_lm_add.setVisible(false);
+        lbl_error_lmpm_add.setVisible(false);
         lbl_error_num_materiales_add.setVisible(false);
-        lbl_error_pm_add.setVisible(false);
         lbl_error_x1_28dias_add.setVisible(false);
         lbl_error_x1_add.setVisible(false);
         lbl_error_x2_28dias_add.setVisible(false);
@@ -53,7 +56,7 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         combo_lm.addItemListener(new ItemListener() {
            public void itemStateChanged(ItemEvent arg0) {
                //Do Something
-              lbl_error_lm_add.setVisible(false);
+              lbl_error_lmpm_add.setVisible(false);
            }
            
             public void itemStateChangedd(ItemEvent e) {
@@ -64,7 +67,7 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         combo_pm.addItemListener(new ItemListener() {
            public void itemStateChanged(ItemEvent arg0) {
                //Do Something
-              lbl_error_pm_add.setVisible(false);
+              lbl_error_lmpm_add.setVisible(false);
            }
            
             public void itemStateChangedd(ItemEvent e) {
@@ -74,7 +77,7 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         // ##########################################################################
     
         
-        //  detectar cambio en jdateChoser (fecha de inicio en agregar contrato)
+        //  detectar cambio en jdateChoser )
         fecha_info_lab_add.getDateEditor().addPropertyChangeListener(
                 new PropertyChangeListener() {
             @Override
@@ -83,7 +86,7 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
                     System.out.println(e.getPropertyName()
                             + ": " + (Date) e.getNewValue());
                     if(fecha_info_lab_add.getDate()==null){
-                       lbl_error_fecha_info_lab_add.setVisible(true);
+                    lbl_error_fecha_info_lab_add.setVisible(true);
                     }
                 }else{
                     lbl_error_fecha_info_lab_add.setVisible(false);
@@ -117,12 +120,10 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         check_lm = new check_de_android.Switch();
         check_pm = new check_de_android.Switch();
         combo_pm = new org.bolivia.combo.SComboBox();
-        check_prefabricados3 = new check_de_android.Switch();
         x1_28dias_add = new rojeru_san.rsfield.RSTextMaterial();
         x2_28dias_add = new rojeru_san.rsfield.RSTextMaterial();
         x3_28dias_add = new rojeru_san.rsfield.RSTextMaterial();
-        lbl_error_lm_add = new javax.swing.JLabel();
-        lbl_error_pm_add = new javax.swing.JLabel();
+        lbl_error_lmpm_add = new javax.swing.JLabel();
         lbl_error_fecha_info_lab_add = new javax.swing.JLabel();
         lbl_error_x1_add = new javax.swing.JLabel();
         lbl_error_x2_add = new javax.swing.JLabel();
@@ -139,7 +140,7 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_info_lab/info_lab.png"))); // NOI18N
 
         boton_guardar_recursos_x_programa_add.setBackground(new java.awt.Color(38, 86, 186));
-        boton_guardar_recursos_x_programa_add.setText("Guardar Cambios");
+        boton_guardar_recursos_x_programa_add.setText("Guardar ");
         boton_guardar_recursos_x_programa_add.setColorHover(new java.awt.Color(173, 187, 194));
         boton_guardar_recursos_x_programa_add.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         boton_guardar_recursos_x_programa_add.addActionListener(new java.awt.event.ActionListener() {
@@ -285,15 +286,6 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             }
         });
 
-        check_prefabricados3.setToolTipText("Unir materiales");
-        check_prefabricados3.setBackgroundColor(new java.awt.Color(38, 86, 186));
-        check_prefabricados3.setOnOff(false);
-        check_prefabricados3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                check_prefabricados3MouseClicked(evt);
-            }
-        });
-
         x1_28dias_add.setForeground(new java.awt.Color(0, 0, 0));
         x1_28dias_add.setColorMaterial(new java.awt.Color(99, 70, 250));
         x1_28dias_add.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -336,13 +328,9 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
             }
         });
 
-        lbl_error_lm_add.setForeground(new java.awt.Color(255, 0, 0));
-        lbl_error_lm_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_lm_add.setText("¡Debe ingresar un material!");
-
-        lbl_error_pm_add.setForeground(new java.awt.Color(255, 0, 0));
-        lbl_error_pm_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
-        lbl_error_pm_add.setText("¡Debe ingresar un material!");
+        lbl_error_lmpm_add.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_error_lmpm_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
+        lbl_error_lmpm_add.setText("¡Debe seleccionar almenos un material!");
 
         lbl_error_fecha_info_lab_add.setForeground(new java.awt.Color(255, 0, 0));
         lbl_error_fecha_info_lab_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
@@ -388,8 +376,7 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,14 +389,11 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(check_lm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(combo_lm, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addComponent(lbl_error_lm_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(combo_lm, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                             .addComponent(lbl_error_asent_add)
                             .addComponent(lbl_error_x1_28dias_add)
-                            .addComponent(lbl_error_x2_28dias_add))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                        .addComponent(check_prefabricados3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)))
+                            .addComponent(lbl_error_x2_28dias_add))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(x1_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -424,15 +408,19 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
                         .addComponent(lbl_error_fecha_info_lab_add, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(x2_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(x3_28dias_add, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_error_pm_add, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_error_x1_add)
                     .addComponent(lbl_error_x2_add)
                     .addComponent(lbl_error_x3_add)
                     .addComponent(lbl_error_x3_28dias_add))
                 .addContainerGap(104, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(boton_guardar_recursos_x_programa_add, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(boton_guardar_recursos_x_programa_add, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(300, 300, 300)
+                        .addComponent(lbl_error_lmpm_add)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -468,9 +456,7 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(x1_28dias_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(x3_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                    .addComponent(x3_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_error_x3_add)
                     .addComponent(lbl_error_x1_28dias_add))
@@ -486,16 +472,12 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
                         .addComponent(lbl_error_x3_28dias_add)))
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(combo_lm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(check_lm, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(combo_pm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(check_pm, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_error_lm_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_error_pm_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(check_prefabricados3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combo_lm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(check_lm, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_pm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(check_pm, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(lbl_error_lmpm_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(boton_guardar_recursos_x_programa_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -503,72 +485,124 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boton_guardar_recursos_x_programa_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_recursos_x_programa_addActionPerformed
-//        String sql_elemento="select * from materia_prima where `elem__materia_prima`='"+combo_prefabricados_re_add.getSelectedItem().toString()+"'";
-//        String sql_programa="SELECT * FROM `contrato` WHERE  `nombre_contrato`='"+combo_programas_re_add.getSelectedItem().toString()+"'";
-//        String sql="select * from recursos_x_programa where codigo_re='"+num_materiales_add.getText()+"'";
-//        String mje1="El código de recursos por programa que intenta registrar ya existe";
-//        String mje2="Por favor introduzca un código distinto de recurso";
-//        if (combo_prefabricados_re_add.getSelectedIndex()==0||
-//                cantidad_re_add.getText().isEmpty()||combo_programas_re_add.getSelectedIndex()==0||factura_re_add.getText().isEmpty()||
-//                carta_porte_re_add.getText().isEmpty()||opciones_de_gestionar_prod_programa.existe(sql_elemento) == false||opciones_de_gestionar_prod_programa.existe(sql_programa) == false) {
-//            if(combo_prefabricados_re_add.getSelectedIndex()==0){
-//                combo_prefabricados_re_add.requestFocus();
-//                lbl_error_descripcion_re_add.setVisible(true);
-//            }else if(cantidad_re_add.getText().isEmpty()){
-//                cantidad_re_add.requestFocus();
-//                lbl_error_cant_re_add.setVisible(true);
-//            }else if(combo_programas_re_add.getSelectedIndex()==0){
-//                combo_programas_re_add.requestFocus();
-//                lbl_error_programa_re_add.setVisible(true);
-//            }else if(factura_re_add.getText().isEmpty()){
-//                factura_re_add.requestFocus();
-//                lbl_error_factura_re_add.setVisible(true);
-//            }else if(carta_porte_re_add.getText().isEmpty()){
-//                carta_porte_re_add.requestFocus();
-//                lbl_error_carta_porte_add.setVisible(true);
-//            }else if(opciones_de_gestionar_prod_programa.existe(sql_elemento) == false){
-//            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El elemento descrito no se encuentra en la base de datos.",
-//                "Por favor, elija uno de los existentes en nuestra base de datos.",
-//                "");
-//            combo_prefabricados_re_add.requestFocus();
-//            }else if(opciones_de_gestionar_prod_programa.existe(sql_programa) == false){
-//            opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El programa descrito no se encuentra en la base de datos.",
-//                "Por favor, si es real, regístrelo antes de volver a intentarlo.",
-//                "De lo contrario seleccione uno existente en nuestra base de datos");
-//            combo_programas_re_add.requestFocus();
-//            }        } else {
-//
-//                if (interaccion_bd.opciones_de_gestionar_contrato.existe(num_materiales_add.getText(), sql)) {
-//                    opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
-//                    cantidad_re_add.requestFocus();
-//                }else{
-//                    Guardando_general l = new Guardando_general(new JFrame(), true);
-//                    consultas_de_gestionar_recursos_x_programa uc=new consultas_de_gestionar_recursos_x_programa();
-//                    l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this);
-//                    l.setVisible(true);
-//                    paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(false);
-//                    uc.setCodigo(num_materiales_add.getText());
-//                uc.setDescripcion(combo_prefabricados_re_add.getSelectedItem().toString());
-//                uc.setUm(um_re_add.getText());
-//                uc.setCant(cantidad_re_add.getText());
-//                uc.setPrograma_pertenece(combo_programas_re_add.getSelectedItem().toString());
-//                uc.setFactura(factura_re_add.getText());
-//                uc.setCarta_porte(carta_porte_re_add.getText());
-//                    int control= opciones_de_gestionar_recursos_x_programa.registrar(uc);
-//                    paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(true);
-//                    l.setVisible(false);
-//                    if(control==1){
-//                        reset_campos();
-//                        opciones_de_gestionar_recursos_x_programa.setListar("");
-//                        SuccessAlert e = new SuccessAlert(new JFrame(), true);
-//                        e.msj1.setText("¡Los datos del recurso fueron");
-//                        e.msj2.setText("guardados exitosamente!.");
-//                        e.msj3.setText("");
-//                        e.setVisible(true);
-//                    }
-//                }
-//            
-//        }
+        String sql_lm = "SELECT * FROM `prefabricados` WHERE `descripcion_prefabricado`='" + combo_lm.getSelectedItem().toString().trim() + "'";
+        String sql_pm = "SELECT * FROM `prefabricados` WHERE `descripcion_prefabricado`='" + combo_pm.getSelectedItem().toString().trim() + "'";
+        System.out.println(combo_lm.getSelectedItem().toString());
+        System.out.println(opciones_de_gestionar_prod_programa.existe(sql_lm));
+        if (num_materiales_add.getText().isEmpty() || fecha_info_lab_add.getDate() == null || vol_m3_add.getText().isEmpty() || x1_add.getText().isEmpty()
+                || asent_add.getText().isEmpty()
+                || x2_add.getText().isEmpty() || x1_28dias_add.getText().isEmpty() || x3_add.getText().isEmpty() || x2_28dias_add.getText().isEmpty()
+                || x3_28dias_add.getText().isEmpty() || (combo_lm.getSelectedIndex() == 0 && combo_pm.getSelectedIndex() == 0)
+                || (opciones_de_gestionar_prod_programa.existe(sql_lm) == false && combo_pm.getSelectedIndex() == 0)
+                || (opciones_de_gestionar_prod_programa.existe(sql_pm) == false && combo_lm.getSelectedIndex() == 0)) {
+            if (num_materiales_add.getText().isEmpty()) {
+                num_materiales_add.requestFocus();
+                lbl_error_num_materiales_add.setVisible(true);
+            } else if (fecha_info_lab_add.getDate() == null) {
+                fecha_info_lab_add.requestFocus();
+                lbl_error_fecha_info_lab_add.setVisible(true);
+            } else if (vol_m3_add.getText().isEmpty()) {
+                vol_m3_add.requestFocus();
+                lbl_error_vol_m3_add.setVisible(true);
+            } else if (x1_add.getText().isEmpty()) {
+                x1_add.requestFocus();
+                lbl_error_x1_add.setVisible(true);
+            } else if (asent_add.getText().isEmpty()) {
+                asent_add.requestFocus();
+                lbl_error_asent_add.setVisible(true);
+            } else if (x2_add.getText().isEmpty()) {
+                x2_add.requestFocus();
+                lbl_error_x2_add.setVisible(true);
+            } else if (x1_28dias_add.getText().isEmpty()) {
+                x1_28dias_add.requestFocus();
+                lbl_error_x1_28dias_add.setVisible(true);
+            } else if (x3_add.getText().isEmpty()) {
+                x3_add.requestFocus();
+                lbl_error_x3_add.setVisible(true);
+            } else if (x2_28dias_add.getText().isEmpty()) {
+                x2_28dias_add.requestFocus();
+                lbl_error_x2_28dias_add.setVisible(true);
+            } else if (x3_28dias_add.getText().isEmpty()) {
+                x3_28dias_add.requestFocus();
+                lbl_error_x3_28dias_add.setVisible(true);
+            } else if (combo_lm.getSelectedIndex() == 0 && combo_pm.getSelectedIndex() == 0) {
+                combo_lm.requestFocus();
+                lbl_error_lmpm_add.setVisible(true);
+            } else if (opciones_de_gestionar_prod_programa.existe(sql_lm) == false && combo_pm.getSelectedIndex() == 0) {
+                opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El elemento descrito no se encuentra en la base de datos.",
+                        "",
+                        "Seleccione uno existente en nuestra base de datos");
+                combo_lm.requestFocus();
+
+            } else if (opciones_de_gestionar_prod_programa.existe(sql_pm) == false && combo_lm.getSelectedIndex() == 0) {
+                opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El elemento descrito no se encuentra en la base de datos.",
+                        "Por favor, elija uno de los existentes en nuestra base de datos.",
+                        "");
+                combo_pm.requestFocus();
+            } else if (combo_lm.getSelectedIndex() != 0 && combo_pm.getSelectedIndex() != 0) {
+                if (opciones_de_gestionar_prod_programa.existe(sql_lm) == false) {
+                    opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El elemento descrito no se encuentra en la base de datos.",
+                            "Por favor, elija uno de los existentes en nuestra base de datos.",
+                            "");
+                    combo_lm.requestFocus();
+                }
+                if (opciones_de_gestionar_prod_programa.existe(sql_pm) == false) {
+                    opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("El elemento descrito no se encuentra en la base de datos.",
+                            "Por favor, elija uno de los existentes en nuestra base de datos.",
+                            "");
+                    combo_pm.requestFocus();
+                }
+            }
+        } else {
+            Guardando_general l = new Guardando_general(new JFrame(), true);
+            consultas_de_gestionar_info_lab uc = new consultas_de_gestionar_info_lab();
+            l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this);
+            l.setVisible(true);
+            paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(false);
+            uc.setNum_materiales(num_materiales_add.getText());
+            uc.setFecha(toma_fecha(fecha_info_lab_add));
+            uc.setVol(vol_m3_add.getText());
+            uc.setAsent(asent_add.getText());
+            uc.setX1(x1_add.getText());
+            uc.setX2(x2_add.getText());
+            uc.setX3(x3_add.getText());
+            uc.setX1_28dias(x1_28dias_add.getText());
+            uc.setX2_28dias(x2_28dias_add.getText());
+            uc.setX3_28dias(x3_28dias_add.getText());
+            if (combo_lm.getSelectedIndex() != 0) {
+                uc.setLm(combo_lm.getSelectedItem().toString());
+            } else {
+                uc.setLm("");
+            }
+            if (combo_pm.getSelectedIndex() != 0) {
+                uc.setPm(combo_pm.getSelectedItem().toString());
+            } else {
+                uc.setPm("");
+            }
+            System.out.println(uc.getLm());
+            System.out.println(uc.getPm());
+            uc.setElementos(uc.getLm() + " " + uc.getPm());
+            System.out.println(uc.getElementos());
+            int control = opciones_de_gestionar_info_lab.registrar(uc);
+            paneles_de_paneles.de_gestionar_info_laboratorio_añadir.this.setEnabled(true);
+            l.setVisible(false);
+            if (control == 1) {
+                reset_campos();
+                opciones_de_gestionar_info_lab.setListar("");
+                interaccion_bd.opciones_de_gestionar_info_lab.setListar("");
+                //################### ocultar primera columna ############################# (no impide tomar el dato de la tabla)
+                tabla_info_lab.getColumnModel().getColumn(0).setMaxWidth(0);
+                tabla_info_lab.getColumnModel().getColumn(0).setMinWidth(0);
+                tabla_info_lab.getColumnModel().getColumn(0).setPreferredWidth(0);
+                //##########################################################################
+                SuccessAlert e = new SuccessAlert(new JFrame(), true);
+                e.msj1.setText("¡La informacion para de laboratorio");
+                e.msj2.setText("fue guardada exitosamente!.");
+                e.msj3.setText("");
+                e.setVisible(true);
+            }
+
+        }
     }//GEN-LAST:event_boton_guardar_recursos_x_programa_addActionPerformed
     
     
@@ -962,14 +996,10 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_pmActionPerformed
 
-    private void check_prefabricados3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_prefabricados3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_check_prefabricados3MouseClicked
-
     private void num_materiales_addKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_num_materiales_addKeyReleased
         // TODO add your handling code here:
-        if(vol_m3_add.getText().length()>0){
-        lbl_error_vol_m3_add.setVisible(false);
+        if(num_materiales_add.getText().length()>0){
+        lbl_error_num_materiales_add.setVisible(false);
     }
     }//GEN-LAST:event_num_materiales_addKeyReleased
 
@@ -1209,13 +1239,19 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
     }
 
     private void reset_campos(){
-////        cantidad_re_add.setText("");
-////        combo_prefabricados_re_add.setSelectedIndex(0);
-////        num_materiales_add.setText("");
-////        um_re_add.setText("");
-////        combo_programas_re_add.setSelectedIndex(0);
-////        factura_re_add.setText("");
-////        carta_porte_re_add.setText("");
+        num_materiales_add.setText("");
+        fecha_info_lab_add.setDate(null);
+        vol_m3_add.setText("");
+        asent_add.setText("");
+        x1_add.setText("");
+        x2_add.setText("");
+        x3_add.setText("");
+        x1_28dias_add.setText("");
+        x2_28dias_add.setText("");
+        x3_28dias_add.setText("");
+        combo_lm.setSelectedIndex(0);
+        combo_pm.setSelectedIndex(0);
+        lbl_error_fecha_info_lab_add.setVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1223,16 +1259,14 @@ public class de_gestionar_info_laboratorio_añadir extends javax.swing.JPanel {
     private rojeru_san.RSButtonRiple boton_guardar_recursos_x_programa_add;
     private check_de_android.Switch check_lm;
     private check_de_android.Switch check_pm;
-    private check_de_android.Switch check_prefabricados3;
     private org.bolivia.combo.SComboBox combo_lm;
     private org.bolivia.combo.SComboBox combo_pm;
     private com.toedter.calendar.JDateChooser fecha_info_lab_add;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl_error_asent_add;
     private javax.swing.JLabel lbl_error_fecha_info_lab_add;
-    private javax.swing.JLabel lbl_error_lm_add;
+    private javax.swing.JLabel lbl_error_lmpm_add;
     private javax.swing.JLabel lbl_error_num_materiales_add;
-    private javax.swing.JLabel lbl_error_pm_add;
     private javax.swing.JLabel lbl_error_vol_m3_add;
     private javax.swing.JLabel lbl_error_x1_28dias_add;
     private javax.swing.JLabel lbl_error_x1_add;

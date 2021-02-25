@@ -112,7 +112,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              <Component id="codigo_editar_control" min="-2" max="-2" attributes="0"/>
+                              <Component id="id_editar_control" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -190,7 +190,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbl_error_carta_porte_re_editar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                          <Component id="codigo_editar_control" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="id_editar_control" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
@@ -388,7 +388,7 @@
                 <Property name="text" type="java.lang.String" value="&#xa1;Debe ingresar un n&#xfa;mero de carta porte!"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="codigo_editar_control">
+            <Component class="javax.swing.JLabel" name="id_editar_control">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel1"/>
               </Properties>

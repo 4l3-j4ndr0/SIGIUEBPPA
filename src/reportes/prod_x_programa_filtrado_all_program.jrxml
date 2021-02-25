@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="87cd33ff-63bf-47f4-8732-d2fb0617d507">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LOGO" class="java.lang.String"/>
+	<parameter name="fecha_inicio" class="java.util.Date"/>
+	<parameter name="fecha_final" class="java.util.Date"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\descargas de mega\\SlidingMenu\\SlidingMenu\\Dashboard_1\\SIGIUEBPPA\\src\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     aceros.`el_aceros` AS aceros_el_aceros
+FROM
+     `aceros` aceros]]>
+	</queryString>
+	<field name="aceros_el_aceros" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="221" y="59" width="131" height="22" forecolor="#666666" uuid="69c7e774-bce9-4069-9c21-cab2b458fb20"/>
+				<textElement>
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<text><![CDATA[INFORMACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="24" width="282" height="35" uuid="f19e9fe6-b82f-4f80-a029-d1cb2acaf406"/>
+				<textElement>
+					<font fontName="Arial" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODELO MERCANTIL]]></text>
+			</staticText>
+			<image>
+				<reportElement x="617" y="10" width="185" height="86" uuid="4d863cdd-1f5d-454b-98a7-57271ba31635"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="1" y="98" width="801" height="1" uuid="9d6e42e4-ba01-4bfb-8791-aecef365aca8"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="67" splitType="Stretch">
+			<subreport>
+				<reportElement x="1" y="0" width="364" height="67" uuid="fa5d8d88-26d5-464f-afee-18bf4140908e"/>
+				<subreportParameter name="fecha_inicio">
+					<subreportParameterExpression><![CDATA[$P{fecha_inicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fecha_final">
+					<subreportParameterExpression><![CDATA[$P{fecha_final}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "prod_x_programa_sub_report_dos_all_program.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="438" y="0" width="364" height="67" uuid="d1f1aefc-e4ec-44e9-ab4d-c574559ce249"/>
+				<subreportParameter name="fecha_inicio">
+					<subreportParameterExpression><![CDATA[$P{fecha_inicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fecha_final">
+					<subreportParameterExpression><![CDATA[$P{fecha_final}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "prod_x_programa_sub_report_uno_all_program.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="2" y="0" width="100" height="20" uuid="245a477b-9ccd-494b-a78d-586bd45285e1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="683" y="0" width="80" height="20" uuid="4130c7cd-66fb-4909-ae9f-f39d06423b6b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="763" y="0" width="40" height="20" uuid="62ca7184-edd6-4f56-b28e-e9c628efcb05"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -97,6 +97,7 @@ public class opciones_de_gestionar_prod_programa {
         int rsu = 0;
         String sql = consultas_de_gestionar_prod_programa.REGISTRAR;
         try {
+            java.sql.Date date2 = new java.sql.Date(uc.getFecha().getTime());
             ps = cn.prepareStatement(sql);
             ps.setString(1, uc.getCodigo());
             ps.setString(2, uc.getDescripcion());
@@ -107,7 +108,7 @@ public class opciones_de_gestionar_prod_programa {
             ps.setDouble(7, uc.getTotal_m3());  
             ps.setDouble(8, uc.getPreciio());  
             ps.setDouble(9, uc.getImporte());  
-            ps.setString(10, uc.getFecha());  
+            ps.setDate(10, date2);  
             ps.setString(11, uc.getRbk());  
             ps.setDouble(12, uc.getCemento());
             ps.setDouble(13, uc.getArena());
@@ -159,7 +160,7 @@ public class opciones_de_gestionar_prod_programa {
                 datos[7] = rs.getString("total_m3_modelo");
                 datos[8] = rs.getString("precio_cup_modelo");
                 datos[9] = rs.getString("importe_cup_modelo");
-                datos[10] = rs.getString("fecha_modelo");
+                datos[10] = rs.getString("fecha");
                 datos[11] = rs.getString("rbk_modelo");
                 datos[12] = rs.getString("cemento_modelo");
                 datos[13] = rs.getString("arena_modelo");
@@ -181,6 +182,50 @@ public class opciones_de_gestionar_prod_programa {
     }
     
     
+        public static void setListar_con_filtro_fecha_y_programa(String sql) {
+       
+        DefaultTableModel modelo = (DefaultTableModel) de_gestionar_prod_programa_listar.tabla_prod_programa.getModel();
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        
+        String datos[] = new String[24];
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString("id_modelo");
+                datos[1] = rs.getString("codigo_modelo");
+                datos[2] = rs.getString("descripcion_modelo");
+                datos[3] = rs.getString("u/m_modelo");
+                datos[4] = rs.getString("vol/unidad_modelo");
+                datos[5] = rs.getString("cantidad_modelo");
+                datos[6] = rs.getString("programa_modelo");
+                datos[7] = rs.getString("total_m3_modelo");
+                datos[8] = rs.getString("precio_cup_modelo");
+                datos[9] = rs.getString("importe_cup_modelo");
+                datos[10] = rs.getString("fecha");
+                datos[11] = rs.getString("rbk_modelo");
+                datos[12] = rs.getString("cemento_modelo");
+                datos[13] = rs.getString("arena_modelo");
+                datos[14] = rs.getString("gravilla_modelo");
+                datos[15] = rs.getString("aditivo_modelo");
+                datos[16] = rs.getString("1_4_modelo");
+                datos[17] = rs.getString("3_8_modelo");
+                datos[18] = rs.getString("1_2_modelo");
+                datos[19] = rs.getString("5_8_modelo");
+                datos[20] = rs.getString("3_4_modelo");
+                datos[21] = rs.getString("1_modelo");
+                datos[22] = rs.getString("al_modelo");
+                datos[23] = rs.getString("el_modelo");
+                modelo.addRow(datos);
+            }
+        } catch (SQLException ex) {
+            lanza_error(ex);
+        }
+    }
+        
     public static String getFechaLimite(int idc) {
         String fecha = "";
         String sql = "SELECT fecha_final_contrato FROM contrato WHERE numero_contrato = " + idc;
@@ -283,7 +328,7 @@ public class opciones_de_gestionar_prod_programa {
                 de_gestionar_prod_programa_editar.combo_prefabricados_editar.setSelectedItem(rs.getString(3));
                 de_gestionar_prod_programa_editar.combo_programas_editar.setSelectedItem(rs.getString(7));
                 System.out.println(rs.getString(7));
-                de_gestionar_prod_programa_editar.fecha_modelo_editar.setDate(de_gestionar_contrato_editar.ParseFecha(rs.getString(11)));
+                de_gestionar_prod_programa_editar.fecha_modelo_editar.setDate(rs.getDate(11));
                 de_gestionar_prod_programa_editar.cantidad_modelo_editar.setText(rs.getString(6));
             }
         } catch (SQLException ex) {
@@ -295,6 +340,7 @@ public class opciones_de_gestionar_prod_programa {
         int rsu = 0;
         String sql = consultas_de_gestionar_prod_programa.ACTUALIZAR;
         try {
+            java.sql.Date date2 = new java.sql.Date(uc.getFecha().getTime());
             ps = cn.prepareStatement(sql);
             ps.setString(1, uc.getCodigo());
             ps.setString(2, uc.getDescripcion());
@@ -305,7 +351,7 @@ public class opciones_de_gestionar_prod_programa {
             ps.setDouble(7, uc.getTotal_m3());
             ps.setDouble(8, uc.getPreciio());
             ps.setDouble(9, uc.getImporte());
-            ps.setString(10, uc.getFecha());
+            ps.setDate(10, date2);
             ps.setString(11, uc.getRbk());
             ps.setDouble(12, uc.getCemento());
             ps.setDouble(13, uc.getArena());
@@ -330,9 +376,7 @@ public class opciones_de_gestionar_prod_programa {
         return rsu;
     }
      
-     
-     
-      public static String extraer_numero(String sql) {
+     public static String extraer_numero(String sql) {
        String cant = "";
 
         try {
@@ -347,7 +391,23 @@ public class opciones_de_gestionar_prod_programa {
         }
         return cant;
     }
-      
+     
+     public static Date extraer_fecha(String sql) {
+       Date cant = null;
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                cant = rs.getDate(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(opciones_de_gestionar_prod_programa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cant;
+    }
+     
       public static double extraer_volumen(String sql) {
       
        double total=0;

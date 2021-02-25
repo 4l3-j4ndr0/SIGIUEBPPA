@@ -14,7 +14,9 @@ import excel.ExcelGenerator_recursos_x_programa;
 import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.consultas_de_gestionar_recursos_x_programa;
 import interaccion_bd.opciones_de_gestionar_contrato;
+import interaccion_bd.opciones_de_gestionar_prod_programa;
 import interaccion_bd.opciones_de_gestionar_recursos_x_programa;
+import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -39,6 +41,10 @@ import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import necesario.RSFileChooser;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -126,6 +132,7 @@ public class de_gestionar_recursos_x_programa_listar extends javax.swing.JPanel 
         jPanel3 = new javax.swing.JPanel();
         btnExportar = new rojeru_san.RSButtonRiple();
         btnPrint = new rojeru_san.RSButtonRiple();
+        check_ordenar = new javax.swing.JCheckBox();
 
         menu.setBackground(new java.awt.Color(255, 255, 255));
         menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -182,11 +189,11 @@ public class de_gestionar_recursos_x_programa_listar extends javax.swing.JPanel 
 
             },
             new String [] {
-                "CODIGO", "DESCRIPCION", "UM", "CANTIDAD", "PROGRAMA", "FACTURA", "CARTA PORTE"
+                "ID", "CODIGO", "DESCRIPCION", "UM", "CANTIDAD", "PROGRAMA", "FACTURA", "CARTA PORTE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -217,8 +224,9 @@ public class de_gestionar_recursos_x_programa_listar extends javax.swing.JPanel 
         scroll.setViewportView(tabla_recursos_x_programa);
         if (tabla_recursos_x_programa.getColumnModel().getColumnCount() > 0) {
             tabla_recursos_x_programa.getColumnModel().getColumn(0).setPreferredWidth(10);
-            tabla_recursos_x_programa.getColumnModel().getColumn(2).setPreferredWidth(10);
+            tabla_recursos_x_programa.getColumnModel().getColumn(1).setPreferredWidth(10);
             tabla_recursos_x_programa.getColumnModel().getColumn(3).setPreferredWidth(10);
+            tabla_recursos_x_programa.getColumnModel().getColumn(4).setPreferredWidth(10);
         }
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_coontrato/label-buscar.png"))); // NOI18N
@@ -261,6 +269,21 @@ public class de_gestionar_recursos_x_programa_listar extends javax.swing.JPanel 
         });
         jPanel3.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 99, 42));
 
+        check_ordenar.setToolTipText("Ordenar por Programa");
+        check_ordenar.setBorder(null);
+        check_ordenar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        check_ordenar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        check_ordenar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_recursos_x_programa/ordenar_off.png"))); // NOI18N
+        check_ordenar.setOpaque(false);
+        check_ordenar.setPreferredSize(new java.awt.Dimension(50, 53));
+        check_ordenar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img_recursos_x_programa/ordenar_ON_BIG.png"))); // NOI18N
+        check_ordenar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        check_ordenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_ordenarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -270,21 +293,23 @@ public class de_gestionar_recursos_x_programa_listar extends javax.swing.JPanel 
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(check_ordenar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(scroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
+            .addComponent(scroll, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(check_ordenar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -296,7 +321,7 @@ public class de_gestionar_recursos_x_programa_listar extends javax.swing.JPanel 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -430,7 +455,7 @@ public class de_gestionar_recursos_x_programa_listar extends javax.swing.JPanel 
             parametro.put("recursos", "5");
             parametro.put("programas", "2");
             
-            JasperPrint jprint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("reportes/recursos_x_programa.jasper"), parametro, cc.conexion());
+            JasperPrint jprint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("reportes/prod_x_programa.jasper"), parametro, cc.conexion());
             JRViewer jrv = new JRViewer(jprint);
             r.contenedor.removeAll();
 
@@ -448,24 +473,30 @@ public class de_gestionar_recursos_x_programa_listar extends javax.swing.JPanel 
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-//        if (privilegios.Operaciones.EliminarProducto(principal.Principal.lblID.getText())) {
+        String sql_permiso = "SELECT * FROM `permisos` WHERE `usuario_permisos`='" + principal.Principal.user.getText().trim() + "' and `apartado_permisos`='RECURSOS POR PROGRAMA'"
+                + "and eliminar_permisos='1' ";
+        String mj1 = "Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2 = "Si considera que estamos en un error contacte con el administrador del ";
+        String mj3 = "sistema para que le otorgue los permisos pertinentes";
+        if (opciones_de_gestionar_usuarios.existe(sql_permiso)) {
             this.menu.setVisible(false);
             int fila = this.tabla_recursos_x_programa.getSelectedRow();
             int id = Integer.parseInt(tabla_recursos_x_programa.getValueAt(fila, 0).toString());
 
-            String nombre = this.tabla_recursos_x_programa.getValueAt(fila, 0).toString();
-            String descripcion = this.tabla_recursos_x_programa.getValueAt(fila, 1).toString();
-            String programa = this.tabla_recursos_x_programa.getValueAt(fila, 4).toString();
+            String codigo = this.tabla_recursos_x_programa.getValueAt(fila, 1).toString();
+            String descripcion = this.tabla_recursos_x_programa.getValueAt(fila, 2).toString();
+            String programa = this.tabla_recursos_x_programa.getValueAt(fila, 5).toString();
 
             alertas.WarningAlert w = new alertas.WarningAlert(new JFrame(), true);
-            w.msj1.setText("Se eliminara el recurso de código (" + nombre + "),");
-            w.msj2.setText("descripción ("+descripcion+") y del programa ("+programa+")");
+            w.msj1.setText("Se eliminara el recurso de código (" + codigo + "),");
+            w.msj2.setText("descripción (" + descripcion + ") y del programa (" + programa + ")");
             w.msj3.setText("de manera permanente del sistema.");
             w.setVisible(true);
 
             if (w.hecho) {
-                int control=opciones_de_gestionar_recursos_x_programa.eliminar(id);
-                if (control==1) {
+                int control = opciones_de_gestionar_recursos_x_programa.eliminar(id);
+                
+                if (control == 1) {
                     opciones_de_gestionar_recursos_x_programa.setListar("");
 
                     SuccessAlert s = new SuccessAlert(new JFrame(), true);
@@ -481,50 +512,116 @@ public class de_gestionar_recursos_x_programa_listar extends javax.swing.JPanel 
                     e.setVisible(true);
                 }
             }
-//        } else {
-//            ErrorAlert e = new ErrorAlert(new JFrame(), true);
-//            e.msj1.setText("No cuentas con los privilegios");
-//            e.msj2.setText("para acceder a esta opción.");
-//            e.msj3.setText("");
-//            e.setVisible(true);
-//        }
+        } else {
+            opciones_de_gestionar_prod_programa.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-            consultas_de_gestionar_recursos_x_programa c=new consultas_de_gestionar_recursos_x_programa();
+            String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='RECURSOS POR PROGRAMA'"
+                + "and editar_permisos='1' ";
+        String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
+        String mj2="Si considera que estamos en un error contacte con el administrador del ";
+        String mj3="sistema para que le otorgue los permisos pertinentes";
+        if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
+        consultas_de_gestionar_recursos_x_programa c=new consultas_de_gestionar_recursos_x_programa();
             this.menu.setVisible(false);
             de_gestionar_recursos_x_programa_editar m = new de_gestionar_recursos_x_programa_editar(new JFrame(), true);
             int fila = de_gestionar_recursos_x_programa_listar.tabla_recursos_x_programa.getSelectedRow();
             System.out.println("FILA "+fila);
-            int id = opciones_de_gestionar_contrato.extraer_id("select codigo_re from recursos_x_programa where codigo_re="+Integer.parseInt(tabla_recursos_x_programa.getValueAt(fila, 0).toString()));
+            int id = opciones_de_gestionar_contrato.extraer_id("select id_re from recursos_x_programa where id_re="+Integer.parseInt(tabla_recursos_x_programa.getValueAt(fila, 0).toString()));
             System.out.println("ID "+id);
-            de_gestionar_recursos_x_programa_editar.codigo_editar_control.setText(opciones_de_gestionar_contrato.extraer_numero("select codigo_re from recursos_x_programa where codigo_re="+id));
+            de_gestionar_recursos_x_programa_editar.id_editar_control.setText(opciones_de_gestionar_contrato.extraer_numero("select id_re from recursos_x_programa where id_re="+id));
             interaccion_bd.opciones_de_gestionar_recursos_x_programa.extraerDatos(m, id);
             m.setVisible(true);
-            
-//        if (privilegios.Operaciones.EditarProducto(principal.Principal.lblID.getText())) {
-//            this.menu.setVisible(false);
-//            ModalEditar m = new ModalEditar(new JFrame(), true);
-//            int fila = this.tabla.getSelectedRow();
-//
-//            int id = Integer.parseInt(this.tabla.getValueAt(fila, 0).toString());
-//            Operaciones.extraerDatos(m, String.valueOf(id));
-//            m.setVisible(true);
-//        } else {
-//            ErrorAlert e = new ErrorAlert(new JFrame(), true);
-//            e.msj1.setText("No cuentas con los privilegios");
-//            e.msj2.setText("para acceder a esta opción.");
-//            e.msj3.setText("");
-//            e.setVisible(true);
-//        }
+            }else{
+            opciones_de_gestionar_prod_programa.lanza_error_variable_sin_ex(mj1, mj2, mj3);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    // valor primera columna
+    int maxWidth1=0;
+    int preferredWidth1=0;
+    // valor tercera columna
+    int maxWidth3=0;
+    int preferredWidth3=0;
+    // valor sexta columna
+    int maxWidth6=0;
+    int preferredWidth6=0;
+    // valor septima columna
+    int maxWidth7=0;
+    int preferredWidth7=0;
+    
+    private void check_ordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_ordenarActionPerformed
+        // TODO add your handling code here:
+        if(check_ordenar.isSelected()){
+            JTableHeader tableHeader = tabla_recursos_x_programa.getTableHeader();
+TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+TableColumn tableColumn = tableColumnModel.getColumn(4);
+tableColumn.setHeaderValue( "CANTIDAD RESTANTE" );
+tableHeader.repaint();
+                // valor primera columna
+    maxWidth1=tabla_recursos_x_programa.getColumnModel().getColumn(0).getWidth();
+    preferredWidth1=tabla_recursos_x_programa.getColumnModel().getColumn(0).getPreferredWidth();
+    // valor tercera columna
+     maxWidth3=tabla_recursos_x_programa.getColumnModel().getColumn(3).getWidth();
+     preferredWidth3=tabla_recursos_x_programa.getColumnModel().getColumn(3).getPreferredWidth();
+    // valor sexta columna
+     maxWidth6=tabla_recursos_x_programa.getColumnModel().getColumn(6).getWidth();
+     preferredWidth6=tabla_recursos_x_programa.getColumnModel().getColumn(6).getPreferredWidth();
+    // valor septima columna
+     maxWidth7=tabla_recursos_x_programa.getColumnModel().getColumn(6).getWidth();
+     preferredWidth7=tabla_recursos_x_programa.getColumnModel().getColumn(6).getPreferredWidth();
+        // OCULTAR PRIMERA COLUMNA
+        tabla_recursos_x_programa.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabla_recursos_x_programa.getColumnModel().getColumn(0).setMinWidth(0);
+        tabla_recursos_x_programa.getColumnModel().getColumn(0).setPreferredWidth(0);
+        // OCULTAR TERCERA COLUMNA
+        tabla_recursos_x_programa.getColumnModel().getColumn(3).setMaxWidth(0);
+        tabla_recursos_x_programa.getColumnModel().getColumn(3).setMinWidth(0);
+        tabla_recursos_x_programa.getColumnModel().getColumn(3).setPreferredWidth(0);
+        // OCULTAR SEXTA COLUMNA
+        tabla_recursos_x_programa.getColumnModel().getColumn(6).setMaxWidth(0);
+        tabla_recursos_x_programa.getColumnModel().getColumn(6).setMinWidth(0);
+        tabla_recursos_x_programa.getColumnModel().getColumn(6).setPreferredWidth(0);
+        // OCULTAR SEPTIMA COLUMNA
+        tabla_recursos_x_programa.getColumnModel().getColumn(7).setMaxWidth(0);
+        tabla_recursos_x_programa.getColumnModel().getColumn(7).setMinWidth(0);
+        tabla_recursos_x_programa.getColumnModel().getColumn(7).setPreferredWidth(0);
+        interaccion_bd.opciones_de_gestionar_recursos_x_programa.setListar_ordenado("");
+        }else{
+             JTableHeader tableHeader = tabla_recursos_x_programa.getTableHeader();
+TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+TableColumn tableColumn = tableColumnModel.getColumn(4);
+tableColumn.setHeaderValue( "CANTIDAD" );
+tableHeader.repaint();
+             // MOSTRAR PRIMERA COLUMNA
+        tabla_recursos_x_programa.getColumnModel().getColumn(0).setMaxWidth(maxWidth1);
+        tabla_recursos_x_programa.getColumnModel().getColumn(0).setMinWidth(maxWidth1);
+        tabla_recursos_x_programa.getColumnModel().getColumn(0).setPreferredWidth(preferredWidth1);
+        // MOSTRAR TERCERA COLUMNA
+        tabla_recursos_x_programa.getColumnModel().getColumn(3).setMaxWidth(maxWidth3);
+        tabla_recursos_x_programa.getColumnModel().getColumn(3).setMinWidth(maxWidth3);
+        tabla_recursos_x_programa.getColumnModel().getColumn(3).setPreferredWidth(preferredWidth3);
+        // MOSTRAR SEXTA COLUMNA
+        tabla_recursos_x_programa.getColumnModel().getColumn(6).setMaxWidth(maxWidth6);
+        tabla_recursos_x_programa.getColumnModel().getColumn(6).setMinWidth(maxWidth6);
+        tabla_recursos_x_programa.getColumnModel().getColumn(6).setPreferredWidth(preferredWidth6);
+        // MOSTRAR SEPTIMA COLUMNA
+        tabla_recursos_x_programa.getColumnModel().getColumn(7).setMaxWidth(maxWidth7);
+        tabla_recursos_x_programa.getColumnModel().getColumn(7).setMinWidth(maxWidth7);
+        tabla_recursos_x_programa.getColumnModel().getColumn(7).setPreferredWidth(preferredWidth7);
+        interaccion_bd.opciones_de_gestionar_recursos_x_programa.setListar("");
+        }
+    }//GEN-LAST:event_check_ordenarActionPerformed
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.RSButtonRiple btnBorrar;
     private rojeru_san.RSButtonRiple btnEditar;
     private rojeru_san.RSButtonRiple btnExportar;
     private rojeru_san.RSButtonRiple btnPrint;
+    private javax.swing.JCheckBox check_ordenar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

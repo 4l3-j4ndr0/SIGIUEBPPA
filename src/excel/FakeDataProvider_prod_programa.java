@@ -85,7 +85,7 @@ public final class FakeDataProvider_prod_programa {
                 row.add(rs.getString("total_m3_modelo"));
                 row.add(rs.getString("precio_cup_modelo"));
                 row.add(rs.getString("importe_cup_modelo"));
-                row.add(rs.getString("fecha_modelo"));
+                row.add(rs.getString("fecha"));
                 row.add(rs.getString("rbk_modelo"));
                 row.add(rs.getString("cemento_modelo"));
                 row.add(rs.getString("arena_modelo"));

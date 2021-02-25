@@ -107,7 +107,7 @@ public class Splash extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 470, -1));
 
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel3.setText("Copyright © 2020 Version 1.0");
+        jLabel3.setText("Copyright © 2021 Version 1.0");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 170, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 500, 530));

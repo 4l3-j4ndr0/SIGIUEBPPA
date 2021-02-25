@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8cb0b21e-7ec7-4993-9024-e3c5a4f86a06">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="programa" class="java.lang.String"/>
+	<parameter name="fecha_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_final" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select modelo_mercantil.descripcion_modelo, count(modelo_mercantil.descripcion_modelo), modelo_mercantil.`u/m_modelo` from modelo_mercantil where modelo_mercantil.programa_modelo=$P{programa} and fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final} group by descripcion_modelo]]>
+	</queryString>
+	<field name="descripcion_modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="count(modelo_mercantil.descripcion_modelo)" class="java.lang.Long"/>
+	<field name="u/m_modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="85" height="20" uuid="bf8650a7-59ab-46bf-a1b7-8040a8261b4e"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="28" width="209" height="1" uuid="b1c86319-5685-48ea-a936-160c605893a3"/>
+			</line>
+			<staticText>
+				<reportElement x="90" y="4" width="77" height="20" uuid="acfb7c25-cb24-4d30-9359-39f0d9446e05"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="4" width="37" height="20" uuid="e8cc6360-0b24-4b49-82d4-ecd3cc222533"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[U/M]]></text>
+			</staticText>
+			<line>
+				<reportElement x="87" y="4" width="1" height="25" uuid="06ebe058-d17e-4082-8c16-78431ce26f7b"/>
+			</line>
+			<line>
+				<reportElement x="170" y="4" width="1" height="25" uuid="1f480355-eace-4f7c-ae12-4068b26458dd"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="8" width="85" height="20" uuid="2b0a9e4d-8ced-438a-9534-ad2c9c0b3ba2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{descripcion_modelo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="29" width="208" height="1" uuid="3e806b95-9dc7-4cc2-808d-7a1be6873807"/>
+			</line>
+			<textField>
+				<reportElement x="90" y="8" width="77" height="20" uuid="9892b611-b02d-43d4-95f0-9ba84307c439"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{count(modelo_mercantil.descripcion_modelo)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="8" width="37" height="20" uuid="0f9dd54f-b6dd-48f3-8ba2-db6a8bed9286"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{u/m_modelo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="87" y="-1" width="1" height="31" uuid="f0e51b6f-7d8a-4059-b375-43600a57f2b1"/>
+			</line>
+			<line>
+				<reportElement x="170" y="-1" width="1" height="30" uuid="49a236c5-cfd7-46e2-a3cb-f012d005f60b"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

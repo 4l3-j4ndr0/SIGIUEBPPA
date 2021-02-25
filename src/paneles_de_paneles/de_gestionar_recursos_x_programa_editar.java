@@ -49,7 +49,7 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         lbl_error_programa_re_editar.setVisible(false);
         lbl_error_factura_re_editar.setVisible(false);
         lbl_error_carta_porte_re_editar.setVisible(false);
-        codigo_editar_control.setVisible(false);
+        id_editar_control.setVisible(false);
       deshabilitarPegar();
       opciones_de_gestionar_recursos_x_programa.get_combos(combo_prefabricados_re_editar, combo_programas_re_editar);
       //################### detectar cambios en los combobox ######################3
@@ -143,7 +143,7 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         lbl_error_programa_re_editar = new javax.swing.JLabel();
         carta_porte_re_editar = new rojeru_san.rsfield.RSTextMaterial();
         lbl_error_carta_porte_re_editar = new javax.swing.JLabel();
-        codigo_editar_control = new javax.swing.JLabel();
+        id_editar_control = new javax.swing.JLabel();
         combo_prefabricados_re_editar = new org.bolivia.combo.SComboBox();
         check_prefabricados = new check_de_android.Switch();
         combo_programas_re_editar = new org.bolivia.combo.SComboBox();
@@ -244,7 +244,7 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
         lbl_error_carta_porte_re_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes_error/label-error-backup.png"))); // NOI18N
         lbl_error_carta_porte_re_editar.setText("¡Debe ingresar un número de carta porte!");
 
-        codigo_editar_control.setText("jLabel1");
+        id_editar_control.setText("jLabel1");
 
         combo_prefabricados_re_editar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MATERIALES" }));
         combo_prefabricados_re_editar.addActionListener(new java.awt.event.ActionListener() {
@@ -305,7 +305,7 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
                         .addComponent(lbl_error_cant_re_editar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(codigo_editar_control))
+                        .addComponent(id_editar_control))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,7 +364,7 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_error_carta_porte_re_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(codigo_editar_control))
+                    .addComponent(id_editar_control))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -417,10 +417,10 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
 
     private void boton_guardar_recursos_x_programa_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_guardar_recursos_x_programa_editarActionPerformed
         // TODO add your handling code here:
-        String sql="select * from recursos_x_programa where codigo_re='"+codigo_re_editar.getText()+"'";
-        String mje1="El código de recursos por programa que intenta registrar ya existe";
-        String mje2="Por favor introduzca un código distinto de recurso";
-        String codigo=codigo_editar_control.getText();
+//        String sql="select * from recursos_x_programa where codigo_re='"+codigo_re_editar.getText()+"'";
+//        String mje1="El código de recursos por programa que intenta registrar ya existe";
+//        String mje2="Por favor introduzca un código distinto de recurso";
+        String codigo=id_editar_control.getText();
         if (combo_prefabricados_re_editar.getSelectedIndex()==0||cantidad_re_editar.getText().isEmpty()||
                 combo_programas_re_editar.getSelectedIndex()==0||factura_re_editar.getText().isEmpty()||
                 carta_porte_re_editar.getText().isEmpty()) {
@@ -468,10 +468,10 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
                 }
                 this.dispose();
             }else{
-                if (interaccion_bd.opciones_de_gestionar_contrato.existe(codigo_re_editar.getText(), sql)) {
-                    opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
-                    codigo_re_editar.requestFocus();
-                }else{
+//                if (interaccion_bd.opciones_de_gestionar_contrato.existe(codigo_re_editar.getText(), sql)) {
+//                    opciones_de_gestionar_contrato.lanza_error_variable_sin_ex("",mje1,mje2);
+//                    codigo_re_editar.requestFocus();
+//                }else{
                     Guardando_general l = new Guardando_general(new JFrame(), true);
                     consultas_de_gestionar_recursos_x_programa uc=new consultas_de_gestionar_recursos_x_programa();
                     l.setLocationRelativeTo(paneles_de_paneles.de_gestionar_recursos_x_programa_editar.this);
@@ -497,7 +497,7 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
                         e.setVisible(true);
                     }
                     this.dispose();
-                }
+//                }
             }
         }
     }//GEN-LAST:event_boton_guardar_recursos_x_programa_editarActionPerformed
@@ -627,11 +627,11 @@ public class de_gestionar_recursos_x_programa_editar extends javax.swing.JDialog
     public static rojeru_san.rsfield.RSTextMaterial carta_porte_re_editar;
     private check_de_android.Switch check_prefabricados;
     private check_de_android.Switch check_programas;
-    public static javax.swing.JLabel codigo_editar_control;
     public static rojeru_san.rsfield.RSTextMaterial codigo_re_editar;
     public static org.bolivia.combo.SComboBox combo_prefabricados_re_editar;
     public static org.bolivia.combo.SComboBox combo_programas_re_editar;
     public static rojeru_san.rsfield.RSTextMaterial factura_re_editar;
+    public static javax.swing.JLabel id_editar_control;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_error_cant_re_editar;

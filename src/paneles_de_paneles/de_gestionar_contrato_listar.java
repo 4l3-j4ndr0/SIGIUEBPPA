@@ -606,18 +606,18 @@ public class de_gestionar_contrato_listar extends javax.swing.JPanel {
     }                   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojeru_san.RSButtonRiple btnBorrar;
-    private rojeru_san.RSButtonRiple btnEditar;
-    private rojeru_san.RSButtonRiple btnExportar;
-    private rojeru_san.RSButtonRiple btnPrint;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private rojerusan.RSPopuMenu menu;
-    private javax.swing.JPanel pnlMenu;
-    private javax.swing.JScrollPane scroll;
+    public static rojeru_san.RSButtonRiple btnBorrar;
+    public static rojeru_san.RSButtonRiple btnEditar;
+    public static rojeru_san.RSButtonRiple btnExportar;
+    public static rojeru_san.RSButtonRiple btnPrint;
+    public static javax.swing.JButton jButton1;
+    public static javax.swing.JLabel jLabel3;
+    public static javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel2;
+    public static javax.swing.JPanel jPanel3;
+    public static rojerusan.RSPopuMenu menu;
+    public static javax.swing.JPanel pnlMenu;
+    public static javax.swing.JScrollPane scroll;
     public static rojerusan.RSTableMetro tabla;
     public static rojeru_san.rsfield.RSTextMaterial txtBuscar;
     // End of variables declaration//GEN-END:variables

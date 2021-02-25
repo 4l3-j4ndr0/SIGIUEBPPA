@@ -20,16 +20,22 @@ import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -58,13 +64,17 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
      */
     
     private int PosicionMouse;
-    
+    private String programa="";
+    private Date fecha_desde;
+    private Date fecha_hasta;
+    private java.sql.Date fecha_desde_ok = null;
+    private java.sql.Date fecha_hasta_ok=null;
     public de_gestionar_prod_programa_listar() {
         initComponents();
         this.tabla_prod_programa.setCursor(new Cursor(12));
         this.scroll.getViewport().setBackground(Color.WHITE);
         this.menu.add(pnlMenu);
-        opciones_de_gestionar_prod_programa.get_combos2( combo_programas);
+        opciones_de_gestionar_prod_programa.get_combos2(combo_programas_prod_programa);
         interaccion_bd.opciones_de_gestionar_prod_programa.setListar("");
 
         this.tabla_prod_programa.setDefaultRenderer(Object.class, new modelo_tablas.Tabla_Prod_programa());
@@ -80,6 +90,149 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
        // deshabilitarPegar();
 
         addEventKey();
+        //################### detectar cambios en los combobox ######################3
+        combo_programas_prod_programa.addItemListener(new ItemListener() {
+           public void itemStateChanged(ItemEvent arg0) {
+               //Do Something
+            if(opciones_de_gestionar_prod_programa.existe("select * from modelo_mercantil limit 1")){
+               txtBuscar_prod_programa.setText("");
+             String first_date="SELECT Min(`fecha`) FROM `modelo_mercantil`";
+             String last_date="SELECT Max(`fecha`) FROM `modelo_mercantil`";
+               if(fecha_desde_modelo.getDate()!=null){
+                 fecha_desde=fecha_desde_modelo.getDate();
+                  fecha_desde_ok = new java.sql.Date(fecha_desde.getTime());
+                 
+             }else{
+                    fecha_desde=opciones_de_gestionar_prod_programa.extraer_fecha(first_date);
+                    fecha_desde_ok = new java.sql.Date(fecha_desde.getTime());
+                }
+             if(fecha_hasta_modelo.getDate()!=null){
+                 fecha_hasta=fecha_hasta_modelo.getDate();
+                 fecha_hasta_ok = new java.sql.Date(fecha_hasta.getTime());
+                 
+             }else{
+                 fecha_hasta=opciones_de_gestionar_prod_programa.extraer_fecha(last_date);
+                 fecha_hasta_ok = new java.sql.Date(fecha_hasta.getTime());
+             }
+             if(!combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")){
+              programa=combo_programas_prod_programa.getSelectedItem().toString();
+           }
+             String sql_con_rango_fecha_sin_programa="SELECT * FROM `modelo_mercantil` WHERE `fecha` BETWEEN '"+fecha_desde_ok+"' AND '"+fecha_hasta_ok+"'";
+             String sql_con_rango_fecha_and_programa="SELECT * FROM `modelo_mercantil` WHERE `fecha` BETWEEN '"+fecha_desde_ok+"' AND '"+fecha_hasta_ok+"' and `programa_modelo` = '"+programa+"'";
+             
+//        fecha_hasta=toma_fecha(fecha_hasta_modelo);
+//        programa=combo_programas_prod_programa.getSelectedItem().toString();
+        if(!combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")){
+        interaccion_bd.opciones_de_gestionar_prod_programa.setListar_con_filtro_fecha_y_programa(sql_con_rango_fecha_and_programa);
+        }else if(combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")){
+            interaccion_bd.opciones_de_gestionar_prod_programa.setListar_con_filtro_fecha_y_programa(sql_con_rango_fecha_sin_programa);
+        }else if((combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")) && (fecha_desde_modelo.getDate()==null) && 
+                (fecha_hasta_modelo.getDate()==null)){
+            opciones_de_gestionar_prod_programa.setListar("");
+        }
+           }else{
+           opciones_de_gestionar_prod_programa.setListar("");
+        }
+           }
+           
+            public void itemStateChangedd(ItemEvent e) {
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+       });
+        // ##########################################################################
+   
+        //  detectar cambio en jdateChoser (fecha de inicio en agregar contrato)
+        fecha_desde_modelo.getDateEditor().addPropertyChangeListener(
+                new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                if(opciones_de_gestionar_prod_programa.existe("select * from modelo_mercantil limit 1")){
+                String first_date="SELECT Min(`fecha`) FROM `modelo_mercantil`";
+             String last_date="SELECT Max(`fecha`) FROM `modelo_mercantil`";
+             
+               if(fecha_desde_modelo.getDate()!=null){
+                 fecha_desde=fecha_desde_modelo.getDate();
+                  fecha_desde_ok = new java.sql.Date(fecha_desde.getTime());
+                 
+             }else{
+                    fecha_desde=opciones_de_gestionar_prod_programa.extraer_fecha(first_date);
+                    fecha_desde_ok = new java.sql.Date(fecha_desde.getTime());
+                }
+             if(fecha_hasta_modelo.getDate()!=null){
+                 fecha_hasta=fecha_hasta_modelo.getDate();
+                 fecha_hasta_ok = new java.sql.Date(fecha_hasta.getTime());
+                 
+             }else{
+                 fecha_hasta=opciones_de_gestionar_prod_programa.extraer_fecha(last_date);
+                 fecha_hasta_ok = new java.sql.Date(fecha_hasta.getTime());
+             }
+             if(!combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")){
+              programa=combo_programas_prod_programa.getSelectedItem().toString();
+           }
+             String sql_con_rango_fecha_sin_programa="SELECT * FROM `modelo_mercantil` WHERE `fecha` BETWEEN '"+fecha_desde_ok+"' AND '"+fecha_hasta_ok+"'";
+             String sql_con_rango_fecha_and_programa="SELECT * FROM `modelo_mercantil` WHERE `fecha` BETWEEN '"+fecha_desde_ok+"' AND '"+fecha_hasta_ok+"' and `programa_modelo` = '"+programa+"'";
+               
+//        fecha_hasta=toma_fecha(fecha_hasta_modelo);
+//        programa=combo_programas_prod_programa.getSelectedItem().toString();
+        if(!combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")){
+        interaccion_bd.opciones_de_gestionar_prod_programa.setListar_con_filtro_fecha_y_programa(sql_con_rango_fecha_and_programa);
+        }else if(combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")){
+            interaccion_bd.opciones_de_gestionar_prod_programa.setListar_con_filtro_fecha_y_programa(sql_con_rango_fecha_sin_programa);
+        }else if((combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")) && (fecha_desde_modelo.getDate()==null) && 
+                (fecha_hasta_modelo.getDate()==null)){
+            opciones_de_gestionar_prod_programa.setListar("");
+        }
+            }else{
+                   opciones_de_gestionar_prod_programa.setListar(""); 
+                }
+            }
+        });
+        
+        fecha_hasta_modelo.getDateEditor().addPropertyChangeListener(
+                new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                if(opciones_de_gestionar_prod_programa.existe("select * from modelo_mercantil limit 1")){
+                String first_date="SELECT Min(`fecha`) FROM `modelo_mercantil`";
+             String last_date="SELECT Max(`fecha`) FROM `modelo_mercantil`";
+               if(fecha_desde_modelo.getDate()!=null){
+                 fecha_desde=fecha_desde_modelo.getDate();
+                  fecha_desde_ok = new java.sql.Date(fecha_desde.getTime());
+                 
+             }else{
+                    fecha_desde=opciones_de_gestionar_prod_programa.extraer_fecha(first_date);
+                    fecha_desde_ok = new java.sql.Date(fecha_desde.getTime());
+                }
+             if(fecha_hasta_modelo.getDate()!=null){
+                 fecha_hasta=fecha_hasta_modelo.getDate();
+                 fecha_hasta_ok = new java.sql.Date(fecha_hasta.getTime());
+                 
+             }else{
+                 fecha_hasta=opciones_de_gestionar_prod_programa.extraer_fecha(last_date);
+                 fecha_hasta_ok = new java.sql.Date(fecha_hasta.getTime());
+             }
+             if(!combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")){
+              programa=combo_programas_prod_programa.getSelectedItem().toString();
+           }
+             String sql_con_rango_fecha_sin_programa="SELECT * FROM `modelo_mercantil` WHERE `fecha` BETWEEN '"+fecha_desde_ok+"' AND '"+fecha_hasta_ok+"'";
+             String sql_con_rango_fecha_and_programa="SELECT * FROM `modelo_mercantil` WHERE `fecha` BETWEEN '"+fecha_desde_ok+"' AND '"+fecha_hasta_ok+"' and `programa_modelo` = '"+programa+"'";
+             
+//        fecha_hasta=toma_fecha(fecha_hasta_modelo);
+//        programa=combo_programas_prod_programa.getSelectedItem().toString();
+        if(!combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")){
+        interaccion_bd.opciones_de_gestionar_prod_programa.setListar_con_filtro_fecha_y_programa(sql_con_rango_fecha_and_programa);
+        }else if(combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")){
+            interaccion_bd.opciones_de_gestionar_prod_programa.setListar_con_filtro_fecha_y_programa(sql_con_rango_fecha_sin_programa);
+        }else if((combo_programas_prod_programa.getSelectedItem().toString().equals("PROGRAMA")) && (fecha_desde_modelo.getDate()==null) && 
+                (fecha_hasta_modelo.getDate()==null)){
+            opciones_de_gestionar_prod_programa.setListar("");
+        }
+                }else{
+                    opciones_de_gestionar_prod_programa.setListar("");
+                }
+            }
+        });
+        
     }
 
     
@@ -127,12 +280,18 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         btnExportar = new rojeru_san.RSButtonRiple();
         btnPrint = new rojeru_san.RSButtonRiple();
-        combo_programas = new org.bolivia.combo.SComboBox();
+        combo_programas_prod_programa = new org.bolivia.combo.SComboBox();
         check_programas = new check_de_android.Switch();
-        fecha_modelo = new com.toedter.calendar.JDateChooser();
-        fecha_modelo1 = new com.toedter.calendar.JDateChooser();
+        fecha_desde_modelo = new com.toedter.calendar.JDateChooser();
+        fecha_hasta_modelo = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         menu.setBackground(new java.awt.Color(255, 255, 255));
         menu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -288,7 +447,7 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         });
         jPanel3.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 99, 42));
 
-        combo_programas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PROGRAMA" }));
+        combo_programas_prod_programa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PROGRAMA" }));
 
         check_programas.setToolTipText("Hacer o deshacer editable");
         check_programas.setBackgroundColor(new java.awt.Color(38, 86, 186));
@@ -299,11 +458,11 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
             }
         });
 
-        fecha_modelo.setDateFormatString("dd/MM/yyyy");
-        fecha_modelo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        fecha_desde_modelo.setDateFormatString("dd/MM/yyyy");
+        fecha_desde_modelo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        fecha_modelo1.setDateFormatString("dd/MM/yyyy");
-        fecha_modelo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        fecha_hasta_modelo.setDateFormatString("dd/MM/yyyy");
+        fecha_hasta_modelo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -315,59 +474,123 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         jLabel2.setText("HASTA");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jLabel4.setBackground(new java.awt.Color(38, 86, 186));
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("KG");
+        jLabel4.setOpaque(true);
+
+        jLabel5.setBackground(new java.awt.Color(38, 86, 186));
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("UNIDAD DE MEDIDA");
+        jLabel5.setOpaque(true);
+
+        jLabel6.setBackground(new java.awt.Color(38, 86, 186));
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("M3");
+        jLabel6.setOpaque(true);
+
+        jLabel7.setBackground(new java.awt.Color(38, 86, 186));
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("L");
+        jLabel7.setOpaque(true);
+
+        jLabel8.setBackground(new java.awt.Color(38, 86, 186));
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("M3");
+        jLabel8.setOpaque(true);
+
+        jLabel9.setBackground(new java.awt.Color(38, 86, 186));
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("TM");
+        jLabel9.setOpaque(true);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(scroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2018, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtBuscar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(txtBuscar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(combo_programas_prod_programa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(combo_programas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(fecha_modelo, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(fecha_modelo1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(370, 370, 370)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(fecha_desde_modelo, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(fecha_hasta_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(370, 370, 370)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBuscar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(fecha_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fecha_modelo1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(combo_programas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtBuscar_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fecha_desde_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fecha_hasta_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(check_programas, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(combo_programas_prod_programa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -410,6 +633,7 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
     }//GEN-LAST:event_tabla_prod_programaMouseClicked
 
     private void txtBuscar_prod_programaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscar_prod_programaKeyReleased
+        combo_programas_prod_programa.setSelectedIndex(0);
         interaccion_bd.opciones_de_gestionar_prod_programa.setListar(this.txtBuscar_prod_programa.getText());
     }//GEN-LAST:event_txtBuscar_prod_programaKeyReleased
 
@@ -518,7 +742,7 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
     }
     
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='producción por programa'"
+                String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='producción por programa'"
                 + "and imprimir_permisos='1' ";
         String mj1="Usted no cuenta con los permisos requeridos para accedeer a este apartado.";
         String mj2="Si considera que estamos en un error contacte con el administrador del ";
@@ -526,13 +750,18 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
         if(opciones_de_gestionar_usuarios.existe(sql_permiso)){
         try {
             
+            if(fecha_desde_modelo.getDate()!=null || fecha_hasta_modelo.getDate()!=null || combo_programas_prod_programa.getSelectedIndex()!=0){
+            // aki llamo al reporte con el filtro
+            if(combo_programas_prod_programa.getSelectedIndex()!=0){
             reportes.Reportes_box r = new reportes.Reportes_box();
             conexion cc = new conexion();
             String ruta_logo="img/splash_logo.png";
             Map parametro = new HashMap();
             parametro.put("LOGO", ruta_logo);
-            
-            JasperPrint jprint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("reportes/prod_programaa.jasper"), parametro, cc.conexion());
+            parametro.put("programa", combo_programas_prod_programa.getSelectedItem().toString());
+            parametro.put("fecha_inicio", fecha_desde);
+            parametro.put("fecha_final", fecha_hasta);
+            JasperPrint jprint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("reportes/prod_x_programa_filtrado.jasper"), parametro, cc.conexion());
             JRViewer jrv = new JRViewer(jprint);
             r.contenedor.removeAll();
 
@@ -543,6 +772,49 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
             r.contenedor.revalidate();
             jrv.setVisible(true);
             r.setVisible(true);
+            }else{
+                System.out.println("listo impr sin programa");
+                reportes.Reportes_box r = new reportes.Reportes_box();
+            conexion cc = new conexion();
+            String ruta_logo="img/splash_logo.png";
+            Map parametro = new HashMap();
+            parametro.put("LOGO", ruta_logo);
+            parametro.put("fecha_inicio", fecha_desde);
+            parametro.put("fecha_final", fecha_hasta);
+            JasperPrint jprint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("reportes/prod_x_programa_filtrado_all_program.jasper"), parametro, cc.conexion());
+            JRViewer jrv = new JRViewer(jprint);
+            r.contenedor.removeAll();
+
+            r.contenedor.setLayout(new BorderLayout());
+            r.contenedor.add(jrv, BorderLayout.CENTER);
+
+            r.contenedor.repaint();
+            r.contenedor.revalidate();
+            jrv.setVisible(true);
+            r.setVisible(true);
+            }
+            }else{
+                // reporte completo 
+                
+            reportes.Reportes_box r = new reportes.Reportes_box();
+            conexion cc = new conexion();
+            String ruta_logo="img/splash_logo.png";
+            Map parametro = new HashMap();
+            parametro.put("LOGO", ruta_logo);
+            System.out.println("listo pa imprimir");
+            JasperPrint jprint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream("reportes/prod_x_programa.jasper"), parametro, cc.conexion());
+            JRViewer jrv = new JRViewer(jprint);
+            r.contenedor.removeAll();
+
+            r.contenedor.setLayout(new BorderLayout());
+            r.contenedor.add(jrv, BorderLayout.CENTER);
+
+            r.contenedor.repaint();
+            r.contenedor.revalidate();
+            jrv.setVisible(true);
+            r.setVisible(true);
+                
+            }
         } catch (JRException ex) {
             opciones_de_gestionar_contrato.lanza_error(ex);
         }
@@ -617,11 +889,11 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
     private void check_programasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_programasMouseClicked
         // TODO add your handling code here:
         if(check_programas.isOnOff()){
-            combo_programas.setEditable(true);
-            AutoCompleteDecorator.decorate(combo_programas);
+            combo_programas_prod_programa.setEditable(true);
+            AutoCompleteDecorator.decorate(combo_programas_prod_programa);
         }else{
-            combo_programas.setEditable(false);
-            combo_programas.requestFocus();
+            combo_programas_prod_programa.setEditable(false);
+            combo_programas_prod_programa.requestFocus();
         }
     }//GEN-LAST:event_check_programasMouseClicked
 
@@ -663,12 +935,18 @@ public class de_gestionar_prod_programa_listar extends javax.swing.JPanel {
     private rojeru_san.RSButtonRiple btnExportar;
     private rojeru_san.RSButtonRiple btnPrint;
     private check_de_android.Switch check_programas;
-    private org.bolivia.combo.SComboBox combo_programas;
-    private com.toedter.calendar.JDateChooser fecha_modelo;
-    private com.toedter.calendar.JDateChooser fecha_modelo1;
+    private org.bolivia.combo.SComboBox combo_programas_prod_programa;
+    private com.toedter.calendar.JDateChooser fecha_desde_modelo;
+    private com.toedter.calendar.JDateChooser fecha_hasta_modelo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

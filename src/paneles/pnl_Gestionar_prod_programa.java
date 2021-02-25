@@ -34,6 +34,7 @@ public class pnl_Gestionar_prod_programa extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -41,6 +42,11 @@ public class pnl_Gestionar_prod_programa extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        listar_contrato1 = new rsbuttom.RSButtonMetro();
+        add_contrato1 = new rsbuttom.RSButtonMetro();
+        panel_contenedor1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         listar_contrato = new rsbuttom.RSButtonMetro();
         add_contrato = new rsbuttom.RSButtonMetro();
@@ -117,6 +123,97 @@ public class pnl_Gestionar_prod_programa extends javax.swing.JPanel {
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(128, 128, 131));
+        jLabel10.setText("Gestionar Producción por Programa");
+        jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 31;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 6, 0, 6);
+        jPanel1.add(jLabel10, gridBagConstraints);
+
+        listar_contrato1.setBackground(new java.awt.Color(239, 238, 244));
+        listar_contrato1.setForeground(new java.awt.Color(128, 128, 131));
+        listar_contrato1.setText("Listar");
+        listar_contrato1.setColorHover(new java.awt.Color(204, 204, 204));
+        listar_contrato1.setColorNormal(new java.awt.Color(239, 238, 244));
+        listar_contrato1.setColorPressed(new java.awt.Color(204, 204, 204));
+        listar_contrato1.setColorTextHover(new java.awt.Color(128, 128, 131));
+        listar_contrato1.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        listar_contrato1.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        listar_contrato1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        listar_contrato1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        listar_contrato1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        listar_contrato1.setIconTextGap(25);
+        listar_contrato1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listar_contrato1MousePressed(evt);
+            }
+        });
+        listar_contrato1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listar_contrato1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
+        jPanel1.add(listar_contrato1, gridBagConstraints);
+
+        add_contrato1.setBackground(new java.awt.Color(239, 238, 244));
+        add_contrato1.setForeground(new java.awt.Color(128, 128, 131));
+        add_contrato1.setText("Añadir");
+        add_contrato1.setColorHover(new java.awt.Color(204, 204, 204));
+        add_contrato1.setColorNormal(new java.awt.Color(239, 238, 244));
+        add_contrato1.setColorPressed(new java.awt.Color(204, 204, 204));
+        add_contrato1.setColorTextHover(new java.awt.Color(128, 128, 131));
+        add_contrato1.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        add_contrato1.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        add_contrato1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        add_contrato1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add_contrato1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        add_contrato1.setIconTextGap(25);
+        add_contrato1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                add_contrato1MousePressed(evt);
+            }
+        });
+        add_contrato1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_contrato1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 9;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
+        jPanel1.add(add_contrato1, gridBagConstraints);
+
+        panel_contenedor1.setBackground(new java.awt.Color(255, 255, 255));
+        panel_contenedor1.setLayout(new javax.swing.BoxLayout(panel_contenedor1, javax.swing.BoxLayout.LINE_AXIS));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 859;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 6);
+        jPanel1.add(panel_contenedor1, gridBagConstraints);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -259,17 +356,38 @@ public class pnl_Gestionar_prod_programa extends javax.swing.JPanel {
         color_performed(listar_contrato,add_contrato);
     }//GEN-LAST:event_listar_contratoActionPerformed
 
+    private void listar_contrato1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listar_contrato1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listar_contrato1MousePressed
+
+    private void listar_contrato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listar_contrato1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listar_contrato1ActionPerformed
+
+    private void add_contrato1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_contrato1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_contrato1MousePressed
+
+    private void add_contrato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_contrato1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_contrato1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro add_contrato;
+    private rsbuttom.RSButtonMetro add_contrato1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private rsbuttom.RSButtonMetro listar_contrato;
+    private rsbuttom.RSButtonMetro listar_contrato1;
     private javax.swing.JPanel panel_contenedor;
+    private javax.swing.JPanel panel_contenedor1;
     // End of variables declaration//GEN-END:variables
 }

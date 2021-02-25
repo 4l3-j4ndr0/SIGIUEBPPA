@@ -6,11 +6,13 @@
 package principal;
 
 import alertas.ErrorAlert;
+import alertas.SuccessAlert;
 import esperas.Guardando_general;
 import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_usuarios;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -24,13 +26,15 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.ColorUIResource;
 import paneles.CambiaPanel;
+import paneles.pnl_Gestionar_contrato;
+import paneles_de_paneles.de_gestionar_contrato_listar;
 import paneles_de_paneles.de_gestionar_prod_programa_añadir;
 import splash_y_login.AccesoLogin;
 import sun.security.krb5.PrincipalName;
 
 /**
  *
- * @author RojeruSan
+ * @author 4l3
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -48,8 +52,12 @@ public class Principal extends javax.swing.JFrame {
             jScrollPane4.getVerticalScrollBar().setUnitIncrement(16);
             jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
             new CambiaPanel(pnlPrincipal, new paneles.pnlHome());
-        
-        
+            jButton1.setVisible(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         
     }
 
@@ -542,7 +550,7 @@ public class Principal extends javax.swing.JFrame {
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 295, Short.MAX_VALUE)
+            .addGap(0, 292, Short.MAX_VALUE)
             .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -551,7 +559,7 @@ public class Principal extends javax.swing.JFrame {
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
+            .addGap(0, 614, Short.MAX_VALUE)
             .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -569,7 +577,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(pnlMenu, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(38, 86, 186));
-        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel2MouseDragged(evt);
@@ -605,7 +613,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -640,14 +648,14 @@ public class Principal extends javax.swing.JFrame {
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCentroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlCentroLayout.setVerticalGroup(
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCentroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
 
@@ -674,13 +682,33 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) { 
+        alertas.WarningAlert w = new alertas.WarningAlert(new JFrame(), true);
+            w.msj1.setText("Esta a punto de salir del sistema.");
+            w.msj2.setText("¿ Realmente desea continuar ?");
+            w.msj3.setText("");
+            w.setVisible(true);
+
+            if (w.hecho) {
+                System.exit(0);
+                }else {
+            this.setDefaultCloseOperation(0);
+        }
+    }  
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int posicion = pnlMenu.getX();
         if(posicion > -1){
             Animacion.Animacion.mover_izquierda(0, -264, 2, 2, pnlMenu);
-        }else{
+            Animacion.Animacion.mover_izquierda(300, 50, 2, 2, pnlCentro);
+//            pnlCentro.setSize(pnlCentro.getWidth()+300, pnlCentro.getHeight());
+//            de_gestionar_contrato_listar.jPanel1.setSize(pnlCentro.getWidth(), pnlCentro.getHeight());
+//            de_gestionar_contrato_listar.scroll.setSize(pnlCentro.getWidth()-100, pnlCentro.getHeight()-100);
+//            de_gestionar_contrato_listar.tabla.setSize(pnlCentro.getWidth()-100, pnlCentro.getHeight()-100);
+           }else{
             Animacion.Animacion.mover_derecha(-264, 0, 2, 2, pnlMenu);
-        }
+            Animacion.Animacion.mover_derecha(50, 300, 2, 2, pnlCentro);
+         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
@@ -1052,11 +1080,16 @@ public class Principal extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
-        if (JOptionPane.showConfirmDialog(this, "Esta a punto de\ncerrar la sesión\n¿Desea continuar?", "Cerrar Sesión", JOptionPane.YES_NO_OPTION, 0,
-                new ImageIcon(getClass().getResource("/img_principal/preg2.png"))) == JOptionPane.YES_OPTION) {
-            this.dispose();
+       alertas.WarningAlert w = new alertas.WarningAlert(new JFrame(), true);
+            w.msj1.setText("Esta a punto de cerrar la sección.");
+            w.msj2.setText("¿ Realmente desea continuar ?");
+            w.msj3.setText("");
+            w.setVisible(true);
+
+            if (w.hecho) {
+                this.dispose();
             new AccesoLogin().setVisible(true);
-        }
+                }
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void gestionar_usuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionar_usuarioMousePressed

@@ -21,6 +21,7 @@ import java.awt.event.InputEvent;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -58,6 +59,10 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
         pnlMenu = new javax.swing.JPanel();
         btnBorrar = new rojeru_san.RSButtonRiple();
         btnEditar = new rojeru_san.RSButtonRiple();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         nombre_usuario = new rojeru_san.rsfield.RSTextMaterial();
@@ -218,6 +223,14 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jMenu1.setText("jMenu1");
+
+        jMenu2.setText("File");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Edit");
+        jMenuBar1.add(jMenu3);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -2007,9 +2020,9 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
                         .addComponent(scroll))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2037,11 +2050,12 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(boton_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(40, 40, 40)
-                                        .addComponent(boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(boton_registrar_arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(boton_cancelar_arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(boton_registrar_arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(boton_cancelar_arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -2464,6 +2478,10 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
     
     private void boton_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrarActionPerformed
         // TODO add your handling code here:
+       boton_guardar_registrar();
+    }//GEN-LAST:event_boton_registrarActionPerformed
+
+    private void boton_guardar_registrar(){
         if(boton_registrar.getText().equals("REGISTRAR")){
             String sql_permiso="SELECT * FROM `permisos` WHERE `usuario_permisos`='"+principal.Principal.user.getText().trim()+"' and `apartado_permisos`='usuarios' " 
                 + "and add_permisos='1' ";
@@ -3577,8 +3595,8 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
             opciones_de_gestionar_contrato.lanza_error_variable_sin_ex(mj1, mj2, mj3);
         }
         }
-    }//GEN-LAST:event_boton_registrarActionPerformed
-
+    }
+    
     private void centrar_componente(Component c){
         Dimension pantalla_size=Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frame_size=c.getSize();
@@ -3648,9 +3666,10 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
         boton_cancelar.setVisible(false);
         boton_cancelar_arriba.setVisible(false);
         boton_registrar.setText("REGISTRAR");
-        boton_registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnguardar.png"))); 
+        ImageIcon ico_guardar = new ImageIcon("img_usuarios/btnRegistrar.png");
+        boton_registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnRegistrar.png")));
         boton_registrar_arriba.setText("REGISTRAR");
-        boton_registrar_arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnguardar.png"))); 
+        boton_registrar_arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnRegistrar.png")));
     }
     
     private void desmarcar_todos_contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desmarcar_todos_contratoActionPerformed
@@ -3785,9 +3804,10 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
             boton_cancelar.setVisible(true);
             boton_cancelar_arriba.setVisible(true);
             boton_registrar.setText("GUARDAR CAMBIOS");
-            boton_registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnguardar.png"))); 
+//            ImageIcon ico_guardar = new ImageIcon("/img_usuarios/btnguardar.png");
+            boton_registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnGuardar.png")));
             boton_registrar_arriba.setText("GUARDAR CAMBIOS");
-            boton_registrar_arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnguardar.png"))); 
+            boton_registrar_arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_usuarios/btnGuardar.png")));
             opciones_de_gestionar_usuarios.activa_checbox_largo(user, sql_contrato, listar_contrato, add_contrato, editar_contrato, eliminar_contrato, exportar_contrato, imprimir_contrato, desmarcar_todos_contrato, marcar_todos_contrato);
             opciones_de_gestionar_usuarios.activa_checbox_largo(user, sql_rec_x_programa, listar_recursos_x_programa, add_recursos_x_programa, editar_recursos_x_programa, eliminar_recursos_x_programa, exportar_recursos_x_programa, imprimir_recursos_x_programa, desmarcar_recursos_x_programa, marcar_recursos_x_programa);
             opciones_de_gestionar_usuarios.activa_checbox_largo(user, sql_info_lab, listar_info_laboratorio, add_info_laboratorio, editar_info_laboratorio, eliminar_info_laboratorio, exportar_info_laboratorio, imprimir_info_laboratorio, desmarcar_info_laboratorio, marcar_info_laboratorio);
@@ -4188,13 +4208,13 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
 
     private void boton_registrar_arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_arribaActionPerformed
         // TODO add your handling code here:
-        boton_registrarActionPerformed(evt);
+        boton_guardar_registrar();
     }//GEN-LAST:event_boton_registrar_arribaActionPerformed
 
     private void boton_cancelar_arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cancelar_arribaActionPerformed
         // TODO add your handling code here:
+         reset_campos();
         reset_botones();
-        reset_campos();
     }//GEN-LAST:event_boton_cancelar_arribaActionPerformed
 
 
@@ -4274,6 +4294,10 @@ public class pnl_Gestionar_usuarios extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     public static javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

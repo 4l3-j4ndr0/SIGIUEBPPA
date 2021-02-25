@@ -25,19 +25,23 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel1" min="-2" pref="351" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Component id="lbl_error_programa_re_add" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="factura_re_add" alignment="0" min="-2" pref="298" max="-2" attributes="0"/>
-                          <Component id="carta_porte_re_add" alignment="0" min="-2" pref="298" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="combo_programas_re_add" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="check_programas" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="check_fijar" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbl_error_programa_re_add" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="factura_re_add" alignment="0" min="-2" pref="298" max="-2" attributes="0"/>
+                              <Component id="carta_porte_re_add" alignment="0" min="-2" pref="298" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="combo_programas_re_add" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="check_programas" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
+                          <Component id="lbl_error_factura_re_add" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_error_carta_porte_add" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="lbl_error_factura_re_add" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbl_error_carta_porte_add" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="32767" attributes="0"/>
@@ -69,16 +73,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" pref="207" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="combo_programas_re_add" alignment="0" max="32767" attributes="0"/>
-                          <Component id="check_programas" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="combo_programas_re_add" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="check_programas" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="lbl_error_programa_re_add" min="-2" pref="43" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="check_fijar" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="lbl_error_programa_re_add" min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="codigo_re_add" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -362,5 +371,21 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
     </Container>
+    <Component class="javax.swing.JCheckBox" name="check_fijar">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/img_recursos_x_programa/fijado_off_ok.png"/>
+        </Property>
+        <Property name="opaque" type="boolean" value="false"/>
+        <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/img_recursos_x_programa/fijado_on_ok.png"/>
+        </Property>
+        <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="24a785af-1ef3-41cb-a049-411b87c1bdf4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_final" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select modelo_mercantil.descripcion_modelo, count(modelo_mercantil.descripcion_modelo), modelo_mercantil.`u/m_modelo` from modelo_mercantil where modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final} group by descripcion_modelo]]>
+	</queryString>
+	<field name="descripcion_modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="count(modelo_mercantil.descripcion_modelo)" class="java.lang.Long"/>
+	<field name="u/m_modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="26" width="209" height="1" uuid="4e1db391-1511-43e0-91ee-1a62de583ec9"/>
+			</line>
+			<line>
+				<reportElement x="88" y="2" width="1" height="25" uuid="1593a398-3c90-45d2-a3d1-b9323d637d68"/>
+			</line>
+			<line>
+				<reportElement x="171" y="2" width="1" height="25" uuid="e7995dca-7916-44bf-851e-18acc632796c"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="2" width="85" height="20" uuid="9fa5fa63-f227-4b6a-a388-4e5f8bf8fdf2"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="91" y="2" width="78" height="20" uuid="5199b5ea-3b09-4baf-a5e2-c18848910691"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="2" width="35" height="20" uuid="adaacb90-fb07-4dcf-be3c-758acdca37e1"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[U/M]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<line>
+				<reportElement x="2" y="30" width="208" height="1" uuid="36bbad2f-cb19-4db9-9b88-f6bfbbaaa07d"/>
+			</line>
+			<line>
+				<reportElement x="88" y="0" width="1" height="31" uuid="cfe4909f-224a-4611-9aca-b1d2f56020ca"/>
+			</line>
+			<line>
+				<reportElement x="171" y="0" width="1" height="30" uuid="087c9fa0-86cb-4463-bcac-dad24f329064"/>
+			</line>
+			<textField>
+				<reportElement x="2" y="9" width="85" height="20" uuid="10c6aa20-d01c-4f2b-9a60-804204baa4b8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{descripcion_modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="9" width="78" height="20" uuid="393d087c-0f18-4fb4-b3bb-b5e355fd435b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{count(modelo_mercantil.descripcion_modelo)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="9" width="35" height="20" uuid="02f62ee3-06c6-4d81-b22e-75c5ed28f241"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{u/m_modelo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

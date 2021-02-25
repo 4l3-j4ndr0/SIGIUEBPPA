@@ -5,6 +5,9 @@
  */
 package interaccion_bd;
 
+import com.toedter.calendar.JDateChooser;
+import java.util.Date;
+
 /**
  *
  * @author 4l3
@@ -14,7 +17,7 @@ public class consultas_de_gestionar_prod_programa {
     private String codigo;
     private String descripcion;
     private String programa;
-    private String fecha;
+    private Date fecha;
     private double total_m3;
     private double importe;
     private double volumen_unidad;
@@ -38,7 +41,7 @@ public class consultas_de_gestionar_prod_programa {
     
     public static String REGISTRAR = "INSERT INTO `modelo_mercantil`( `codigo_modelo`, `descripcion_modelo`, `u/m_modelo`, "
             + "`vol/unidad_modelo`, `cantidad_modelo`, `programa_modelo`, `total_m3_modelo`, `precio_cup_modelo`, `importe_cup_modelo`, "
-            + "`fecha_modelo`, `rbk_modelo`, `cemento_modelo`, `arena_modelo`, `gravilla_modelo`, `aditivo_modelo`, `1_4_modelo`, `3_8_modelo`,"
+            + "`fecha`, `rbk_modelo`, `cemento_modelo`, `arena_modelo`, `gravilla_modelo`, `aditivo_modelo`, `1_4_modelo`, `3_8_modelo`,"
             + " `1_2_modelo`, `5_8_modelo`, `3_4_modelo`, `1_modelo`, `al_modelo`, `el_modelo`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     
     public static String LISTAR = "SELECT * FROM modelo_mercantil";
@@ -46,7 +49,7 @@ public class consultas_de_gestionar_prod_programa {
     public static String ACTUALIZAR = "UPDATE `modelo_mercantil` SET `codigo_modelo`=?,"
             + "`descripcion_modelo`=?,`u/m_modelo`=?,`vol/unidad_modelo`=?,`cantidad_modelo`=?,"
             + "`programa_modelo`=?,`total_m3_modelo`=?,`precio_cup_modelo`=?,`importe_cup_modelo`=?,"
-            + "`fecha_modelo`=?,`rbk_modelo`=?, `cemento_modelo`=?,`arena_modelo`=?,`gravilla_modelo`=?,`aditivo_modelo`=?,"
+            + "`fecha`=?,`rbk_modelo`=?, `cemento_modelo`=?,`arena_modelo`=?,`gravilla_modelo`=?,`aditivo_modelo`=?,"
             + "`1_4_modelo`=?,`3_8_modelo`=?,`1_2_modelo`=?,`5_8_modelo`=?,`3_4_modelo`=?,"
             + "`1_modelo`=?,`al_modelo`=?,`el_modelo`=? WHERE id_modelo=? ";
             
@@ -68,13 +71,15 @@ public class consultas_de_gestionar_prod_programa {
         this.programa = programa;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    
 
     public double getTotal_m3() {
         return total_m3;
@@ -246,5 +251,9 @@ public class consultas_de_gestionar_prod_programa {
 
     public void setPrimaryKey(int primaryKey) {
         this.primaryKey = primaryKey;
+    }
+
+    public void setFecha(JDateChooser fecha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

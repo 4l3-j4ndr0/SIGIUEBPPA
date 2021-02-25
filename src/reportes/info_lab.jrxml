@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="48a2e803-ab82-4e98-8622-99a3f1f07201">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LOGO" class="java.lang.String"/>
+	<parameter name="LOGO2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     info_lab.`num_materiales_info_lab` AS info_lab_num_materiales_info_lab,
+     info_lab.`elementos_info_lab` AS info_lab_elementos_info_lab,
+     info_lab.`fecha_info_lab` AS info_lab_fecha_info_lab,
+     info_lab.`rbk_info_lab` AS info_lab_rbk_info_lab,
+     info_lab.`tipoCto_info_lab` AS info_lab_tipoCto_info_lab,
+     info_lab.`vol_info_lab` AS info_lab_vol_info_lab,
+     info_lab.`cem_info_lab` AS info_lab_cem_info_lab,
+     info_lab.`grav_info_lab` AS info_lab_grav_info_lab,
+     info_lab.`aren_info_lab` AS info_lab_aren_info_lab,
+     info_lab.`adit_info_lab` AS info_lab_adit_info_lab,
+     info_lab.`agua_info_lab` AS info_lab_agua_info_lab,
+     info_lab.`asent_info_lab` AS info_lab_asent_info_lab,
+     info_lab.`x1_info_lab` AS info_lab_x1_info_lab,
+     info_lab.`x2_info_lab` AS info_lab_x2_info_lab,
+     info_lab.`x3_info_lab` AS info_lab_x3_info_lab,
+     info_lab.`xm_info_lab` AS info_lab_xm_info_lab,
+     info_lab.`x1_28dias_info_lab` AS info_lab_x1_28dias_info_lab,
+     info_lab.`x2_28dias_info_lab` AS info_lab_x2_28dias_info_lab,
+     info_lab.`x3_28dias_info_lab` AS info_lab_x3_28dias_info_lab,
+     info_lab.`xm_28dias_info_lab` AS info_lab_xm_28dias_info_lab
+FROM
+     `info_lab` info_lab]]>
+	</queryString>
+	<field name="info_lab_num_materiales_info_lab" class="java.lang.String"/>
+	<field name="info_lab_elementos_info_lab" class="java.lang.String"/>
+	<field name="info_lab_fecha_info_lab" class="java.lang.String"/>
+	<field name="info_lab_rbk_info_lab" class="java.lang.String"/>
+	<field name="info_lab_tipoCto_info_lab" class="java.lang.String"/>
+	<field name="info_lab_vol_info_lab" class="java.lang.String"/>
+	<field name="info_lab_cem_info_lab" class="java.lang.String"/>
+	<field name="info_lab_grav_info_lab" class="java.lang.String"/>
+	<field name="info_lab_aren_info_lab" class="java.lang.String"/>
+	<field name="info_lab_adit_info_lab" class="java.lang.String"/>
+	<field name="info_lab_agua_info_lab" class="java.lang.String"/>
+	<field name="info_lab_asent_info_lab" class="java.lang.String"/>
+	<field name="info_lab_x1_info_lab" class="java.lang.String"/>
+	<field name="info_lab_x2_info_lab" class="java.lang.String"/>
+	<field name="info_lab_x3_info_lab" class="java.lang.String"/>
+	<field name="info_lab_xm_info_lab" class="java.lang.String"/>
+	<field name="info_lab_x1_28dias_info_lab" class="java.lang.String"/>
+	<field name="info_lab_x2_28dias_info_lab" class="java.lang.String"/>
+	<field name="info_lab_x3_28dias_info_lab" class="java.lang.String"/>
+	<field name="info_lab_xm_28dias_info_lab" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="155" splitType="Stretch">
+			<staticText>
+				<reportElement x="41" y="49" width="438" height="35" uuid="8b4291e2-45bd-4c64-8991-2b813c1f3ad7"/>
+				<textElement>
+					<font fontName="Arial" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORMACIÓN DE LABORATORIO]]></text>
+			</staticText>
+			<image>
+				<reportElement x="617" y="10" width="185" height="139" uuid="7de73c62-2fe2-475c-b7eb-ba142e9b63ce"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="1" y="152" width="801" height="1" uuid="5b9a5886-ddcc-4ed7-b1cd-cd1973c67053"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="143" splitType="Stretch">
+			<image>
+				<reportElement x="1" y="0" width="801" height="142" uuid="c8441dff-eb38-4803-8c81-46c87e37bca4"/>
+				<imageExpression><![CDATA[$P{LOGO2}]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="1" width="35" height="20" uuid="07b715ac-5d3f-41df-9e4d-53b80ffc8e63"/>
+				<textFieldExpression><![CDATA[$F{info_lab_num_materiales_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="1" width="86" height="20" uuid="b7791ca0-e182-4665-a955-bce7a3a53f8f"/>
+				<textFieldExpression><![CDATA[$F{info_lab_elementos_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="1" width="60" height="20" uuid="828f2a92-56a9-4fa1-b393-d03b01892551"/>
+				<textFieldExpression><![CDATA[$F{info_lab_fecha_info_lab}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="-1" width="801" height="1" uuid="36957b12-3a05-4917-8c30-c9c2cfcbe40c"/>
+			</line>
+			<line>
+				<reportElement x="1" y="21" width="801" height="1" uuid="9ee720ec-1188-46a3-95eb-5cde43264139"/>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="1" height="21" uuid="98c2464f-2685-4e93-b4bd-ed3019651a16"/>
+			</line>
+			<line>
+				<reportElement x="43" y="0" width="1" height="21" uuid="9358da72-ce22-49f0-9501-a461b92604ac"/>
+			</line>
+			<textField>
+				<reportElement x="202" y="1" width="37" height="20" uuid="aa814361-84ee-42aa-a609-9d2f42d2a96b"/>
+				<textFieldExpression><![CDATA[$F{info_lab_rbk_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="1" width="25" height="20" uuid="a79bef5e-abe4-441f-8943-421f0a016c17"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{info_lab_tipoCto_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="1" width="37" height="20" uuid="42105200-b38e-4cb2-9a82-7d153f3991d3"/>
+				<textFieldExpression><![CDATA[$F{info_lab_vol_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="1" width="30" height="20" uuid="dc37ed06-5ab0-428d-82e0-3e00f7145cc6"/>
+				<textFieldExpression><![CDATA[$F{info_lab_cem_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="351" y="1" width="30" height="20" uuid="129f2e67-7a5f-4db8-a7c0-a8b18dca0b7b"/>
+				<textFieldExpression><![CDATA[$F{info_lab_grav_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="1" width="32" height="20" uuid="3a93042a-c9eb-49ab-a7b4-d18ccccf5f83"/>
+				<textFieldExpression><![CDATA[$F{info_lab_aren_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="1" width="29" height="20" uuid="e9c615e1-f1b5-4c80-b189-6e92eaf75955"/>
+				<textFieldExpression><![CDATA[$F{info_lab_adit_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="1" width="29" height="20" uuid="1b263741-a898-4f46-b8e7-4fa0ced50d68"/>
+				<textFieldExpression><![CDATA[$F{info_lab_agua_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="491" y="1" width="36" height="20" uuid="26b1af8d-8eba-42e7-89ef-b4b40dc51a4c"/>
+				<textFieldExpression><![CDATA[$F{info_lab_asent_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="532" y="1" width="31" height="20" uuid="c9404920-643b-4db0-b0b9-ef4bdce13e38"/>
+				<textFieldExpression><![CDATA[$F{info_lab_x1_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="567" y="1" width="29" height="20" uuid="16fa7dda-5f03-42e4-9fee-2e6fc99252aa"/>
+				<textFieldExpression><![CDATA[$F{info_lab_x2_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="601" y="1" width="29" height="20" uuid="897d7fa4-2d89-4fcd-b34c-b00acd93c89e"/>
+				<textFieldExpression><![CDATA[$F{info_lab_x3_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="635" y="1" width="31" height="20" uuid="7424dd06-3750-4c7d-a5fe-c459ca0be5dc"/>
+				<textFieldExpression><![CDATA[$F{info_lab_xm_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="671" y="1" width="30" height="20" uuid="21b87f42-ebdf-4a4e-89c6-9f0db9a5dbad"/>
+				<textFieldExpression><![CDATA[$F{info_lab_x1_28dias_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="706" y="1" width="28" height="20" uuid="b42d2532-ca12-4e63-8cc3-45ff18116b5a"/>
+				<textFieldExpression><![CDATA[$F{info_lab_x2_28dias_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="738" y="1" width="28" height="20" uuid="29abb3de-3ea5-4fd0-971c-2cb084d7f8bf"/>
+				<textFieldExpression><![CDATA[$F{info_lab_x3_28dias_info_lab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="770" y="1" width="28" height="20" uuid="e72338f5-9b6c-458f-836e-e50542f18f6b"/>
+				<textFieldExpression><![CDATA[$F{info_lab_xm_28dias_info_lab}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="134" y="0" width="1" height="21" uuid="5687c261-a7ca-4a9f-b7f8-384fc48f521a"/>
+			</line>
+			<line>
+				<reportElement x="199" y="0" width="1" height="21" uuid="c87c9a29-a73d-459e-895e-ac6ecde626c9"/>
+			</line>
+			<line>
+				<reportElement x="241" y="0" width="1" height="21" uuid="bc6f4b9a-5ab4-48dc-adac-6962b1ac1431"/>
+			</line>
+			<line>
+				<reportElement x="271" y="0" width="1" height="21" uuid="6b8cf769-da88-4ac0-b585-fc8ddbeee9e1"/>
+			</line>
+			<line>
+				<reportElement x="313" y="0" width="1" height="21" uuid="121ef8bc-6f24-4936-930f-2ad1a0fcb02a"/>
+			</line>
+			<line>
+				<reportElement x="348" y="0" width="1" height="21" uuid="94bc434b-52be-43d0-bac9-994ece7e29a8"/>
+			</line>
+			<line>
+				<reportElement x="382" y="0" width="1" height="21" uuid="239e0e42-ee3e-485c-a8de-3ea2771eee36"/>
+			</line>
+			<line>
+				<reportElement x="419" y="0" width="1" height="21" uuid="c11c28ed-9134-4d6c-98ba-b07884f88186"/>
+			</line>
+			<line>
+				<reportElement x="454" y="0" width="1" height="21" uuid="bbcc0785-1592-409b-820d-d451e5c1b94c"/>
+			</line>
+			<line>
+				<reportElement x="488" y="0" width="1" height="21" uuid="05ab8f8f-cfd3-4fad-a924-efbf1fc96428"/>
+			</line>
+			<line>
+				<reportElement x="529" y="0" width="1" height="21" uuid="088542bc-f11b-4af7-9bf7-f70e8ba8c1b6"/>
+			</line>
+			<line>
+				<reportElement x="564" y="0" width="1" height="21" uuid="6a4e486a-7462-4aa4-a290-e70b9f5bf040"/>
+			</line>
+			<line>
+				<reportElement x="598" y="0" width="1" height="21" uuid="d8f34e8d-d16f-4ff0-88ad-364481425cd9"/>
+			</line>
+			<line>
+				<reportElement x="632" y="0" width="1" height="21" uuid="105a8453-8170-4459-a4cd-841b932e424f"/>
+			</line>
+			<line>
+				<reportElement x="668" y="0" width="1" height="21" uuid="f965faca-70d5-475b-8fd9-2e57a03a60ad"/>
+			</line>
+			<line>
+				<reportElement x="703" y="0" width="1" height="21" uuid="8e2ef34a-abe1-4b03-b0b6-a00765928c05"/>
+			</line>
+			<line>
+				<reportElement x="735" y="0" width="1" height="21" uuid="b55f6539-86d4-436b-8db6-6b7acad238f7"/>
+			</line>
+			<line>
+				<reportElement x="767" y="0" width="1" height="21" uuid="56490e4c-7249-4fca-baec-2464e7de0c83"/>
+			</line>
+			<line>
+				<reportElement x="800" y="0" width="1" height="21" uuid="2e567542-2f2f-4825-9c20-e03d6bbc6520"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="100" height="20" uuid="390f4ad5-9bf7-409c-b4a8-726c931c9aa5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="682" y="0" width="80" height="20" uuid="73e2d32a-bce2-427a-a31e-1b0f2aef99df"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="762" y="0" width="40" height="20" uuid="f9e1630a-5ed1-45a4-bcb0-2e90060f8aab"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

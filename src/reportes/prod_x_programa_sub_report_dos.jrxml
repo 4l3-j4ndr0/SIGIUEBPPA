@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cfac628c-7818-4521-bbcb-51dc7017f10e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="programa" class="java.lang.String"/>
+	<parameter name="fecha_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_final" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select `descripcion_re`,
+
+
+
+IF(`descripcion_re` ='cemento',truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='cemento' and `programa_re`=$P{programa})-(select sum(cemento_modelo) from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+   
+IF(`descripcion_re`="arena", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='arena' and `programa_re`=$P{programa})-(select sum(arena_modelo) from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+   
+IF(`descripcion_re`="gravilla", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='gravilla' and `programa_re`=$P{programa})-(select sum(gravilla_modelo) from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+      
+IF(`descripcion_re`="aditivo", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='aditivo' and `programa_re`=$P{programa})-(select sum(aditivo_modelo) from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+         
+IF(`descripcion_re`="acero 1/4", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 1/4' and `programa_re`=$P{programa})-(select sum(1_4_modelo)/1000 from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+            
+IF(`descripcion_re`="acero 3/8", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 3/8' and `programa_re`=$P{programa})-(select sum(3_8_modelo)/1000 from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+               
+IF(`descripcion_re`="acero 1/2", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 1/2' and `programa_re`=$P{programa})-(select sum(1_2_modelo)/1000 from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+                  
+IF(`descripcion_re`="acero 5/8", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 5/8' and `programa_re`=$P{programa})-(select sum(5_8_modelo)/1000 from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+                     
+IF(`descripcion_re`="acero 3/4", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 3/4' and `programa_re`=$P{programa})-(select sum(3_8_modelo)/1000 from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+                        
+IF(`descripcion_re`="acero 1", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='acero 1' and `programa_re`=$P{programa})-(select sum(1_modelo)/1000 from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+                           
+IF(`descripcion_re`="alambre galvan", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='alambre galvan' and `programa_re`=$P{programa})-(select sum(al_modelo)/1000 from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2),
+                              
+                                                                                    
+                                                                                                                                                                IF(`descripcion_re`="electrodo", truncate((select sum(`cant_re`)from recursos_x_programa where `descripcion_re`='electrodo' and `programa_re`=$P{programa})-(select sum(el_modelo)/1000 from modelo_mercantil where programa_modelo=$P{programa} and modelo_mercantil.fecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}),2), "0" )))))))))))) as cantidad
+                                                                                                                                                                
+                                                                                                                                                                ,`um_re` from  recursos_x_programa where  programa_re= $P{programa}  group by `descripcion_re`]]>
+	</queryString>
+	<field name="descripcion_re" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.String"/>
+	<field name="um_re" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="3" width="108" height="20" uuid="70dd2016-1550-4cc7-ab22-672a5337ec5d"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="27" width="234" height="1" uuid="49a85162-0d47-4f64-b137-c2d59e2c2a76"/>
+			</line>
+			<line>
+				<reportElement x="113" y="3" width="1" height="25" uuid="9d0b31db-e521-4a1a-80ea-b5eabc4a567f"/>
+			</line>
+			<line>
+				<reportElement x="196" y="3" width="1" height="25" uuid="e7c5eaa9-27e7-435e-951b-51cb1a4d1a3d"/>
+			</line>
+			<staticText>
+				<reportElement x="118" y="3" width="75" height="20" uuid="c286ce6f-f763-4e63-ad38-e4599c919de5"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="3" width="34" height="20" uuid="0861be79-b49e-408d-ac4f-21ba2d06a68b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[U/M]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement x="2" y="28" width="233" height="1" uuid="d1ed8c4d-8080-497f-9cc9-90e0ff0d5408"/>
+			</line>
+			<line>
+				<reportElement x="113" y="-2" width="1" height="31" uuid="efc69227-204c-4c9b-a6d2-ccf38f774767"/>
+			</line>
+			<line>
+				<reportElement x="196" y="-2" width="1" height="30" uuid="bb9feab9-28b6-4a16-a11b-36f5c89bffec"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="7" width="109" height="20" uuid="553ebe25-eda4-44cd-9a71-d94a38198384"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{descripcion_re}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="7" width="75" height="20" uuid="4d6b4f40-4314-4c30-822c-a9c48f879b49"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="7" width="34" height="20" uuid="4e9df093-067f-4534-9c8d-dccaf83f7837"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{um_re}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

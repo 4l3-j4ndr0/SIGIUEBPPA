@@ -12,6 +12,7 @@ import interaccion_bd.consultas_de_gestionar_contrato;
 import interaccion_bd.consultas_de_gestionar_prod_programa;
 import interaccion_bd.opciones_de_gestionar_contrato;
 import interaccion_bd.opciones_de_gestionar_prod_programa;
+import java.awt.Color;
 import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -403,7 +404,7 @@ public class de_gestionar_prod_programa_editar extends javax.swing.JDialog {
                         uc.setCodigo(opciones_de_gestionar_prod_programa.extraer_numero(sql_codigo));
                         uc.setDescripcion(combo_prefabricados_editar.getSelectedItem().toString());
                         uc.setPrograma(combo_programas_editar.getSelectedItem().toString());
-                        uc.setFecha(toma_fecha(fecha_modelo_editar));
+                        uc.setFecha(fecha_modelo_editar.getDate());
                         uc.setTotal_m3((double) Math.round((Double.parseDouble(cantidad_modelo_editar.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen)) * 100d) / 100d);
                         uc.setImporte((double) Math.round((Double.parseDouble(cantidad_modelo_editar.getText()) * opciones_de_gestionar_prod_programa.extraer_volumen(sql_precio)) * 100d) / 100d);
                         uc.setVolumen_unidad(opciones_de_gestionar_prod_programa.extraer_volumen(sql_volumen));
